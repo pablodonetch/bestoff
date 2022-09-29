@@ -18,7 +18,10 @@ SECRET_KEY = 'django-insecure-rgsjmql)@l(l86ztzs9ohoqvi4o_a4xjuaz5pi)3#w-bsfl*bz
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    '127.0.0.1'
+    'bestoff.herokuapp.com'
+]
 
 
 # Application definition
