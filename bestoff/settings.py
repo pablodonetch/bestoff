@@ -1,35 +1,22 @@
 from pathlib import Path
+import os, environ, django_heroku, dj_database_url
 from urllib.parse import urlparse
-import environ
-import django_heroku
-import os
-import dj_database_url
 from decouple import config
-
 
 env = environ.Env()
 environ.Env.read_env()
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
-
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 SECRET_KEY = env('SECRET_KEY')
 DEBUG = env('DEBUG')
-
-#ALLOWED_HOSTS = [
-#    '127.0.0.1'
-#    'bestoff.herokuapp.com'
-#]
-
 ALLOWED_HOSTS = ['*']
-
-# Application definition
 
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
+    'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'core',
@@ -42,7 +29,6 @@ TAILWIND_APP_NAME = 'theme'
 INTERNAL_IPS = [
     '127.0.0.1',
 ]
-
 NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"
 
 MIDDLEWARE = [
@@ -56,7 +42,7 @@ MIDDLEWARE = [
     'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
-ROOT_URLCONF = 'bestoff.urls'
+ROOT_URLCONF =env('ROOT_URLCONF')
 
 TEMPLATES = [
     {
@@ -74,16 +60,17 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'bestoff.wsgi.application'
+WSGI_APPLICATION = env('WSGI_APPLICATION')
 
-
-# Database
-# https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'd39k6lcjcuu6de',
+        'USER': 'hlcazsbsjwejde',
+        'PASSWORD': '6e9f59e27f470443a47d2a0376af6820a5769a1984f67fe3b7e2c4000f5aa221',
+        'HOST': 'ec2-3-225-110-188.compute-1.amazonaws.com',
+        'PORT': '5432',
     }
 }
 
@@ -110,25 +97,15 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es-es'
 TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/4.1/howto/static-files/
-
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 STATIC_ROOT = os.path.join(BASE_DIR, 'static_root')
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
-# Default primary key field type
-# https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
-
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-django_heroku.settings(locals())
-
