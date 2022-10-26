@@ -50,21 +50,48 @@
     <div class= "col-span-3 sm:col-span-2">
       <div class="rounded-2xl border-solid border-slate-100 min-w-sm gallery-item-detalle min-h-full">
         <div class="grid gap-y-10">
-          <div class="">
-            <div class="py-3 px-6 ">
-                Precio de Compra Inmediata
+            <div class="">
+                <div class="py-3 px-6 ">
+                    Precio de Compra Inmediata
+                </div>
+                <div class="px-6">
+                {% for propiedad in propiedades %}
+                    {%if propiedad.id == id%}    
+                        <h3 class="text-gray-900 text-center text-6xl font-medium mb-2 min-w-full">{{propiedad.precio}} {{propiedad.moneda}}</h3>
+                    {% endif %}
+                {% endfor %}
+                </div>
             </div>
-            <div class="px-6">
-              {% for propiedad in propiedades %}
-                {%if propiedad.id == id%}    
-                      <h3 class="text-gray-900 text-center text-6xl font-medium mb-2 min-w-full">{{propiedad.precio}} {{propiedad.moneda}}</h3>
-                {% endif %}
-              {% endfor %}
+            <div class="grid grid-cols-1 gap-1">
+                <div class="grid grid-cols-3 bg-gray-200">
+                    <div>
+                        10/oct
+                    </div>
+                    <div>
+                        2.100 UF
+                    </div>
+                    <div>
+                        Pendiente
+                    </div>
+                </div>
+                <div class="grid grid-cols-3 ">
+                    <div>
+                        5/oct
+                    </div>
+                    <div>
+                        2.000 UF
+                    </div>
+                    <div>
+                        Rechazada
+                    </div>
+                </div>
             </div>
-          </div>
-          <div class="">
-            <button type="button" class="min-w-full inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-ms leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">Me Interesa</button>
-          </div>
+            <div class="grid grid-cols-2">
+                <div class="">
+                    <input type="text" name="Buscar" id="Buscar" class="" placeholder=" 2.200 UF"/>
+                </div>
+                <button type="button" class="min-w-full inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-ms leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">Ofertar</button>
+            </div>
         </div>
       </div> 
     </div>

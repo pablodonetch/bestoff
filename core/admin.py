@@ -10,6 +10,9 @@ admin.site.site_header = 'Administración de Propiedades'
 admin.site.site_title = 'Donetch & Cía. Administración'
 admin.site.index_title = 'Administración de Propiedades'
 
+class MonedasAdmin(admin.ModelAdmin):
+    list_display = ('id','moneda',)
+
 class PropiedadAdmin(admin.ModelAdmin):
     list_display = ('id', 'direccion', 'tipo_propiedad', 'tipo_operacion', 'comuna', 'precio', 'destacado')
     list_filter = ('tipo_propiedad', 'tipo_operacion', 'comuna')
@@ -40,13 +43,12 @@ admin.site.register(Image, ImageAdmin)
 admin.site.register(Documentos_Legales)
 admin.site.register(Vendedor)
 admin.site.register(comuna)
-#admin.site.register(Propiedad)
-#admin.site.register(Image)
 
 #información básica para empezar a ingresar propiedades
 #admin.site.register(tipo_operacion)
 #admin.site.register(tipo_propiedad)
-#admin.site.register(moneda)
+admin.site.register(moneda, MonedasAdmin)
+admin.site.register(Ofertas)
 #admin.site.register(Corredor)
 #admin.site.register(metodo_pago) #no se usa
 #admin.site.register(Estado_Ocupacion)
