@@ -1,63 +1,101 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block title %}{% endblock title %}
-{% block extra_head %} {% endblock extra_head %}
-
+{% block title%}  {% endblock title%}
+{% block extra_head %}  {% endblock extra_head %}
+{% block navbar %} {% endblock navbar %}
 {% block content %}
 <!--<img src="https://mdbootstrap.com/img/new/slides/041.jpg" class="max-w-full h-auto" alt="..." />-->
   
 
 
-<div class="pt-10 px-4 sm:px-2 mx-auto max-w-4xl">
+<div class="py-10 px-4 sm:px-2 mx-auto max-w-4xl">
   <div class="grid sm:grid-cols-5 grid-cols-3 gap-4">
-    <div class= "col-span-3 relative">
-        {% for propiedad in propiedades %}
+    <div class= "col-span-3 h-80">
+      {% for propiedad in propiedades %}
         {% if propiedad.id == id %}
-        <div class="h-80 rounded-2xl border-solid border-slate-100 min-w-sm gallery-item-detalle">
-            <div class="">
-                <div id="controls-carousel" class="relative" data-carousel="static">
+          <div class="rounded-2xl border-solid border-slate-100 min-w-sm gallery-item-detalle min-h-full">
+            <div class="h-full">
+              <div id="controls-carousel" class="relative" data-carousel="static">
                 <!-- Carousel wrapper -->
-                    <div class="flex relative h-80 overflow-hidden rounded-2xl min-w-full ">
-                        {% for image in images  %}
-                        {% if image.id_propiedades.id == propiedad.id %}
-                            <div class="z-10 hidden duration-700 ease-in-out" data-carousel-item>
-                                <img src="{{ image.image.url }}" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
-                            </div>
-                        {% endif %}
-                        {% endfor %}
-                        
-                        <!-- Slider controls -->
-                        <button type="button" class="absolute top-0 left-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-prev>
-                            <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
-                                <svg aria-hidden="true" class="w-6 h-6 text-white dark:text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
-                                <span class="sr-only">Previous</span>
-                            </span>
-                        </button>
-                        <button type="button" class="absolute top-0 right-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-next>
-                            <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
-                                <svg aria-hidden="true" class="w-6 h-6 text-white dark:text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-                                    <span class="sr-only">Next</span>
-                            </span>
-                        </button>
-                        
-                    </div>
+                <div class="relative h-80 overflow-hidden rounded-2xl ">
+                  {% for image in images  %}
+                    {% if image.id_propiedades.id == propiedad.id %}
+                        <!-- Item 1 -->
+                        <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                          <img src="{{ image.image.url }}" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+                        </div>
+                        <!--<img src="{{ image.image.url }}" class="w-full h-64 object-cover" alt="...">-->
+                    {% endif %}
+                  {% endfor %}
+                  <!-- Slider controls -->
+                  <button type="button" class="absolute top-0 left-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-prev>
+                    <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+                        <svg aria-hidden="true" class="w-6 h-6 text-white dark:text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                        <span class="sr-only">Previous</span>
+                    </span>
+                  </button>
+                  <button type="button" class="absolute top-0 right-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-next>
+                    <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+                      <svg aria-hidden="true" class="w-6 h-6 text-white dark:text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                        <span class="sr-only">Next</span>
+                    </span>
+                  </button>
                 </div>
+              </div>
             </div>
-        </div>
+          </div>
         {% endif %}
-        {% endfor %}
+      {% endfor %}
     </div>
     <div class= "col-span-3 sm:col-span-2">
       <div class="rounded-2xl border-solid border-slate-100 min-w-sm gallery-item-detalle min-h-full">
         <div class="grid gap-y-10">
           <div class="">
             <div class="py-3 px-6 ">
-                Precio de Compra Inmediata
+                Precio
             </div>
             <div class="px-6">
               {% for propiedad in propiedades %}
                 {%if propiedad.id == id%}    
-                      <h3 class="text-gray-900 text-center text-6xl font-medium mb-2 min-w-full">{{propiedad.precio}} {{propiedad.moneda}}</h3>
+                      <h3 class="text-gray-900 text-center text-6xl font-medium mb-2 min-w-full">{{propiedad.precio}} {{propiedad.moneda}}</h3>                   
+                      <p class="text-gray-700 text-base mb-4">
+                          <div class="grid grid-cols-1 ">
+                            <div class= "col">
+                              {%if propiedad.aceptan_contado == True %}
+                                <div class= "row flex detalle-propiedad py-2 rounded-2xl border-solid border-slate-400 my-2">
+                                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="green" class="w-6 h-6 mx-4">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                  </svg>
+                                  <p>Aceptan Contado</p> 
+                                </div>
+                              {%endif%}
+                              {%if propiedad.aceptan_credito == True %}
+                              <div class= "row flex detalle-propiedad py-2 rounded-2xl border-solid border-slate-400 my-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="green" class="w-6 h-6 mx-4">
+                                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0012 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18M12 6.75h.008v.008H12V6.75z" />
+                                </svg>                               
+                                <p>Aceptan Crédito Hipotecario</p>
+                              </div>
+                              {%endif%}
+                              {%if propiedad.aceptan_subsidio == True %}
+                              <div class= "row flex detalle-propiedad py-2 rounded-2xl border-solid border-slate-400 my-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="green" class="w-6 h-6 mx-4">
+                                  <path stroke-linecap="round" stroke-linejoin="round" d="M11.35 3.836c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75 2.25 2.25 0 00-.1-.664m-5.8 0A2.251 2.251 0 0113.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m8.9-4.414c.376.023.75.05 1.124.08 1.131.094 1.976 1.057 1.976 2.192V16.5A2.25 2.25 0 0118 18.75h-2.25m-7.5-10.5H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V18.75m-7.5-10.5h6.375c.621 0 1.125.504 1.125 1.125v9.375m-8.25-3l1.5 1.5 3-3.75" />
+                                </svg> 
+                                <p>Aceptan Subsidio</p>
+                              </div>
+                              {%endif%}
+                              {%if propiedad.aceptan_permuta == True %}
+                              <div class= "row flex detalle-propiedad py-2 rounded-2xl border-solid border-slate-400 my-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="green" class="w-6 h-6 mx-4">
+                                  <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12c0-1.232-.046-2.453-.138-3.662a4.006 4.006 0 00-3.7-3.7 48.678 48.678 0 00-7.324 0 4.006 4.006 0 00-3.7 3.7c-.017.22-.032.441-.046.662M19.5 12l3-3m-3 3l-3-3m-12 3c0 1.232.046 2.453.138 3.662a4.006 4.006 0 003.7 3.7 48.656 48.656 0 007.324 0 4.006 4.006 0 003.7-3.7c.017-.22.032-.441.046-.662M4.5 12l3 3m-3-3l-3 3" />
+                                </svg>
+                                <p>Aceptan Permuta</p>
+                              </div>
+                              {%endif%}
+                            </div>
+                          </div>
+                      </p>
                 {% endif %}
               {% endfor %}
             </div>
@@ -71,135 +109,67 @@
   </div>
 </div>
 
-<div class="pt-4 pb-2 px-4 sm:px-2 mx-auto max-w-4xl">
-    <div class="grid sm:grid-cols-5 grid-cols-3 gap-4">
-        <div class= "col-span-3 ">
-            <div class="flex py-3 justify-center items-center detalle-rentabilidad  rounded-2xl border-solid border-slate-100 min-w-sm gallery-item-detalle">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3.5" stroke="green" class="w-6 h-6">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                <p class="pl-4 text-xl sm:text-xl">{{rentabilidad_max}} % + UF de Rentabilidad Anual</p>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="pt-2 pb-4 px-4 sm:px-2 mx-auto max-w-4xl">
-    <div class="grid sm:grid-cols-5 grid-cols-3 gap-4">
-        <div class= "col-span-3 ">
-            <div class="flex py-3 justify-center items-center detalle-rentabilidad  rounded-2xl border-solid border-slate-100 min-w-sm gallery-item-detalle">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3.5" stroke="green" class="w-6 h-6">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                <p class="pl-4 text-xl sm:text-xl">{{utilidad}} % de Utilidad Inmediata</p>
-            </div>
-        </div>
-    </div>
-</div>
-
 <div class="py-0 px-4 sm:px-2 mx-auto max-w-4xl">
-    <div class="grid sm:grid-cols-5 grid-cols-3 gap-4">
-        <div class= "col-span-3">
-        {% for propiedad in propiedades %}
-            {% if propiedad.id == id %}
-            <div class="grid grid-cols-7">
-                <div class="col-span-4">
-                <div class="grid">
-                    <div class="row">
-                    <h2 class="text-gray-900 text-xl sm:text-3xl font-medium mb-2">{{propiedad.direccion.upper}}</h2>
-                    </div>
-                    <div class="row">
-                    <h2 class="text-gray-900 sm:text-xl font-medium mb-2">{{propiedad.comuna.comuna.upper}}</h2>
-                    </div>
+  <div class="grid sm:grid-cols-5 grid-cols-3 gap-4">
+    <div class= "col-span-3">
+      {% for propiedad in propiedades %}
+        {% if propiedad.id == id %}
+          <div class="grid grid-cols-7">
+            <div class="col-span-4">
+              <div class="grid">
+                <div class="row">
+                  <h3 class="text-gray-900 text-xl sm:text-3xl font-medium mb-2">{{propiedad.direccion.upper}}</h3>
                 </div>
+                <div class="row">
+                  <h5 class="text-gray-900 sm:text-xl font-medium mb-2">{{propiedad.comuna.comuna.upper}}</h5>
                 </div>
-                <div class="col text-center">
-                <div class="grid">
-                    <div class="row">
-                    {{propiedad.dormitorios}}
-                    </div>
-                    <div class="row text-xs">
-                    dorm.
-                    </div>
-                </div>
-                </div>
-                <div class="col text-center">
-                <div class="grid">
-                    <div class="row">
-                    {{propiedad.baños}}
-                    </div>
-                    <div class="row text-xs">
-                    baños
-                    </div>
-                </div>
-                </div>
-                <div class="col text-center">
-                <div class="grid">
-                    <div class="row">
-                    {{ propiedad.superficie_construida}}
-                    </div>
-                    <div class="row text-xs">
-                    mt2
-                    </div>
-                </div>
-                </div>
+              </div>
             </div>
-            <div class="grid pt-4">
-                <div>
-                <h3 class="text-gray-900 text-2xl sm:text-5xl font-medium mb-2">Descripción</h3>
+            <div class="col text-center">
+              <div class="grid">
+                <div class="row">
+                  {{propiedad.dormitorios}}
                 </div>
-                <div>
-                <p class="text-justify">
-                    {{propiedad.descripcion}}
-                </p>
+                <div class="row text-xs">
+                  dorm.
                 </div>
+              </div>
             </div>
-            {% endif %}
-        {% endfor %}
-        </div>
-        <div class= "col-span-2">
-            {% for propiedad in propiedades %}
-            {%if propiedad.id == id%}
-                <div class="grid grid-cols-1 ">
-                <div class= "col">
-                    {%if propiedad.aceptan_contado == True %}
-                    <div class= "row flex detalle-propiedad py-2 rounded-2xl border-solid border-slate-400 my-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="green" class="w-6 h-6 mx-4">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                        <p>Aceptan Contado</p> 
-                    </div>
-                    {%endif%}
-                    {%if propiedad.aceptan_credito == True %}
-                    <div class= "row flex detalle-propiedad py-2 rounded-2xl border-solid border-slate-400 my-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="green" class="w-6 h-6 mx-4">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0012 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18M12 6.75h.008v.008H12V6.75z" />
-                    </svg>                               
-                    <p>Aceptan Crédito Hipotecario</p>
-                    </div>
-                    {%endif%}
-                    {%if propiedad.aceptan_subsidio == True %}
-                    <div class= "row flex detalle-propiedad py-2 rounded-2xl border-solid border-slate-400 my-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="green" class="w-6 h-6 mx-4">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M11.35 3.836c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75 2.25 2.25 0 00-.1-.664m-5.8 0A2.251 2.251 0 0113.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m8.9-4.414c.376.023.75.05 1.124.08 1.131.094 1.976 1.057 1.976 2.192V16.5A2.25 2.25 0 0118 18.75h-2.25m-7.5-10.5H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V18.75m-7.5-10.5h6.375c.621 0 1.125.504 1.125 1.125v9.375m-8.25-3l1.5 1.5 3-3.75" />
-                    </svg> 
-                    <p>Aceptan Subsidio</p>
-                    </div>
-                    {%endif%}
-                    {%if propiedad.aceptan_permuta == True %}
-                    <div class= "row flex detalle-propiedad py-2 rounded-2xl border-solid border-slate-400 my-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="green" class="w-6 h-6 mx-4">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12c0-1.232-.046-2.453-.138-3.662a4.006 4.006 0 00-3.7-3.7 48.678 48.678 0 00-7.324 0 4.006 4.006 0 00-3.7 3.7c-.017.22-.032.441-.046.662M19.5 12l3-3m-3 3l-3-3m-12 3c0 1.232.046 2.453.138 3.662a4.006 4.006 0 003.7 3.7 48.656 48.656 0 007.324 0 4.006 4.006 0 003.7-3.7c.017-.22.032-.441.046-.662M4.5 12l3 3m-3-3l-3 3" />
-                    </svg>
-                    <p>Aceptan Permuta</p>
-                    </div>
-                    {%endif%}
+            <div class="col text-center">
+              <div class="grid">
+                <div class="row">
+                  {{propiedad.baños}}
                 </div>
-                </div>            
-            {% endif %}
-            {% endfor %}
-        </div>
+                <div class="row text-xs">
+                  baños
+                </div>
+              </div>
+            </div>
+            <div class="col text-center">
+              <div class="grid">
+                <div class="row">
+                  {{ propiedad.superficie_construida}}
+                </div>
+                <div class="row text-xs">
+                  mt2
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="grid pt-4">
+            <div>
+              <h3 class="text-gray-900 text-2xl sm:text-5xl font-medium mb-2">Descripción</h3>
+            </div>
+            <div>
+              <p class="text-justify">
+                {{propiedad.descripcion}}
+              </p>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
     </div>
+  </div>
 </div>
 
 <!--Carácterísticas Básicas-->
@@ -337,7 +307,7 @@
                 <h3 class="text-gray-900 text-md font-bold">Tasación Comercial</h3>
               </div>
               <div class="row">
-                <h3 class="text-gray-900 sm:text-xl font-normal mb-2">{{propiedad.tasacion_comercial}} UF</h3>
+                <h3 class="text-gray-900 sm:text-xl font-normal mb-2">{{propiedad.tasacion_comercial}}</h3>
               </div>
             </div>
           </div>
@@ -347,7 +317,7 @@
                 <h3 class="text-gray-900 text-md font-bold">Tasación Fiscal</h3>
               </div>
               <div class="row">
-                <h3 class="text-gray-900 sm:text-xl font-normal mb-2">{{propiedad.tasacion_fiscal}} UF</h3>
+                <h3 class="text-gray-900 sm:text-xl font-normal mb-2">{{propiedad.tasacion_fiscal}}</h3>
               </div>
             </div>
           </div>
@@ -382,7 +352,7 @@
                 <h3 class="text-gray-900 oculto text-md font-bold">Rentabilidad Mín.</h3>
               </div>
               <div class="row">
-                <h3 class="text-gray-900 sm:text-xl font-normal mb-2">{{rentabilidad_min}}%</h3>
+                <h3 class="text-gray-900 sm:text-xl font-normal mb-2">{{propiedad.arriendo_minimo}}%</h3>
               </div>
             </div>
           </div>
@@ -393,7 +363,7 @@
                 <h3 class="text-gray-900 oculto text-md font-bold">Rentabilidad Máx.</h3>
               </div>
               <div class="row">
-                <h3 class="text-gray-900 sm:text-xl font-normal mb-2">{{rentabilidad_max}}%</h3>
+                <h3 class="text-gray-900 sm:text-xl font-normal mb-2">{{propiedad.arriendo_maximo}}%</h3>
               </div>
             </div>
           </div>
@@ -440,27 +410,15 @@
                 </div>
               </div>
               {% if propiedad.propiedad_bancaria == True %}
-              <div class="col col-span-2">
+              <div class="col span-2">
                 Propiedad Bancaria: significa que este bien inmueble es propiedad de un banco, lo que implica que actualmente se mantiene sin Hipoteca, gravámenes ni litigios de ningún tipo.
               </div>
               {% endif %}
-              <div class="col col-span-2 my-2">
+              <div class="col my-2">
                 <h3 class="text-gray-900 text-md font-bold">Documentos Legales</h3>
-                {% for documento in documentos  %}
-                {% if documento.id_propiedades.id == propiedad.id %}
-                    <div>
-                        <a href="{{ documento.documento.url }}" target="_blank"> 
-                            <div class="flex">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
-                                </svg>
-                                <div class="pl-2">{{ documento.titulo }} (haz clic para descargar)
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                {% endif %}
-                {% endfor %}
+                <!--
+                  While con Documentos Legales
+                -->
               </div>
 
             </div>

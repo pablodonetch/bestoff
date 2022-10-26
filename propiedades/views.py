@@ -40,13 +40,15 @@ def propiedades_detalles(request, id, slug):
     propiedad = Propiedad.objects.filter(id=id)
     images= Image.objects.filter(id_propiedades=id)
     '''
-    propiedades = Propiedad.objects.all()
+    UF=34500
+    propiedades= Propiedad.objects.filter(id=id)
+    rentabilidad_max= float(f'{((propiedades[0].arriendo_maximo*12)/(propiedades[0].precio*UF)*100):.1f}') 
+    rentabilidad_min= float(f'{((propiedades[0].arriendo_minimo*12)/(propiedades[0].precio*UF)*100):.1f}')
+    Utilidad= float(f'{((propiedades[0].tasacion_comercial*100/propiedades[0].precio)-100):.1f}')
+    print(Utilidad)
     images = Image.objects.all()
-    context={ 
-        'propiedades': propiedades,
-        'images': images,
-    }
-    return render(request, 'propiedades/detalles.html', {'id':id, 'propiedades': propiedades, 'images': images})
+    documentos= Documentos_Legales.objects.all()
+    return render(request, 'propiedades/detalles.html', {'id':id, 'propiedades': propiedades, 'images': images, 'documentos':documentos, 'rentabilidad_max': rentabilidad_max, 'rentabilidad_min': rentabilidad_min, 'utilidad': Utilidad})
 
 
 def buscador(request):

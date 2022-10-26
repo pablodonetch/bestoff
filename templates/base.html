@@ -15,7 +15,10 @@
     <script src="{% static 'js/funciones.js' %}"></script>
 </head>
 <body>
-    {% block navbar %} {% endblock navbar %}
+    {% block navbar %}
+    {% include 'components/navbar.html' %}
+    {% endblock navbar %}
+    
     {% block content %} {% endblock content %}
     {% block extra_footer %} {% endblock extra_footer %}
     

@@ -1,60 +1,119 @@
 {% extends 'base.html' %}
 {% load static %}
-
-
 {% block title %}{% endblock title %}
 {% block extra_head %} {% endblock extra_head %}
 
-{% block navbar %}
-{% include 'components/navbar.html' %}
-{% endblock navbar %}
+
 
 
 {% block content %} 
-<style>
-.p_portada{
-    color: #fff;
-}
-.arriba{
-    background: rgb(230, 144, 15);
-}
-    
-.wave {
-    position: absolute;
-    left: 0;
-    width: 100%;
-    overflow: hidden;
-    line-height: 0;
-}
+<div class="grid gap-2 grid-cols-1 sm:grid-cols-3 my-4 max-w-4xl mx-2 sm:mx-auto">
+    {% for propiedad in propiedades %}
+      <div class="rounded-2xl">
+        <div class="relative pb-1 overflow-hidden rounded-t-lg">
+          <div id="controls-carousel" class="relative" data-carousel="static">
+            <!-- Carousel wrapper -->
+            <div class="relative h-56 overflow-hidden md:h-96">
+              {% for image in images  %}
+                {% if image.id_propiedades.id == propiedad.id %}
+                    <!-- Item 1 -->
+                    <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                      <img src="{{ image.image.url }}" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+                    </div>
+                    <!--<img src="{{ image.image.url }}" class="w-full h-64 object-cover" alt="...">-->
+                {% endif %}
+              {% endfor %}
+              <!-- Slider controls -->
+              <button type="button" class="absolute top-0 left-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-prev>
+                <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+                    <svg aria-hidden="true" class="w-6 h-6 text-white dark:text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                    <span class="sr-only">Previous</span>
+                </span>
+              </button>
+              <button type="button" class="absolute top-0 right-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-next>
+                <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+                  <svg aria-hidden="true" class="w-6 h-6 text-white dark:text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                    <span class="sr-only">Next</span>
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <a href="propiedades/detalles/{{propiedad.id}}/{{propiedad.comuna}}-{{propiedad.direccion}}" class="c-card block bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden">
+          <div class="p-4">
+            <p class="text-xs text-gray-400">Ofertado por Donetch & Cía.</p>
+            <h2 class="mt-2 mb-2  font-bold truncate_2">{{propiedad.direccion.upper}}</h2>
+            <h2 class="mt-2 mb-2  font-bold">{{propiedad.comuna.comuna}}</h2>
+            <div>
+              <div class="gallery-item">
+                <svg width="14px" height="13px" viewBox="0 0 14 13" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                  <g id="Designs-v2" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                      <g id="Homepage---Desktop---Returning,-Not-Logged-In" transform="translate(-138.000000, -1139.000000)" fill="#2A69A3">
+                          <g id="Group-4" transform="translate(66.000000, 924.000000)">
+                              <g id="property/card/app/boxed" transform="translate(56.000000, 0.000000)">
+                                  <g id="icon/1.5px/bed" transform="translate(16.000000, 215.000000)">
+                                    <path d="M12.4625075,0.4 C12.9250418,0.4 13.3,0.774958181 13.3,1.23749254 L13.3010793,4.96141065 C13.6976702,5.02744588 14,5.37216275 14,5.78749254 L14,10.6916716 L13.9997542,10.708781 C13.9999177,10.7141673 14,10.719574 14,10.725 L14,12.475 C14,12.7649495 13.7649495,13 13.475,13 C13.1850505,13 12.95,12.7649495 12.95,12.475 L12.95,11.249 L1.05,11.249 L1.05,12.475 C1.05,12.7649495 0.814949494,13 0.525,13 C0.235050506,13 3.55085719e-17,12.7649495 0,12.475 L0,10.725 L0.000291927368,10.7098997 C9.78033656e-05,10.7038475 0,10.697771 0,10.6916716 L0,5.78749254 C0,5.37181048 0.3028429,5.02686117 0.699930087,4.96124323 L0.7,1.23749254 C0.7,0.774958181 1.07495818,0.4 1.53749254,0.4 L12.4625075,0.4 Z M12.95,8.975 L1.049,8.975 L1.05,10.2 L12.95,10.2 L12.95,8.975 Z M1.247,5.999 L1.05,6 L1.049,7.924 L12.95,7.924 L12.95,6 L12.7528279,5.99989076 C12.7491179,5.99996347 12.745399,6 12.7416716,6 L1.25832836,6 L1.247,5.999 Z M12.25,1.45 L1.75,1.45 L1.75,4.949 L2.45,4.949 L2.45,3.05832836 C2.45,2.74997212 2.69997212,2.5 3.00832836,2.5 L6.09167164,2.5 C6.40002788,2.5 6.65,2.74997212 6.65,3.05832836 L6.649,4.949 L7.35,4.949 L7.35,3.05832836 C7.35,2.74997212 7.59997212,2.5 7.90832836,2.5 L10.9916716,2.5 C11.3000279,2.5 11.55,2.74997212 11.55,3.05832836 L11.549,4.949 L12.25,4.949 L12.25,1.45 Z M5.6,3.55 L3.5,3.55 L3.5,4.949 L5.6,4.949 L5.6,3.55 Z M10.5,3.55 L8.4,3.55 L8.4,4.949 L10.5,4.949 L10.5,3.55 Z" id="Combined-Shape"></path>
+                                  </g>
+                              </g>
+                          </g>
+                      </g>
+                  </g>
+                </svg>
+              </div>
+              <div class="gallery-item">
+                <span class="text-xs text-gray-700">{{propiedad.dormitorios}}d</span>
+              </div>
+              <div class="gallery-item">
+                <svg width="14px" height="13px" viewBox="0 0 14 13" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                  <g id="Designs-v2" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <g id="Homepage---Desktop---Returning,-Not-Logged-In" transform="translate(-210.000000, -1139.000000)" fill="#2A69A3">
+                      <g id="Group-4" transform="translate(66.000000, 924.000000)">
+                        <g id="property/card/app/boxed" transform="translate(56.000000, 0.000000)">
+                          <g id="icon/1.5px/bed-copy" transform="translate(88.000000, 215.000000)">
+                            <path d="M6.1044225,1.46572284 C6.18480402,1.7443077 6.02412847,2.03530744 5.74554361,2.11568895 C5.49017416,2.18937201 5.22437276,2.06050017 5.11993169,1.82392857 L5.0955775,1.75681007 C4.95655054,1.27497286 4.45324069,0.997070253 3.97140348,1.13609722 C3.70247148,1.21369355 3.48633962,1.41021477 3.38219502,1.66594979 L3.3485058,1.76450944 L3.325,1.84677103 L3.32411918,5.159 L13.0919921,5.15917103 C13.5215469,5.15917103 13.8697698,5.50739401 13.8697698,5.93694881 C13.8697698,5.97694577 13.8666846,6.01688314 13.8605416,6.05640554 L13.1166277,10.8425289 C13.0253702,11.4296528 12.6131328,11.8973775 12.0753965,12.0782586 L12.075,12.509171 C12.075,12.7991205 11.8399495,13.034171 11.55,13.034171 C11.284213,13.034171 11.0645563,12.8366633 11.0297926,12.5804104 L11.025,12.509171 L11.0241192,12.159 L2.97411918,12.159 L2.975,12.509171 C2.975,12.7991205 2.73994949,13.034171 2.45,13.034171 C2.18421296,13.034171 1.96455633,12.8366633 1.92979263,12.5804104 L1.925,12.509171 L1.92399993,12.0780554 C1.38655876,11.8970275 0.974595609,11.4294331 0.88337227,10.8425289 L0.139458414,6.05640554 C0.0734842859,5.63194736 0.364093027,5.23437342 0.788551206,5.16839929 C0.828073603,5.16225627 0.868010975,5.15917103 0.908007933,5.15917103 L2.27411918,5.159 L2.27411918,4.109 L1.925,4.10917103 C1.63505051,4.10917103 1.4,3.87412053 1.4,3.58417103 C1.4,3.29422154 1.63505051,3.05917103 1.925,3.05917103 L2.27411918,3.059 L2.275,1.77688819 L2.29431429,1.63579614 L2.33713438,1.48232535 C2.51961688,0.828292824 3.02791751,0.315492177 3.68031626,0.127252219 C4.71932317,-0.172537779 5.8046325,0.426715931 6.1044225,1.46572284 Z M12.7736,6.20917103 L1.2257,6.20917103 L1.92091412,10.6812624 C1.95536494,10.9029088 2.13056851,11.0721977 2.3469541,11.103839 L2.42047131,11.109171 L11.5795287,11.109171 C11.8038366,11.109171 11.9980259,10.9620468 12.0625258,10.7530883 L12.0790859,10.6812624 L12.7736,6.20917103 Z" id="Combined-Shape"></path>
+                          </g>
+                        </g>
+                      </g>
+                    </g>
+                  </g>
+                </svg>
+              </div>
+              <div class="gallery-item">
+                <span class="text-xs text-gray-700">{{propiedad.baños}}b</span>
+              </div>
+              <div class="gallery-item">
+                <svg width="14px" height="8px" viewBox="0 0 14 8" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="margin-top: 1px;">
+                  <g id="Designs-v2" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <g id="Homepage---Desktop---Returning,-Not-Logged-In" transform="translate(-285.000000, -1142.000000)" fill="#2A69A3">
+                        <g id="Group-4" transform="translate(66.000000, 924.000000)">
+                          <g id="property/card/app/boxed" transform="translate(56.000000, 0.000000)">
+                            <g id="icon/1.5px/bed-copy-2" transform="translate(163.000000, 218.000000)">
+                              <path d="M13.3,0.2 C13.6865993,0.2 14,0.513400675 14,0.9 L14,6.5 C14,6.88659932 13.6865993,7.2 13.3,7.2 L0.7,7.2 C0.313400675,7.2 0,6.88659932 0,6.5 L0,0.9 C0,0.513400675 0.313400675,0.2 0.7,0.2 L13.3,0.2 Z M12.95,1.25 L1.05,1.25 L1.05,6.15 L2.275,6.149 L2.275,3.35 C2.275,3.06005051 2.51005051,2.825 2.8,2.825 C3.06578704,2.825 3.28544367,3.02250772 3.32020737,3.27876061 L3.325,3.35 L3.325,6.149 L4.375,6.15 L4.375,4.05 C4.375,3.76005051 4.61005051,3.525 4.9,3.525 C5.16578704,3.525 5.38544367,3.72250772 5.42020737,3.97876061 L5.425,4.05 L5.425,6.15 L6.475,6.149 L6.475,3.35 C6.475,3.06005051 6.71005051,2.825 7,2.825 C7.26578704,2.825 7.48544367,3.02250772 7.52020737,3.27876061 L7.525,3.35 L7.524,6.149 L8.575,6.15 L8.575,4.05 C8.575,3.76005051 8.81005051,3.525 9.1,3.525 C9.36578704,3.525 9.58544367,3.72250772 9.62020737,3.97876061 L9.625,4.05 L9.625,6.15 L10.675,6.149 L10.675,3.35 C10.675,3.06005051 10.9100505,2.825 11.2,2.825 C11.465787,2.825 11.6854437,3.02250772 11.7202074,3.27876061 L11.725,3.35 L11.725,6.149 L12.95,6.15 L12.95,1.25 Z" id="Combined-Shape"></path>
+                          </g>
+                        </g>
+                      </g>
+                    </g>
+                  </g>
+                </svg>
+              </div>
+              <div class="gallery-item">
+                <span class="text-xs text-gray-700">{{propiedad.superficie_construida}} mt2 </span>
+              </div>
+            </div>
+          </div>
+          <div class="p-2 border-t border-b text-xs text-gray-700">
+            <div class="flex justify-between">
+                  <div> <span class="text-sm font-semibold">UF </span>&nbsp;<span class="font-bold text-xl">{{propiedad.precio}}</span></div>
+                  <button type="submit" class="text-white right-2 bottom-2 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Me interesa</button>
+            </div>       
+          </div>
+        </a>
+      </div>
+    {% endfor %}
+</div>
 
-.wave svg {
-    position: relative;
-    display: block;
-    width: calc(112% + 1.3px);
-    height: 152px;
-}
 
-.wave .shape-fill {
-    fill: rgb(230, 144, 15);
-}
-
-/** For tablet devices **/
-@media (min-width: 768px) and (max-width: 1023px) {
-    .wave svg {
-        width: calc(112% + 1.3px);
-        height: 87px;
-    }
-}
-
-@media (max-width: 767px) {
-    .wave svg {
-        width: calc(112% + 1.3px);
-        height: 40px;
-    }
-}
-</style>
-
-<!--GRID de ciudades-->
+  <!--GRID de ciudades-->
 <div class="grid  grid-cols-2 sm:grid-cols-3 gap-0 sm:gap-4 max-w-2xl mx-auto">
     <div class="p-0 mx-auto w-full sm:w-1/3">
         <div class="relative overflow-hidden bg-no-repeat bg-cover max-w-xs mx-auto">
