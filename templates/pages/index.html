@@ -2,6 +2,14 @@
 {% load static %}
 {% block title %}  {% endblock title %}
 <style>
+  #show_bg {
+    background-image: url('imagenes/bg_portada.jpg');
+    width: 80%;
+    height: 200px;
+    background-size: cover;
+    color: white;
+  }
+
 </style>
 {% block extra_head %} {% endblock extra_head %}
 
@@ -9,7 +17,7 @@
 
 
 {% block content %} 
-
+<div id='show_bg'>something here</div>
 
 
 <div class="grid gap-2 grid-cols-1 sm:grid-cols-3 my-4 max-w-4xl mx-2 sm:mx-auto">
