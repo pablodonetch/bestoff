@@ -1,12 +1,17 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block title %}{% endblock title %}
+{% block title %}  {% endblock title %}
+<style>
+</style>
 {% block extra_head %} {% endblock extra_head %}
 
 
 
 
 {% block content %} 
+
+
+
 <div class="grid gap-2 grid-cols-1 sm:grid-cols-3 my-4 max-w-4xl mx-2 sm:mx-auto">
     {% for propiedad in propiedades %}
       <div class="rounded-2xl">
@@ -18,7 +23,7 @@
                 {% if image.id_propiedades.id == propiedad.id %}
                     <!-- Item 1 -->
                     <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                      <img src="{{ image.image.url }}" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+                      <img src="{{ image.image.url }}" class="absolute block h-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
                     </div>
                     <!--<img src="{{ image.image.url }}" class="w-full h-64 object-cover" alt="...">-->
                 {% endif %}
