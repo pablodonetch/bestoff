@@ -23,6 +23,8 @@ INSTALLED_APPS = [
 
     'tailwind',
     'theme',
+
+    'storages',
 ]
 
 TAILWIND_APP_NAME = 'theme'
@@ -102,10 +104,23 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
 
-STATIC_URL = 'static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
-STATIC_ROOT = os.path.join(BASE_DIR, 'static_root')
+STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
+STATICFILES_DIRS = [ os.path.join(BASE_DIR, 'static')]
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static_root')
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+# Security
+SECURE_CROSS_ORIGIN_OPENER_POLICY = None
+
+
+#S3 BUCKETS CONFIG
+AWS_ACCESS_KEY_ID = 'AKIA6D5N4TJSADFBZ2DD'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'bestoff-cl'
+
+AWS_S3_FILE_OVERWRITE = True
+AWS_DEFAULT_ACL = None
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
