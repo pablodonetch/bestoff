@@ -13,14 +13,16 @@ class HomeView(View):
         UF=34500 #CAMBIAR UF ACÁ
         rentabilidades=[]
         rentabilidades.append({})
+        plusvalia=[]
+        plusvalia.append({})
         for propiedad in propiedades:
-            rentabilidad_real= float(f'{((propiedad.arriendo_actual*12)/(propiedad.precio*UF)*100):.1f}')
-            rentabilidades[0][propiedad.id]=rentabilidad_real
-        print(rentabilidades)
+            rentabilidades[0][propiedad.id]=float(f'{((propiedad.arriendo_actual*12)/(propiedad.precio*UF)*100):.1f}')
+            plusvalia[0][propiedad.id]= float(f'{((1-(propiedad.precio/propiedad.tasacion_comercial))*100):.1f}')
         context={ 
             'propiedades': propiedades,
             'images': images,
             'rentabilidades': rentabilidades,
+            'plusvalia': plusvalia
         }
         return render(request, 'pages/index.html', context)
 
