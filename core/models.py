@@ -14,13 +14,12 @@ class Corredor(models.Model):
     nombre = models.CharField(max_length=100)
     email = models.EmailField()
     telefono = models.CharField(max_length=100)
-    
     def __str__(self):
         return self.nombre
-
     class Meta:
         verbose_name = 'Corredor'
         verbose_name_plural = 'Corredores'
+
 
 class moneda(models.Model):
     moneda= models.CharField(max_length=100)
@@ -33,19 +32,17 @@ class oferta(models.Model):
     moneda=models.ForeignKey(moneda, on_delete=models.CASCADE)
     propiedad=models.ForeignKey('Propiedad', on_delete=models.CASCADE)
     comprador=models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-
     def __str__(self):
         return self.nombre
+
 
 class Vendedor(models.Model):
     nombre = models.CharField(max_length=50)
     apellido = models.CharField(max_length=50)
     rut = models.CharField(max_length=50)
     telefono_contacto= models.CharField(max_length=50)
-
     def __str__(self):
         return f"{self.nombre} {self.apellido}"
-    
     class Meta:
         verbose_name = 'Vendedor'
         verbose_name_plural = 'Vendedores'
@@ -56,13 +53,12 @@ class Comprador(models.Model):
     apellido = models.CharField(max_length=50)
     rut = models.CharField(max_length=50)
     telefono_contacto= models.CharField(max_length=50)
-
     def __str__(self):
         return f"{self.nombre} {self.apellido}"
-    
     class Meta:
         verbose_name = 'Comprador'
         verbose_name_plural = 'Compradores'
+
 
 class Estado_Oferta(models.Model):
     nombre=models.CharField(max_length=50)
@@ -135,9 +131,11 @@ def nombre_timestamp(filename):
     nombre=f"{datetime.timestamp(fecha)}{os.path.splitext(str(filename))[1]}"
     return nombre
 
+
 # Guarda en la carpeta media/propiedades las imagenes y videos de las propiedades
 def user_directory_path(instance, filename):
     return 'propiedades/{0}/{1}'.format(instance.id_propiedades, nombre_timestamp(filename))
+
 
 def normalice(value):
     normalice= str(value).replace("á", "a").replace("é", "e").replace("í", "i").replace("ó", "o").replace("ú", "u").replace("ñ", "n").replace(" ", "-").replace("Á", "A").replace("É", "E").replace("Í", "I").replace("Ó", "O").replace("Ú", "U").replace("Ñ", "N")
@@ -148,17 +146,17 @@ class Image(models.Model):
     image = models.ImageField(upload_to=user_directory_path)
     id_propiedades= models.ForeignKey('Propiedad', on_delete=models.CASCADE, related_name='images')
     default= models.BooleanField(default=False)
-
     def __str__(self):
         return f"{self.id_propiedades} {self.image}"
+
 
 class Documentos_Legales(models.Model):
     documento = models.FileField(upload_to=user_directory_path)
     titulo= models.CharField(max_length=200)
     id_propiedades= models.ForeignKey('Propiedad', on_delete=models.CASCADE, related_name='documentos')
-
     def __str__(self):
         return f"{self.id_propiedades} {self.documento}"
+
 
 class Estado_Ocupacion(models.Model):
     estado = models.CharField(max_length=50)
@@ -223,14 +221,13 @@ class Propiedad(models.Model):
     fecha_venta_anterior=models.DateField(blank=True, null=True)
     precio_venta_anterior=models.IntegerField(default=0, blank=True, null=True)
     slug=models.TextField(max_length=200, unique=True, blank=True, null=True)
-
     class Meta:
         ordering = ['-published',]
         verbose_name = 'Propiedad'
         verbose_name_plural = 'Propiedades'
-
     def __str__(self):
         return f"{self.id}"
+
 
 class Metadata(models.Model):
     description = models.CharField(max_length=200)
@@ -238,10 +235,8 @@ class Metadata(models.Model):
     correo= models.CharField(max_length=200)
     telefono= models.CharField(max_length=200)
     titulo= models.CharField(max_length=200)
-
     def __str__(self):
         return self.correo
-
     class Meta:
         verbose_name = 'Metadata'
         verbose_name_plural = 'Metadatas'

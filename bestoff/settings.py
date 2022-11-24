@@ -119,10 +119,8 @@ STATICFILES_DIRS = [ os.path.join(BASE_DIR, 'static')]
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 STATIC_ROOT = os.path.join(BASE_DIR, 'static_root')
 
-
 # Security
 SECURE_CROSS_ORIGIN_OPENER_POLICY = None
-
 
 #S3 BUCKETS CONFIG
 AWS_ACCESS_KEY_ID = 'AKIA6D5N4TJSFEUQ4LG7'

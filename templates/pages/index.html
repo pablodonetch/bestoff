@@ -104,19 +104,17 @@
 <!--Grid de Propiedades con Excelente Rentabilidad-->
 <div class="grid gap-2 grid-cols-1 sm:grid-cols-3 my-4 max-w-4xl mx-2 sm:mx-auto">
   {% for propiedad in propiedades %}
-    {% if rentabilidades.0|accede_diccionario:propiedad.id > 3.5 %}
-    <div class="rounded-2xl">
+  {% if rentabilidades.0|accede_diccionario:propiedad.id > 3.5 %}
+    <div class="static rounded-2xl">
       <div class="relative pb-1 overflow-hidden rounded-t-lg">
-        <div id="controls-carousel" class="relative" data-carousel="static">
+        <div id="z-10 controls-carousel" class="relative" data-carousel="static">
             <!-- Carousel wrapper -->
-            <div class="relative h-56 overflow-hidden">
+            <div class="relative h-56 overflow-hidden md:h-96">
               {% for image in images  %}
                 {% if image.id_propiedades.id == propiedad.id %}
-                    <!-- Item 1 -->
                     <div class="hidden duration-700 ease-in-out" data-carousel-item>
                       <img src="{{ image.image.url }}" class="absolute block w-full sm:h-full sm:w-auto  -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
                     </div>
-                    <!--<img src="{{ image.image.url }}" class="w-full h-64 object-cover" alt="...">-->
                 {% endif %}
               {% endfor %}
               <!-- Slider controls -->
@@ -134,13 +132,25 @@
             </button>
           </div>
         </div>
+
+
+
       </div>
-      <a href="propiedades/detalles/{{propiedad.id}}/{{propiedad.comuna.comuna.split|join:"-"}}-{{propiedad.direccion.split|join:"-"}}" class="c-card block bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden">
+      
+      <div class=" ">
+        <div class="flex py-1 justify-center items-center detalle-rentabilidad  rounded-md border-solid border-slate-100 min-w-sm gallery-item-detalle">
+          <svg height="20" width="20">
+            <circle cx="10" cy="10" r="10" stroke="green" stroke-width="0" fill="green" />
+          </svg> 
+          <p class="mx-2 text-md">UF + {{rentabilidades.0|accede_diccionario:propiedad.id}} % Rent. Anual</p>
+        </div>
+      </div>
+
+      <a href="propiedades/detalles/{{propiedad.id}}/{{propiedad.comuna.comuna.split|join:"-"}}-{{propiedad.direccion.split|join:"-"}}" class="c-card block bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden">  
         <div class="p-4">
           <p class="text-xs text-gray-400">Ofertado por Donetch & Cía.</p>
-          <h4 class="mt-2 mb-1 text-xl sm:text-2lx font-bold">{{propiedad.comuna.comuna|upper}}</h2>
-          <h4 class="mt-0 mb-2 text-xl sm:text-lg font-bold truncate_2">{{propiedad.direccion}}</h2>
-          <div>
+          <h3 class="mt-0 mb-2 text-2xl sm:text-sm font-bold">{{propiedad.comuna.comuna|upper}}</h2>
+          <!--<div>
             <div class="gallery-item">
               <svg width="14px" height="13px" viewBox="0 0 14 13" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <g id="Designs-v2" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -157,7 +167,7 @@
               </svg>
             </div>
             <div class="gallery-item">
-              <span class="text-lg text-gray-700">{{propiedad.dormitorios}}d</span>
+              <span class="text-sm text-gray-700">{{propiedad.dormitorios}}d</span>
             </div>
             <div class="gallery-item">
               <svg width="14px" height="13px" viewBox="0 0 14 13" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -175,7 +185,7 @@
               </svg>
             </div>
             <div class="gallery-item">
-              <span class="text-lg text-gray-700">{{propiedad.baños}}b</span>
+              <span class="text-sm text-gray-700">{{propiedad.baños}}b</span>
             </div>
             <div class="gallery-item">
               <svg width="14px" height="8px" viewBox="0 0 14 8" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="margin-top: 1px;">
@@ -193,9 +203,9 @@
               </svg>
             </div>
             <div class="gallery-item">
-              <span class="text-lg text-gray-700">{{propiedad.superficie_construida|truncDecimal}} mt2 </span>
+              <span class="text-sm text-gray-700">{{propiedad.superficie_construida|truncDecimal}} mt2 </span>
             </div>
-          </div>
+          </div>-->
         </div>
         <div class="p-2 border-t border-b text-xs text-gray-700">
           <div class="flex justify-between">
@@ -218,21 +228,20 @@
   </div>
 </div>
 <!--Grid de Propiedades Bancarias-->
+
 <div class="grid gap-2 grid-cols-1 sm:grid-cols-3 my-4 max-w-4xl mx-2 sm:mx-auto">
   {% for propiedad in propiedades %}
-    {% if propiedad.propiedad_bancaria == True %}
+  {% if propiedad.propiedad_bancaria == True %}
     <div class="rounded-2xl">
       <div class="relative pb-1 overflow-hidden rounded-t-lg">
         <div id="controls-carousel" class="relative" data-carousel="static">
             <!-- Carousel wrapper -->
-            <div class="relative h-56 overflow-hidden">
+            <div class="relative h-56 overflow-hidden md:h-96">
               {% for image in images  %}
                 {% if image.id_propiedades.id == propiedad.id %}
-                    <!-- Item 1 -->
                     <div class="hidden duration-700 ease-in-out" data-carousel-item>
                       <img src="{{ image.image.url }}" class="absolute block w-full sm:h-full sm:w-auto  -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
                     </div>
-                    <!--<img src="{{ image.image.url }}" class="w-full h-64 object-cover" alt="...">-->
                 {% endif %}
               {% endfor %}
               <!-- Slider controls -->
@@ -252,10 +261,15 @@
         </div>
       </div>
       <a href="propiedades/detalles/{{propiedad.id}}/{{propiedad.comuna.comuna.split|join:"-"}}-{{propiedad.direccion.split|join:"-"}}" class="c-card block bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden">
+        
+
+
+
+        
         <div class="p-4">
           <p class="text-xs text-gray-400">Ofertado por Donetch & Cía.</p>
-          <h4 class="mt-2 mb-1 text-xl sm:text-2lx font-bold">{{propiedad.comuna.comuna|upper}}</h2>
-          <h4 class="mt-0 mb-2 text-xl sm:text-lg font-bold truncate_2">{{propiedad.direccion}}</h2>
+          <h2 class="mt-2 mb-1 text-xl sm:text-sm font-bold truncate_2">{{propiedad.direccion|upper}}</h2>
+          <h2 class="mt-0 mb-2 text-xl sm:text-sm font-bold">{{propiedad.comuna.comuna}}</h2>
           <div>
             <div class="gallery-item">
               <svg width="14px" height="13px" viewBox="0 0 14 13" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -273,7 +287,7 @@
               </svg>
             </div>
             <div class="gallery-item">
-              <span class="text-lg text-gray-700">{{propiedad.dormitorios}}d</span>
+              <span class="text-sm text-gray-700">{{propiedad.dormitorios}}d</span>
             </div>
             <div class="gallery-item">
               <svg width="14px" height="13px" viewBox="0 0 14 13" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -291,7 +305,7 @@
               </svg>
             </div>
             <div class="gallery-item">
-              <span class="text-lg text-gray-700">{{propiedad.baños}}b</span>
+              <span class="text-sm text-gray-700">{{propiedad.baños}}b</span>
             </div>
             <div class="gallery-item">
               <svg width="14px" height="8px" viewBox="0 0 14 8" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="margin-top: 1px;">
@@ -309,7 +323,7 @@
               </svg>
             </div>
             <div class="gallery-item">
-              <span class="text-lg text-gray-700">{{propiedad.superficie_construida|truncDecimal}} mt2 </span>
+              <span class="text-sm text-gray-700">{{propiedad.superficie_construida|truncDecimal}} mt2 </span>
             </div>
           </div>
         </div>
