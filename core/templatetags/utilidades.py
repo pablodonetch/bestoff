@@ -1,7 +1,7 @@
 from django import template
 from core.models import *
 import math
-
+from django.template.defaulttags import register
 
 register = template.Library()
 
@@ -23,6 +23,10 @@ def getMetadata(n):
     if n==5:
         return datos.titulo
 
+
+@register.filter
+def accede_diccionario(dictionary, key):
+    return dictionary.get(key)
 
 
 #######Métodos de formateo
