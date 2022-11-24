@@ -1,7 +1,7 @@
 .show_bg {
     background-image:
     linear-gradient(to top, rgb(255, 255, 255, 1) 0%, rgba(255, 86, 39, 0.8) 70%,rgba(255, 86, 39, .95) 80%, rgba(255, 86, 39, 1) 100%), 
-    url('/static/imagenes/bg_portada.jpg');
+    url('/imagenes/bg_portada.jpg');
     width: 100%;
     height: 500px;
     background-size: cover;
