@@ -3,7 +3,7 @@ function buscador(){
     {
         return false;
     }
-    window.location="/propiedades/buscador?buscar="+document.getElementById('Comuna').value+"-"+document.getElementById('Tipo').value+"-"+document.getElementById('Operacion').value;
+    window.location="/propiedades/buscador?buscar="+document.getElementById('Comuna').value+"-"+document.getElementById('precio').value+"-"+document.getElementById('rentabilidad').value+"-"+document.getElementById('plusvalia').value+"-"+document.getElementById('bancaria').value;
 }
 
 function soloNumeros(evt) {
