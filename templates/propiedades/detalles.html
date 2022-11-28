@@ -1,10 +1,11 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block title %}{% endblock title %}
-{% block extra_head %} {% endblock extra_head %}
+
+{% block extra_navbar %} {% include 'componentes/navbar.html' %} {% endblock extra_navbar %}
 
 {% block content %}
-<!--<img src="https://mdbootstrap.com/img/new/slides/041.jpg" class="max-w-full h-auto" alt="..." />-->
+
   
 
 
@@ -508,6 +509,7 @@
       </div>
       <div class="row">
         <h3 class="text-gray-900 text-xl font-normal mb-2">{{propiedad.comision_venta}}</h3>
+      </div>
     </div>
     <div class="grid sm:grid-cols-10 grid-cols-3 gap-4">
       <div class= "col-span-5">
@@ -517,8 +519,7 @@
         <div class="row">
           <p class="text-justify">Los costos de comprar al contado son básicamente tres. 
             El primero corresponde al costo de hacer el estudio de título con un abogado de confianza.
-          El segundo es el costo de la redacción de la escritura de compraventa. Es común que los </p>  
-      
+          El segundo es el costo de la redacción de la escritura de compraventa. Es común que los </p>
         </div>
       </div>
       <div class= "col-span-5">
