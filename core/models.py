@@ -61,13 +61,16 @@ class Estado_Oferta(models.Model):
         return self.nombre
 
 
-class Ofertas(models.Model):
+class Oferta(models.Model):
     monto=models.IntegerField()
     moneda=models.ForeignKey(moneda, on_delete=models.CASCADE, default=1)
     propiedad=models.ForeignKey('Propiedad', on_delete=models.CASCADE)
     comprador=models.ForeignKey('Comprador', on_delete=models.CASCADE)
     estado=models.ForeignKey('Estado_Oferta', on_delete=models.CASCADE)
     fecha=models.DateTimeField(default=timezone.now)
+    class Meta:
+        verbose_name = 'Oferta'
+        verbose_name_plural = 'Ofertas'
 
 
 class tipo_propiedad(models.Model):
