@@ -4,9 +4,36 @@
 {% block extra_navbar %} {% include 'componentes/navbar.html' %} {% endblock extra_navbar %}
 {% block content %}
 
+<!-- Modal Ofertar -->
+<div id="modal-component-containet" class="hidden fixed min-h-full min-w-full bg-gray-200 bg-opacity-50">
+  <div class="modal-flex-container justify-center">
+    <div id ="modal-container" class="modal-container max-w-sm mx-auto bg-white mt-4 p-4 rounded-xl border-gray-400">
+      <div class="modal-wrapper">
+        <div class="modal-wrapper-flex">
+          <div class="modal-content">
+            <form name="form" method="post" action="{{ request.get_full_path }} ">
+                {% csrf_token %}
+                <div class="form-group mb-6">
+                  {{form.nombre}}
+                </div>
+                <div class="form-group mb-6">
+                  {{form.telefono}}
+                </div>
+                <div class="form-group mb-6">
+                  {{form.email}}
+              </div>
+              <div class="flex">
+                <button href="javascript:void(0);" onclick="document.form.submit();" class="w-1/2 mr-1 px-6 py-2.5 bg-blue-600 text-white font-medium text-base leading-tight rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">contáctenme</button>
+                <button id="close-modal" class="w-1/2 ml-1 px-6 py-2.5 bg-blue-600 text-white font-medium text-base leading-tight rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">cancelar</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
   
-
-
 <div class="pt-10 px-4 sm:px-2 mx-auto max-w-4xl">
   <div class="grid sm:grid-cols-5 grid-cols-3 gap-4">
     <div class= "col-span-3 relative">
@@ -48,7 +75,7 @@
     </div>
     <div class= "col-span-3 sm:col-span-2">
       <div class="rounded-2xl border-solid border-slate-100 min-w-sm gallery-item-detalle min-h-full">
-        <div class="grid gap-y-10">
+        <div class="grid gap-y-5">
             <div class="">
                 <div class="py-3 px-6 ">
                     Precio de Compra Inmediata
@@ -56,40 +83,56 @@
                 <div class="px-6">
                 {% for propiedad in propiedades %}
                     {%if propiedad.id == id%}    
-                        <h3 class="text-gray-900 text-center text-6xl font-medium mb-2 min-w-full">{{propiedad.precio}} {{propiedad.moneda}}</h3>
+                        <h3 class="text-gray-900 text-center text-6xl font-medium mb-2 min-w-full">{{propiedad.precio|numberFormat}} {{propiedad.moneda}}</h3>
                     {% endif %}
                 {% endfor %}
                 </div>
             </div>
-            <div class="grid grid-cols-1 gap-1">
-                <div class="grid grid-cols-3 bg-gray-200">
-                    <div>
-                        10/oct
-                    </div>
-                    <div>
-                        2.100 UF
-                    </div>
-                    <div>
-                        Pendiente
-                    </div>
+            <!--Tabla Ofertas-->
+            <div class="grid gap-y-5">
+              <div class="">
+                <div class="py-3 px-6 ">
+                    Últimas Ofertas
                 </div>
-                <div class="grid grid-cols-3 ">
-                    <div>
-                        5/oct
+                <div class="flex flex-col px-6">
+                  <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+                    <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
+                      <div class="overflow-hidden">
+                        <table class="min-w-full">
+                          <tbody>
+                            {% for oferta in ofertas %}
+                            <tr class="bg-gray-100 border-b">
+                              <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap">
+                                {{oferta.fecha|date:"d-m-y"}}
+                              </td>
+                              <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap">
+                                {{oferta.monto|numberFormat}} UF
+                              </td>
+                              <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap">
+                                {{oferta.estado}}
+                              </td>
+                            </tr>
+                            {%endfor%}
+                          </tbody>
+                        </table>
+                      </div>
                     </div>
-                    <div>
-                        2.000 UF
-                    </div>
-                    <div>
-                        Rechazada
-                    </div>
+                  </div>
                 </div>
-            </div>
-            <div class="grid grid-cols-2">
-                <div class="">
-                    <input type="text" name="Buscar" id="Buscar" class="" placeholder=" 2.200 UF"/>
+                <div class="pt-0 pb-1 px-6 ">
+                  <p class="text-sm">Ver todas las ofertas >>></p>
+              </div>
+              <div class="grid grid-cols-2 my-2 px-6 ">
+                <div>
+                    <input type="text" name="Buscar" id="Buscar" class="w-full rounded-l-lg" value="2.200 UF"/>
                 </div>
-                <button type="button" class="min-w-full inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-ms leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">Ofertar</button>
+                <div>
+                  <button type="button"  id="open-modal-ofertar" class="boton-busqueda-portada  rounded-r-lg w-full h-full text-white font-medium text-lg">ofertar</button>
+                </div>
+              </div>
+
+
+              </div>
             </div>
         </div>
       </div> 
@@ -538,4 +581,47 @@
 
 
 {% block extra_footer %} {% endblock extra_footer %}
-{% block scripts %} <script src="https://unpkg.com/flowbite@1.4.0/dist/flowbite.js"></script>{% endblock scripts %}
+{% block scripts %} <script src="https://unpkg.com/flowbite@1.4.0/dist/flowbite.js"></script>
+
+<script>
+  const openButton = document.querySelector('#open-modal-ofertar');
+  const closeButton = document.querySelector('#close-modal');
+  const modalContainer = document.querySelector('#modal-component-containet');
+  const carousel= document.querySelector('#controls-carousel');
+  const modal= document.querySelector('#modal-container');
+  const botonFlash= document.querySelector('#flash');
+
+ 
+
+  openButton.addEventListener('click', () => {
+    openModalOfertar();
+  });
+
+  closeButton.addEventListener('click', () => {
+    closeModal();
+  });
+
+  function cerrarFlash(){
+    showAndHide(modalContainer, ['hidden'], ['block']);
+  }
+
+  function openModalOfertar() {
+    showAndHide(modalContainer, ['block'], ['hidden']);
+    showAndHide(carousel, ['hidden'], ['block']);
+    showAndHide(modal, [], []);
+  }
+
+  function closeModal() {
+    showAndHide(modalContainer, ['hidden'], ['block']);
+    showAndHide(carousel, ['block'], ['hidden']);
+    showAndHide(modal, [], []);
+  }
+  
+  function showAndHide(element, classesToAdd, classesToRemove) {
+    element.classList.add(...classesToAdd);
+    element.classList.remove(...classesToRemove);
+  }
+
+</script>
+
+{% endblock scripts %}

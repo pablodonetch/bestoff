@@ -16,13 +16,15 @@ def propiedades_inicio(request):
 
 def propiedades_detalles(request, id, slug):
     propiedades= Propiedad.objects.filter(id=id)
+    ofertas=Oferta.objects.filter(propiedad__id=id).order_by('-fecha')[:2]
+    todas_ofertas=Oferta.objects.filter(propiedad__id=id).order_by('-fecha')
     rentabilidad_max= float(f'{((propiedades[0].arriendo_maximo*12)/(propiedades[0].precio*UF)*100):.1f}') 
     rentabilidad_min= float(f'{((propiedades[0].arriendo_minimo*12)/(propiedades[0].precio*UF)*100):.1f}')
     rentabilidad_real= float(f'{((propiedades[0].arriendo_actual*12)/(propiedades[0].precio*UF)*100):.1f}')
     Utilidad= float(f'{((propiedades[0].tasacion_comercial*100/propiedades[0].precio)-100):.1f}')
     images = Image.objects.all()
     documentos= Documentos_Legales.objects.all()
-    return render(request, 'propiedades/detalles.html', {'id':id, 'propiedades': propiedades, 'images': images, 'documentos':documentos, 'rentabilidad_max': rentabilidad_max, 'rentabilidad_min': rentabilidad_min, 'utilidad': Utilidad})
+    return render(request, 'propiedades/detalles.html', {'id':id, 'propiedades': propiedades, 'images': images, 'documentos':documentos, 'rentabilidad_max': rentabilidad_max, 'rentabilidad_min': rentabilidad_min, 'utilidad': Utilidad, 'ofertas':ofertas, 'todas_ofertas':todas_ofertas})
 
 def buscador(request):
     arreglo=request.GET.get('buscar').split('-')
