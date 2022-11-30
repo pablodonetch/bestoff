@@ -40,8 +40,8 @@ def numberFormat(numero):
     if numero == None:
         return 0
     else:
-        return "{:,}".format(numero).replace(",",".")
-
+        numero=float(numero)
+        return "{:,}".format(numero).replace(",",".")[:-2]
 
 @register.filter(name='truncDecimal')
 def numberFormat(numero):

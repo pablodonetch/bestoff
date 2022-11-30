@@ -5,12 +5,12 @@ from django.views.generic import View
 from django.core.paginator import Paginator
 from core.models import *
 
+UF=34500 #CAMBIAR UF ACÁ
 
 class HomeView(View):
     def get(self, request, *args, **kwargs):
         propiedades = Propiedad.objects.all()
         images = Image.objects.all()
-        UF=34500 #CAMBIAR UF ACÁ
         rentabilidades=[]
         rentabilidades.append({})
         plusvalia=[]

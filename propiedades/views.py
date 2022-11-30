@@ -3,6 +3,9 @@ from django.shortcuts import render
 from django.views.generic import View
 from core.models import *
 from bestoff.views import propiedades
+from funcionespy import *
+
+UF=34500 #CAMBIAR UF ACÁ
 
 def propiedades_inicio(request):
     propiedades = Propiedad.objects.all()
@@ -11,36 +14,7 @@ def propiedades_inicio(request):
     }
     return render(request, 'propiedades/index.html', context)
 
-
-def santiago (request):
-    propiedades = Propiedad.objects.all()
-    context={ 
-        'propiedades': propiedades
-    }
-    return render(request, 'propiedades/santiago.html', context)
-
-def valparaiso (request):
-    propiedades = Propiedad.objects.all()
-    context={ 
-        'propiedades': propiedades
-    }
-    return render(request, 'propiedades/valparaiso.html', context)
-
-
-def concepcion (request):
-    propiedades = Propiedad.objects.all()
-    context={ 
-        'propiedades': propiedades
-    }
-    return render(request, 'propiedades/concepcion.html', context)
-
-
 def propiedades_detalles(request, id, slug):
-    ''''
-    propiedad = Propiedad.objects.filter(id=id)
-    images= Image.objects.filter(id_propiedades=id)
-    '''
-    UF=34500 #CAMBIAR UF ACÁ
     propiedades= Propiedad.objects.filter(id=id)
     rentabilidad_max= float(f'{((propiedades[0].arriendo_maximo*12)/(propiedades[0].precio*UF)*100):.1f}') 
     rentabilidad_min= float(f'{((propiedades[0].arriendo_minimo*12)/(propiedades[0].precio*UF)*100):.1f}')
@@ -50,10 +24,34 @@ def propiedades_detalles(request, id, slug):
     documentos= Documentos_Legales.objects.all()
     return render(request, 'propiedades/detalles.html', {'id':id, 'propiedades': propiedades, 'images': images, 'documentos':documentos, 'rentabilidad_max': rentabilidad_max, 'rentabilidad_min': rentabilidad_min, 'utilidad': Utilidad})
 
-
 def buscador(request):
-    arreglo=request.GET.get('buscar')
-    #resultado= Propiedad.objects.get(direccion__icontains=arreglo)
-    propiedades= Propiedad.objects.filter(slug__icontains=arreglo)
+    arreglo=request.GET.get('buscar').split('-')
+    propiedades= Propiedad.objects.filter(comuna__comuna__icontains=comuna_sinacentos(arreglo[0].strip()), precio__lte=arreglo[1] )
     images = Image.objects.all()
-    return render(request, 'propiedades/buscador.html', {'propiedades': propiedades, 'images': images})
+    rentabilidades=[]
+    rentabilidades.append({})
+    plusvalias=[]
+    plusvalias.append({})
+    for propiedad in propiedades:
+        rentabilidades[0][propiedad.id]=float(f'{((propiedad.arriendo_actual*12)/(propiedad.precio*UF)*100):.1f}')
+        plusvalias[0][propiedad.id]= float(f'{((1-(propiedad.precio/propiedad.tasacion_comercial))*100):.1f}')
+    return render(request, 'propiedades/buscador.html', {'propiedades': propiedades, 'images': images, 'Comuna': arreglo[0], 'precio_max':arreglo[1], 'rentabilidad':arreglo[2], 'plusvalia':arreglo[3], 'bancaria':arreglo[4], 'rentabilidades':rentabilidades, 'plusvalias': plusvalias})
+
+def grilla_ciudades(request, ciudad):
+    if ciudad=='santiago':
+        comunas=['santiago','cerrillos', 'la reina', 'las condes', 'lo barnechea', 'lo espejo', 'lo prado', 'macul', 'maipu', 'nunoa', 'pedro aguirre cerda', 'peñalolen', 'providencia', 'pudahuel', 'quilicura', 'quinta normal', 'recoleta', 'renca', 'san joaquin', 'san miguel', 'san ramon', 'vitacura']
+    elif ciudad=='valparaiso':
+        comunas=['valparaiso', 'viña del mar','concon', 'quilpue', 'villa alemana']
+    elif ciudad=='concepcion':
+        comunas=['concepcion', 'talcahuano', 'chiguayante', 'san pedro de la paz', 'penco']
+    
+    count=0
+    for comuna in comunas:
+        if count==0:
+            propiedades = Propiedad.objects.filter(comuna__comuna__icontains=comuna)
+        else:
+            propiedades = propiedades | Propiedad.objects.filter(comuna__comuna__icontains=comuna)
+        count=count+1
+
+    images = Image.objects.all()
+    return render(request, 'propiedades/grilla_ciudades.html', {'propiedades': propiedades, 'images': images, 'ciudad': ciudad.capitalize()})

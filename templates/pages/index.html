@@ -78,8 +78,8 @@
       </select>
 
       <select name="bancaria" id="bancaria" class="col-span-6 lg:col-span-2 mx-1 my-2 rounded-md bg-gray-50 border border-gray-300 text-gray-900 text-sm sm:text-base focus:ring-orange-500 focus:border-orange-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-orange-500 dark:focus:border-orange-500">
-        <option value="no-bancaria" selected="selected">No Bancaria</option> 
-        <option value="bancaria">Propiedad Bancaria</option>
+        <option value="False" selected="selected">No Bancaria</option> 
+        <option value="True">Propiedad Bancaria</option>
       </select>
 
       <button type="button" onclick="buscador();" id="boton-busqueda-portada" class=" boton-busqueda-portada col-span-12 lg:col-span-1 ml-1 my-2 flex top-0 right-0 p-2.5 text-sm sm:text-base font-medium text-white rounded-md border border-orange-700">
@@ -89,12 +89,11 @@
   </form>
 </div>
 
-
 <!--GRID DE PROPIEDADES CON ALTA RENTABILIDAD-->
 <!-- Título de Grid de Propiedades con Excelente Rentabilidad-->
 <div class='grid grid-cols-5 max-w-6xl mx-auto mt-1 sm:mt-5'>
   <div class='col-span-5'>
-    <h2 class="text-slate-600 text-xl sm:text-3xl font-bold mt-2 sm:mt-5 text-left">Propiedades con rentabilidad anual sobre UF + 4%</h1>
+    <h2 class="text-slate-600 text-xl sm:text-3xl font-bold mt-2 sm:mt-5 text-left">Propiedades con rentabilidad anual sobre UF + 3,5%</h1>
     <h3 class="text-slate-600 text-lg sm:text-xl mt-5">Recive rentas desde el primer día.</h2>
   </div>
 </div>
@@ -107,7 +106,7 @@
       <div class="relative pb-1 overflow-hidden rounded-t-lg">
         <div id="z-10 controls-carousel" class="relative" data-carousel="static">
             <!-- Carousel wrapper -->
-            <div class="relative h-56 overflow-hidden md:h-96">
+            <div class="relative h-56 overflow-hidden">
               {% for image in images  %}
                 {% if image.id_propiedades.id == propiedad.id %}
                     <div class="hidden duration-700 ease-in-out" data-carousel-item>
@@ -244,7 +243,6 @@
   </div>
 </div>
 <!--Grid de Propiedades Bancarias-->
-
 <div class="grid gap-2 grid-cols-1 sm:grid-cols-3 my-4 max-w-4xl mx-2 sm:mx-auto">
   {% for propiedad in propiedades %}
   {% if propiedad.propiedad_bancaria == True %}
@@ -252,7 +250,7 @@
     <div class="relative pb-1 overflow-hidden rounded-t-lg">
       <div id="z-10 controls-carousel" class="relative" data-carousel="static">
           <!-- Carousel wrapper -->
-          <div class="relative h-56 overflow-hidden md:h-96">
+          <div class="relative h-56 overflow-hidden">
             {% for image in images  %}
               {% if image.id_propiedades.id == propiedad.id %}
                   <div class="hidden duration-700 ease-in-out" data-carousel-item>
@@ -323,10 +321,6 @@
     {% endif %}
   {% endfor %}
 </div>
-
-
-
-
 
 {% endblock content %}
 {% block footer %}{% endblock footer %}

@@ -26,15 +26,10 @@ class moneda(models.Model):
     def __str__(self):
         return self.moneda
 
-
-class oferta(models.Model):
-    monto=models.IntegerField()
-    moneda=models.ForeignKey(moneda, on_delete=models.CASCADE)
-    propiedad=models.ForeignKey('Propiedad', on_delete=models.CASCADE)
-    comprador=models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+class moneda_arriendo_actual(models.Model):
+    moneda= models.CharField(max_length=100)
     def __str__(self):
-        return self.nombre
-
+        return self.moneda
 
 class Vendedor(models.Model):
     nombre = models.CharField(max_length=50)
