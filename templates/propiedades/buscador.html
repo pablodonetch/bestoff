@@ -117,40 +117,40 @@
         </div>
       </div>
       <!--Los IF de los -->
-      {% if propiedad.propiedad_bancaria == True %}
-      <div class="">
-        <div class="flex py-1 detalle-rentabilidad  rounded-md border-solid border-slate-100 min-w-sm gallery-item-detalle">
-          <svg class="mx-4" height="18" width="18">
-            <circle cx="9" cy="9" r="5" stroke="green" stroke-width="0" fill="green" />
-          </svg>  
-          <p class="text-sm">Propiedad Bancaria</p>
-        </div>
-      </div>
-      {% endif %}
-      {% if rentabilidades.0|accede_diccionario:propiedad.id > 0 %}
-      <div class="">
-        <div class="flex py-1 detalle-rentabilidad  rounded-md border-solid border-slate-100 min-w-sm gallery-item-detalle">
-          <svg class="mx-4" height="18" width="18">
-            <circle cx="9" cy="9" r="5" stroke="green" stroke-width="0" fill="green" />
-          </svg>  
-          <p class="text-sm">UF + {{rentabilidades.0|accede_diccionario:propiedad.id}} % Rent. Anual</p>
-        </div>
-      </div>
-      {% endif %}
-      {% if plusvalias.0|accede_diccionario:propiedad.id > 0 %}
-      <div class="">
-        <div class="flex py-1 detalle-rentabilidad  rounded-md border-solid border-slate-100 min-w-sm gallery-item-detalle">
-          <svg class="mx-4" height="18" width="18">
-            <circle cx="9" cy="9" r="5" stroke="green" stroke-width="0" fill="green" />
-          </svg> 
-          <p class="text-sm">{{plusvalias.0|accede_diccionario:propiedad.id}} % de plusvalía inmediata</p>
-        </div>
-      </div>
-      {% endif %}
       <a href="propiedades/detalles/{{propiedad.id}}/{{propiedad.comuna.comuna.split|join:"-"}}-{{propiedad.direccion.split|join:"-"}}" class="c-card block bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden">  
-        <div class="p-4">
+        {% if propiedad.propiedad_bancaria == True %}
+        <div class="">
+          <div class="flex py-1 detalle-rentabilidad  rounded-md border-solid border-slate-100 min-w-sm gallery-item-detalle">
+            <svg class="mx-4" height="18" width="18">
+              <circle cx="9" cy="9" r="5" stroke="green" stroke-width="0" fill="green" />
+            </svg>  
+            <p class="text-sm">Propiedad Bancaria</p>
+          </div>
+        </div>
+        {% endif %}
+        {% if rentabilidades.0|accede_diccionario:propiedad.id > 0 %}
+        <div class="">
+          <div class="flex py-1 detalle-rentabilidad  rounded-md border-solid border-slate-100 min-w-sm gallery-item-detalle">
+            <svg class="mx-4" height="18" width="18">
+              <circle cx="9" cy="9" r="5" stroke="green" stroke-width="0" fill="green" />
+            </svg>  
+            <p class="text-sm">UF + {{rentabilidades.0|accede_diccionario:propiedad.id}} % Rent. Anual</p>
+          </div>
+        </div>
+        {% endif %}
+        {% if plusvalias.0|accede_diccionario:propiedad.id > 0 %}
+        <div class="">
+          <div class="flex py-1 detalle-rentabilidad  rounded-md border-solid border-slate-100 min-w-sm gallery-item-detalle">
+            <svg class="mx-4" height="18" width="18">
+              <circle cx="9" cy="9" r="5" stroke="green" stroke-width="0" fill="green" />
+            </svg> 
+            <p class="text-sm">{{plusvalias.0|accede_diccionario:propiedad.id}} % de plusvalía inmediata</p>
+          </div>
+        </div>
+        {% endif %}      
+        <div class="py-1 px-4">
           <p class="text-xs text-gray-400">Ofertado por Donetch & Cía.</p>
-          <h3 class="mt-0 mb-2 text-2xl sm:text-sm font-bold">{{propiedad.comuna.comuna|upper}}</h2>
+          <h3 class="mt-0 mb-2 text-2xl font-bold">{{propiedad.comuna.comuna|upper}}</h2>
         </div>
         <div class="p-2 border-t border-b text-xs text-gray-700">
           <div class="flex justify-between">
