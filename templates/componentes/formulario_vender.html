@@ -1,0 +1,66 @@
+<!--Formulario para vender tu propiedad con nosotros-->
+<div class="wave1 form-azul" id="formulario_contacto">
+    <div class="block p-6 rounded-lg shadow-lg bg-white max-w-2xl my-20 mb-0 mx-6 sm:mx-auto">
+      <h2 class="text-3xl text-gray-900 font-medium title-font mb-2 text-center pb-2">¿Quieres vender tu propiedad?</h2>
+      <div class="flex flex-wrap -m-4">
+        <div class="p-4 mx-auto md:w-1/2 sm:w-full">
+          <div class="text-lg">Agregamos Valor a tu propiedad<br>
+            <div class="flex py-2">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#0047AB" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"></rect><polyline points="172 104 113.3 160 84 130" fill="none" stroke="#0047AB" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></polyline><circle cx="128" cy="128" r="96" fill="none" stroke="#0047AB" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></circle></svg>
+              <p class="px-2">Tasación online</p><br>
+            </div>
+            <div class="flex py-1">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#0047AB" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"></rect><polyline points="172 104 113.3 160 84 130" fill="none" stroke="#0047AB" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></polyline><circle cx="128" cy="128" r="96" fill="none" stroke="#0047AB" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></circle></svg>
+              <p class="px-2">Fotos Profesionales Gratis.</p><br>
+            </div>
+            <div class="flex py-1">
+              <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="#0047AB" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"></rect><polyline points="172 104 113.3 160 84 130" fill="none" stroke="#0047AB" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></polyline><circle cx="128" cy="128" r="96" fill="none" stroke="#0047AB" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></circle></svg>
+              <p class="px-2">Promoción en plataformas inmobiliarias y RRSS.</p><br>
+            </div>
+            <div class="flex py-1">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#0047AB" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"></rect><polyline points="172 104 113.3 160 84 130" fill="none" stroke="#0047AB" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></polyline><circle cx="128" cy="128" r="96" fill="none" stroke="#0047AB" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></circle></svg>
+              <p class="px-2">Coordinación de visitas guiadas.</p><br>
+            </div>
+            <div class="flex py-1">
+              <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="#0047AB" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"></rect><polyline points="172 104 113.3 160 84 130" fill="none" stroke="#0047AB" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></polyline><circle cx="128" cy="128" r="96" fill="none" stroke="#0047AB" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></circle></svg>
+              <p class="px-2">Asesoramiento legal y financiero.</p><br>
+            </div>
+            <div class="flex py-1">
+              <svg xmlns="http://www.w3.org/2000/svg" width="31" height="31" fill="#0047AB" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"></rect><polyline points="172 104 113.3 160 84 130" fill="none" stroke="#0047AB" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></polyline><circle cx="128" cy="128" r="96" fill="none" stroke="#0047AB" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></circle></svg>
+              <p class="px-2">Asesoramiento en la firma de la escritura.</p><br>
+            </div>
+            <div class="flex py-1">
+              <svg xmlns="http://www.w3.org/2000/svg" width="31" height="31" fill="#0047AB" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"></rect><polyline points="172 104 113.3 160 84 130" fill="none" stroke="#0047AB" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></polyline><circle cx="128" cy="128" r="96" fill="none" stroke="#0047AB" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></circle></svg>
+              <p class="px-2">Seguimiento hasta el final del proceso.</p><br>
+            </div>
+          </div>
+          
+        </div>
+        <div class="mx-auto p-4 md:w-1/2 sm:w-full">
+          <p class="leading-relaxed my-2">Déjanos tus datos y te contactaremos.</p>
+          {% include 'componentes/flash.html' %}
+          <form name="form" method="post" action="{% url 'home' %}">
+              {% csrf_token %}
+              <div class="form-group mb-6">
+                {{form.nombre}}
+              </div>
+              <div class="form-group mb-6">
+                {{form.telefono}}
+              </div>
+              <div class="form-group mb-6">
+                {{form.email}}
+            </div>
+              <div class="form-group mb-6">
+                {{form.mensaje}}
+              </div>
+              <button href="javascript:void(0);" onclick="document.form.submit();" class="w-full px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">ENVIAR</button>
+          </form>
+        </div> 
+      </div>
+    </div>
+  </div>
+  <div class="wave3 form-azul">
+    <div>
+        <p class="py-10"> </p>
+    </div> 
+</div>

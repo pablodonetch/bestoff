@@ -11,20 +11,32 @@
       <div class="modal-wrapper">
         <div class="modal-wrapper-flex">
           <div class="modal-content">
+            <div>
+              {% for propiedad in propiedades %}
+                {% if propiedad.id == id %}                  
+                  <p class="text-gray-500 mb-2">Quiero Ofertar por esta propiedad:</p>
+                  <h3 class="text-2xl font-bold mb-2">{{propiedad.direccion.upper}}, {{propiedad.comuna.comuna.upper}}</h3>
+                  <p class="text-gray-500 mb-3">Precio de la Oferta:</p>
+                {% endif %}
+              {% endfor %}
+            </div>
             <form name="form" method="post" action="{{ request.get_full_path }} ">
                 {% csrf_token %}
                 <div class="form-group mb-6">
-                  {{form.nombre}}
+                  {{form_contacto_oferta.monto}}
                 </div>
                 <div class="form-group mb-6">
-                  {{form.telefono}}
+                  {{form_contacto_oferta.nombre}}
                 </div>
                 <div class="form-group mb-6">
-                  {{form.email}}
+                  {{form_contacto_oferta.telefono}}
+                </div>
+                <div class="form-group mb-6">
+                  {{form_contacto_oferta.email}}
               </div>
               <div class="flex">
-                <button href="javascript:void(0);" onclick="document.form.submit();" class="w-1/2 mr-1 px-6 py-2.5 bg-blue-600 text-white font-medium text-base leading-tight rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">contáctenme</button>
-                <button id="close-modal" class="w-1/2 ml-1 px-6 py-2.5 bg-blue-600 text-white font-medium text-base leading-tight rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">cancelar</button>
+                <button href="javascript:void(0);" onclick="document.form.submit();" class="w-1/2 mr-1 px-6 py-2.5 boton-busqueda-portada  rounded-l-lg w-full h-full text-white font-medium text-lg">contáctenme</button>
+                <button id="close-modal" class="w-1/2 ml-1 px-6 py-2.5 boton-busqueda-portada  rounded-r-lg w-full h-full text-white font-medium text-lg">cancelar</button>
               </div>
             </form>
           </div>
@@ -33,15 +45,60 @@
     </div>
   </div>
 </div>
-  
+
+<!-- Modal Todas las Ofertas -->
+<div id="modal-component-ofertas-containet" class="hidden fixed min-h-full min-w-full bg-gray-200 bg-opacity-50">
+  <div class="modal-flex-container justify-center">
+    <div id ="modal-ofertas-container" class="modal-container max-w-md mx-auto bg-white mt-4 p-4 rounded-xl border-gray-400">
+      <div class="modal-wrapper">
+        <div class="modal-wrapper-flex">
+          <div class="modal-content">
+
+            <div class="flex flex-col px-6">
+              <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+                <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
+                  <div class="overflow-hidden">
+                    <h2>Todas las Ofertas Recibidas para esta propiedad</h2>
+                    <table class="min-w-full">
+                      <tbody>
+                        {% for oferta in todas_ofertas %}
+                        <tr class="bg-gray-100 border-b">
+                          <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap">
+                            {{oferta.fecha|date:"d-m-y"}}
+                          </td>
+                          <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap">
+                            {{oferta.monto|numberFormat}} UF
+                          </td>
+                          <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap">
+                            {{oferta.estado}}
+                          </td>
+                        </tr>
+                        {%endfor%}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <button id="close-modal-ofertas" class="ml-1 px-6 py-2.5 boton-busqueda-portada rounded-lg w-full h-full text-white font-medium text-lg">volver</button>
+          </div>  
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--Carrousel de Imagenes de la Propiedad-->
 <div class="pt-10 px-4 sm:px-2 mx-auto max-w-4xl">
   <div class="grid sm:grid-cols-5 grid-cols-3 gap-4">
     <div class= "col-span-3 relative">
         {% for propiedad in propiedades %}
         {% if propiedad.id == id %}
-        <div class="h-80 rounded-2xl border-solid border-slate-100 min-w-sm gallery-item-detalle">
+        <div id="controls-carousel" class="h-80 rounded-2xl border-solid border-slate-100 min-w-sm gallery-item-detalle">
             <div class="">
-                <div id="controls-carousel" class="relative" data-carousel="static">
+                <div  class="relative" data-carousel="static">
                 <!-- Carousel wrapper -->
                     <div class="flex relative h-80 overflow-hidden rounded-2xl min-w-full ">
                         {% for image in images  %}
@@ -51,7 +108,6 @@
                             </div>
                         {% endif %}
                         {% endfor %}
-                        
                         <!-- Slider controls -->
                         <button type="button" class="absolute top-0 left-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-prev>
                             <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
@@ -120,7 +176,7 @@
                   </div>
                 </div>
                 <div class="pt-0 pb-1 px-6 ">
-                  <p class="text-sm">Ver todas las ofertas >>></p>
+                  <p id="open-modal-ofertas" class="text-sm">Ver todas las ofertas >>></p>
               </div>
               <div class="grid grid-cols-2 my-2 px-6 ">
                 <div>
@@ -130,8 +186,6 @@
                   <button type="button"  id="open-modal-ofertar" class="boton-busqueda-portada  rounded-r-lg w-full h-full text-white font-medium text-lg">ofertar</button>
                 </div>
               </div>
-
-
               </div>
             </div>
         </div>
@@ -591,8 +645,6 @@
   const modal= document.querySelector('#modal-container');
   const botonFlash= document.querySelector('#flash');
 
- 
-
   openButton.addEventListener('click', () => {
     openModalOfertar();
   });
@@ -616,11 +668,34 @@
     showAndHide(carousel, ['block'], ['hidden']);
     showAndHide(modal, [], []);
   }
-  
+
+  const openButton_ofertas = document.querySelector('#open-modal-ofertas');
+  const closeButton_ofertas = document.querySelector('#close-modal-ofertas');
+  const modalContainer_ofertas = document.querySelector('#modal-component-ofertas-containet');
+
+  openButton_ofertas.addEventListener('click', () => {
+    openModal_ofertas();
+  });
+
+  closeButton_ofertas.addEventListener('click', () => {
+    closeModal_ofertas();
+  });
+
+  function openModal_ofertas() {
+    showAndHide(modalContainer_ofertas, ['block'], ['hidden']);
+    showAndHide(carousel, ['hidden'], ['block']);
+  }
+
+  function closeModal_ofertas() {
+    showAndHide(modalContainer_ofertas, ['hidden'], ['block']);
+    showAndHide(carousel, ['block'], ['hidden']);
+  }
+
   function showAndHide(element, classesToAdd, classesToRemove) {
     element.classList.add(...classesToAdd);
     element.classList.remove(...classesToRemove);
   }
+
 
 </script>
 

@@ -4,6 +4,7 @@ from django.views.generic import View
 from core.models import *
 from bestoff.views import propiedades
 from funcionespy import *
+from bestoff.forms import *
 
 UF=34500 #CAMBIAR UF ACÁ
 
@@ -24,7 +25,30 @@ def propiedades_detalles(request, id, slug):
     Utilidad= float(f'{((propiedades[0].tasacion_comercial*100/propiedades[0].precio)-100):.1f}')
     images = Image.objects.all()
     documentos= Documentos_Legales.objects.all()
-    return render(request, 'propiedades/detalles.html', {'id':id, 'propiedades': propiedades, 'images': images, 'documentos':documentos, 'rentabilidad_max': rentabilidad_max, 'rentabilidad_min': rentabilidad_min, 'utilidad': Utilidad, 'ofertas':ofertas, 'todas_ofertas':todas_ofertas})
+
+    if request.method == 'POST':
+        form_contacto=formulario_contacto()
+        form_contacto_oferta=formulario_contacto_oferta()
+    else:
+        form_contacto= formulario_contacto()
+        form_contacto_oferta=formulario_contacto_oferta()
+
+    context={ 
+        'id': id, 
+        'propiedades': propiedades,
+        'images': images,
+        'documentos':documentos,
+        'form_contacto': form_contacto,
+        'form_contacto_oferta': form_contacto_oferta,
+        'rentabilidad_max': rentabilidad_max,
+        'rentabilidad_min': rentabilidad_min,
+        'rentabilidad_real': rentabilidad_real,
+        'utilidad': Utilidad, 
+        'ofertas':ofertas, 
+        'todas_ofertas':todas_ofertas
+    }
+
+    return render(request, 'propiedades/detalles.html', context )
 
 def buscador(request):
     arreglo=request.GET.get('buscar').split('-')
