@@ -31,6 +31,47 @@
         </div>
     </div>
   </div>
+ <!-- Modal Ofertar -->
+<div id="modal-component-containet" class="hidden fixed min-h-full min-w-full bg-gray-200 bg-opacity-50">
+  <div class="modal-flex-container justify-center">
+    <div id ="modal-container" class="modal-container max-w-sm mx-auto bg-white mt-4 p-4 rounded-xl border-gray-400">
+      <div class="modal-wrapper">
+        <div class="modal-wrapper-flex">
+          <div class="modal-content">
+            <div>
+              {% for propiedad in propiedades %}
+                {% if propiedad.id == id %}                  
+                  <p class="text-gray-500 mb-2">Quiero Ofertar por esta propiedad:</p>
+                  <h3 class="text-2xl font-bold mb-2">{{propiedad.direccion.upper}}, {{propiedad.comuna.comuna.upper}}</h3>
+                  <p class="text-gray-500 mb-3">Precio de la Oferta:</p>
+                {% endif %}
+              {% endfor %}
+            </div>
+            <form name="form" method="post" action="{{ request.get_full_path }} ">
+                {% csrf_token %}
+                <div class="form-group mb-6">
+                  {{form_contacto_oferta.monto}}
+                </div>
+                <div class="form-group mb-6">
+                  {{form_contacto_oferta.nombre}}
+                </div>
+                <div class="form-group mb-6">
+                  {{form_contacto_oferta.telefono}}
+                </div>
+                <div class="form-group mb-6">
+                  {{form_contacto_oferta.email}}
+              </div>
+              <div class="flex">
+                <button href="javascript:void(0);" onclick="document.form.submit();" class="w-1/2 mr-1 px-6 py-2.5 boton-busqueda-portada  rounded-l-lg w-full h-full text-white font-medium text-lg">contáctenme</button>
+                <button id="close-modal" class="w-1/2 ml-1 px-6 py-2.5 boton-busqueda-portada  rounded-r-lg w-full h-full text-white font-medium text-lg">cancelar</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
   <!---->
   <div class='grid grid-cols-5 max-w-6xl mx-auto mt-1 sm:mt-5'>
     <div class='col-span-5 lg:col-span-3'>
