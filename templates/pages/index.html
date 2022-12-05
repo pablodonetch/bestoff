@@ -14,7 +14,7 @@
     </div>
     <div class="flex">
         <div class="mx-2">
-            <button id="open-modal-vende" class="flex text-white">
+            <button id="" class="flex text-white">
                 <p class="mx-1 font-semibold text-lg">Invertir</p>
                 <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" fill="none">
                     <path d="M4 9L12 17L20 9" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -38,15 +38,6 @@
       <div class="modal-wrapper">
         <div class="modal-wrapper-flex">
           <div class="modal-content">
-            <div>
-              {% for propiedad in propiedades %}
-                {% if propiedad.id == id %}                  
-                  <p class="text-gray-500 mb-2">Quiero Ofertar por esta propiedad:</p>
-                  <h3 class="text-2xl font-bold mb-2">{{propiedad.direccion.upper}}, {{propiedad.comuna.comuna.upper}}</h3>
-                  <p class="text-gray-500 mb-3">Precio de la Oferta:</p>
-                {% endif %}
-              {% endfor %}
-            </div>
             <form name="form" method="post" action="{{ request.get_full_path }} ">
                 {% csrf_token %}
                 <div class="form-group mb-6">
@@ -330,4 +321,68 @@
 
 {% endblock content %}
 {% block footer %}{% endblock footer %}
-{% block javascript %}<script src="https://unpkg.com/flowbite@1.4.0/dist/flowbite.js">{% endblock javascript %}
+{% block javascript %}<script src="https://unpkg.com/flowbite@1.4.0/dist/flowbite.js"></script>
+
+<script>
+  const openButton = document.querySelector('#open-modal-vende');
+  const closeButton = document.querySelector('#close-modal');
+  const modalContainer = document.querySelector('#modal-component-containet');
+  const carousel= document.querySelector('#controls-carousel');
+  const modal= document.querySelector('#modal-container');
+  const botonFlash= document.querySelector('#flash');
+
+  openButton.addEventListener('click', () => {
+    openModalOfertar();
+  });
+
+  closeButton.addEventListener('click', () => {
+    closeModal();
+  });
+
+  function cerrarFlash(){
+    showAndHide(modalContainer, ['hidden'], ['block']);
+  }
+
+  function openModalOfertar() {
+    showAndHide(modalContainer, ['block'], ['hidden']);
+    showAndHide(carousel, ['hidden'], ['block']);
+    showAndHide(modal, [], []);
+  }
+
+  function closeModal() {
+    showAndHide(modalContainer, ['hidden'], ['block']);
+    showAndHide(carousel, ['block'], ['hidden']);
+    showAndHide(modal, [], []);
+  }
+
+  const openButton_ofertas = document.querySelector('#open-modal-ofertas');
+  const closeButton_ofertas = document.querySelector('#close-modal-ofertas');
+  const modalContainer_ofertas = document.querySelector('#modal-component-ofertas-containet');
+
+  openButton_ofertas.addEventListener('click', () => {
+    openModal_ofertas();
+  });
+
+  closeButton_ofertas.addEventListener('click', () => {
+    closeModal_ofertas();
+  });
+
+  function openModal_ofertas() {
+    showAndHide(modalContainer_ofertas, ['block'], ['hidden']);
+    showAndHide(carousel, ['hidden'], ['block']);
+  }
+
+  function closeModal_ofertas() {
+    showAndHide(modalContainer_ofertas, ['hidden'], ['block']);
+    showAndHide(carousel, ['block'], ['hidden']);
+  }
+
+  function showAndHide(element, classesToAdd, classesToRemove) {
+    element.classList.add(...classesToAdd);
+    element.classList.remove(...classesToRemove);
+  }
+
+
+</script>
+
+{% endblock javascript %}
