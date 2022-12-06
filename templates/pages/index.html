@@ -328,11 +328,10 @@
   const closeButton = document.querySelector('#close-modal');
   const modalContainer = document.querySelector('#modal-component-containet');
   const carousel= document.querySelector('#controls-carousel');
-  const modal= document.querySelector('#modal-container');
   const botonFlash= document.querySelector('#flash');
 
   openButton.addEventListener('click', () => {
-    openModalOfertar();
+    openModalVender();
   });
 
   closeButton.addEventListener('click', () => {
@@ -343,38 +342,16 @@
     showAndHide(modalContainer, ['hidden'], ['block']);
   }
 
-  function openModalOfertar() {
+  function openModalVender() {
     showAndHide(modalContainer, ['block'], ['hidden']);
     showAndHide(carousel, ['hidden'], ['block']);
-    showAndHide(modal, [], []);
+    
   }
 
   function closeModal() {
     showAndHide(modalContainer, ['hidden'], ['block']);
     showAndHide(carousel, ['block'], ['hidden']);
-    showAndHide(modal, [], []);
-  }
-
-  const openButton_ofertas = document.querySelector('#open-modal-ofertas');
-  const closeButton_ofertas = document.querySelector('#close-modal-ofertas');
-  const modalContainer_ofertas = document.querySelector('#modal-component-ofertas-containet');
-
-  openButton_ofertas.addEventListener('click', () => {
-    openModal_ofertas();
-  });
-
-  closeButton_ofertas.addEventListener('click', () => {
-    closeModal_ofertas();
-  });
-
-  function openModal_ofertas() {
-    showAndHide(modalContainer_ofertas, ['block'], ['hidden']);
-    showAndHide(carousel, ['hidden'], ['block']);
-  }
-
-  function closeModal_ofertas() {
-    showAndHide(modalContainer_ofertas, ['hidden'], ['block']);
-    showAndHide(carousel, ['block'], ['hidden']);
+    
   }
 
   function showAndHide(element, classesToAdd, classesToRemove) {
