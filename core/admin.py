@@ -51,6 +51,7 @@ admin.site.register(moneda, MonedasAdmin)
 admin.site.register(Oferta)
 admin.site.register(Comprador)
 admin.site.register(Estado_Oferta)
+admin.site.register(Contactos)
 #admin.site.register(Corredor)
 #admin.site.register(metodo_pago) #no se usa
 #admin.site.register(Estado_Ocupacion)
