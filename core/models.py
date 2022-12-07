@@ -72,7 +72,15 @@ class Oferta(models.Model):
         verbose_name = 'Oferta'
         verbose_name_plural = 'Ofertas'
 
-
+class Contactos(models.Model):
+    nombre=models.CharField(max_length=50)
+    email=models.EmailField()
+    telefono=models.CharField(max_length=20)
+    mensaje=models.TextField()
+    fecha=models.DateTimeField(default=timezone.now)
+    def __str__(self):
+        return self.nombre
+        
 class tipo_propiedad(models.Model):
     tipo = models.CharField(max_length=50)
     def __str__(self):

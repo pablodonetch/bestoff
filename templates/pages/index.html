@@ -41,17 +41,17 @@
             <form name="form" method="post" action="{{ request.get_full_path }} ">
                 {% csrf_token %}
                 <div class="form-group mb-6">
-                  {{form_contacto_oferta.monto}}
+                  {{form_contacto.monto}}
                 </div>
                 <div class="form-group mb-6">
-                  {{form_contacto_oferta.nombre}}
+                  {{form_contacto.nombre}}
                 </div>
                 <div class="form-group mb-6">
-                  {{form_contacto_oferta.telefono}}
+                  {{form_contacto.telefono}}
                 </div>
                 <div class="form-group mb-6">
-                  {{form_contacto_oferta.email}}
-              </div>
+                  {{form_contacto.mensaje}}
+                </div>
               <div class="flex">
                 <button href="javascript:void(0);" onclick="document.form.submit();" class="w-1/2 mr-1 px-6 py-2.5 boton-busqueda-portada  rounded-l-lg w-full h-full text-white font-medium text-lg">contáctenme</button>
                 <button id="close-modal" class="w-1/2 ml-1 px-6 py-2.5 boton-busqueda-portada  rounded-r-lg w-full h-full text-white font-medium text-lg">cancelar</button>
@@ -320,8 +320,8 @@
 </div>
 
 {% endblock content %}
-{% block footer %}{% endblock footer %}
-{% block javascript %}<script src="https://unpkg.com/flowbite@1.4.0/dist/flowbite.js"></script>
+{% block extra_footer %} {% endblock extra_footer %}
+{% block scripts %}<script src="https://unpkg.com/flowbite@1.4.0/dist/flowbite.js"></script>
 
 <script>
   const openButton = document.querySelector('#open-modal-vende');
@@ -331,6 +331,7 @@
   const botonFlash= document.querySelector('#flash');
 
   openButton.addEventListener('click', () => {
+    console.log('entra a openbutton');
     openModalVender();
   });
 
@@ -359,7 +360,6 @@
     element.classList.remove(...classesToRemove);
   }
 
-
 </script>
 
-{% endblock javascript %}
+{% endblock scripts %}

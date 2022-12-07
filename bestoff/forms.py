@@ -2,7 +2,7 @@ from django import forms
 from django.core import validators
 
 class formulario_contacto(forms.Form):
-    clase='formulario-placeholder form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none'
+    clase='formulario-placeholder form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-orange-600 focus:outline-none'
     nombre = forms.CharField(required=True, widget=forms.TextInput(attrs={'class':clase, 'placeholder':'Nombre Apellido', 'autocomplete':'off'}))
     email = forms.EmailField(required=True, 
 		widget=forms.TextInput(
