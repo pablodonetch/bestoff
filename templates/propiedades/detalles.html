@@ -141,6 +141,7 @@
                 </div>
             </div>
             <!--Tabla Ofertas-->
+            {%if ofertas%}
             <div class="grid gap-y-5">
               <div class="">
                 <div class="py-3 px-6 ">
@@ -174,16 +175,18 @@
                 <div class="pt-0 pb-1 px-6 ">
                   <p id="open-modal-ofertas" class="text-sm">Ver todas las ofertas >>></p>
               </div>
-              <div class="grid grid-cols-2 my-2 px-6 ">
-                <div>
-                    <input type="text" name="Buscar" id="Buscar" class="w-full rounded-l-lg" value="2.200 UF"/>
-                </div>
-                <div>
-                  <button type="button"  id="open-modal-ofertar" class="boton-busqueda-portada  rounded-r-lg w-full h-full text-white font-medium text-lg">ofertar</button>
-                </div>
-              </div>
-              </div>
             </div>
+            {%endif%}
+            <div class="my-2 px-6 ">
+              <!--<div>
+                  <input type="text" name="Buscar" id="Buscar" class="w-full rounded-l-lg" value="2.200 UF"/>
+              </div>-->
+              <div>
+                <button type="button"  id="open-modal-ofertar" class="boton-busqueda-portada rounded-lg w-full h-10 text-white font-medium text-lg">ofertar</button>
+              </div>
+              
+            </div>
+          </div>
         </div>
       </div> 
     </div>
