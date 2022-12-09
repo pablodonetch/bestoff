@@ -27,8 +27,9 @@ def propiedades_detalles(request, id, slug):
     documentos= Documentos_Legales.objects.all()
 
     if request.method == 'POST':
-        form_contacto=formulario_contacto()
-        form_contacto_oferta=formulario_contacto_oferta()
+        form_contacto=formulario_contacto(request.POST)
+        form_contacto_oferta=formulario_contacto_oferta(request.POST)
+
     else:
         form_contacto= formulario_contacto()
         form_contacto_oferta=formulario_contacto_oferta()

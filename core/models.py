@@ -63,8 +63,11 @@ class Estado_Oferta(models.Model):
 class Oferta(models.Model):
     monto=models.IntegerField()
     moneda=models.ForeignKey(moneda, on_delete=models.CASCADE, default=1)
+    forma_pago=models.CharField(max_length=200)
     propiedad=models.ForeignKey('Propiedad', on_delete=models.CASCADE)
     comprador=models.ForeignKey('Comprador', on_delete=models.CASCADE)
+    telefono=models.CharField(max_length=200)
+    email=models.CharField(max_length=200)
     estado=models.ForeignKey('Estado_Oferta', on_delete=models.CASCADE)
     fecha=models.DateTimeField(default=timezone.now)
     class Meta:
@@ -79,6 +82,9 @@ class Contactos(models.Model):
     fecha=models.DateTimeField(default=timezone.now)
     def __str__(self):
         return self.nombre
+    class Meta:
+        verbose_name = 'Contactos'
+        verbose_name_plural = 'Contactos'
         
 class tipo_propiedad(models.Model):
     tipo = models.CharField(max_length=50)
