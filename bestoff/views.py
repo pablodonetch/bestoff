@@ -23,7 +23,7 @@ def home(request):
             data = form_contacto.cleaned_data
             save = Contactos()
             save.nombre = data['nombre']
-            save.email = data['email']
+            save.email = 'no email'
             save.telefono = data['telefono']
             save.mensaje = data['mensaje']
             save.save()

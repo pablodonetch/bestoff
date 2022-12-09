@@ -13,56 +13,73 @@
         <img src="{% static "imagenes/Logo_1.png" %}" class="h-12" alt="Bestoff Logo"></a>
     </div>
     <div class="flex">
-        <div class="mx-2">
-            <button id="" class="flex text-white">
-                <p class="mx-1 font-semibold text-lg">Invertir</p>
-                <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" fill="none">
-                    <path d="M4 9L12 17L20 9" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-            </button>
-        </div>
-        <div class="mx-2">
-            <button id="open-modal-vende" class="flex text-white">
-                <p class="mx-1 font-semibold text-lg">Vender</p>
-                <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" fill="none">
-                    <path d="M4 9L12 17L20 9" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-            </button>
-        </div>
+      <div class="mx-2">
+        <button id="" class="flex text-white">
+          <p class="mx-1 font-semibold text-lg">Invertir</p>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" fill="none">
+              <path d="M4 9L12 17L20 9" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+      <div class="mx-2">
+        <button id="open-modal-vende" class="flex text-white">
+          <p class="mx-1 font-semibold text-lg">Vender</p>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" fill="none">
+              <path d="M4 9L12 17L20 9" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
     </div>
   </div>
- <!-- Modal Ofertar -->
-<div id="modal-component-containet" class="hidden fixed min-h-full min-w-full bg-gray-200 bg-opacity-50">
-  <div class="modal-flex-container justify-center">
-    <div id ="modal-container" class="modal-container max-w-sm mx-auto bg-white mt-4 p-4 rounded-xl border-gray-400">
-      <div class="modal-wrapper">
-        <div class="modal-wrapper-flex">
-          <div class="modal-content">
-            <form name="form" method="post" action="{{ request.get_full_path }} ">
-                {% csrf_token %}
-                <div class="form-group mb-6">
-                  {{form_contacto.monto}}
+
+  {%if form_contacto.errors  %}
+  <div class='bg-red-500 max-w-6xl mx-auto rounded-xl px-5 py-4 bg-red-800/60 mt-7'>
+    <div class="flex items-center justify-between">
+      <h3 class="text-white text-xl sm:text-3xl">Error al ingresar tus datos</h3>
+      <button id="open-modal-vende" class="flex text-white">
+        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="#000000" viewBox="0 0 256 256">
+          <rect width="50" height="50" fill="none"></rect>
+          <line x1="100" y1="28" x2="28" y2="100" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="8"></line>
+          <line x1="100" y1="100" x2="28" y2="28" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="8"></line>
+        </svg>
+      </button>
+    </div>
+    <div class="text-white">{{ form_contacto.errors }}</div>
+    <!--<p class="text-white">{{ form_contacto.non_field_errors }}</p>-->
+  </div>
+  {%endif%}
+  <!-- Modal Ofertar -->
+  <div id="modal-component-containet" class="hidden fixed min-h-full w-sm sm:min-w-full bg-gray-400 bg-opacity-50">
+    <div class="modal-flex-container justify-center">
+      <div id ="modal-container" class="modal-container mr-10 sm:mr-0 max-w-sm mx-auto bg-white mt-4 p-4 rounded-xl border-gray-400">
+        <div class="modal-wrapper">
+          <div class="modal-wrapper-flex">
+            <div class="modal-content">
+              <form name="form" method="post" action="{{ request.get_full_path }} ">
+                  {% csrf_token %}
+                  <div class="form-group mb-6">
+                    {{form_contacto.monto}}
+                  </div>
+                  <div class="form-group mb-6">
+                    {{form_contacto.nombre}}
+                  </div>
+                  <div class="form-group mb-6">
+                    {{form_contacto.telefono}}
+                  </div>
+                  <div class="form-group mb-6">
+                    {{form_contacto.mensaje}}
+                  </div>
+                <div class="flex">
+                  <button href="javascript:void(0);" onclick="document.form.submit();" class="w-1/2 mr-1 px-6 py-2.5 boton-busqueda-portada  rounded-l-lg w-full h-full text-white font-medium text-lg">contáctenme</button>
+                  <button id="close-modal" class="w-1/2 ml-1 px-6 py-2.5 boton-busqueda-portada  rounded-r-lg w-full h-full text-white font-medium text-lg">cancelar</button>
                 </div>
-                <div class="form-group mb-6">
-                  {{form_contacto.nombre}}
-                </div>
-                <div class="form-group mb-6">
-                  {{form_contacto.telefono}}
-                </div>
-                <div class="form-group mb-6">
-                  {{form_contacto.mensaje}}
-                </div>
-              <div class="flex">
-                <button href="javascript:void(0);" onclick="document.form.submit();" class="w-1/2 mr-1 px-6 py-2.5 boton-busqueda-portada  rounded-l-lg w-full h-full text-white font-medium text-lg">contáctenme</button>
-                <button id="close-modal" class="w-1/2 ml-1 px-6 py-2.5 boton-busqueda-portada  rounded-r-lg w-full h-full text-white font-medium text-lg">cancelar</button>
-              </div>
-            </form>
+              </form>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
   <!---->
   <div class='grid grid-cols-5 max-w-6xl mx-auto mt-1 sm:mt-5'>
     <div class='col-span-5 lg:col-span-3'>

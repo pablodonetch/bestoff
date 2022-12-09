@@ -7,7 +7,7 @@ import os
 
 
 admin.site.site_header = 'Administración de Propiedades'
-admin.site.site_title = 'Donetch & Cía. Administración'
+admin.site.site_title = 'Bestoff. Administración'
 admin.site.index_title = 'Administración de Propiedades'
 
 class MonedasAdmin(admin.ModelAdmin):

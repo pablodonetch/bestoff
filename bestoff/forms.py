@@ -4,7 +4,7 @@ from django.core import validators
 class formulario_contacto(forms.Form):
     clase='formulario-placeholder form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-orange-600 focus:outline-none'
     nombre = forms.CharField(required=True, widget=forms.TextInput(attrs={'class':clase, 'placeholder':'Nombre Apellido', 'autocomplete':'off'}))
-    email = forms.EmailField(required=True, 
+    email = forms.EmailField(required=False, 
 		widget=forms.TextInput(
 			attrs={'class': clase, 'placeholder': 'ejemplo@correo.com', 'autocomplete':'off'}
 			),
@@ -18,7 +18,7 @@ class formulario_contacto(forms.Form):
 			attrs={'class': clase, 'placeholder': '+56912345678', 'autocomplete':'off'}
 			),
 			validators=[
-                validators.MinLengthValidator(4, message="El Teléfono es demasiado corto"),
+                validators.MinLengthValidator(6, message="El Teléfono es demasiado corto"),
                 validators.RegexValidator('^[+0-9 ]*$', message="El Teléfono contiene caracteres inválidos, por favor use sólo números, por ejemplo +5691652132")
             ]
 	)
