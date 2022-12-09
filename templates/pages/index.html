@@ -47,7 +47,7 @@
     <!--<p class="text-white">{{ form_contacto.non_field_errors }}</p>-->
   </div>
   {%endif%}
-  <!-- Modal Ofertar -->
+  <!-- Modal Vender -->
   <div id="modal-component-containet" class="hidden fixed min-h-full w-sm sm:min-w-full bg-gray-400 bg-opacity-50">
     <div class="modal-flex-container justify-center">
       <div id ="modal-container" class="modal-container mr-5 sm:mx-auto max-w-sm bg-white mt-4 p-4 rounded-xl border-gray-400">
@@ -358,7 +358,7 @@
   });
 
   function closeModalError(){
-    showAndHide(modalError, ['hidden'], ['block'])
+    showAndHide(modalError, ['hidden'], ['block']);
   }
 
   openButton.addEventListener('click', () => {
