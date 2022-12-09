@@ -20,7 +20,6 @@ class Corredor(models.Model):
         verbose_name = 'Corredor'
         verbose_name_plural = 'Corredores'
 
-
 class moneda(models.Model):
     moneda= models.CharField(max_length=100)
     def __str__(self):
