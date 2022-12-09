@@ -26,8 +26,8 @@ class formulario_contacto(forms.Form):
 
 
 class formulario_contacto_oferta(forms.Form):
-	clase='formulario-placeholder form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none'
-	monto = forms.IntegerField(required=True, widget=forms.TextInput(attrs={'class':clase, 'placeholder':'Monto de la Oferta', 'autocomplete':'off'}))
+	clase='formulario-placeholder form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-orange-600 focus:outline-none'
+	monto = forms.IntegerField(required=True, widget=forms.TextInput(attrs={'class':clase, 'placeholder':'Monto de la Oferta en UF', 'autocomplete':'off'}))
 	nombre = forms.CharField(required=True, widget=forms.TextInput(attrs={'class':clase, 'placeholder':'Nombre Apellido', 'autocomplete':'off'}))
 	email = forms.EmailField(required=True, 
 		widget=forms.TextInput(
