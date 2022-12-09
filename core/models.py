@@ -63,6 +63,7 @@ class Estado_Oferta(models.Model):
 class Oferta(models.Model):
     monto=models.IntegerField()
     moneda=models.ForeignKey(moneda, on_delete=models.CASCADE, default=1)
+    forma_pago=models.CharField(max_length=150, default='Crédito Hipotecario')
     propiedad=models.ForeignKey('Propiedad', on_delete=models.CASCADE)
     comprador=models.ForeignKey('Comprador', on_delete=models.CASCADE)
     estado=models.ForeignKey('Estado_Oferta', on_delete=models.CASCADE)
@@ -164,7 +165,9 @@ class Documentos_Legales(models.Model):
     id_propiedades= models.ForeignKey('Propiedad', on_delete=models.CASCADE, related_name='documentos')
     def __str__(self):
         return f"{self.id_propiedades} {self.documento}"
-
+    class Meta:
+        verbose_name = 'Documento Legal'
+        verbose_name_plural = 'Documentos Legales'
 
 class Estado_Ocupacion(models.Model):
     estado = models.CharField(max_length=50)
