@@ -350,19 +350,7 @@
   const carousel= document.querySelector('#controls-carousel');
   const botonFlash= document.querySelector('#flash');
 
-  const modalError = document.querySelector('#modal-error');
-  const closeButtonError = document.querySelector('#cerrar-modal-error');
-
-  closeButtonError.addEventListener('click', ()=>{
-    closeModalError();
-  });
-
-  function closeModalError(){
-    showAndHide(modalError, ['hidden'], ['block']);
-  }
-
   openButton.addEventListener('click', () => {
-    console.log('entra a openbutton');
     openModalVender();
   });
 
@@ -370,7 +358,7 @@
     closeModal();
   });
 
-  function cerrarFlash(){
+  function cerrarFlash() {
     showAndHide(modalContainer, ['hidden'], ['block']);
   }
 
@@ -392,5 +380,26 @@
   }
 
 </script>
+
+{% if form_contacto.errors  %}
+<script>
+  const modalError = document.querySelector('#modal-error');
+  const closeButtonError = document.querySelector('#cerrar-modal-error');
+
+  closeButtonError.addEventListener('click', () => {
+    closeModalError();
+  });
+
+  function closeModalError() {
+    showAndHide(modalError, ['hidden'], ['block']);
+  }
+  
+  function showAndHide(element, classesToAdd, classesToRemove) {
+    element.classList.add(...classesToAdd);
+    element.classList.remove(...classesToRemove);
+  }
+</script>
+{%endif%}
+
 
 {% endblock scripts %}
