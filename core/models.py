@@ -20,15 +20,18 @@ class Corredor(models.Model):
         verbose_name = 'Corredor'
         verbose_name_plural = 'Corredores'
 
+
 class moneda(models.Model):
     moneda= models.CharField(max_length=100)
     def __str__(self):
         return self.moneda
 
+
 class moneda_arriendo_actual(models.Model):
     moneda= models.CharField(max_length=100)
     def __str__(self):
         return self.moneda
+
 
 class Vendedor(models.Model):
     nombre = models.CharField(max_length=50)
@@ -72,6 +75,7 @@ class Oferta(models.Model):
         verbose_name = 'Oferta'
         verbose_name_plural = 'Ofertas'
 
+
 class Contactos(models.Model):
     nombre=models.CharField(max_length=50)
     email=models.EmailField()
@@ -83,7 +87,8 @@ class Contactos(models.Model):
     class Meta:
         verbose_name = 'Contacto'
         verbose_name_plural = 'Contactos'
-        
+
+
 class tipo_propiedad(models.Model):
     tipo = models.CharField(max_length=50)
     def __str__(self):
@@ -168,6 +173,7 @@ class Documentos_Legales(models.Model):
     class Meta:
         verbose_name = 'Documento Legal'
         verbose_name_plural = 'Documentos Legales'
+
 
 class Estado_Ocupacion(models.Model):
     estado = models.CharField(max_length=50)

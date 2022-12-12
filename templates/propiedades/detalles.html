@@ -87,20 +87,20 @@
 </div>
 
 <!--Carrousel de Imagenes de la Propiedad-->
-<div class="pt-10 px-4 sm:px-2 mx-auto max-w-4xl">
+<div id="controls-carousel"  class="block pt-10 px-4 sm:px-2 mx-auto max-w-4xl">
   <div class="grid sm:grid-cols-5 grid-cols-3 gap-4">
     <div class= "col-span-3 relative">
         {% for propiedad in propiedades %}
         {% if propiedad.id == id %}
-        <div id="controls-carousel" class="h-80 rounded-2xl border-solid border-slate-100 min-w-sm gallery-item-detalle">
+        <div class="h-60 rounded-2xl border-solid border-slate-100 min-w-sm gallery-item-detalle">
             <div class="">
                 <div  class="relative" data-carousel="static">
                 <!-- Carousel wrapper -->
-                    <div class="flex relative h-80 overflow-hidden rounded-2xl min-w-full ">
+                    <div class="flex relative h-60 overflow-hidden rounded-2xl min-w-full ">
                         {% for image in images  %}
                         {% if image.id_propiedades.id == propiedad.id %}
-                            <div class="z-10 hidden duration-700 ease-in-out" data-carousel-item>
-                                <img src="{{ image.image.url }}" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+                            <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                                <img src="{{ image.image.url }}" class="absolute block h-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
                             </div>
                         {% endif %}
                         {% endfor %}
@@ -127,7 +127,7 @@
     </div>
     <div class= "col-span-3 sm:col-span-2">
       <div class="rounded-2xl border-solid border-slate-100 min-w-sm gallery-item-detalle min-h-full">
-        <div class="grid gap-y-5">
+        <div class="grid gap-y- ">
             <div class="">
                 <div class="py-3 px-6 ">
                     Precio de Compra Inmediata
@@ -178,13 +178,16 @@
             </div>
             {%else%}
             <div>
-              <p> Se el primero en ofertar pr esta propiedad.</p>
+              <div class="px-6 pt-6">
+                <p class="italic text-center text-gray-400"> No hay ofertas por esta propiedad</p>
+              </div>
+
+              <div class="px-6 pt-10">
+                <p class="text-center"> Se el primero en ofertar por esta propiedad.</p>
+              </div>
             </div>
             {%endif%}
             <div class="my-2 px-6 ">
-              <!--<div>
-                  <input type="text" name="Buscar" id="Buscar" class="w-full rounded-l-lg" value="2.200 UF"/>
-              </div>-->
               <div>
                 <button type="button"  id="open-modal-ofertar" class="boton-busqueda-portada rounded-lg w-full h-10 text-white font-medium text-lg">ofertar</button>
               </div>
@@ -197,31 +200,56 @@
   </div>
 </div>
 
-<div class="pt-4 pb-2 px-4 sm:px-2 mx-auto max-w-4xl">
-    <div class="grid sm:grid-cols-5 grid-cols-3 gap-4">
-        <div class= "col-span-3 ">
-            <div class="flex py-3 justify-center items-center detalle-rentabilidad  rounded-2xl border-solid border-slate-100 min-w-sm gallery-item-detalle">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3.5" stroke="green" class="w-6 h-6">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                <p class="pl-4 text-xl sm:text-xl">{{rentabilidad_max}} % + UF de Rentabilidad Anual</p>
-            </div>
-        </div>
+<!--Banner Paga Pie con Tarjeta-->
+<div class="max-w-6xl mx-auto rounded-xl mt-5 grid grid-cols-12">
+
+  <div class='col-span-12 sm:col-span-6'>
+    <div class='h-32' style="background-image: linear-gradient(to right, rgb(255, 255, 255, 0) 5%, rgba(255, 86, 39, 0.4) 30%,rgba(255, 86, 39, .80) 80%, rgba(255, 86, 39, 1) 100%),  url('{% static "imagenes/banner_tarjeta.jpg" %}');">
+      <div class=""><p class="sm:hidden pt-5 mr-4 text-white text-4xl text-right font-semibold"> Paga el Pie con Tarjeta de Crédito</p></div>
     </div>
+  </div>
+  <div class="hidden sm:block sm:col-span-6 h-full" style="background: rgba(255, 86, 39);">
+    <div class="mt-2"><p class="my-auto pr-20 text-white text-3xl sm:text-4xl lg:text-5xl text-right font-semibold"> Paga el Pie con Tarjeta de Crédito</p></div>
+  </div>
 </div>
 
-<div class="pt-2 pb-4 px-4 sm:px-2 mx-auto max-w-4xl">
-    <div class="grid sm:grid-cols-5 grid-cols-3 gap-4">
-        <div class= "col-span-3 ">
-            <div class="flex py-3 justify-center items-center detalle-rentabilidad  rounded-2xl border-solid border-slate-100 min-w-sm gallery-item-detalle">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3.5" stroke="green" class="w-6 h-6">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                <p class="pl-4 text-xl sm:text-xl">{{utilidad}} % de Utilidad Inmediata</p>
-            </div>
-        </div>
+<!--Banner Carácteristicas importantes-->
+{% for propiedad in propiedades %}
+{% if propiedad.id == id %}
+<div class="pt-4 pb-2 px-4 sm:px-2 mx-auto max-w-4xl">
+  {% if propiedad.propiedad_bancaria == True %}
+  <div class="">
+    <div class="flex py-1 detalle-rentabilidad  rounded-md border-solid border-slate-100 min-w-sm gallery-item-detalle">
+      <svg class="mx-4" height="18" width="18">
+        <circle cx="9" cy="9" r="5" stroke="green" stroke-width="0" fill="green" />
+      </svg>  
+      <p class="text-sm">Propiedad Bancaria</p>
     </div>
+  </div>
+  {% endif %}
+  {% if rentabilidad_real > 0 %}
+  <div class="">
+    <div class="flex py-1 detalle-rentabilidad  rounded-md border-solid border-slate-100 min-w-sm gallery-item-detalle">
+      <svg class="mx-4" height="18" width="18">
+        <circle cx="9" cy="9" r="5" stroke="green" stroke-width="0" fill="green" />
+      </svg>  
+      <p class="text-sm">Contrato de Arriendo Vigente.</p>
+    </div>
+  </div>
+  {% endif %}
+  {% if rentabilidad_real > 0 %}
+  <div class="">
+    <div class="flex py-1 detalle-rentabilidad  rounded-md border-solid border-slate-100 min-w-sm gallery-item-detalle">
+      <svg class="mx-4" height="18" width="18">
+        <circle cx="9" cy="9" r="5" stroke="green" stroke-width="0" fill="green" />
+      </svg>  
+      <p class="text-sm">UF + {{rentabilidad_real}} % Rent. Anual</p>
+    </div>
+  </div>
 </div>
+{% endif %}
+{%endif%}
+{%endfor%}
 
 <div class="py-0 px-4 sm:px-2 mx-auto max-w-4xl">
     <div class="grid sm:grid-cols-5 grid-cols-3 gap-4">
@@ -283,7 +311,7 @@
             {% endif %}
         {% endfor %}
         </div>
-        <div class= "col-span-2">
+        <div class="col-span-3 sm:col-span-2">
             {% for propiedad in propiedades %}
             {%if propiedad.id == id%}
                 <div class="grid grid-cols-1 ">
@@ -293,7 +321,7 @@
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="green" class="w-6 h-6 mx-4">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
-                        <p>Aceptan Contado</p> 
+                        <p>Aceptan Pago Contado</p> 
                     </div>
                     {%endif%}
                     {%if propiedad.aceptan_credito == True %}

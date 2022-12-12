@@ -25,7 +25,6 @@ def propiedades_detalles(request, id, slug):
     Utilidad= float(f'{((propiedades[0].tasacion_comercial*100/propiedades[0].precio)-100):.1f}')
     images = Image.objects.all()
     documentos= Documentos_Legales.objects.all()
-
     if request.method == 'POST':
         form_contacto=formulario_contacto(request.POST)
         form_contacto_oferta=formulario_contacto_oferta(request.POST)
@@ -45,7 +44,6 @@ def propiedades_detalles(request, id, slug):
             save_comprador.telefono_contacto=data['telefono']
             save_comprador.save()
             form_contacto = formulario_contacto()
-
     else:
         form_contacto= formulario_contacto()
         form_contacto_oferta=formulario_contacto_oferta()
