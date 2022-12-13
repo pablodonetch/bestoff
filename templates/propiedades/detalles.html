@@ -92,15 +92,15 @@
     <div class= "col-span-3 relative">
         {% for propiedad in propiedades %}
         {% if propiedad.id == id %}
-        <div class="h-60 rounded-2xl border-solid border-slate-100 min-w-sm gallery-item-detalle">
+        <div class="h-60 sm:h-80 sm:w-full rounded-2xl border-solid border-slate-100 min-w-sm gallery-item-detalle">
             <div class="">
                 <div  class="relative" data-carousel="static">
                 <!-- Carousel wrapper -->
-                    <div class="flex relative h-60 overflow-hidden rounded-2xl min-w-full ">
+                    <div class="flex relative h-60 sm:h-80 sm:w-full overflow-hidden rounded-2xl min-w-full ">
                         {% for image in images  %}
                         {% if image.id_propiedades.id == propiedad.id %}
                             <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                                <img src="{{ image.image.url }}" class="absolute block h-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+                                <img src="{{ image.image.url }}" class="absolute block h-full sm:w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
                             </div>
                         {% endif %}
                         {% endfor %}
@@ -251,6 +251,7 @@
 {%endif%}
 {%endfor%}
 
+<!--Descripción-->
 <div class="py-0 px-4 sm:px-2 mx-auto max-w-4xl">
     <div class="grid sm:grid-cols-5 grid-cols-3 gap-4">
         <div class= "col-span-3">
@@ -290,7 +291,7 @@
                 <div class="col text-center">
                 <div class="grid">
                     <div class="row">
-                    {{ propiedad.superficie_construida}}
+                    {{ propiedad.superficie_construida|numberFormat}}
                     </div>
                     <div class="row text-xs">
                     mt2
@@ -391,7 +392,7 @@
                     <h3 class="text-gray-900 sm:text-md font-bold">Superficie</h3>
                   </div>
                   <div class="row">
-                    <h3 class="text-gray-900 sm:text-xl font-normal mb-2">{{propiedad.superficie_construida}} mt2</h3>
+                    <h3 class="text-gray-900 sm:text-xl font-normal mb-2">{{propiedad.superficie_construida|numberFormat}} mt2</h3>
                   </div>
                 </div>
               </div>
@@ -434,7 +435,7 @@
                     <h3 class="text-gray-900 oculto text-md font-bold">GGCC</h3>
                   </div>
                   <div class="row">
-                    <h3 class="text-gray-900 sm:text-xl font-normal mb-2">$ {{propiedad.gastos_comunes}}</h3>
+                    <h3 class="text-gray-900 sm:text-xl font-normal mb-2">$ {{propiedad.gastos_comunes|numberFormat}}</h3>
                   </div>
                 </div>
               </div>
@@ -444,7 +445,7 @@
                     <h3 class="text-gray-900 text-md font-bold">Contribuciones</h3>
                   </div>
                   <div class="row">
-                    <h3 class="text-gray-900 sm:text-xl font-normal mb-2">$ {{propiedad.contribuciones}}</h3>
+                    <h3 class="text-gray-900 sm:text-xl font-normal mb-2">$ {{propiedad.contribuciones|numberFormat}}</h3>
                   </div>
                 </div>
               </div>
@@ -471,7 +472,7 @@
                 <h3 class="text-gray-900 text-md font-bold">Precio de Lista </h3>
               </div>
               <div class="row">
-                <h3 class="text-gray-900 sm:text-xl font-normal mb-2">{{propiedad.precio}} {{propiedad.moneda}}</h3>
+                <h3 class="text-gray-900 sm:text-xl font-normal mb-2">{{propiedad.precio|numberFormat}} {{propiedad.moneda}}</h3>
               </div>
             </div>
           </div>
@@ -491,7 +492,7 @@
                 <h3 class="text-gray-900 text-md font-bold">Tasación Comercial</h3>
               </div>
               <div class="row">
-                <h3 class="text-gray-900 sm:text-xl font-normal mb-2">{{propiedad.tasacion_comercial}} UF</h3>
+                <h3 class="text-gray-900 sm:text-xl font-normal mb-2">{{propiedad.tasacion_comercial|numberFormat}} UF</h3>
               </div>
             </div>
           </div>
@@ -501,7 +502,7 @@
                 <h3 class="text-gray-900 text-md font-bold">Tasación Fiscal</h3>
               </div>
               <div class="row">
-                <h3 class="text-gray-900 sm:text-xl font-normal mb-2">{{propiedad.tasacion_fiscal}} UF</h3>
+                <h3 class="text-gray-900 sm:text-xl font-normal mb-2">$ {{propiedad.tasacion_fiscal|numberFormat}}</h3>
               </div>
             </div>
           </div>
@@ -515,7 +516,7 @@
                 <h3 class="text-gray-900 text-md font-bold">Arriendo Mínimo</h3>
               </div>
               <div class="row">
-                <h3 class="text-gray-900 sm:text-xl font-normal mb-2">$ {{propiedad.arriendo_minimo}}</h3>
+                <h3 class="text-gray-900 sm:text-xl font-normal mb-2">$ {{propiedad.arriendo_minimo|numberFormat}}</h3>
               </div>
             </div>
           </div>
@@ -525,7 +526,7 @@
                 <h3 class="text-gray-900 text-md font-bold">Arriendo Máximo</h3>
               </div>
               <div class="row">
-                <h3 class="text-gray-900 sm:text-xl font-normal mb-2">$ {{propiedad.arriendo_maximo}}</h3>
+                <h3 class="text-gray-900 sm:text-xl font-normal mb-2">$ {{propiedad.arriendo_maximo|numberFormat}}</h3>
               </div>
             </div>
           </div>
@@ -634,7 +635,7 @@
         <h3 class="text-gray-900 text-md font-bold">Comisión de Corretaje</h3>
       </div>
       <div class="row">
-        <h3 class="text-gray-900 text-xl font-normal mb-2">{{propiedad.comision_venta}}</h3>
+        <h3 class="text-gray-900 text-xl font-normal mb-2">Esta propiedad NO paga Comisión de Venta</h3>
       </div>
     </div>
     <div class="grid sm:grid-cols-10 grid-cols-3 gap-4">
