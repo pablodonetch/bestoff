@@ -25,6 +25,9 @@
                   {{form_contacto_oferta.monto}}
                 </div>
                 <div class="form-group mb-6">
+                  {{form_contacto_oferta.forma_pago}}
+                </div>
+                <div class="form-group mb-6">
                   {{form_contacto_oferta.nombre}}
                 </div>
                 <div class="form-group mb-6">
@@ -199,6 +202,8 @@
     </div>
   </div>
 </div>
+
+{{form_contacto_oferta.errors}}
 
 <!--Banner Paga Pie con Tarjeta-->
 <div class="max-w-6xl mx-auto rounded-xl mt-5 grid grid-cols-12">
@@ -635,7 +640,7 @@
         <h3 class="text-gray-900 text-md font-bold">Comisión de Corretaje</h3>
       </div>
       <div class="row">
-        <h3 class="text-gray-900 text-xl font-normal mb-2">Esta propiedad NO paga Comisión de Venta</h3>
+        <h3 class="text-gray-900 text-xl font-normal mb-2">Esta propiedad NO paga comisión de Venta</h3>
       </div>
     </div>
     <div class="grid sm:grid-cols-10 grid-cols-3 gap-4">

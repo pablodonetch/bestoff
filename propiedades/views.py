@@ -30,19 +30,18 @@ def propiedades_detalles(request, id, slug):
         form_contacto_oferta=formulario_contacto_oferta(request.POST)
         if form_contacto_oferta.is_valid():
             data = form_contacto_oferta.cleaned_data
-            save_oferta = Oferta()
-            save_oferta.monto = data['monto']
-            save_oferta.moneda = 'UF'
-            save_oferta.propiedad.id=propiedades.id
-            save_oferta.comprador = data['nombre']
-            save_oferta.estado = 'Pendiente'
-            save_oferta.save()
             save_comprador=Comprador()
             save_comprador.nombre=data['nombre']
             save_comprador.apellido=''
             save_comprador.rut=''
             save_comprador.telefono_contacto=data['telefono']
             save_comprador.save()
+            save_oferta = Oferta()
+            save_oferta.monto = data['monto']
+            save_oferta.propiedad=propiedades[0]
+            save_oferta.comprador = Comprador.objects.last()
+            save_oferta.estado = 'Pendiente'
+            save_oferta.save()
             form_contacto = formulario_contacto()
     else:
         form_contacto= formulario_contacto()
