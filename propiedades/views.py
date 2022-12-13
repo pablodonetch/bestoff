@@ -26,25 +26,43 @@ def propiedades_detalles(request, id, slug):
     images = Image.objects.all()
     documentos= Documentos_Legales.objects.all()
     oferta_enviada='0'
+    formulario_vender='0'
     if request.method == 'POST':
-        form_contacto=formulario_contacto(request.POST)
-        form_contacto_oferta=formulario_contacto_oferta(request.POST)
-        if form_contacto_oferta.is_valid():
-            data = form_contacto_oferta.cleaned_data
-            save_comprador=Comprador()
-            save_comprador.nombre=data['nombre']
-            save_comprador.apellido=''
-            save_comprador.rut=''
-            save_comprador.telefono_contacto=data['telefono']
-            save_comprador.save()
-            save_oferta = Oferta()
-            save_oferta.monto = data['monto']
-            save_oferta.propiedad=propiedades[0]
-            save_oferta.comprador = Comprador.objects.last()
-            save_oferta.estado = Estado_Oferta.objects.filter(id=2)[0]
-            save_oferta.save()
+        data=request.POST
+        action = data.get("enviar")
+        if action=="vender":
+            form_contacto=formulario_contacto(request.POST)
+            form_contacto_oferta=formulario_contacto_oferta()
+            if form_contacto.is_valid():
+                data = form_contacto.cleaned_data
+                save = Contactos()
+                save.nombre = data['nombre']
+                save.email = 'no email'
+                save.telefono = data['telefono']
+                save.mensaje = data['mensaje']
+                save.save()
+                form_contacto = formulario_contacto()
+                formulario_vender='1'
+        else:
+            form_contacto_oferta=formulario_contacto_oferta(request.POST)
             form_contacto = formulario_contacto()
-            oferta_enviada='1'
+            if form_contacto_oferta.is_valid():
+                data = form_contacto_oferta.cleaned_data
+                save_comprador=Comprador()
+                save_comprador.nombre=data['nombre']
+                save_comprador.apellido=''
+                save_comprador.rut=''
+                save_comprador.telefono_contacto=data['telefono']
+                save_comprador.save()
+                save_oferta = Oferta()
+                save_oferta.monto = data['monto']
+                save_oferta.propiedad=propiedades[0]
+                save_oferta.comprador = Comprador.objects.last()
+                save_oferta.estado = Estado_Oferta.objects.filter(id=2)[0]
+                save_oferta.save()
+                
+                form_contacto_oferta=formulario_contacto_oferta()
+                oferta_enviada='1'
     else:
         form_contacto= formulario_contacto()
         form_contacto_oferta=formulario_contacto_oferta()
@@ -63,6 +81,7 @@ def propiedades_detalles(request, id, slug):
         'ofertas':ofertas, 
         'todas_ofertas':todas_ofertas,
         'oferta_enviada':oferta_enviada,
+        'formulario_vender':formulario_vender,
     }
 
     return render(request, 'propiedades/detalles.html', context )

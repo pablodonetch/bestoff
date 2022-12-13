@@ -17,6 +17,7 @@ def home(request):
     rentabilidades.append({})
     plusvalia=[]
     plusvalia.append({})
+    formulario_vender='0'
     if request.method == 'POST':
         form_contacto = formulario_contacto(request.POST)
         if form_contacto.is_valid():
@@ -28,6 +29,7 @@ def home(request):
             save.mensaje = data['mensaje']
             save.save()
             form_contacto = formulario_contacto()
+            formulario_vender='1'
     else:
         form_contacto = formulario_contacto()
     for propiedad in propiedades:
@@ -39,6 +41,7 @@ def home(request):
         'rentabilidades': rentabilidades,
         'plusvalia': plusvalia,
         'form_contacto': form_contacto,
+        'formulario_vender':formulario_vender,
     }
     return render(request, 'pages/index.html', context)
 

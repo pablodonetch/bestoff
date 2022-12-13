@@ -19,7 +19,7 @@
                 {% endif %}
               {% endfor %}
             </div>
-            <form name="form" method="post" action="{{ request.get_full_path }} ">
+            <form name="form-ofertar" method="post" action="{{ request.get_full_path }} ">
                 {% csrf_token %}
                 <div class="form-group mb-6">
                   {{form_contacto_oferta.monto}}
@@ -37,7 +37,7 @@
                   {{form_contacto_oferta.email}}
               </div>
               <div class="flex">
-                <button href="javascript:void(0);" onclick="document.form.submit();" class="w-1/2 mr-1 px-6 py-2.5 boton-busqueda-portada  rounded-l-lg w-full h-full text-white font-medium text-lg">contáctenme</button>
+                <button href="javascript:void(0);" onclick="document.form-ofertar.submit();" class="w-1/2 mr-1 px-6 py-2.5 boton-busqueda-portada rounded-l-lg w-full h-full text-white font-medium text-lg" name="enviar" value="ofertar">contáctenme</button>
                 <button id="close-modal" class="w-1/2 ml-1 px-6 py-2.5 boton-busqueda-portada  rounded-r-lg w-full h-full text-white font-medium text-lg">cancelar</button>
               </div>
             </form>
@@ -203,28 +203,14 @@
   </div>
 </div>
 
-<!--Modales Errores Formularios contacto-->
-{%if form_contacto.errors %}
-<div id='modal-error' class='block bg-red-500 max-w-4xl mx-auto rounded-xl px-5 py-4 bg-red-800/60 mt-7'>
-  <div class="flex items-center justify-between">
-    <h3 class="text-white text-xl sm:text-3xl">Error al ingresar tus datos</h3>
-    <button id="cerrar-modal-error" class="flex text-white">
-      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#000000" viewBox="0 0 256 256">
-        <rect width="50" height="50" fill="none"></rect>
-        <line x1="200" y1="56" x2="56" y2="200" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"></line>
-        <line x1="200" y1="200" x2="56" y2="56" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"></line>
-      </svg>
-    </button>
-  </div>
-  <div class="text-white">{{ form_contacto.errors }}</div>
-</div>
-{%endif%}
+{% include 'componentes/formulario_vender.html' %}
 
-<!--Modales Errores Formularios Oferta-->
+
+<!--Modal Error Formulario Oferta-->
 {%if form_contacto_oferta.errors %}
 <div id='modal-error' class='block bg-red-500 max-w-4xl mx-auto rounded-xl px-5 py-4 bg-red-800/60 mt-7'>
   <div class="flex items-center justify-between">
-    <h3 class="text-white text-xl sm:text-3xl">Error al ingresar los datos de tu Oferta</h3>
+    <h3 class="text-white text-xl sm:text-3xl">&#128400;&#128400; Error al ingresar los datos de tu Oferta</h3>
     <button id="cerrar-modal-error" class="flex text-white">
       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#000000" viewBox="0 0 256 256">
         <rect width="50" height="50" fill="none"></rect>
@@ -716,9 +702,6 @@
 </div>
 
 {% endblock content %}
-
-
-
 {% block extra_footer %} {% endblock extra_footer %}
 {% block scripts %} <script src="https://unpkg.com/flowbite@1.4.0/dist/flowbite.js"></script>
 
@@ -726,7 +709,6 @@
   const openButton = document.querySelector('#open-modal-ofertar');
   const closeButton = document.querySelector('#close-modal');
   const modalContainer = document.querySelector('#modal-component-containet');
-  const carousel= document.querySelector('#controls-carousel');
   const modal= document.querySelector('#modal-container');
   const botonFlash= document.querySelector('#flash');
 

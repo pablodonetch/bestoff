@@ -47,6 +47,21 @@
     <!--<p class="text-white">{{ form_contacto.non_field_errors }}</p>-->
   </div>
   {%endif%}
+  {%if formulario_vender == '1'  %}
+  <div id='modal-error' class='block bg-green-500 max-w-6xl mx-auto rounded-xl px-5 py-4 bg-red-800/60 mt-7'>
+    <div class="flex items-center justify-between">
+      <h3 class="text-white text-xl sm:text-3xl text-justify"> &#128075; &#128075; ¡Gracias por enviar tus Datos! Nos pondremos en contacto a la brevedad.</h3>
+      <button id="cerrar-modal-error" class="flex text-white">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#000000" viewBox="0 0 256 256">
+          <rect width="50" height="50" fill="none"></rect>
+          <line x1="200" y1="56" x2="56" y2="200" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"></line>
+          <line x1="200" y1="200" x2="56" y2="56" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"></line>
+        </svg>
+      </button>
+    </div>
+  </div>
+  {%endif%}
+
   <!-- Modal Vender -->
   <div id="modal-component-containet" class="hidden fixed min-h-full w-sm sm:min-w-full bg-gray-400 bg-opacity-50">
     <div class="modal-flex-container justify-center">
@@ -70,7 +85,7 @@
                   </div>
                 <div class="flex">
                   <button href="javascript:void(0);" onclick="document.form.submit();" class="w-1/2 mr-1 px-6 py-2.5 boton-busqueda-portada  rounded-l-lg w-full h-full text-white font-medium text-lg">contáctenme</button>
-                  <button id="close-modal" class="w-1/2 ml-1 px-6 py-2.5 boton-busqueda-portada  rounded-r-lg w-full h-full text-white font-medium text-lg">cancelar</button>
+                  <button id="close-modal-vende" class="w-1/2 ml-1 px-6 py-2.5 boton-busqueda-portada  rounded-r-lg w-full h-full text-white font-medium text-lg">cancelar</button>
                 </div>
               </form>
             </div>
@@ -174,7 +189,7 @@
   {% if rentabilidades.0|accede_diccionario:propiedad.id > 3.5 %}
     <div class="static rounded-2xl">
       <div class="relative pb-1 overflow-hidden rounded-t-lg">
-        <div id="z-10 controls-carousel" class="relative" data-carousel="static">
+        <div id="controls-carousel" class="relative" data-carousel="static">
             <!-- Carousel wrapper -->
             <div class="relative h-56 overflow-hidden">
               {% for image in images  %}
@@ -285,7 +300,7 @@
   {% if propiedad.propiedad_bancaria == True %}
   <div class="static rounded-2xl">
     <div class="relative pb-1 overflow-hidden rounded-t-lg">
-      <div id="z-10 controls-carousel" class="relative" data-carousel="static">
+      <div id="controls-carousel" class="relative" data-carousel="static">
           <!-- Carousel wrapper -->
           <div class="relative h-56 overflow-hidden">
             {% for image in images  %}
@@ -364,18 +379,18 @@
 {% block scripts %}<script src="https://unpkg.com/flowbite@1.4.0/dist/flowbite.js"></script>
 
 <script>
-  const openButton = document.querySelector('#open-modal-vende');
-  const closeButton = document.querySelector('#close-modal');
+  const openButton_vende = document.querySelector('#open-modal-vende');
+  const closeButton_vende = document.querySelector('#close-modal-vende');
   const modalContainer = document.querySelector('#modal-component-containet');
   const carousel= document.querySelector('#controls-carousel');
   const botonFlash= document.querySelector('#flash');
 
-  openButton.addEventListener('click', () => {
+  openButton_vende.addEventListener('click', () => {
     openModalVender();
   });
 
-  closeButton.addEventListener('click', () => {
-    closeModal();
+  closeButton_vende.addEventListener('click', () => {
+    closeModalVender();
   });
 
   function cerrarFlash() {
@@ -388,7 +403,7 @@
     
   }
 
-  function closeModal() {
+  function closeModalVender() {
     showAndHide(modalContainer, ['hidden'], ['block']);
     showAndHide(carousel, ['block'], ['hidden']);
     
@@ -401,7 +416,7 @@
 
 </script>
 
-{% if form_contacto.errors  %}
+{% if form_contacto.errors or formulario_vender == '1'   %}
 <script>
   const modalError = document.querySelector('#modal-error');
   const closeButtonError = document.querySelector('#cerrar-modal-error');

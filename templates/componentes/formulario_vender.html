@@ -1,66 +1,121 @@
-<!--Formulario para vender tu propiedad con nosotros-->
-<div class="wave1 form-azul" id="formulario_contacto">
-    <div class="block p-6 rounded-lg shadow-lg bg-white max-w-2xl my-20 mb-0 mx-6 sm:mx-auto">
-      <h2 class="text-3xl text-gray-900 font-medium title-font mb-2 text-center pb-2">¿Quieres vender tu propiedad?</h2>
-      <div class="flex flex-wrap -m-4">
-        <div class="p-4 mx-auto md:w-1/2 sm:w-full">
-          <div class="text-lg">Agregamos Valor a tu propiedad<br>
-            <div class="flex py-2">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#0047AB" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"></rect><polyline points="172 104 113.3 160 84 130" fill="none" stroke="#0047AB" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></polyline><circle cx="128" cy="128" r="96" fill="none" stroke="#0047AB" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></circle></svg>
-              <p class="px-2">Tasación online</p><br>
-            </div>
-            <div class="flex py-1">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#0047AB" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"></rect><polyline points="172 104 113.3 160 84 130" fill="none" stroke="#0047AB" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></polyline><circle cx="128" cy="128" r="96" fill="none" stroke="#0047AB" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></circle></svg>
-              <p class="px-2">Fotos Profesionales Gratis.</p><br>
-            </div>
-            <div class="flex py-1">
-              <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="#0047AB" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"></rect><polyline points="172 104 113.3 160 84 130" fill="none" stroke="#0047AB" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></polyline><circle cx="128" cy="128" r="96" fill="none" stroke="#0047AB" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></circle></svg>
-              <p class="px-2">Promoción en plataformas inmobiliarias y RRSS.</p><br>
-            </div>
-            <div class="flex py-1">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#0047AB" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"></rect><polyline points="172 104 113.3 160 84 130" fill="none" stroke="#0047AB" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></polyline><circle cx="128" cy="128" r="96" fill="none" stroke="#0047AB" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></circle></svg>
-              <p class="px-2">Coordinación de visitas guiadas.</p><br>
-            </div>
-            <div class="flex py-1">
-              <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="#0047AB" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"></rect><polyline points="172 104 113.3 160 84 130" fill="none" stroke="#0047AB" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></polyline><circle cx="128" cy="128" r="96" fill="none" stroke="#0047AB" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></circle></svg>
-              <p class="px-2">Asesoramiento legal y financiero.</p><br>
-            </div>
-            <div class="flex py-1">
-              <svg xmlns="http://www.w3.org/2000/svg" width="31" height="31" fill="#0047AB" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"></rect><polyline points="172 104 113.3 160 84 130" fill="none" stroke="#0047AB" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></polyline><circle cx="128" cy="128" r="96" fill="none" stroke="#0047AB" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></circle></svg>
-              <p class="px-2">Asesoramiento en la firma de la escritura.</p><br>
-            </div>
-            <div class="flex py-1">
-              <svg xmlns="http://www.w3.org/2000/svg" width="31" height="31" fill="#0047AB" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"></rect><polyline points="172 104 113.3 160 84 130" fill="none" stroke="#0047AB" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></polyline><circle cx="128" cy="128" r="96" fill="none" stroke="#0047AB" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></circle></svg>
-              <p class="px-2">Seguimiento hasta el final del proceso.</p><br>
-            </div>
+ <!-- Modal Vender -->
+ <div id="modal-component-containet-vender" class="hidden fixed min-h-full w-sm sm:min-w-full bg-gray-400 bg-opacity-50">
+  <div class="modal-flex-container justify-center">
+    <div id ="modal-container-vender" class="modal-container mr-5 sm:mx-auto max-w-sm bg-white mt-4 p-4 rounded-xl border-gray-400">
+      <div class="modal-wrapper">
+        <div class="modal-wrapper-flex">
+          <div class="modal-content">
+            <form name="form-Vender" method="post" action="{{ request.get_full_path }} ">
+                {% csrf_token %}
+                <div class="form-group mb-6">
+                  {{form_contacto.monto}}
+                </div>
+                <div class="form-group mb-6">
+                  {{form_contacto.nombre}}
+                </div>
+                <div class="form-group mb-6">
+                  {{form_contacto.telefono}}
+                </div>
+                <div class="form-group mb-6">
+                  {{form_contacto.mensaje}}
+                </div>
+              <div class="flex">
+                <button href="javascript:void(0);" onclick="document.form-vender.submit();" class="w-1/2 mr-1 px-6 py-2.5 boton-busqueda-portada  rounded-l-lg w-full h-full text-white font-medium text-lg" name="enviar" value="vender">contáctenme</button>
+                <button id="close-modal-vende" class="w-1/2 ml-1 px-6 py-2.5 boton-busqueda-portada  rounded-r-lg w-full h-full text-white font-medium text-lg">cancelar</button>
+              </div>
+            </form>
           </div>
-          
         </div>
-        <div class="mx-auto p-4 md:w-1/2 sm:w-full">
-          <p class="leading-relaxed my-2">Déjanos tus datos y te contactaremos.</p>
-          {% include 'componentes/flash.html' %}
-          <form name="form" method="post" action="{% url 'home' %}">
-              {% csrf_token %}
-              <div class="form-group mb-6">
-                {{form.nombre}}
-              </div>
-              <div class="form-group mb-6">
-                {{form.telefono}}
-              </div>
-              <div class="form-group mb-6">
-                {{form.email}}
-            </div>
-              <div class="form-group mb-6">
-                {{form.mensaje}}
-              </div>
-              <button href="javascript:void(0);" onclick="document.form.submit();" class="w-full px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">ENVIAR</button>
-          </form>
-        </div> 
       </div>
     </div>
   </div>
-  <div class="wave3 form-azul">
-    <div>
-        <p class="py-10"> </p>
-    </div> 
 </div>
+<!---->
+
+<!--Modales Errores Formularios Vender-->
+{%if form_contacto.errors %}
+<div id='modal-error' class='block bg-red-500 max-w-4xl mx-auto rounded-xl px-5 py-4 bg-red-800/60 mt-7'>
+  <div class="flex items-center justify-between">
+    <h3 class="text-white text-xl sm:text-3xl"> &#128400;&#128400;Error al ingresar tus datos</h3>
+    <button id="cerrar-modal-error" class="flex text-white">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#000000" viewBox="0 0 256 256">
+        <rect width="50" height="50" fill="none"></rect>
+        <line x1="200" y1="56" x2="56" y2="200" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"></line>
+        <line x1="200" y1="200" x2="56" y2="56" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"></line>
+      </svg>
+    </button>
+  </div>
+  <div class="text-white">{{form_contacto.errors }}</div>
+</div>
+{%endif%}
+
+{%if formulario_vender == '1'  %}
+<div id='modal-error' class='block bg-green-500 max-w-6xl mx-auto rounded-xl px-5 py-4 bg-red-800/60 mt-7'>
+  <div class="flex items-center justify-between">
+    <h3 class="text-white text-xl sm:text-3xl text-justify"> &#128075; &#128075; ¡Gracias por enviar tus Datos! Nos pondremos en contacto a la brevedad.</h3>
+    <button id="cerrar-modal-error" class="flex text-white">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#000000" viewBox="0 0 256 256">
+        <rect width="50" height="50" fill="none"></rect>
+        <line x1="200" y1="56" x2="56" y2="200" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"></line>
+        <line x1="200" y1="200" x2="56" y2="56" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"></line>
+      </svg>
+    </button>
+  </div>
+</div>
+{%endif%}
+
+<script>
+  const openButton_vende = document.querySelector('#open-modal-vende');
+  const closeButton_vende = document.querySelector('#close-modal-vende');
+  const carousel= document.querySelector('#controls-carousel');
+  const modalContainerVender = document.querySelector('#modal-component-containet-vender');
+
+  openButton_vende.addEventListener('click', () => {
+    openModalVender();
+  });
+
+  closeButton_vende.addEventListener('click', () => {
+    closeModalVender();
+  });
+
+  function cerrarFlash() {
+    showAndHide(modalContainerVender, ['hidden'], ['block']);
+  }
+
+  function openModalVender() {
+    showAndHide(modalContainerVender, ['block'], ['hidden']);
+    showAndHide(carousel, ['hidden'], ['block']);
+    
+  }
+
+  function closeModalVender() {
+    showAndHide(modalContainerVender, ['hidden'], ['block']);
+    showAndHide(carousel, ['block'], ['hidden']);
+    
+  }
+
+  function showAndHide(element, classesToAdd, classesToRemove) {
+    element.classList.add(...classesToAdd);
+    element.classList.remove(...classesToRemove);
+  }
+</script>
+
+{% if form_contacto.errors or formulario_vender == '1'   %}
+<script>
+  const modalError = document.querySelector('#modal-error');
+  const closeButtonError = document.querySelector('#cerrar-modal-error');
+
+  closeButtonError.addEventListener('click', () => {
+    closeModalError();
+  });
+
+  function closeModalError() {
+    showAndHide(modalError, ['hidden'], ['block']);
+  }
+  
+  function showAndHide(element, classesToAdd, classesToRemove) {
+    element.classList.add(...classesToAdd);
+    element.classList.remove(...classesToRemove);
+  }
+</script>
+{%endif%}
