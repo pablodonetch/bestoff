@@ -203,7 +203,55 @@
   </div>
 </div>
 
-{{form_contacto_oferta.errors}}
+<!--Modales Errores Formularios contacto-->
+{%if form_contacto.errors %}
+<div id='modal-error' class='block bg-red-500 max-w-4xl mx-auto rounded-xl px-5 py-4 bg-red-800/60 mt-7'>
+  <div class="flex items-center justify-between">
+    <h3 class="text-white text-xl sm:text-3xl">Error al ingresar tus datos</h3>
+    <button id="cerrar-modal-error" class="flex text-white">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#000000" viewBox="0 0 256 256">
+        <rect width="50" height="50" fill="none"></rect>
+        <line x1="200" y1="56" x2="56" y2="200" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"></line>
+        <line x1="200" y1="200" x2="56" y2="56" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"></line>
+      </svg>
+    </button>
+  </div>
+  <div class="text-white">{{ form_contacto.errors }}</div>
+</div>
+{%endif%}
+
+<!--Modales Errores Formularios Oferta-->
+{%if form_contacto_oferta.errors %}
+<div id='modal-error' class='block bg-red-500 max-w-4xl mx-auto rounded-xl px-5 py-4 bg-red-800/60 mt-7'>
+  <div class="flex items-center justify-between">
+    <h3 class="text-white text-xl sm:text-3xl">Error al ingresar los datos de tu Oferta</h3>
+    <button id="cerrar-modal-error" class="flex text-white">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#000000" viewBox="0 0 256 256">
+        <rect width="50" height="50" fill="none"></rect>
+        <line x1="200" y1="56" x2="56" y2="200" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"></line>
+        <line x1="200" y1="200" x2="56" y2="56" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"></line>
+      </svg>
+    </button>
+  </div>
+  <div class="text-white">{{ form_contacto_ofert.errors }}</div>
+</div>
+{%endif%}
+
+<!--Modal Oferta Enviada-->
+{%if oferta_enviada == '1' %}
+<div id='modal-error' class='block bg-green-500 max-w-4xl mx-auto rounded-xl px-5 py-4 bg-red-800/60 mt-7'>
+  <div class="flex items-center justify-between">
+    <h3 class="text-white text-xl sm:text-3xl">&#128077; &#128077; Muchas Gracias por enviar tu oferta, la revisaremos a la brevedad.</h3>
+    <button id="cerrar-modal-error" class="flex text-white">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#000000" viewBox="0 0 256 256">
+        <rect width="50" height="50" fill="none"></rect>
+        <line x1="200" y1="56" x2="56" y2="200" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"></line>
+        <line x1="200" y1="200" x2="56" y2="56" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"></line>
+      </svg>
+    </button>
+  </div>
+</div>
+{%endif%}
 
 <!--Banner Paga Pie con Tarjeta-->
 <div class="max-w-6xl mx-auto rounded-xl mt-5 grid grid-cols-12">
@@ -735,5 +783,25 @@
 
 
 </script>
+
+{% if oferta_enviada == '1'%}
+<script>
+  const modalError = document.querySelector('#modal-error');
+  const closeButtonError = document.querySelector('#cerrar-modal-error');
+
+  closeButtonError.addEventListener('click', () => {
+    closeModalError();
+  });
+
+  function closeModalError() {
+    showAndHide(modalError, ['hidden'], ['block']);
+  }
+  
+  function showAndHide(element, classesToAdd, classesToRemove) {
+    element.classList.add(...classesToAdd);
+    element.classList.remove(...classesToRemove);
+  }
+</script>
+{%endif%}
 
 {% endblock scripts %}
