@@ -669,23 +669,189 @@
 <div class="my-4 py-4">
   <div class="py-0 px-4 sm:px-2 mx-auto max-w-4xl">
     <h3 class="text-gray-900 text-3xl font-medium mb-4">Costos Asociados a la Operación</h3>
-    <div class="grid grid-cols-1">
+    <div class="grid grid-cols-1 gap-y-1">
       <div class="row">
         <h3 class="text-gray-900 text-md font-bold">Comisión de Corretaje</h3>
       </div>
       <div class="row">
-        <h3 class="text-gray-900 text-xl font-normal mb-2">Esta propiedad NO paga comisión de Venta</h3>
+        <p class="text-gray-900 text-xl font-normal mb-2">El comprador de esta propiedad NO paga comisión de Corretje.</p>
       </div>
+      <div class="row mt-3">
+        <h3 class="text-gray-900 text-md font-bold">Costos Operacionales</h3>
+      </div>
+      <div class="row">
+        <p class="text-gray-900 text-xl font-normal mb-2">Los costos operacionales son:</p>
+
+        <table class="min-w-full">
+          <tbody>
+
+            <tr class="bg-gray-100 border-b">
+              <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap">
+                <p>Estudio de Títulos</p>
+              </td>
+              <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap">
+                <p>10</p>
+              </td>
+              <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap">
+                <p>UF</p>
+              </td>
+            </tr>
+
+            <tr class="bg-white-100 border-b">
+              <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap">
+                <p>Confección de la Escritura</p>
+              </td>
+              <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap">
+                <p>10</p>
+              </td>
+              <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap">
+                <p>UF</p>
+              </td>
+            </tr>
+
+            <tr class="bg-gray-100 border-b">
+              <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap">
+                <p>Notaría: Firma Compraventa*</p>
+              </td>
+              <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap">
+                <p>5</p>
+              </td>
+              <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap">
+                <p>UF</p>
+              </td>
+            </tr>
+
+            <tr class="bg-white-100 border-b">
+              <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap">
+                <p>Obtención de Vales Vistas**</p>
+              </td>
+              <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap">
+                <p>5</p>
+              </td>
+              <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap">
+                <p>UF</p>
+              </td>
+            </tr>
+
+            <tr class="bg-gray-100 border-b">
+              <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap">
+                <p>TOTAL COSTOS OPERACIONES</p>
+              </td>
+              <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap">
+                <p>30</p>
+              </td>
+              <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap">
+                <p>UF</p>
+              </td>
+            </tr>
+            
+
+            <tr class="bg-gray-100 border-b">
+              <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap">
+                <p>TOTAL COSTOS OPERACIONES</p>
+              </td>
+              <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap">
+                <p>30</p>
+              </td>
+              <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap">
+                <p>UF</p>
+              </td>
+            </tr>
+
+
+          </tbody>
+        </table>
+      </div>
+
     </div>
-    <div class="grid sm:grid-cols-10 grid-cols-3 gap-4">
+  </div>
+</div>
+
+<div class="my-4 py-4">
+  <div class="py-0 px-4 sm:px-2 mx-auto max-w-4xl">
+    <h3 class="text-gray-900 text-3xl font-medium mb-4">Análisis Financiero de la Compra</h3>
+    <div class="grid my-4 sm:grid-cols-10 grid-cols-3 gap-4">
       <div class= "col-span-5">
         <div class="row">
           <h3 class="text-gray-900 text-md font-bold">Costo de Compra Al Contado</h3>
         </div>
-        <div class="row">
-          <p class="text-justify">Los costos de comprar al contado son básicamente tres. 
-            El primero corresponde al costo de hacer el estudio de título con un abogado de confianza.
-          El segundo es el costo de la redacción de la escritura de compraventa. Es común que los </p>
+        <div class="row my-2">
+          
+          <table class="min-w-full">
+            <tbody>
+
+              <tr class="bg-gray-100 border-b">
+                <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap">
+                  Costo Propiedad
+                </td>
+                <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap">
+                  {% for propiedad in propiedades %}
+                  {% if propiedad.id == id %}
+                  <input type="number" placeholder='{{propiedad.precio|numberFormat}}' name="oferta_calculo_financiero" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                  {%endif%}
+                  {%endfor%}
+                </td>
+                <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap">
+                  <p>UF</p>
+                </td>
+              </tr>
+
+              <tr class="bg-white-100 border-b">
+                <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap">
+                  <p>Costos Operativos*</p>
+                </td>
+                <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap">
+                  <p>30</p>
+                </td>
+                <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap">
+                  <p>UF</p>
+                </td>
+              </tr>
+
+              <tr class="bg-gray-100 border-b">
+                <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap">
+                  <p>Costos de Intermediación</p>
+                </td>
+                <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap">
+                  <p>0</p>
+                </td>
+                <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap">
+                  <p>UF</p>
+                </td>
+              </tr>
+
+              <tr class="bg-white-100 border-b">
+                <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap">
+                 <p> TOTAL COSTOS </p>
+                </td>
+                <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap">
+                  <p>1.780</p>
+                </td>
+                <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap">
+                  <p>UF</p>
+                </td>
+              </tr>
+
+              <tr class="bg-gray-100 border-b">
+                <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap">
+                 <p> Pluvalía Inmediata </p>
+                </td>
+                <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap">
+                  <p>1.780</p>
+                </td>
+                <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap">
+                  <p>UF</p>
+                </td>
+              </tr>
+
+
+            </tbody>
+          </table>
+          
+
+
+
+
         </div>
       </div>
       <div class= "col-span-5">
