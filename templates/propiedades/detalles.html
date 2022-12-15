@@ -684,7 +684,7 @@
                 <p class="inline-block align-middle">Precio de Compra</p>
               </div>
               <div class="class col-span-5 form-group">
-                {{formulario_financiero.oferta}} 
+                {{formulario_financiero.precio_compra}} 
               </div>
               <div class="col-span-2">
                 <p class="inline-block align-middle ml-2">UF</p>
@@ -711,32 +711,32 @@
             <div class="grid grid-cols-12 bg-gray-100">
               <div class="col-span-6"> <p class="text-sm ml-4 my-2">1. Estudio de Títulos</p></div>
               <div class="col-span-3"> <p class="text-sm ml-4 my-2"></p></div>
-              <div class="col-span-3 mr-2"> <p class="text-sm my-2 text-right ml-2">10 UF</p></div>
+              <div class="col-span-3 mr-2"> <p class="text-sm my-2 text-right ml-2">{{costo_estudio}} UF</p></div>
             </div>
             <div class="grid grid-cols-12 bg-white">
               <div class="col-span-6"> <p class="text-sm ml-4 my-2">2. Confección de la Escritura</p></div>
               <div class="col-span-3"> <p class="text-sm ml-4 my-2"></p></div>
-              <div class="col-span-3 mr-2"> <p class="text-sm my-2 text-right ml-2">10 UF</p></div>
+              <div class="col-span-3 mr-2"> <p class="text-sm my-2 text-right ml-2">{{costo_escritura}} UF</p></div>
             </div>
             <div class="grid grid-cols-12 bg-gray-100">
               <div class="col-span-6"> <p class="text-sm ml-4 my-2">3. Notaría: Firma Compraventa*</p></div>
               <div class="col-span-3"> <p class="text-sm ml-4 my-2"></p></div>
-              <div class="col-span-3 mr-2"> <p class="text-sm my-2 text-right ml-2">5 UF</p></div>
+              <div class="col-span-3 mr-2"> <p class="text-sm my-2 text-right ml-2">{{costo_notaria}} UF</p></div>
             </div>
             <div class="grid grid-cols-12 bg-white">
               <div class="col-span-6"> <p class="text-sm ml-4 my-2">4. Obtención de Vales Vistas**</p></div>
               <div class="col-span-3"> <p class="text-sm ml-4 my-2"></p></div>
-              <div class="col-span-3 mr-2"> <p class="text-sm my-2 text-right ml-2">5 UF</p></div>
+              <div class="col-span-3 mr-2"> <p class="text-sm my-2 text-right ml-2">{{costo_vv}} UF</p></div>
             </div>
             <div class="grid grid-cols-12 bg-gray-100">
               <div class="col-span-6"> <p class="text-sm ml-4 my-2">5. Inscrip. en Conservador de Bienes Raíces</p></div>
               <div class="col-span-3"> <p class="text-sm ml-4 my-2"></p></div>
-              <div class="col-span-3 mr-2"> <p class="text-sm my-2 text-right ml-2">10 UF</p></div>
+              <div class="col-span-3 mr-2"> <p class="text-sm my-2 text-right ml-2">{{costo_cbr}} UF</p></div>
             </div>
             <div class="grid grid-cols-12 bg-white">
               <div class="col-span-6"> <p class="font-semibold text-sm ml-4 my-2">6. Total Costos Operacionales</p></div>
               <div class="col-span-3"> <p class="font-semibold text-sm ml-4 my-2">(1+2+3+4)</p></div>
-              <div class="col-span-3 mr-2"> <p class="font-semibold text-sm my-2 text-right ml-2">40 UF</p></div>
+              <div class="col-span-3 mr-2"> <p class="font-semibold text-sm my-2 text-right ml-2">{{total_costo}} UF</p></div>
             </div>
           </div>
           <p class="text-justify text-sm">* El costo notaría de la firma del contrato de compraventa lo asume el comprador.</p>
@@ -751,27 +751,27 @@
             <div class="grid grid-cols-12 bg-gray-100">
               <div class="col-span-6"> <p class="text-sm ml-4 my-2">1. Costo de Compra</p></div>
               <div class="col-span-3"> <p class="text-sm ml-4 my-2"></p></div>
-              <div class="col-span-3 mr-2"> <p class="text-sm my-2 text-right ml-2">1.750 UF</p></div>
+              <div class="col-span-3 mr-2"> <p class="text-sm my-2 text-right ml-2">{{costo_compra}} UF</p></div>
             </div>
             <div class="grid grid-cols-12 bg-white">
               <div class="col-span-6"> <p class="text-sm ml-4 my-2">2. Costos Operacionales</p></div>
               <div class="col-span-3"> <p class="text-sm ml-4 my-2"></p></div>
-              <div class="col-span-3 mr-2"> <p class="text-sm my-2 text-right ml-2">40 UF</p></div>
+              <div class="col-span-3 mr-2"> <p class="text-sm my-2 text-right ml-2">{{total_costo}} UF</p></div>
             </div>
             <div class="grid grid-cols-12 bg-gray-100">
               <div class="col-span-6"> <p class="text-sm ml-4 my-2">3. Tasación Comercial</p></div>
               <div class="col-span-3"> <p class="text-sm ml-4 my-2"></p></div>
-              <div class="col-span-3 mr-2"> <p class="text-sm my-2 text-right ml-2">2.307 UF</p></div>
+              <div class="col-span-3 mr-2"> <p class="text-sm my-2 text-right ml-2">{{tasacion_com}} UF</p></div>
             </div>
             <div class="grid grid-cols-12 bg-white">
-              <div class="col-span-6"> <p class="font-bold text-sm ml-4 my-2">4. Plusvalía Inmediata</p></div>
-              <div class="col-span-3"> <p class="text-sm ml-4 my-2">(3 - 2 - 1)</p></div>
-              <div class="col-span-3 mr-2"> <p class="font-bold text-sm my-2 text-right">507 UF</p></div>
+              <div class="col-span-6"> <p class="font-semibold text-sm ml-4 my-2">4. Plusvalía Inmediata</p></div>
+              <div class="col-span-3"> <p class="font-semibold text-sm ml-4 my-2">(3 - 2 - 1)</p></div>
+              <div class="col-span-3 mr-2"> <p class="font-semibold text-sm my-2 text-right">{{plusvalia}} UF</p></div>
             </div>
             <div class="grid grid-cols-12 bg-gray-100">
               <div class="col-span-6"> <p class="font-semibold text-sm ml-4 my-2">5. Plusvalía Inmediata</p></div>
               <div class="col-span-3"> <p class="font-semibold text-sm ml-4 my-2">(4 / 1)</p></div>
-              <div class="col-span-3 mr-2"> <p class="font-semibold text-sm my-2 text-right ml-2">28 UF</p></div>
+              <div class="col-span-3 mr-2"> <p class="font-semibold text-sm my-2 text-right ml-2">{{plusvalia_porc}} %</p></div>
             </div>
           </div>
         </div>

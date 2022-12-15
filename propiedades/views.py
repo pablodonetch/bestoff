@@ -5,6 +5,7 @@ from core.models import *
 from bestoff.views import propiedades
 from funcionespy import *
 from bestoff.forms import *
+from math import ceil
 
 UF=34500 #CAMBIAR UF ACÁ
 
@@ -32,7 +33,9 @@ def propiedades_detalles(request, id, slug):
         action = data.get("enviar")
         if action=="vender":
             form_contacto=formulario_contacto(request.POST)
-            form_contacto_oferta=formulario_contacto_oferta()
+            form_contacto_oferta=formulario_contacto_oferta(
+            form_financiero=formulario_financiero()
+            )
             if form_contacto.is_valid():
                 data = form_contacto.cleaned_data
                 save = Contactos()
@@ -46,6 +49,7 @@ def propiedades_detalles(request, id, slug):
         if action=="ofertar":
             form_contacto_oferta=formulario_contacto_oferta(request.POST)
             form_contacto = formulario_contacto()
+            form_financiero=formulario_financiero()
             if form_contacto_oferta.is_valid():
                 data = form_contacto_oferta.cleaned_data
                 save_comprador=Comprador()
@@ -60,13 +64,40 @@ def propiedades_detalles(request, id, slug):
                 save_oferta.comprador = Comprador.objects.last()
                 save_oferta.estado = Estado_Oferta.objects.filter(id=2)[0]
                 save_oferta.save()
-                
                 form_contacto_oferta=formulario_contacto_oferta()
                 oferta_enviada='1'
+        if action=="recalcular":
+            form_contacto_oferta=formulario_contacto_oferta()
+            form_contacto = formulario_contacto()
+            form_financiero=formulario_financiero(request.POST)
+            if form_financiero.is_valid():
+                costo_compra=int(data['precio_compra'])
+                data = form_financiero.cleaned_data
+                costo_estudio=10
+                costo_escritura=10
+                costo_notaria=5
+                costo_vv=ceil(costo_compra*UF/49000000)*0.3
+                costo_cbr=ceil(costo_compra*0.006)
+                total_costo=costo_estudio+costo_escritura+costo_notaria+costo_vv+costo_cbr
+                tasacion_com=propiedades[0].tasacion_comercial
+                plusvalia=tasacion_com-costo_compra
+                plusvalia_porc=plusvalia/costo_compra
+        
     else:
         form_contacto= formulario_contacto()
         form_contacto_oferta=formulario_contacto_oferta()
         form_financiero=formulario_financiero()
+        '''Calculo de Variables financieras sin recalculo'''
+        costo_compra=int(propiedades[0].precio)
+        costo_estudio=10
+        costo_escritura=10
+        costo_notaria=5
+        costo_vv=(ceil((costo_compra*UF)/49000000)*0.3)
+        costo_cbr=(ceil(costo_compra*0.006))
+        total_costo=costo_estudio+costo_escritura+costo_notaria+costo_vv+costo_cbr
+        tasacion_com=propiedades[0].tasacion_comercial
+        plusvalia=tasacion_com-costo_compra
+        plusvalia_porc=plusvalia/costo_compra
 
     context={ 
         'id': id, 
@@ -84,6 +115,17 @@ def propiedades_detalles(request, id, slug):
         'ofertas':ofertas, 
         'todas_ofertas':todas_ofertas,
         'oferta_enviada':oferta_enviada,
+
+        'costo_compra':costo_compra,
+        'costo_estudio':costo_estudio,
+        'costo_escritura':costo_escritura,
+        'costo_notaria':costo_notaria,
+        'costo_vv':costo_vv,
+        'costo_cbr':costo_cbr,
+        'total_costo':total_costo,
+        'tasacion_com':tasacion_com,
+        'plusvalia':plusvalia,
+        'plusvalia_porc':plusvalia_porc,
     }
 
     return render(request, 'propiedades/detalles.html', context )

@@ -52,4 +52,4 @@ class formulario_contacto_oferta(forms.Form):
 
 class formulario_financiero(forms.Form):
 	clase='block w-full px-3 py-0.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-orange-600 focus:outline-none'
-	oferta = forms.IntegerField(required=True, widget=forms.TextInput(attrs={'class':clase, 'placeholder':'Precio en UF', 'autocomplete':'off'}))
+	precio_compra = forms.IntegerField(required=True, widget=forms.TextInput(attrs={'class':clase, 'placeholder':'Precio en UF', 'autocomplete':'off'}))
