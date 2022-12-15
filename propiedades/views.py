@@ -43,7 +43,7 @@ def propiedades_detalles(request, id, slug):
                 save.save()
                 form_contacto = formulario_contacto()
                 formulario_vender='1'
-        else:
+        if action=="ofertar":
             form_contacto_oferta=formulario_contacto_oferta(request.POST)
             form_contacto = formulario_contacto()
             if form_contacto_oferta.is_valid():
@@ -66,6 +66,7 @@ def propiedades_detalles(request, id, slug):
     else:
         form_contacto= formulario_contacto()
         form_contacto_oferta=formulario_contacto_oferta()
+        form_financiero=formulario_financiero()
 
     context={ 
         'id': id, 
@@ -74,6 +75,8 @@ def propiedades_detalles(request, id, slug):
         'documentos':documentos,
         'form_contacto': form_contacto,
         'form_contacto_oferta': form_contacto_oferta,
+        'formulario_vender':formulario_vender,
+        'formulario_financiero':form_financiero,
         'rentabilidad_max': rentabilidad_max,
         'rentabilidad_min': rentabilidad_min,
         'rentabilidad_real': rentabilidad_real,
@@ -81,7 +84,6 @@ def propiedades_detalles(request, id, slug):
         'ofertas':ofertas, 
         'todas_ofertas':todas_ofertas,
         'oferta_enviada':oferta_enviada,
-        'formulario_vender':formulario_vender,
     }
 
     return render(request, 'propiedades/detalles.html', context )
