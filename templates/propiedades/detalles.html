@@ -786,27 +786,27 @@
       <div class="grid grid-cols-12 bg-gray-100">
         <div class="col-span-6"> <p class="text-sm ml-4 my-2">1. Costo de Compra</p></div>
         <div class="col-span-3"> <p class="text-sm ml-4 my-2"></p></div>
-        <div class="col-span-3 mr-2"> <p class="text-sm my-2 text-right ml-2">1.750 UF</p></div>
+        <div class="col-span-3 mr-2"> <p class="text-sm my-2 text-right ml-2">{{costo_compra}} UF</p></div>
       </div>
       <div class="grid grid-cols-12 bg-white">
         <div class="col-span-6"> <p class="text-sm ml-4 my-2">2. Ingresos Mensual por Arriendo</p></div>
         <div class="col-span-3"> <p class="text-sm ml-4 my-2"></p></div>
-        <div class="col-span-3 mr-2"> <p class="text-sm my-2 text-right ml-2">40 UF</p></div>
+        <div class="col-span-3 mr-2"> <p class="text-sm my-2 text-right ml-2">{{arriendo}} UF</p></div>
       </div>
       <div class="grid grid-cols-12 bg-gray-100">
         <div class="col-span-6"> <p class="text-sm ml-4 my-2">3. Ingreso Anual por Arriendo</p></div>
-        <div class="col-span-3"> <p class="text-sm ml-4 my-2">(3 x 12)</p></div>
-        <div class="col-span-3 mr-2"> <p class="text-sm my-2 text-right ml-2">1.750 UF</p></div>
+        <div class="col-span-3"> <p class="text-sm ml-4 my-2">(2 x 12)</p></div>
+        <div class="col-span-3 mr-2"> <p class="text-sm my-2 text-right ml-2">{{arriendo_anual}} UF</p></div>
       </div>
       <div class="grid grid-cols-12 bg-white-100">
         <div class="col-span-6"> <p class="text-sm ml-4 my-2">4. Costo Mensual Administración de Arriendo </p></div>
         <div class="col-span-3"> <p class="text-sm ml-4 my-2">(3 x7%) +IVA</p></div>
-        <div class="col-span-3 mr-2"> <p class="text-sm my-2 text-right ml-2">1.750 UF</p></div>
+        <div class="col-span-3 mr-2"> <p class="text-sm my-2 text-right ml-2">{{comision_arriendo}} UF</p></div>
       </div>
       <div class="grid grid-cols-12 bg-gray-100">
         <div class="col-span-6"> <p class="text-sm ml-4 my-2">5. Costo Anual Administración de Arriendo</p></div>
         <div class="col-span-3"> <p class="text-sm ml-4 my-2">(4 x 12)</p></div>
-        <div class="col-span-3 mr-2"> <p class="text-sm my-2 text-right ml-2">1.750 UF</p></div>
+        <div class="col-span-3 mr-2"> <p class="text-sm my-2 text-right ml-2">{{comision_arriendo_anual}} UF</p></div>
       </div>
       <div class="grid grid-cols-12 bg-white-100">
         <div class="col-span-6"> <p class="text-sm ml-4 my-2">6. Costo Mensual Contribuciones</p></div>
@@ -820,13 +820,13 @@
       </div>
       <div class="grid grid-cols-12 bg-white-100">
         <div class="col-span-6"> <p class="font-semibold text-sm ml-4 my-2">8. Rentabilidad Anual c/ Administración </p></div>
-        <div class="col-span-3"> <p class="font-semibold text-sm ml-4 my-2">[3-5-7] / 1</p></div>
-        <div class="col-span-3 mr-2"> <p class="font-semibold text-sm my-2 text-right ml-2">0 UF</p></div>
+        <div class="col-span-3"> <p class="font-semibold text-sm ml-4 my-2">(3-5-7) / 1</p></div>
+        <div class="col-span-3 mr-2"> <p class="font-semibold text-sm my-2 text-right ml-2">{{rentabilidad_anual_c_adm}} %</p></div>
       </div>
       <div class="grid grid-cols-12 bg-gray-100">
         <div class="col-span-6"> <p class="font-semibold text-sm ml-4 my-2">9. Rentabilidad Anual s/ Administración</p></div>
-        <div class="col-span-3"> <p class="font-semibold text-sm ml-4 my-2">[3-5] / 1</p></div>
-        <div class="col-span-3 mr-2"> <p class="font-semibold text-sm my-2 text-right ml-2">0 %</p></div>
+        <div class="col-span-3"> <p class="font-semibold text-sm ml-4 my-2">(3-7) / 1</p></div>
+        <div class="col-span-3 mr-2"> <p class="font-semibold text-sm my-2 text-right ml-2">{{rentabilidad_anual_s_adm}} %</p></div>
       </div>
     </div>
   </div>

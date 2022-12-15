@@ -28,6 +28,7 @@ def propiedades_detalles(request, id, slug):
     documentos= Documentos_Legales.objects.all()
     oferta_enviada='0'
     formulario_vender='0'
+    costo_compra=int(propiedades[0].precio)
     if request.method == 'POST':
         data=request.POST
         action = data.get("enviar")
@@ -50,17 +51,6 @@ def propiedades_detalles(request, id, slug):
             form_contacto_oferta=formulario_contacto_oferta(request.POST)
             form_contacto = formulario_contacto()
             form_financiero=formulario_financiero()
-            '''Calculo de Variables financieras sin recalculo'''
-            costo_compra=int(propiedades[0].precio)
-            costo_estudio=10
-            costo_escritura=10
-            costo_notaria=5
-            costo_vv=(ceil((costo_compra*UF)/49000000)*0.3)
-            costo_cbr=(ceil(costo_compra*0.006))
-            total_costo=costo_estudio+costo_escritura+costo_notaria+costo_vv+costo_cbr
-            tasacion_com=propiedades[0].tasacion_comercial
-            plusvalia=tasacion_com-costo_compra
-            plusvalia_porc=plusvalia/costo_compra
             if form_contacto_oferta.is_valid():
                 data = form_contacto_oferta.cleaned_data
                 save_comprador=Comprador()
@@ -81,45 +71,28 @@ def propiedades_detalles(request, id, slug):
             form_contacto_oferta=formulario_contacto_oferta()
             form_contacto = formulario_contacto()
             form_financiero=formulario_financiero(request.POST)
-            '''Calculo de Variables financieras sin recalculo'''
-            costo_compra=int(propiedades[0].precio)
-            costo_estudio=10
-            costo_escritura=10
-            costo_notaria=5
-            costo_vv=(ceil((costo_compra*UF)/49000000)*0.3)
-            costo_cbr=(ceil(costo_compra*0.006))
-            total_costo=costo_estudio+costo_escritura+costo_notaria+costo_vv+costo_cbr
-            tasacion_com=propiedades[0].tasacion_comercial
-            plusvalia=tasacion_com-costo_compra
-            plusvalia_porc=plusvalia/costo_compra
             if form_financiero.is_valid():
                 costo_compra=int(data['precio_compra'])
-                data = form_financiero.cleaned_data
-                costo_estudio=10
-                costo_escritura=10
-                costo_notaria=5
-                costo_vv=ceil(costo_compra*UF/49000000)*0.3
-                costo_cbr=ceil(costo_compra*0.006)
-                total_costo=costo_estudio+costo_escritura+costo_notaria+costo_vv+costo_cbr
-                tasacion_com=propiedades[0].tasacion_comercial
-                plusvalia=tasacion_com-costo_compra
-                plusvalia_porc=plusvalia/costo_compra
-        
     else:
         form_contacto= formulario_contacto()
         form_contacto_oferta=formulario_contacto_oferta()
         form_financiero=formulario_financiero()
-        '''Calculo de Variables financieras sin recalculo'''
-        costo_compra=int(propiedades[0].precio)
-        costo_estudio=10
-        costo_escritura=10
-        costo_notaria=5
-        costo_vv=(ceil((costo_compra*UF)/49000000)*0.3)
-        costo_cbr=(ceil(costo_compra*0.006))
-        total_costo=costo_estudio+costo_escritura+costo_notaria+costo_vv+costo_cbr
-        tasacion_com=propiedades[0].tasacion_comercial
-        plusvalia=tasacion_com-costo_compra
-        plusvalia_porc=plusvalia/costo_compra
+    '''Calculo de Variables financieras sin recalculo'''
+    costo_estudio=10
+    costo_escritura=10
+    costo_notaria=5
+    costo_vv=(ceil((costo_compra*UF)/49000000)*0.3)
+    costo_cbr=(ceil(costo_compra*0.006))
+    total_costo=costo_estudio+costo_escritura+costo_notaria+costo_vv+costo_cbr
+    tasacion_com=propiedades[0].tasacion_comercial
+    plusvalia=tasacion_com-costo_compra
+    plusvalia_porc=int(plusvalia/costo_compra*100)
+    arriendo=float(f'{propiedades[0].arriendo_actual/UF:.1f}')
+    arriendo_anual=float(f'{arriendo*12:.1f}')
+    comision_arriendo=float(f'{arriendo*0.07:.1f}')
+    comision_arriendo_anual=float(f'{comision_arriendo*12:.1f}')
+    rentabilidad_anual_c_adm=float(f'{(arriendo_anual-comision_arriendo_anual)/costo_compra*100:.1f}')
+    rentabilidad_anual_s_adm=float(f'{arriendo_anual/costo_compra*100:.1f}')
 
     context={ 
         'id': id, 
@@ -148,6 +121,12 @@ def propiedades_detalles(request, id, slug):
         'tasacion_com':tasacion_com,
         'plusvalia':plusvalia,
         'plusvalia_porc':plusvalia_porc,
+        'arriendo':arriendo,
+        'arriendo_anual':arriendo_anual,
+        'comision_arriendo':comision_arriendo,
+        'comision_arriendo_anual':comision_arriendo_anual,
+        'rentabilidad_anual_c_adm':rentabilidad_anual_c_adm,
+        'rentabilidad_anual_s_adm':rentabilidad_anual_s_adm,
     }
 
     return render(request, 'propiedades/detalles.html', context )
