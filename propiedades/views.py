@@ -50,6 +50,17 @@ def propiedades_detalles(request, id, slug):
             form_contacto_oferta=formulario_contacto_oferta(request.POST)
             form_contacto = formulario_contacto()
             form_financiero=formulario_financiero()
+            '''Calculo de Variables financieras sin recalculo'''
+            costo_compra=int(propiedades[0].precio)
+            costo_estudio=10
+            costo_escritura=10
+            costo_notaria=5
+            costo_vv=(ceil((costo_compra*UF)/49000000)*0.3)
+            costo_cbr=(ceil(costo_compra*0.006))
+            total_costo=costo_estudio+costo_escritura+costo_notaria+costo_vv+costo_cbr
+            tasacion_com=propiedades[0].tasacion_comercial
+            plusvalia=tasacion_com-costo_compra
+            plusvalia_porc=plusvalia/costo_compra
             if form_contacto_oferta.is_valid():
                 data = form_contacto_oferta.cleaned_data
                 save_comprador=Comprador()
@@ -70,6 +81,17 @@ def propiedades_detalles(request, id, slug):
             form_contacto_oferta=formulario_contacto_oferta()
             form_contacto = formulario_contacto()
             form_financiero=formulario_financiero(request.POST)
+            '''Calculo de Variables financieras sin recalculo'''
+            costo_compra=int(propiedades[0].precio)
+            costo_estudio=10
+            costo_escritura=10
+            costo_notaria=5
+            costo_vv=(ceil((costo_compra*UF)/49000000)*0.3)
+            costo_cbr=(ceil(costo_compra*0.006))
+            total_costo=costo_estudio+costo_escritura+costo_notaria+costo_vv+costo_cbr
+            tasacion_com=propiedades[0].tasacion_comercial
+            plusvalia=tasacion_com-costo_compra
+            plusvalia_porc=plusvalia/costo_compra
             if form_financiero.is_valid():
                 costo_compra=int(data['precio_compra'])
                 data = form_financiero.cleaned_data
