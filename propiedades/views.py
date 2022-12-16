@@ -105,7 +105,7 @@ def propiedades_detalles(request, id, slug):
         for j in range(1,5): 
             cuota=(tasa_hip) * (1/(1-(1+tasa_hip)**(-meses)))*(costo_compra*(1-pie))
             cuotas[0][f'{i},{j}']=float(f'{cuota:.1f}')
-            print(f'({i},{j})= año={año}, meses={meses} pie= {pie} cuota={cuota}')
+            #print(f'({i},{j})= año={año}, meses={meses} pie= {pie} cuota={cuota}')
             pie=float(f'{pie+0.1:.1f}')
  
     context={ 
@@ -124,6 +124,7 @@ def propiedades_detalles(request, id, slug):
         'ofertas':ofertas, 
         'todas_ofertas':todas_ofertas,
         'oferta_enviada':oferta_enviada,
+        'direccion':f'{propiedades[0].direccion}, {propiedades[0].comuna}',
 
         'costo_compra':costo_compra,
         'costo_estudio':costo_estudio,

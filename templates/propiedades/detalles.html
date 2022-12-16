@@ -492,9 +492,50 @@
           {% endif %}
         {% endfor %}
       </div>
+      <!--Map Google Key=AIzaSyA06Q1XXAWcE-H1Lk6QXlXx_ik-vFOqwtE-->
+      <script type="text/javascript">
+        var propiedad = "{{direccion}}";
+        console.log('{{direccion}}');
+
+        function initMap() 
+        {
+          geocoder = new google.maps.Geocoder();
+          var latlng = new google.maps.LatLng(-36.8271921, -73.0502299);
+          var mapOptions = 
+          {
+            zoom: 13,
+            center: latlng
+          }
+          map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+          codeAddress(propiedad);//call the function
+        }
+
+        function codeAddress(address) 
+        {
+          geocoder.geocode( {address:address}, function(results, status) 
+          {
+            if (status == google.maps.GeocoderStatus.OK) 
+            {
+              map.setCenter(results[0].geometry.location);//center the map over the result
+              //place a marker at the location
+              var marker = new google.maps.Marker(
+              {
+                  map: map,
+                  position: results[0].geometry.location
+              });
+            } else {
+              alert('Geocode was not successful for the following reason: ' + status);
+          }
+          });
+        }
+      </script>
+      <div class="col-span-2">
+        <div id="map-canvas" class="h-full w-full"></div>
+      </div>
     </div>
   </div>
 </div>
+
 
 <!--Información Financiera-->
 <div class="my-4 py-4">
@@ -963,8 +1004,10 @@
 
 {% endblock content %}
 {% block extra_footer %} {% endblock extra_footer %}
-{% block scripts %} <script src="https://unpkg.com/flowbite@1.4.0/dist/flowbite.js"></script>
-
+{% block scripts %} 
+<script src="https://unpkg.com/flowbite@1.4.0/dist/flowbite.js"></script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA06Q1XXAWcE-H1Lk6QXlXx_ik-vFOqwtE&callback=initMap" defer></script>
 <script>
   const openButton = document.querySelector('#open-modal-ofertar');
   const closeButton = document.querySelector('#close-modal');
