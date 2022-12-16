@@ -751,7 +751,7 @@
             <div class="grid grid-cols-12 bg-gray-100">
               <div class="col-span-6"> <p class="text-sm ml-4 my-2">1. Costo de Compra</p></div>
               <div class="col-span-3"> <p class="text-sm ml-4 my-2"></p></div>
-              <div class="col-span-3 mr-2"> <p class="text-sm my-2 text-right ml-2">{{costo_compra}} UF</p></div>
+              <div class="col-span-3 mr-2"> <p class="text-sm my-2 text-right ml-2">{{costo_compra|numberFormat}} UF</p></div>
             </div>
             <div class="grid grid-cols-12 bg-white">
               <div class="col-span-6"> <p class="text-sm ml-4 my-2">2. Costos Operacionales</p></div>
@@ -761,12 +761,12 @@
             <div class="grid grid-cols-12 bg-gray-100">
               <div class="col-span-6"> <p class="text-sm ml-4 my-2">3. Tasación Comercial</p></div>
               <div class="col-span-3"> <p class="text-sm ml-4 my-2"></p></div>
-              <div class="col-span-3 mr-2"> <p class="text-sm my-2 text-right ml-2">{{tasacion_com}} UF</p></div>
+              <div class="col-span-3 mr-2"> <p class="text-sm my-2 text-right ml-2">{{tasacion_com|numberFormat}} UF</p></div>
             </div>
             <div class="grid grid-cols-12 bg-white">
               <div class="col-span-6"> <p class="font-semibold text-sm ml-4 my-2">4. Plusvalía Inmediata</p></div>
               <div class="col-span-3"> <p class="font-semibold text-sm ml-4 my-2">(3 - 2 - 1)</p></div>
-              <div class="col-span-3 mr-2"> <p class="font-semibold text-sm my-2 text-right">{{plusvalia}} UF</p></div>
+              <div class="col-span-3 mr-2"> <p class="font-semibold text-sm my-2 text-right">{{plusvalia|numberFormat}} UF</p></div>
             </div>
             <div class="grid grid-cols-12 bg-gray-100">
               <div class="col-span-6"> <p class="font-semibold text-sm ml-4 my-2">5. Plusvalía Inmediata</p></div>
@@ -776,7 +776,7 @@
           </div>
         </div>
       </div>
-    
+    </div>
 
 
     <div class="row mt-5">
@@ -786,7 +786,7 @@
       <div class="grid grid-cols-12 bg-gray-100">
         <div class="col-span-6"> <p class="text-sm ml-4 my-2">1. Costo de Compra</p></div>
         <div class="col-span-3"> <p class="text-sm ml-4 my-2"></p></div>
-        <div class="col-span-3 mr-2"> <p class="text-sm my-2 text-right ml-2">{{costo_compra}} UF</p></div>
+        <div class="col-span-3 mr-2"> <p class="text-sm my-2 text-right ml-2">{{costo_compra|numberFormat}} UF</p></div>
       </div>
       <div class="grid grid-cols-12 bg-white">
         <div class="col-span-6"> <p class="text-sm ml-4 my-2">2. Ingresos Mensual por Arriendo</p></div>
@@ -795,7 +795,7 @@
       </div>
       <div class="grid grid-cols-12 bg-gray-100">
         <div class="col-span-6"> <p class="text-sm ml-4 my-2">3. Ingreso Anual por Arriendo</p></div>
-        <div class="col-span-3"> <p class="text-sm ml-4 my-2">(2 x 12)</p></div>
+        <div class="col-span-3"> <p class="text-sm ml-4 my-2">(2 x12)</p></div>
         <div class="col-span-3 mr-2"> <p class="text-sm my-2 text-right ml-2">{{arriendo_anual}} UF</p></div>
       </div>
       <div class="grid grid-cols-12 bg-white-100">
@@ -805,7 +805,7 @@
       </div>
       <div class="grid grid-cols-12 bg-gray-100">
         <div class="col-span-6"> <p class="text-sm ml-4 my-2">5. Costo Anual Administración de Arriendo</p></div>
-        <div class="col-span-3"> <p class="text-sm ml-4 my-2">(4 x 12)</p></div>
+        <div class="col-span-3"> <p class="text-sm ml-4 my-2">(4 x12)</p></div>
         <div class="col-span-3 mr-2"> <p class="text-sm my-2 text-right ml-2">{{comision_arriendo_anual}} UF</p></div>
       </div>
       <div class="grid grid-cols-12 bg-white-100">
@@ -815,7 +815,7 @@
       </div>
       <div class="grid grid-cols-12 bg-gray-100">
         <div class="col-span-6"> <p class="text-sm ml-4 my-2">7. Costo Anual Contribuciones</p></div>
-        <div class="col-span-3"> <p class="text-sm ml-4 my-2">(6 x 12)</p></div>
+        <div class="col-span-3"> <p class="text-sm ml-4 my-2">(6 x12)</p></div>
         <div class="col-span-3 mr-2"> <p class="text-sm my-2 text-right ml-2">0 UF</p></div>
       </div>
       <div class="grid grid-cols-12 bg-white-100">
@@ -829,9 +829,138 @@
         <div class="col-span-3 mr-2"> <p class="font-semibold text-sm my-2 text-right ml-2">{{rentabilidad_anual_s_adm}} %</p></div>
       </div>
     </div>
+    <div class="row mt-5">
+      <h3 class="text-gray-900 text-md font-bold">Sensibilización de Cuota de Crédito</h3>
+    </div>
+    <div class="row mt-2">
+      <p class="text-gray-900 text-md">La siguiente tabla muesta como cambia la cuota del crédito hipoteracio en la medida que cambia el porcentaje de pie y el plazo en años al que se toma el crédito. La Información básica para estos cálculos es:</p>
+    </div>
+    <div class="row mt-2">
+      <p class="text-gray-900 text-md">1. Precio de Compra: {{costo_compra|numberFormat}} UF</p>
+      <p class="text-gray-900 text-md">2. Tasa Crédito Hipotecario: {{tasa_hip}} %</p>
+    </div>
+    <div class="row mt-2">
+      <div class="grid grid-rows-5 grid-cols-7">
+        <!--Primera Fila-->
+        <div class="text-center bg-gray-100">
+          <p class="text-center my-2 text-xs sm:text-sm"></p>
+        </div>
+        <div class="bg-gray-100">
+          <p class="text-center my-2 text-xs sm:text-sm">5 años</p>
+        </div>
+        <div class="bg-gray-100">
+          <p class="text-center my-2 text-xs sm:text-sm">10 años</p>
+        </div>
+        <div class="bg-gray-100">
+          <p class="text-center my-2 text-xs sm:text-sm">15 años</p>
+        </div>
+        <div class="bg-gray-100">
+          <p class="text-center my-2 text-xs sm:text-sm">20 años</p>
+        </div>
+        <div class="bg-gray-100">
+          <p class="text-center my-2 text-xs sm:text-sm">25 años</p>
+        </div>
+        <div class="bg-gray-100">
+          <p class="text-center my-2 text-xs sm:text-sm">30 años</p>
+        </div>
+        <!--2da Fila-->
+        <div>
+          <p class="text-center my-2 text-xs sm:text-sm">20 %</p>
+        </div>
+        <div>
+          <p class="text-center my-2 text-xs sm:text-sm">{{cuotas.0|accede_diccionario:'1,1'}} UF</p>
+        </div>
+        <div>
+          <p class="text-center my-2 text-xs sm:text-sm">{{cuotas.0|accede_diccionario:'2,1'}} UF</p>
+        </div>
+        <div>
+          <p class="text-center my-2 text-xs sm:text-sm">{{cuotas.0|accede_diccionario:'3,1'}} UF</p>
+        </div>
+        <div>
+          <p class="text-center my-2 text-xs sm:text-sm">{{cuotas.0|accede_diccionario:'4,1'}} UF</p>
+        </div>
+        <div>
+          <p class="text-center my-2 text-xs sm:text-sm">{{cuotas.0|accede_diccionario:'5,1'}} UF</p>
+        </div>
+        <div>
+          <p  class="text-center my-2 text-xs sm:text-sm">{{cuotas.0|accede_diccionario:'6,1'}} UF</p>
+        </div>
+        <!--3da Fila-->
+        <div class="bg-gray-100">
+          <p  class="text-center my-2 text-xs sm:text-sm">30 %</p>
+        </div>
+        <div class="bg-gray-100">
+          <p  class="text-center my-2 text-xs sm:text-sm">{{cuotas.0|accede_diccionario:'1,2'}} UF</p>
+        </div>
+        <div class="bg-gray-100">
+          <p  class="text-center my-2 text-xs sm:text-sm">{{cuotas.0|accede_diccionario:'2,2'}} UF</p>
+        </div>
+        <div class="bg-gray-100">
+          <p  class="text-center my-2 text-xs sm:text-sm">{{cuotas.0|accede_diccionario:'3,2'}} UF</p>
+        </div>
+        <div class="bg-gray-100">
+          <p  class="text-center my-2 text-xs sm:text-sm">{{cuotas.0|accede_diccionario:'4,2'}} UF</p>
+        </div>
+        <div  class="bg-gray-100">
+          <p class="text-center my-2 text-xs sm:text-sm">{{cuotas.0|accede_diccionario:'5,2'}} UF</p>
+        </div>
+        <div  class="bg-gray-100">
+          <p class="text-center my-2 text-xs sm:text-sm">{{cuotas.0|accede_diccionario:'6,2'}} UF</p>
+        </div>
+        <!--4da Fila-->
+        <div>
+          <p class="text-center my-2 text-xs sm:text-sm">40 %</p>
+        </div>
+        <div>
+          <p class="text-center my-2 text-xs sm:text-sm">{{cuotas.0|accede_diccionario:'1,3'}} UF</p>
+        </div>
+        <div>
+          <p class="text-center my-2 text-xs sm:text-sm">{{cuotas.0|accede_diccionario:'2,3'}} UF</p>
+        </div>
+        <div>
+          <p class="text-center my-2 text-xs sm:text-sm">{{cuotas.0|accede_diccionario:'3,3'}} UF</p>
+        </div>
+        <div>
+          <p class="text-center my-2 text-xs sm:text-sm">{{cuotas.0|accede_diccionario:'4,3'}} UF</p>
+        </div>
+        <div>
+          <p class="text-center my-2 text-xs sm:text-sm">{{cuotas.0|accede_diccionario:'5,3'}} UF</p>
+        </div>
+        <div>
+          <p class="text-center my-2 text-xs sm:text-sm">{{cuotas.0|accede_diccionario:'6,3'}} UF</p>
+        </div>
+        <!--5da Fila-->
+        <div class="bg-gray-100">
+          <p class="text-center my-2 text-xs sm:text-sm">50 %</p>
+        </div>
+        <div class="bg-gray-100">
+          <p class="text-center my-2 text-xs sm:text-sm">{{cuotas.0|accede_diccionario:'1,4'}} UF</p>
+        </div>
+        <div class="bg-gray-100">
+          <p class="text-center my-2 text-xs sm:text-sm">{{cuotas.0|accede_diccionario:'2,4'}} UF</p>
+        </div>
+        <div class="bg-gray-100">
+          <p class="text-center my-2 text-xs sm:text-sm">{{cuotas.0|accede_diccionario:'3,4'}} UF</p>
+        </div>
+        <div class="bg-gray-100">
+          <p class="text-center my-2 text-xs sm:text-sm">{{cuotas.0|accede_diccionario:'4,4'}} UF</p>
+        </div>
+        <div class="bg-gray-100">
+          <p class="text-center my-2 text-xs sm:text-sm">{{cuotas.0|accede_diccionario:'5,4'}} UF</p>
+        </div>
+        <div class="bg-gray-100">
+          <p class="text-center my-2 text-xs sm:text-sm">{{cuotas.0|accede_diccionario:'6,4'}} UF</p>
+        </div>
+      </div>
+      <div class="row mt-2">
+        <p class="text-gray-900 text-md">IMPORTANTE: este cálculo de cuota no considera impuestos ni seguros de ningun tipo.</p>
+      </div>
+    
+    </div>
+
   </div>
 </div>
-</div>
+
 {% endblock content %}
 {% block extra_footer %} {% endblock extra_footer %}
 {% block scripts %} <script src="https://unpkg.com/flowbite@1.4.0/dist/flowbite.js"></script>

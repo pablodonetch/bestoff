@@ -8,6 +8,7 @@ from bestoff.forms import *
 from math import ceil
 
 UF=34500 #CAMBIAR UF ACÁ
+tasa_hip_anual=0.045
 
 def propiedades_inicio(request):
     propiedades = Propiedad.objects.all()
@@ -93,7 +94,20 @@ def propiedades_detalles(request, id, slug):
     comision_arriendo_anual=float(f'{comision_arriendo*12:.1f}')
     rentabilidad_anual_c_adm=float(f'{(arriendo_anual-comision_arriendo_anual)/costo_compra*100:.1f}')
     rentabilidad_anual_s_adm=float(f'{arriendo_anual/costo_compra*100:.1f}')
-
+    año=0
+    cuotas=[]
+    cuotas.append({})
+    tasa_hip=tasa_hip_anual/12
+    for i in range(1,7):
+        pie=0.2
+        año+=5
+        meses=año*12 
+        for j in range(1,5): 
+            cuota=(tasa_hip) * (1/(1-(1+tasa_hip)**(-meses)))*(costo_compra*(1-pie))
+            cuotas[0][f'{i},{j}']=float(f'{cuota:.1f}')
+            print(f'({i},{j})= año={año}, meses={meses} pie= {pie} cuota={cuota}')
+            pie=float(f'{pie+0.1:.1f}')
+ 
     context={ 
         'id': id, 
         'propiedades': propiedades,
@@ -127,6 +141,8 @@ def propiedades_detalles(request, id, slug):
         'comision_arriendo_anual':comision_arriendo_anual,
         'rentabilidad_anual_c_adm':rentabilidad_anual_c_adm,
         'rentabilidad_anual_s_adm':rentabilidad_anual_s_adm,
+        'cuotas':cuotas,
+        'tasa_hip':tasa_hip_anual*100,
     }
 
     return render(request, 'propiedades/detalles.html', context )
