@@ -1014,6 +1014,7 @@
   const modalContainer = document.querySelector('#modal-component-containet');
   const modal= document.querySelector('#modal-container');
   const botonFlash= document.querySelector('#flash');
+  const mapa=document.querySelector('#map-canvas');
 
   openButton.addEventListener('click', () => {
     openModalOfertar();
@@ -1030,12 +1031,14 @@
   function openModalOfertar() {
     showAndHide(modalContainer, ['block'], ['hidden']);
     showAndHide(carousel, ['hidden'], ['block']);
+    showAndHide(mapa, ['hidden'], ['block']);
     showAndHide(modal, [], []);
   }
 
   function closeModal() {
     showAndHide(modalContainer, ['hidden'], ['block']);
     showAndHide(carousel, ['block'], ['hidden']);
+    showAndHide(mapa, ['block'], ['hidden']);
     showAndHide(modal, [], []);
   }
 
@@ -1053,11 +1056,13 @@
 
   function openModal_ofertas() {
     showAndHide(modalContainer_ofertas, ['block'], ['hidden']);
+    showAndHide(mapa, ['hidden'], ['block']);
     showAndHide(carousel, ['hidden'], ['block']);
   }
 
   function closeModal_ofertas() {
     showAndHide(modalContainer_ofertas, ['hidden'], ['block']);
+    showAndHide(mapa, ['block'], ['hidden']);
     showAndHide(carousel, ['block'], ['hidden']);
   }
 

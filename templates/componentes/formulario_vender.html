@@ -68,6 +68,7 @@
   const openButton_vende = document.querySelector('#open-modal-vende');
   const closeButton_vende = document.querySelector('#close-modal-vende');
   const carousel= document.querySelector('#controls-carousel');
+  const mapa= document.querySelector('#map-canvas');
   const modalContainerVender = document.querySelector('#modal-component-containet-vender');
 
   openButton_vende.addEventListener('click', () => {
@@ -84,6 +85,7 @@
 
   function openModalVender() {
     showAndHide(modalContainerVender, ['block'], ['hidden']);
+    showAndHide(mapa, ['hidden'], ['block']);
     showAndHide(carousel, ['hidden'], ['block']);
     
   }
@@ -91,6 +93,7 @@
   function closeModalVender() {
     showAndHide(modalContainerVender, ['hidden'], ['block']);
     showAndHide(carousel, ['block'], ['hidden']);
+    showAndHide(mapa, ['block'], ['hidden']);
     
   }
 

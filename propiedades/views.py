@@ -179,3 +179,6 @@ def grilla_ciudades(request, ciudad):
 
     images = Image.objects.all()
     return render(request, 'propiedades/grilla_ciudades.html', {'propiedades': propiedades, 'images': images, 'ciudad': ciudad.capitalize()})
+
+def ofertar(request, ciudad):
+    pass
