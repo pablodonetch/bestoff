@@ -47,7 +47,7 @@ class formulario_contacto_oferta(forms.Form):
                 validators.RegexValidator('^[+0-9 ]*$', message="El Teléfono contiene caracteres inválidos, por favor use sólo números, por ejemplo +5691652132")
             ]
 	)
-	forma_pago = forms.CharField(required=True, widget=forms.Textarea(attrs={'class':clase, 'placeholder':'Forma de Pago (ej: crédito hipotecario)',  'autocomplete':'off'}))
+	forma_pago = forms.CharField(required=True, widget=forms.TextInput(attrs={'class':clase, 'placeholder':'Forma de Pago (ej: crédito hipotecario)',  'autocomplete':'off'}))
 
 
 class formulario_financiero(forms.Form):

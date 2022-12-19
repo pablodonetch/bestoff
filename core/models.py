@@ -70,6 +70,7 @@ class Oferta(models.Model):
     propiedad=models.ForeignKey('Propiedad', on_delete=models.CASCADE)
     comprador=models.ForeignKey('Comprador', on_delete=models.CASCADE)
     estado=models.ForeignKey('Estado_Oferta', on_delete=models.CASCADE, default=1)
+    aceptada=models.BooleanField(default=False)
     fecha=models.DateTimeField(default=timezone.now)
     class Meta:
         verbose_name = 'Oferta'

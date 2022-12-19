@@ -19,8 +19,8 @@ def propiedades_inicio(request):
 
 def propiedades_detalles(request, id, slug):
     propiedades= Propiedad.objects.filter(id=id)
-    ofertas=Oferta.objects.filter(propiedad__id=id).order_by('-fecha')[:2]
-    todas_ofertas=Oferta.objects.filter(propiedad__id=id).order_by('-fecha')
+    ofertas=Oferta.objects.filter(propiedad__id=id, aceptada=True).order_by('-fecha')[:2]
+    todas_ofertas=Oferta.objects.filter(propiedad__id=id , aceptada=True).order_by('-fecha')
     rentabilidad_max= float(f'{((propiedades[0].arriendo_maximo*12)/(propiedades[0].precio*UF)*100):.1f}') 
     rentabilidad_min= float(f'{((propiedades[0].arriendo_minimo*12)/(propiedades[0].precio*UF)*100):.1f}')
     rentabilidad_real= float(f'{((propiedades[0].arriendo_actual*12)/(propiedades[0].precio*UF)*100):.1f}')
