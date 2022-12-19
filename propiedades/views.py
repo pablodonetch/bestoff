@@ -17,7 +17,7 @@ def propiedades_inicio(request):
     }
     return render(request, 'propiedades/index.html', context)
 
-def propiedades_detalles(request, id, slug):
+def propiedades_detalles(request,oferta_enviada, id, slug ):
     propiedades= Propiedad.objects.filter(id=id)
     ofertas=Oferta.objects.filter(propiedad__id=id, aceptada=True).order_by('-fecha')[:2]
     todas_ofertas=Oferta.objects.filter(propiedad__id=id , aceptada=True).order_by('-fecha')
@@ -27,7 +27,6 @@ def propiedades_detalles(request, id, slug):
     Utilidad= float(f'{((propiedades[0].tasacion_comercial*100/propiedades[0].precio)-100):.1f}')
     images = Image.objects.all()
     documentos= Documentos_Legales.objects.all()
-    oferta_enviada='0'
     formulario_vender='0'
     costo_compra=int(propiedades[0].precio)
     if request.method == 'POST':
@@ -109,7 +108,8 @@ def propiedades_detalles(request, id, slug):
             pie=float(f'{pie+0.1:.1f}')
  
     context={ 
-        'id': id, 
+        'id': id,
+        'slug': slug,
         'propiedades': propiedades,
         'images': images,
         'documentos':documentos,
@@ -180,5 +180,43 @@ def grilla_ciudades(request, ciudad):
     images = Image.objects.all()
     return render(request, 'propiedades/grilla_ciudades.html', {'propiedades': propiedades, 'images': images, 'ciudad': ciudad.capitalize()})
 
-def ofertar(request, ciudad):
-    pass
+def ofertar(request, id, slug):
+    form_contacto_oferta=formulario_contacto_oferta()
+    form_contacto_oferta_2=formulario_contacto_oferta_2()
+    propiedades= Propiedad.objects.filter(id=id)
+    images=Image.objects.filter(id_propiedades__id=id)[:1]
+    oferta_enviada='0'
+    if request.method == 'POST':
+        data=request.POST
+        action = data.get("enviar")
+        if action=="ofertar":
+            form_contacto_oferta_2=formulario_contacto_oferta_2(request.POST)
+            if form_contacto_oferta_2.is_valid():
+                data = form_contacto_oferta_2.cleaned_data
+                save_comprador=Comprador()
+                save_comprador.nombre=data['nombre']
+                save_comprador.apellido=''
+                save_comprador.rut=''
+                save_comprador.telefono_contacto=data['telefono']
+                save_comprador.save()
+                save_oferta = Oferta()
+                save_oferta.monto = data['monto']
+                save_oferta.propiedad=propiedades[0]
+                save_oferta.comprador = Comprador.objects.last()
+                save_oferta.estado = Estado_Oferta.objects.filter(id=2)[0]
+                save_oferta.save()
+                form_contacto_oferta_2=formulario_contacto_oferta_2()
+                oferta_enviada='1'
+                return propiedades_detalles(request,oferta_enviada, id, slug )
+            else:
+                oferta_enviada='2'
+    context={
+        'id':id,
+        'propiedades':propiedades,
+        'images':images,
+        'slug':slug,
+        'form_contacto_oferta': form_contacto_oferta,
+        'form_contacto_oferta_2': form_contacto_oferta_2,
+        'oferta_enviada':oferta_enviada,
+    }
+    return render(request, 'propiedades/ofertar.html', context )
