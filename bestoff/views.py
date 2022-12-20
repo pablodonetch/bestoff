@@ -60,3 +60,32 @@ class propiedades(View):
 def list_Propiedades(request):
     propiedades = Propiedad.objects.all()
     return render(request, 'pages/index.html', {'propiedades': propiedades})
+
+
+def vender(request):
+    form_vender = formulario_vender()
+    contacto_enviado='0'
+    if request.method == 'POST':
+        data=request.POST
+        action = data.get("enviar")
+        if action=="vender":
+            form_vender=formulario_vender(request.POST)
+            if form_vender.is_valid():
+                data=form_vender.cleaned_data
+                save_contacto=Contactos()
+                save_contacto.nombre=data['nombre']
+                save_contacto.telefono_contacto=data['telefono']
+                save_contacto.email=data['email']
+                direccion=data['direccion']
+                comuna=data['comuna']
+                caracteristicas=data['caracteristicas']
+                save_contacto.mensaje=f'Quiero vender: {direccion}, {comuna}, {caracteristicas}'
+                save_contacto.save()
+                contacto_enviado='1'
+            else:
+                contacto_enviado='2'
+    context={
+        'form_vender':form_vender,
+        'contacto_enviado':contacto_enviado,
+    }
+    return render (request, 'pages/vender.html', context)

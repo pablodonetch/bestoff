@@ -181,7 +181,6 @@ def grilla_ciudades(request, ciudad):
     return render(request, 'propiedades/grilla_ciudades.html', {'propiedades': propiedades, 'images': images, 'ciudad': ciudad.capitalize()})
 
 def ofertar(request, id, slug):
-    form_contacto_oferta=formulario_contacto_oferta()
     form_contacto_oferta_2=formulario_contacto_oferta_2()
     propiedades= Propiedad.objects.filter(id=id)
     images=Image.objects.filter(id_propiedades__id=id)[:1]
@@ -215,7 +214,6 @@ def ofertar(request, id, slug):
         'propiedades':propiedades,
         'images':images,
         'slug':slug,
-        'form_contacto_oferta': form_contacto_oferta,
         'form_contacto_oferta_2': form_contacto_oferta_2,
         'oferta_enviada':oferta_enviada,
     }

@@ -38,6 +38,7 @@ class Vendedor(models.Model):
     apellido = models.CharField(max_length=50)
     rut = models.CharField(max_length=50)
     telefono_contacto= models.CharField(max_length=50)
+    email= models.CharField(max_length=50)
     def __str__(self):
         return f"{self.nombre} {self.apellido}"
     class Meta:

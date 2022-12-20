@@ -13,87 +13,25 @@
         <img src="{% static "imagenes/Logo_1.png" %}" class="h-12" alt="Bestoff Logo"></a>
     </div>
     <div class="flex">
-      <div class="mx-2">
+      <!--<div class="mx-2">
         <button id="" class="flex text-white">
           <p class="mx-1 font-semibold text-lg">Invertir</p>
           <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" fill="none">
               <path d="M4 9L12 17L20 9" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </button>
-      </div>
-      <div class="mx-2">
+      </div>-->
+      <a href="/vender"><div class="mx-2">
         <button id="open-modal-vende" class="flex text-white">
           <p class="mx-1 font-semibold text-lg">Vender</p>
           <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" fill="none">
               <path d="M4 9L12 17L20 9" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </button>
-      </div>
+      </div></a>
     </div>
   </div>
-  {%if form_contacto.errors  %}
-  <div id='modal-error' class='block bg-red-500 max-w-6xl mx-auto rounded-xl px-5 py-4 bg-red-800/60 mt-7'>
-    <div class="flex items-center justify-between">
-      <h3 class="text-white text-xl sm:text-3xl">Error al ingresar tus datos</h3>
-      <button id="cerrar-modal-error" class="flex text-white">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#000000" viewBox="0 0 256 256">
-          <rect width="50" height="50" fill="none"></rect>
-          <line x1="200" y1="56" x2="56" y2="200" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"></line>
-          <line x1="200" y1="200" x2="56" y2="56" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"></line>
-        </svg>
-      </button>
-    </div>
-    <div class="text-white">{{ form_contacto.errors }}</div>
-    <!--<p class="text-white">{{ form_contacto.non_field_errors }}</p>-->
-  </div>
-  {%endif%}
-  {%if formulario_vender == '1'  %}
-  <div id='modal-error' class='block bg-green-500 max-w-6xl mx-auto rounded-xl px-5 py-4 bg-red-800/60 mt-7'>
-    <div class="flex items-center justify-between">
-      <h3 class="text-white text-xl sm:text-3xl text-justify"> &#128075; &#128075; ¡Gracias por enviar tus Datos! Nos pondremos en contacto a la brevedad.</h3>
-      <button id="cerrar-modal-error" class="flex text-white">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#000000" viewBox="0 0 256 256">
-          <rect width="50" height="50" fill="none"></rect>
-          <line x1="200" y1="56" x2="56" y2="200" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"></line>
-          <line x1="200" y1="200" x2="56" y2="56" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"></line>
-        </svg>
-      </button>
-    </div>
-  </div>
-  {%endif%}
-
-  <!-- Modal Vender -->
-  <div id="modal-component-containet" class="hidden fixed min-h-full w-sm sm:min-w-full bg-gray-400 bg-opacity-50">
-    <div class="modal-flex-container justify-center">
-      <div id ="modal-container" class="modal-container mr-5 sm:mx-auto max-w-sm bg-white mt-4 p-4 rounded-xl border-gray-400">
-        <div class="modal-wrapper">
-          <div class="modal-wrapper-flex">
-            <div class="modal-content">
-              <form name="form" method="post" action="{{ request.get_full_path }} ">
-                  {% csrf_token %}
-                  <div class="form-group mb-6">
-                    {{form_contacto.monto}}
-                  </div>
-                  <div class="form-group mb-6">
-                    {{form_contacto.nombre}}
-                  </div>
-                  <div class="form-group mb-6">
-                    {{form_contacto.telefono}}
-                  </div>
-                  <div class="form-group mb-6">
-                    {{form_contacto.mensaje}}
-                  </div>
-                <div class="flex">
-                  <button href="javascript:void(0);" onclick="document.form.submit();" class="w-1/2 mr-1 px-6 py-2.5 boton-busqueda-portada  rounded-l-lg w-full h-full text-white font-medium text-lg">contáctenme</button>
-                  <button id="close-modal-vende" class="w-1/2 ml-1 px-6 py-2.5 boton-busqueda-portada  rounded-r-lg w-full h-full text-white font-medium text-lg">cancelar</button>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  
   <!---->
   <div class='grid grid-cols-5 max-w-6xl mx-auto mt-1 sm:mt-5'>
     <div class='col-span-5 lg:col-span-3'>
@@ -377,64 +315,6 @@
 {% endblock content %}
 {% block extra_footer %} {% endblock extra_footer %}
 {% block scripts %}<script src="https://unpkg.com/flowbite@1.4.0/dist/flowbite.js"></script>
-
-<script>
-  const openButton_vende = document.querySelector('#open-modal-vende');
-  const closeButton_vende = document.querySelector('#close-modal-vende');
-  const modalContainer = document.querySelector('#modal-component-containet');
-  const carousel= document.querySelector('#controls-carousel');
-  const botonFlash= document.querySelector('#flash');
-
-  openButton_vende.addEventListener('click', () => {
-    openModalVender();
-  });
-
-  closeButton_vende.addEventListener('click', () => {
-    closeModalVender();
-  });
-
-  function cerrarFlash() {
-    showAndHide(modalContainer, ['hidden'], ['block']);
-  }
-
-  function openModalVender() {
-    showAndHide(modalContainer, ['block'], ['hidden']);
-    showAndHide(carousel, ['hidden'], ['block']);
-    
-  }
-
-  function closeModalVender() {
-    showAndHide(modalContainer, ['hidden'], ['block']);
-    showAndHide(carousel, ['block'], ['hidden']);
-    
-  }
-
-  function showAndHide(element, classesToAdd, classesToRemove) {
-    element.classList.add(...classesToAdd);
-    element.classList.remove(...classesToRemove);
-  }
-
-</script>
-
-{% if form_contacto.errors or formulario_vender == '1'   %}
-<script>
-  const modalError = document.querySelector('#modal-error');
-  const closeButtonError = document.querySelector('#cerrar-modal-error');
-
-  closeButtonError.addEventListener('click', () => {
-    closeModalError();
-  });
-
-  function closeModalError() {
-    showAndHide(modalError, ['hidden'], ['block']);
-  }
-  
-  function showAndHide(element, classesToAdd, classesToRemove) {
-    element.classList.add(...classesToAdd);
-    element.classList.remove(...classesToRemove);
-  }
-</script>
-{%endif%}
 
 
 {% endblock scripts %}

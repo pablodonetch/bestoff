@@ -7,7 +7,8 @@ from .views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home, name="home"),
-    path("propiedades/", include('propiedades.urls'), name="propiedades_individuales"),
+    path('propiedades/', include('propiedades.urls'), name="propiedades_individuales"),
+    path('vender/', vender, name='vender'),
 ]
 
 

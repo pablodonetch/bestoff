@@ -1,0 +1,134 @@
+{% extends 'base.html' %}
+{% load static %}{% load utilidades %}
+{% block title %}{% endblock title %}
+{% block extra_navbar %} {% include 'componentes/navbar.html' %} {% endblock extra_navbar %}
+{% block content %}
+
+{%if contacto_enviado == '2'%}
+<div id='modal-error' class='block bg-red-500 max-w-2xl mx-auto rounded-xl px-5 py-4 bg-red-800/60 mt-7'>
+    <div class="flex items-center justify-between">
+      <h3 class="text-white text-xl sm:text-3xl">&#128400;&#128400; Error al ingresar los datos de tu Oferta</h3>
+      <button id="cerrar-modal-error" class="flex text-white">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#000000" viewBox="0 0 256 256">
+          <rect width="50" height="50" fill="none"></rect>
+          <line x1="200" y1="56" x2="56" y2="200" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"></line>
+          <line x1="200" y1="200" x2="56" y2="56" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"></line>
+        </svg>
+      </button>
+    </div>
+    <div class="text-white">{{ form_contacto_ofert.errors }}</div>
+</div>
+{%endif%}
+
+{%if contacto_enviado == '1'  %}
+<div id='modal-error' class='block bg-green-500 max-w-6xl mx-auto rounded-xl px-5 py-4 bg-red-800/60 mt-7'>
+  <div class="flex items-center justify-between">
+    <h3 class="text-white text-xl sm:text-3xl text-justify"> &#128075; &#128075; ¡Gracias por enviar tus Datos! Nos pondremos en contacto a la brevedad.</h3>
+    <button id="cerrar-modal-error" class="flex text-white">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#000000" viewBox="0 0 256 256">
+        <rect width="50" height="50" fill="none"></rect>
+        <line x1="200" y1="56" x2="56" y2="200" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"></line>
+        <line x1="200" y1="200" x2="56" y2="56" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"></line>
+      </svg>
+    </button>
+  </div>
+</div>
+{%endif%}
+
+<div class="mt-4 block pt-10 px-4 sm:px-2 mx-auto max-w-2xl">
+    <div class="m-auto">
+        <div>
+            <a href="/"><button type="button" class="rounded-lg relative w-full flex justify-center items-center px-5 py-2.5 font-medium tracking-wide text-white capitalize boton-busqueda-portada">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#ffffff" viewBox="0 0 256 256">
+                    <rect width="256" height="256" fill="none"></rect>
+                    <line x1="216" y1="128" x2="40" y2="128" fill="none" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="28"></line>
+                    <polyline points="112 56 40 128 112 200" fill="none" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="28"></polyline>
+                </svg>
+                <span class="pl-2 mx-1">Volver a Página de Inicio</span>
+            </button></a>
+            <form name="form-ofertar" method="post" action="{{ request.get_full_path }} ">
+                {% csrf_token %}
+                <div class="mt-5 bg-white rounded-lg shadow">
+                    <div class="flex">
+                        <div class="flex-1 py-5 pl-5 overflow-hidden">
+                            <svg class="inline align-text-top" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#000000" viewBox="0 0 256 256">
+                                <rect width="256" height="256" fill="none"></rect>
+                                <path d="M152,208V160a8,8,0,0,0-8-8H112a8,8,0,0,0-8,8v48a8,8,0,0,1-8,8H48a8,8,0,0,1-8-8V115.5a8.3,8.3,0,0,1,2.6-5.9l80-72.7a8,8,0,0,1,10.8,0l80,72.7a8.3,8.3,0,0,1,2.6,5.9V208a8,8,0,0,1-8,8H160A8,8,0,0,1,152,208Z" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="24"></path>
+                            </svg>
+                            <h1 class="inline text-2xl font-semibold leading-none">¿Qué Quieres Vender?</h1>
+                        </div>
+                    </div>
+                    <div class="px-5 pb-5">
+                        {{form_vender.direccion}}
+                        {{form_vender.comuna}}
+                        {{form_vender.caracteristicas}}
+                    </div>
+                    <div class="flex">
+                        <div class="flex-1 py-5 pl-5 overflow-hidden">
+                            <svg class="inline align-text-top" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#000000" viewBox="0 0 256 256">
+                                <rect width="256" height="256" fill="none"></rect>
+                                <circle cx="128" cy="96" r="64" fill="none" stroke="#000000" stroke-miterlimit="10" stroke-width="24"></circle>
+                                <path d="M31,216a112,112,0,0,1,194,0" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="24"></path>
+                            </svg>
+                            <h1 class="inline text-2xl font-semibold leading-none">Tus Datos de Contacto</h1>
+                        </div>
+                        <div class="flex-none pt-2.5 pr-2.5 pl-1"></div>
+                    </div>
+                    <div class="px-5 pb-5">
+                        {{form_vender.nombre}}
+                        {{form_vender.telefono}}
+                        {{form_vender.email}}
+                    </div>
+                    <hr class="mt-4">
+                    <div class="flex flex-row-reverse p-3">
+                        <div class="flex-initial pl-3">
+                            <button href="javascript:void(0);" onclick="document.form-ofertar.submit();"  class="boton-busqueda-portada flex items-center px-5 py-2.5 font-medium tracking-wide text-white capitalize rounded-md" name="enviar" value="vender">
+                                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#FFFFFF">
+                                    <path d="M0 0h24v24H0V0z" fill="none"></path>
+                                    <path d="M5 5v14h14V7.83L16.17 5H5zm7 13c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3zm3-8H6V6h9v4z" opacity=".3"></path>
+                                    <path d="M17 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V7l-4-4zm2 16H5V5h11.17L19 7.83V19zm-7-7c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3zM6 6h9v4H6z"></path>
+                                </svg>
+                                <span class="pl-2 mx-1">Enviar</span>
+                            </button>
+                        </div>
+                        <div class="flex-initial">
+                            <a href="/"><button type="button" class="flex items-center px-5 py-2.5 font-medium tracking-wide text-black capitalize rounded-md  hover:bg-red-200 hover:fill-current hover:text-red-600  focus:outline-none  transition duration-300 transform active:scale-95 ease-in-out">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px">
+                                <path d="M0 0h24v24H0V0z" fill="none"></path>
+                                <path d="M8 9h8v10H8z" opacity=".3"></path>
+                                <path d="M15.5 4l-1-1h-5l-1 1H5v2h14V4zM6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM8 9h8v10H8V9z"></path>
+                            </svg>
+                            <span class="pl-2 mx-1">Cancelar</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock content %}
+{% block extra_footer %} {% endblock extra_footer %}
+{% block scripts %}
+<script>
+    const modalError = document.querySelector('#modal-error');
+    const closeButtonError = document.querySelector('#cerrar-modal-error');
+  
+    closeButtonError.addEventListener('click', () => {
+      closeModalError();
+    });
+  
+    function closeModalError() {
+      showAndHide(modalError, ['hidden'], ['block']);
+    }
+    
+    function showAndHide(element, classesToAdd, classesToRemove) {
+      element.classList.add(...classesToAdd);
+      element.classList.remove(...classesToRemove);
+    }
+  </script>
+
+{% endblock scripts %}
