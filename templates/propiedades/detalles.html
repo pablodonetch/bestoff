@@ -257,146 +257,144 @@
 
 <!--Banner Carácteristicas importantes-->
 {% for propiedad in propiedades %}
-{% if propiedad.id == id %}
-<div class="pt-4 pb-2 px-4 sm:px-2 mx-auto max-w-4xl">
-  {% if propiedad.propiedad_bancaria == True %}
-  <div class="">
-    <div class="flex py-1 detalle-rentabilidad  rounded-md border-solid border-slate-100 min-w-sm gallery-item-detalle">
-      <svg class="mx-4" height="18" width="18">
-        <circle cx="9" cy="9" r="5" stroke="green" stroke-width="0" fill="green" />
-      </svg>  
-      <p class="text-sm">Propiedad Bancaria</p>
+  {% if propiedad.id == id %}
+    <div class="pt-4 pb-2 px-4 sm:px-2 mx-auto max-w-4xl">
+      {% if propiedad.propiedad_bancaria == True %}
+        <div class="">
+          <div class="flex py-1 detalle-rentabilidad  rounded-md border-solid border-slate-100 min-w-sm gallery-item-detalle">
+            <svg class="mx-4" height="18" width="18">
+              <circle cx="9" cy="9" r="5" stroke="green" stroke-width="0" fill="green" />
+            </svg>  
+            <p class="text-sm">Propiedad Bancaria</p>
+          </div>
+        </div>
+      {% endif %}
+      {% if rentabilidad_real > 0 %}
+        <div class="">
+          <div class="flex py-1 detalle-rentabilidad  rounded-md border-solid border-slate-100 min-w-sm gallery-item-detalle">
+            <svg class="mx-4" height="18" width="18">
+              <circle cx="9" cy="9" r="5" stroke="green" stroke-width="0" fill="green" />
+            </svg>  
+            <p class="text-sm">Contrato de Arriendo Vigente.</p>
+          </div>
+        </div>
+      {% endif %}
+      {% if rentabilidad_real > 0 %}
+        <div class="">
+          <div class="flex py-1 detalle-rentabilidad  rounded-md border-solid border-slate-100 min-w-sm gallery-item-detalle">
+            <svg class="mx-4" height="18" width="18">
+              <circle cx="9" cy="9" r="5" stroke="green" stroke-width="0" fill="green" />
+            </svg>  
+            <p class="text-sm">UF + {{rentabilidad_real}} % Rent. Anual</p>
+          </div>
+        </div>
+      {% endif %}
     </div>
-  </div>
-  {% endif %}
-  {% if rentabilidad_real > 0 %}
-  <div class="">
-    <div class="flex py-1 detalle-rentabilidad  rounded-md border-solid border-slate-100 min-w-sm gallery-item-detalle">
-      <svg class="mx-4" height="18" width="18">
-        <circle cx="9" cy="9" r="5" stroke="green" stroke-width="0" fill="green" />
-      </svg>  
-      <p class="text-sm">Contrato de Arriendo Vigente.</p>
-    </div>
-  </div>
-  {% endif %}
-  {% if rentabilidad_real > 0 %}
-  <div class="">
-    <div class="flex py-1 detalle-rentabilidad  rounded-md border-solid border-slate-100 min-w-sm gallery-item-detalle">
-      <svg class="mx-4" height="18" width="18">
-        <circle cx="9" cy="9" r="5" stroke="green" stroke-width="0" fill="green" />
-      </svg>  
-      <p class="text-sm">UF + {{rentabilidad_real}} % Rent. Anual</p>
-    </div>
-  </div>
-</div>
-{% endif %}
-{%endif%}
+  {%endif%}
 {%endfor%}
 
 <!--Descripción-->
 <div class="py-0 px-4 sm:px-2 mx-auto max-w-4xl">
-    <div class="grid sm:grid-cols-5 grid-cols-3 gap-4">
-        <div class= "col-span-3">
-        {% for propiedad in propiedades %}
-            {% if propiedad.id == id %}
-            <div class="grid grid-cols-7">
-                <div class="col-span-4">
-                <div class="grid">
-                    <div class="row">
+  <div class="grid sm:grid-cols-5 grid-cols-3 gap-4">
+    <div class= "col-span-3">
+      {% for propiedad in propiedades %}
+        {% if propiedad.id == id %}
+          <div class="grid grid-cols-7">
+            <div class="col-span-4">
+              <div class="grid">
+                  <div class="row">
                     <h2 class="text-gray-900 text-xl sm:text-3xl font-medium mb-2">{{propiedad.direccion.upper}}</h2>
-                    </div>
-                    <div class="row">
+                  </div>
+                  <div class="row">
                     <h2 class="text-gray-900 sm:text-xl font-medium mb-2">{{propiedad.comuna.comuna.upper}}</h2>
-                    </div>
-                </div>
-                </div>
-                <div class="col text-center">
-                <div class="grid">
-                    <div class="row">
+                  </div>
+              </div>
+            </div>
+            <div class="col text-center">
+              <div class="grid">
+                  <div class="row">
                     {{propiedad.dormitorios}}
-                    </div>
-                    <div class="row text-xs">
+                  </div>
+                  <div class="row text-xs">
                     dorm.
-                    </div>
-                </div>
-                </div>
-                <div class="col text-center">
-                <div class="grid">
-                    <div class="row">
+                  </div>
+              </div>
+            </div>
+            <div class="col text-center">
+              <div class="grid">
+                  <div class="row">
                     {{propiedad.baños}}
-                    </div>
-                    <div class="row text-xs">
+                  </div>
+                  <div class="row text-xs">
                     baños
-                    </div>
-                </div>
-                </div>
-                <div class="col text-center">
-                <div class="grid">
-                    <div class="row">
+                  </div>
+              </div>
+            </div>
+            <div class="col text-center">
+              <div class="grid">
+                  <div class="row">
                     {{ propiedad.superficie_construida|numberFormat}}
-                    </div>
-                    <div class="row text-xs">
+                  </div>
+                  <div class="row text-xs">
                     mt2
-                    </div>
-                </div>
-                </div>
+                  </div>
+              </div>
             </div>
-            <div class="grid pt-4">
-                <div>
-                <h3 class="text-gray-900 text-2xl sm:text-5xl font-medium mb-2">Descripción</h3>
-                </div>
-                <div>
-                <p class="text-justify">
-                    {{propiedad.descripcion}}
-                </p>
-                </div>
+          </div>
+          <div class="grid pt-4">
+            <div>
+              <h3 class="text-gray-900 text-2xl sm:text-5xl font-medium mb-2">Descripción</h3>
             </div>
-            {% endif %}
-        {% endfor %}
-        </div>
-        <div class="col-span-3 sm:col-span-2">
-            {% for propiedad in propiedades %}
-            {%if propiedad.id == id%}
-                <div class="grid grid-cols-1 ">
-                <div class= "col">
-                    {%if propiedad.aceptan_contado == True %}
-                    <div class= "row flex detalle-propiedad py-2 rounded-2xl border-solid border-slate-400 my-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="green" class="w-6 h-6 mx-4">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                        <p>Aceptan Pago Contado</p> 
-                    </div>
-                    {%endif%}
-                    {%if propiedad.aceptan_credito == True %}
-                    <div class= "row flex detalle-propiedad py-2 rounded-2xl border-solid border-slate-400 my-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="green" class="w-6 h-6 mx-4">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0012 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18M12 6.75h.008v.008H12V6.75z" />
-                    </svg>                               
-                    <p>Aceptan Crédito Hipotecario</p>
-                    </div>
-                    {%endif%}
-                    {%if propiedad.aceptan_subsidio == True %}
-                    <div class= "row flex detalle-propiedad py-2 rounded-2xl border-solid border-slate-400 my-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="green" class="w-6 h-6 mx-4">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M11.35 3.836c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75 2.25 2.25 0 00-.1-.664m-5.8 0A2.251 2.251 0 0113.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m8.9-4.414c.376.023.75.05 1.124.08 1.131.094 1.976 1.057 1.976 2.192V16.5A2.25 2.25 0 0118 18.75h-2.25m-7.5-10.5H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V18.75m-7.5-10.5h6.375c.621 0 1.125.504 1.125 1.125v9.375m-8.25-3l1.5 1.5 3-3.75" />
-                    </svg> 
-                    <p>Aceptan Subsidio</p>
-                    </div>
-                    {%endif%}
-                    {%if propiedad.aceptan_permuta == True %}
-                    <div class= "row flex detalle-propiedad py-2 rounded-2xl border-solid border-slate-400 my-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="green" class="w-6 h-6 mx-4">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12c0-1.232-.046-2.453-.138-3.662a4.006 4.006 0 00-3.7-3.7 48.678 48.678 0 00-7.324 0 4.006 4.006 0 00-3.7 3.7c-.017.22-.032.441-.046.662M19.5 12l3-3m-3 3l-3-3m-12 3c0 1.232.046 2.453.138 3.662a4.006 4.006 0 003.7 3.7 48.656 48.656 0 007.324 0 4.006 4.006 0 003.7-3.7c.017-.22.032-.441.046-.662M4.5 12l3 3m-3-3l-3 3" />
-                    </svg>
-                    <p>Aceptan Permuta</p>
-                    </div>
-                    {%endif%}
-                </div>
-                </div>            
-            {% endif %}
-            {% endfor %}
-        </div>
+            <div>
+              <p class="text-justify">{{propiedad.descripcion}}</p>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
     </div>
+    <div class="col-span-3 sm:col-span-2">
+      {% for propiedad in propiedades %}
+        {%if propiedad.id == id%}
+          <div class="grid grid-cols-1 ">
+            <div class= "col">
+              {%if propiedad.aceptan_contado == True %}
+                <div class= "row flex detalle-propiedad py-2 rounded-2xl border-solid border-slate-400 my-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="green" class="w-6 h-6 mx-4">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  <p>Aceptan Pago Contado</p> 
+                </div>
+              {%endif%}
+              {%if propiedad.aceptan_credito == True %}
+                <div class= "row flex detalle-propiedad py-2 rounded-2xl border-solid border-slate-400 my-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="green" class="w-6 h-6 mx-4">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0012 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18M12 6.75h.008v.008H12V6.75z" />
+                  </svg>                               
+                  <p>Aceptan Crédito Hipotecario</p>
+                </div>
+              {%endif%}
+              {%if propiedad.aceptan_subsidio == True %}
+                <div class= "row flex detalle-propiedad py-2 rounded-2xl border-solid border-slate-400 my-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="green" class="w-6 h-6 mx-4">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M11.35 3.836c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75 2.25 2.25 0 00-.1-.664m-5.8 0A2.251 2.251 0 0113.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m8.9-4.414c.376.023.75.05 1.124.08 1.131.094 1.976 1.057 1.976 2.192V16.5A2.25 2.25 0 0118 18.75h-2.25m-7.5-10.5H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V18.75m-7.5-10.5h6.375c.621 0 1.125.504 1.125 1.125v9.375m-8.25-3l1.5 1.5 3-3.75" />
+                  </svg> 
+                  <p>Aceptan Subsidio</p>
+                </div>
+              {%endif%}
+              {%if propiedad.aceptan_permuta == True %}
+                <div class= "row flex detalle-propiedad py-2 rounded-2xl border-solid border-slate-400 my-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="green" class="w-6 h-6 mx-4">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12c0-1.232-.046-2.453-.138-3.662a4.006 4.006 0 00-3.7-3.7 48.678 48.678 0 00-7.324 0 4.006 4.006 0 00-3.7 3.7c-.017.22-.032.441-.046.662M19.5 12l3-3m-3 3l-3-3m-12 3c0 1.232.046 2.453.138 3.662a4.006 4.006 0 003.7 3.7 48.656 48.656 0 007.324 0 4.006 4.006 0 003.7-3.7c.017-.22.032-.441.046-.662M4.5 12l3 3m-3-3l-3 3" />
+                  </svg>
+                  <p>Aceptan Permuta</p>
+                </div>
+              {%endif%}
+            </div>
+          </div>            
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
 </div>
 
 <!--Carácterísticas Básicas-->
@@ -724,15 +722,53 @@
           <form name="form-financiar" method="post" action="{{ request.get_full_path }} ">
             {% csrf_token %}
             <div class="grid grid-cols-12">
+              <!--Precio de Compra-->
               <div class="col-span-5">
-                <p class="inline-block align-middle">Precio de Compra</p>
+                <p class="inline-block align-middle ml-2 mt-3">Precio de Compra</p>
               </div>
               <div class="class col-span-5 form-group">
                 {{formulario_financiero.precio_compra}} 
               </div>
               <div class="col-span-2">
-                <p class="inline-block align-middle ml-2">UF</p>
+                <p class="inline-block align-middle ml-2 mt-3">UF</p>
               </div>
+              <!--% de Pie-->
+              <div class="col-span-5">
+                <p class="inline-block align-middle ml-2 mt-3">Pie</p>
+              </div>
+              <div class="class col-span-5 form-group">
+                {{formulario_financiero.pie}} 
+              </div>
+              <div class="col-span-2">
+                <p class="inline-block align-middle ml-2 mt-3">%</p>
+              </div>
+              <!--Tasa Crédito-->
+              <div class="col-span-5">
+                <p class="inline-block align-middle ml-2 mt-3">Tasa CAE</p>
+              </div>
+              <div class="class col-span-5 form-group">
+                {{formulario_financiero.tasa}} 
+              </div>
+              <div class="col-span-2">
+                <p class="inline-block align-middle ml-2 mt-3">%</p>
+              </div>
+              <!--Arriendo Esperado-->
+              {% for propiedad in propiedades %}
+              {% if propiedad.id == id %}
+              {% if propiedad.arriendo_actual == 0%}
+              <div class="col-span-5">
+                <p class="inline-block align-middle ml-2 mt-3">Arriendo Esperado</p>
+              </div>
+              <div class="class col-span-5 form-group">
+                {{formulario_financiero.arriendo_esperado}} 
+              </div>
+              <div class="col-span-2">
+                <p class="inline-block align-middle ml-2 mt-3">UF</p>
+              </div>
+              {%endif%}
+              {%endif%}
+              {%endfor%}
+              <!--Botón de Recalcular-->
               <div class="my-2 col-span-12">
                 <button href="javascript:void(0);" onclick="document.form-ofertar.submit();" class="w-1/2 mr-1 px-6 py-1.5 boton-busqueda-portada rounded-lg w-full h-full text-white font-medium text-lg" name="enviar" value="recalcular">recalcular</button>
               </div>
@@ -824,7 +860,7 @@
 
 
     <div class="row mt-5">
-      <h3 class="text-gray-900 text-md font-bold">Cálculo de Rentabilidad Anual Real</h3>
+      <h3 class="text-gray-900 text-md font-bold">Cálculo de Rentabilidad Anual {% for propiedad in propiedades %} {% if propiedad.id == id %} {% if propiedad.arriendo_actual > 0%}Real{%else%}Esperado{%endif%} {%endif%} {%endfor%}</h3>
     </div>
     <div class="row mt-2">
       <div class="grid grid-cols-12 bg-gray-100">
@@ -877,11 +913,7 @@
       <h3 class="text-gray-900 text-md font-bold">Sensibilización de Cuota de Crédito</h3>
     </div>
     <div class="row mt-2">
-      <p class="text-gray-900 text-md">La siguiente tabla muesta como cambia la cuota del crédito hipoteracio en la medida que cambia el porcentaje de pie y el plazo en años al que se toma el crédito. La Información básica para estos cálculos es:</p>
-    </div>
-    <div class="row mt-2">
-      <p class="text-gray-900 text-md">1. Precio de Compra: {{costo_compra|numberFormat}} UF</p>
-      <p class="text-gray-900 text-md">2. Tasa Crédito Hipotecario: {{tasa_hip}} %</p>
+      <p class="text-gray-900 text-md">La siguiente tabla muesta como cambia la cuota del crédito hipoteracio en la medida que cambia el porcentaje de pie y el plazo en años al que se toma el crédito.</p>
     </div>
     <div class="row mt-2">
       <div class="grid grid-rows-5 grid-cols-7">

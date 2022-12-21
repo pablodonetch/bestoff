@@ -8,7 +8,7 @@ from bestoff.forms import *
 from math import ceil
 
 UF=34500 #CAMBIAR UF ACÁ
-tasa_hip_anual=0.045
+tasa_hip_inicial=0.045
 
 def propiedades_inicio(request):
     propiedades = Propiedad.objects.all()
@@ -29,14 +29,16 @@ def propiedades_detalles(request,oferta_enviada, id, slug ):
     documentos= Documentos_Legales.objects.all()
     formulario_vender='0'
     costo_compra=int(propiedades[0].precio)
+    pie= 20
+    arriendo_esperado=float(f'{(propiedades[0].arriendo_maximo + propiedades[0].arriendo_minimo)/(UF*2):.1f}')
+    tasa_hip_anual=tasa_hip_inicial
     if request.method == 'POST':
         data=request.POST
         action = data.get("enviar")
         if action=="vender":
             form_contacto=formulario_contacto(request.POST)
-            form_contacto_oferta=formulario_contacto_oferta(
-            form_financiero=formulario_financiero()
-            )
+            form_contacto_oferta=formulario_contacto_oferta()
+            form_financiero=formulario_financiero(initial={'precio_compra': costo_compra, 'pie': pie, 'tasa':str(tasa_hip_anual*100).replace('.',','), 'arriendo_esperado': str(arriendo_esperado).replace('.',',')})
             if form_contacto.is_valid():
                 data = form_contacto.cleaned_data
                 save = Contactos()
@@ -50,7 +52,7 @@ def propiedades_detalles(request,oferta_enviada, id, slug ):
         if action=="ofertar":
             form_contacto_oferta=formulario_contacto_oferta(request.POST)
             form_contacto = formulario_contacto()
-            form_financiero=formulario_financiero()
+            form_financiero=formulario_financiero(initial={'precio_compra': costo_compra, 'pie': pie, 'tasa':str(tasa_hip_anual*100).replace('.',','), 'arriendo_esperado': str(arriendo_esperado).replace('.',',')})
             if form_contacto_oferta.is_valid():
                 data = form_contacto_oferta.cleaned_data
                 save_comprador=Comprador()
@@ -73,21 +75,26 @@ def propiedades_detalles(request,oferta_enviada, id, slug ):
             form_financiero=formulario_financiero(request.POST)
             if form_financiero.is_valid():
                 costo_compra=int(data['precio_compra'])
+                pie=int(data['pie'])
+                tasa_hip_anual=float(str(data['tasa']).replace(',','.'))/100
+                arriendo_esperado=float(str(data['arriendo_esperado']).replace(',','.'))
     else:
         form_contacto= formulario_contacto()
         form_contacto_oferta=formulario_contacto_oferta()
-        form_financiero=formulario_financiero()
+        form_financiero=formulario_financiero(initial={'precio_compra': costo_compra, 'pie': pie, 'tasa':str(tasa_hip_anual*100).replace('.',','), 'arriendo_esperado': str(arriendo_esperado).replace('.',',')})
     '''Calculo de Variables financieras sin recalculo'''
     costo_estudio=10
     costo_escritura=10
     costo_notaria=5
-    costo_vv=float(f'{ceil((costo_compra*UF)/49000000)*0.3:.1f}')
+    costo_vv=float(f'{ceil((costo_compra*UF*(pie/100))/49000000)*0.3:.1f}')
     costo_cbr=(ceil(costo_compra*0.006))
     total_costo=costo_estudio+costo_escritura+costo_notaria+costo_vv+costo_cbr
     tasacion_com=propiedades[0].tasacion_comercial
     plusvalia=tasacion_com-costo_compra
     plusvalia_porc=int(plusvalia/costo_compra*100)
     arriendo=float(f'{propiedades[0].arriendo_actual/UF:.1f}')
+    if propiedades[0].arriendo_actual == 0:
+        arriendo=arriendo_esperado
     arriendo_anual=float(f'{arriendo*12:.1f}')
     comision_arriendo=float(f'{arriendo*0.07:.1f}')
     comision_arriendo_anual=float(f'{comision_arriendo*12:.1f}')

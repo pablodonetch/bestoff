@@ -100,5 +100,10 @@ class formulario_contacto_oferta_2(forms.Form):
 	forma_pago = forms.CharField(required=True, widget=forms.TextInput(attrs={'class':clase, 'placeholder':'Forma de Pago (ej: crédito hipotecario)',  'autocomplete':'off'}))
 
 class formulario_financiero(forms.Form):
-	clase='block w-full px-3 py-0.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-orange-600 focus:outline-none'
-	precio_compra = forms.IntegerField(required=True, widget=forms.TextInput(attrs={'class':clase, 'placeholder':'Precio en UF', 'autocomplete':'off'}))
+	#clase='block w-full px-3 py-0.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-orange-600 focus:outline-none'
+	clase=" text-black placeholder-gray-600 w-full px-4 py-0.5 mt-2 text-base transition duration-500 ease-in-out transform border-transparent rounded-lg bg-gray-200  focus:border-blueGray-500 focus:bg-white dark:focus:bg-gray-800 focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400"
+	precio_compra = forms.IntegerField(required=True, widget=forms.TextInput(attrs={'class':clase, 'autocomplete':'off'}))
+	pie=forms.IntegerField(required=True, widget=forms.TextInput(attrs={'class':clase, 'autocomplete':'off'}))
+	tasa= forms.CharField(required=True, widget=forms.TextInput(attrs={'class':clase, 'autocomplete':'off'}))
+	arriendo_esperado=forms.IntegerField(required=True, widget=forms.TextInput(attrs={'class':clase, 'autocomplete':'off'}))
+	
