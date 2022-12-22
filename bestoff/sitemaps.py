@@ -9,4 +9,4 @@ class PropiedadesSitemap(Sitemap):
         return Propiedad.objects.all()
 
     def location(self, obj):
-        return f'propiedades/detalles/0/{obj.id}/{str(obj.comuna).replace(" ","-")}-{str(obj.direccion).replace(" ","-")}'
+        return f'/propiedades/detalles/0/{obj.id}/{str(obj.comuna).replace(" ","-")}-{str(obj.direccion).replace(" ","-")}'
