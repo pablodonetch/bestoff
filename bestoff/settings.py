@@ -22,6 +22,7 @@ INSTALLED_APPS = [
     'django.contrib.postgres',
     'django.contrib.sitemaps',
     'core',
+    'propiedades',
 
     'tailwind',
     'theme',
