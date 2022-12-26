@@ -166,7 +166,7 @@ def buscador(request):
     for propiedad in propiedades:
         rentabilidades[0][propiedad.id]=float(f'{((propiedad.arriendo_actual*12)/(propiedad.precio*UF)*100):.1f}')
         plusvalias[0][propiedad.id]= float(f'{((1-(propiedad.precio/propiedad.tasacion_comercial))*100):.1f}')
-    return render(request, 'propiedades/buscador.html', {'propiedades': propiedades, 'images': images, 'Comuna': arreglo[0], 'precio_max':arreglo[1], 'rentabilidad':arreglo[2], 'plusvalia':arreglo[3], 'bancaria':arreglo[4], 'rentabilidades':rentabilidades, 'plusvalias': plusvalias})
+    return render(request, 'propiedades/buscador.html', {'propiedades': propiedades, 'images': images, 'Comuna': arreglo[0], 'precio_max':arreglo[1], 'rentabilidad':arreglo[2], 'plusvalia':arreglo[3], 'rentabilidades':rentabilidades, 'plusvalias': plusvalias})
 
 def grilla_ciudades(request, ciudad):
     if ciudad=='santiago':
