@@ -105,5 +105,5 @@ class formulario_financiero(forms.Form):
 	precio_compra = forms.IntegerField(required=True, widget=forms.TextInput(attrs={'class':clase, 'autocomplete':'off'}))
 	pie=forms.IntegerField(required=True, widget=forms.TextInput(attrs={'class':clase, 'autocomplete':'off'}))
 	tasa= forms.CharField(required=True, widget=forms.TextInput(attrs={'class':clase, 'autocomplete':'off'}))
-	arriendo_esperado=forms.IntegerField(required=True, widget=forms.TextInput(attrs={'class':clase, 'autocomplete':'off'}))
+	arriendo_esperado=forms.IntegerField(required=False, widget=forms.TextInput(attrs={'class':clase, 'autocomplete':'off'}))
 	

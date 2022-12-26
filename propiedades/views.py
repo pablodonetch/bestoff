@@ -74,10 +74,14 @@ def propiedades_detalles(request,oferta_enviada, id, slug ):
             form_contacto = formulario_contacto()
             form_financiero=formulario_financiero(request.POST)
             if form_financiero.is_valid():
+                print('entra al recalcular valido')
                 costo_compra=int(data['precio_compra'])
                 pie=int(data['pie'])
                 tasa_hip_anual=float(str(data['tasa']).replace(',','.'))/100
-                arriendo_esperado=float(str(data['arriendo_esperado']).replace(',','.'))
+                if propiedades[0].arriendo_actual == 0:
+                    arriendo_esperado=float(str(data['arriendo_esperado']).replace(',','.'))
+                else:
+                    arriendo_esperado=propiedades[0].arriendo_actual
     else:
         form_contacto= formulario_contacto()
         form_contacto_oferta=formulario_contacto_oferta()

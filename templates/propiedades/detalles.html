@@ -1,6 +1,13 @@
 {% extends 'base.html' %}
 {% load static %}{% load utilidades %}
-{% block title %}{% endblock title %}
+{% block title %}
+  {% for propiedad in propiedades %}
+    {% if propiedad.id == id %}
+      <title>{{propiedad.slug}}</title>
+    {%endif%}
+  {%endfor%}
+
+{% endblock title %}
 {% block extra_navbar %} {% include 'componentes/navbar.html' %} {% endblock extra_navbar %}
 {% block content %}
 
