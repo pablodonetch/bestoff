@@ -12,6 +12,8 @@ SECRET_KEY = env('SECRET_KEY')
 DEBUG = True
 ALLOWED_HOSTS = ['https://www.bestoff.cl', 'www.bestoff.cl', 'bestoff.cl','https://bestoff.cl']
 
+CSRF_TRUSTED_ORIGINS = ['https://www.bestoff.cl','https://bestoff.cl' ]
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
