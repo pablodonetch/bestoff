@@ -10,7 +10,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 SECRET_KEY = env('SECRET_KEY')
 DEBUG = True
-ALLOWED_HOSTS = ['https://www.bestoff.cl']
+ALLOWED_HOSTS = ['https://www.bestoff.cl', 'www.bestoff.cl', 'bestoff.cl','https://bestoff.cl']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
