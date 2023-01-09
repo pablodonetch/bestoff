@@ -4,6 +4,7 @@ from django.utils.html import format_html
 from .models import *
 from django.conf import settings
 import os
+import boto3
 
 
 admin.site.site_header = 'Administración de Propiedades'
@@ -20,8 +21,8 @@ class PropiedadAdmin(admin.ModelAdmin):
     list_per_page = 10
 
 def mostrar_imagen(obj):
-    return format_html(f""" <a href="/media/{obj.image}" target="_blank">
-		<img src="/media/{obj.image}" width="100" height="70" />
+    return format_html(f"""<a href="https://bestoff-cl.s3.amazonaws.com/{obj.image}" target="_blank">
+		<img src="https://bestoff-cl.s3.amazonaws.com/{obj.image}" width="100" height="70" />
 		</a> """)
 mostrar_imagen.short_description = 'Imagen' 
 
@@ -35,6 +36,32 @@ class ImageAdmin(admin.ModelAdmin):
 #def foto_miniatura(self):
 #    print(settings.MEDIA_URL)
 #    return format_html('<img src="{}/{}" target="blank" width="100" height="100" />'.format(settings.MEDIA_URL,ojb.image.url))
+
+
+class MyModelAdmin(admin.ModelAdmin):
+    def formfield_for_dbfield(self, db_field, **kwargs):
+        # Si el campo es una imagen
+        if db_field.name == "image":
+            # Crea un cliente de S3
+            s3 = boto3.client("s3")
+
+            # Recupera la imagen del almacenamiento de S3
+            response = s3.get_object(Bucket="bestoff-cl", Key=db_field.value)
+
+            # Accede al contenido de la imagen como una secuencia de bytes
+            image_content = response["Body"].read()
+
+            # Crea una URL a partir de la secuencia de bytes
+            image_url = "data:image/jpg;base64," + image_content.encode("base64")
+            print(image_url)
+            # Muestra la imagen en el formulario del panel de administración
+            kwargs["widget"] = admin.widgets.AdminFileWidget(attrs={"data-src": image_url})
+
+        return super(MyModelAdmin, self).formfield_for_dbfield(db_field, **kwargs)
+
+# Registra el modelo y su clase personalizada de ModelAdmin
+#admin.site.register(Image, MyModelAdmin)
+
 
 
 

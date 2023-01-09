@@ -18,6 +18,8 @@ def home(request):
     plusvalia=[]
     plusvalia.append({})
     formulario_vender='0'
+    diccionario_imagenes=[]
+    diccionario_imagenes.append({})
     if request.method == 'POST':
         form_contacto = formulario_contacto(request.POST)
         if form_contacto.is_valid():
