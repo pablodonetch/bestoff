@@ -197,7 +197,7 @@
   <div class="flex">
     <div class="w-1/12 flex items-center">
       <div class="w-full text-right">
-        <button onclick="prev()" class="p-3 rounded-full bg-white border border-gray-100 shadow-lg">
+        <button onclick="prev_rentabilidad()" class="p-3 rounded-full bg-white border border-gray-100 shadow-lg">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
             <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 15.75L3 12m0 0l3.75-3.75M3 12h18" />
           </svg>
@@ -248,7 +248,7 @@
 
     <div class="w-1/12 flex items-center">
       <div class="w-full">
-        <button onclick="next()" class="p-3 rounded-full bg-white border border-gray-100 shadow-lg">
+        <button onclick="next_rentabilidad()" class="p-3 rounded-full bg-white border border-gray-100 shadow-lg">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
             <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
           </svg>
@@ -377,8 +377,8 @@
 
   let sliderContainerWidth_rentabilidad = sliderContainer_rentabilidad.clientWidth;
   let cardWidth_rentabilidad = sliderContainerWidth_rentabilidad/elementsToShow;
-  
-  slider_rentabilidad.style.width = cards_rentabilidad.length*cardWidth_rentabilidad+'px';
+  var margen_estilo=0
+  slider_rentabilidad.style.width = (cards_rentabilidad.length*cardWidth_rentabilidad-margen_estilo)+'px';
   slider_rentabilidad.style.transition= 'margin' ;
   slider_rentabilidad.style.transitionDuration='1s';
 
@@ -387,12 +387,12 @@
     element_rentabilidad.style.width= cardWidth_rentabilidad+'px';
   }
 
-  function next(){
+  function next_rentabilidad(){
     if (+slider_rentabilidad.style.marginLeft.slice(0,-2)!=-cardWidth_rentabilidad*(cards_rentabilidad.length-elementsToShow))
       slider_rentabilidad.style.marginLeft= ((+slider_rentabilidad.style.marginLeft.slice(0, -2))-cardWidth_rentabilidad)+'px';  // 100px
   }
 
-  function prev(){
+  function prev_rentabilidad(){
     if (+slider_rentabilidad.style.marginLeft.slice(0,-2) != 0)
       slider_rentabilidad.style.marginLeft= ((+slider_rentabilidad.style.marginLeft.slice(0,-2))+cardWidth_rentabilidad)+'px';  // 100px
   }
