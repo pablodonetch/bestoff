@@ -362,7 +362,19 @@
   let sliderContainer_rentabilidad = document.getElementById('sliderContainer_rentabilidad');
   let slider_rentabilidad = document.getElementById('slider_rentabilidad');
   let cards_rentabilidad = slider_rentabilidad.getElementsByTagName('li');
-  let elementsToShow = 4;
+  var windowWidth = window.innerWidth;
+  var elementsToShow = 4;
+  if(windowWidth<800 && windowWidth>=520){
+    elementsToShow = 3;
+    console.log('3');
+  } else if (windowWidth<520 && windowWidth>=400) {
+    elementsToShow = 2;
+    console.log('2');
+  } else if (windowWidth<400){
+    elementsToShow = 1;
+    console.log('1');
+  }
+
   let sliderContainerWidth_rentabilidad = sliderContainer_rentabilidad.clientWidth;
   let cardWidth_rentabilidad = sliderContainerWidth_rentabilidad/elementsToShow;
   
