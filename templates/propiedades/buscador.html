@@ -10,84 +10,31 @@
   <div class="text-white">
     <h3 class='text-xl sm:text-3xl'>Busca Inversiones Inmobiliarias como nunca antes lo habías hecho.</h3>
   </div>
-
-  <form class='my-4' action="" method="GET">
-    
-    <div class="grid grid-cols-12 mt-5">
-
-      <input type="text" name="Comuna" id="Comuna" class="col-span-12 lg:col-span-3 mr-1 my-2 rounded-md bg-gray-50 border border-gray-300 text-gray-900 text-sm sm:text-base focus:ring-orange-500 focus:border-orange-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-orange-500 dark:focus:border-orange-500" placeholder=" Ingrese la Comuna..."/>
-
-
-      <select name="precio" id="precio" class="col-span-6 lg:col-span-2 mx-1 my-2 rounded-md bg-gray-50 border border-gray-300 text-gray-900 text-sm sm:text-base focus:ring-orange-500 focus:border-orange-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-orange-500 dark:focus:border-orange-500">
-        <option value="10000000" selected="selected">Precio Máx $</option> 
-        <option value="2000">2.000 UF</option>
-        <option value="2500">2.500 UF</option>
-        <option value="3000">3.000 UF</option>
-        <option value="3500">3.500 UF</option>
-        <option value="4000">4.000 UF</option>
-        <option value="5000">5.000 UF</option>
-        <option value="7500">7.500 UF</option>
-        <option value="10000">10.000 UF</option>
-        <option value="15000">15.000 UF</option>
-        <option value="10000000">Sin Máximo</option>  
-      </select>
-
-      <select name="rentabilidad" id="rentabilidad" class="col-span-6 lg:col-span-2 mx-1 my-2 rounded-md bg-gray-50 border border-gray-300 text-gray-900 text-sm sm:text-base focus:ring-orange-500 focus:border-orange-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-orange-500 dark:focus:border-orange-500">
-        <option value="0" selected="selected">Rent. Anual Mín %</option> 
-        <option value="1">1 %</option>
-        <option value="2">2 %</option>
-        <option value="3">3 %</option>
-        <option value="4">4 %</option>
-        <option value="5">5 %</option>
-        <option value="6">6 %</option>
-        <option value="7">7 %</option>
-        <option value="8">8 %</option>
-        <option value="9">9 %</option>
-        <option value="10">10 %</option>
-      </select>
-      
-      <select name="plusvalia" id="plusvalia" class="col-span-6 lg:col-span-2 mx-1 my-2 rounded-md bg-gray-50 border border-gray-300 text-gray-900 text-sm sm:text-base focus:ring-orange-500 focus:border-orange-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-orange-500 dark:focus:border-orange-500">
-        <option value="0" selected="selected">Plusvalía Mín %</option> 
-        <option value="5">5 %</option>
-        <option value="10">10 %</option>
-        <option value="15">15 %</option>
-        <option value="20">20 %</option>
-        <option value="25">25 %</option>
-        <option value="30">30 %</option>
-        <option value="35">35 %</option>
-        <option value="40">40 %</option>
-        <option value="45">45 %</option>
-        <option value="50">Más de 50 %</option>
-      </select>
-
-      <select name="bancaria" id="bancaria" class="col-span-6 lg:col-span-2 mx-1 my-2 rounded-md bg-gray-50 border border-gray-300 text-gray-900 text-sm sm:text-base focus:ring-orange-500 focus:border-orange-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-orange-500 dark:focus:border-orange-500">
-        <option value="False" selected="selected">No Bancaria</option> 
-        <option value="True">Propiedad Bancaria</option>
-      </select>
-
-      <button type="button" onclick="buscador();" id="boton-busqueda-portada" class=" boton-busqueda-portada col-span-12 lg:col-span-1 ml-1 my-2 flex top-0 right-0 p-2.5 text-sm sm:text-base font-medium text-white rounded-md border border-orange-700">
-        <span class="pl-1">Buscar</span>
-      </button>
+    <!--Formulario de Búsqueda Alternativo-->
+    <div>
+      <form name="form_buscar" method="post" action="{{ request.get_full_path }} ">
+        {% csrf_token %}
+        <div class="grid grid-cols-12 mt-5">
+          {{formulario_buscar.comuna}}
+          {{formulario_buscar.contrato_vigente}} <label for="id_contrato_vigente" class="col-span-12 lg:col-span-4 rounded-md my-2 p-2.5">&nbsp&nbspContrato Arriendo Vigente</label>
+          <button type="button" onclick="buscador();" id="boton-busqueda-portada" class=" boton-busqueda-portada col-span-12 lg:col-span-1 ml-1 my-2 flex top-0 right-0 p-2.5 text-sm sm:text-base font-medium text-white rounded-md border border-orange-700">
+            <span class="pl-1">Buscar</span>
+          </button>
+        </div>
+      </form>
     </div>
-  </form>
+  
 </div>
 
 <!-- Titulo de la página   -->
 <div class="my-4 max-w-4xl mx-2 sm:mx-auto">
   <h1 class="sm:text-lg text-lg font-medium title-font mb-4 text-gray-900">Resultado para: 
-    <span class="text-red-400  font-bold">{% if bancaria == 'True' %}Propiedad Bancaria{%else%}Porpiedad No Bancaria{%endif%}</span>
-    {% if precio_max|floatformat:"0" < "10000000" %}de <span class="text-red-400  font-bold">Precio Máx. {{precio_max|numberFormat}} UF </span>{%endif%}
-    en <span class="text-red-400 font-bold">{{Comuna|capfirst}}</span>
-    {% if rentabilidad|floatformat:"0" > "0" %} con <span class="text-red-400 font-bold">Rentabilidad mayor o igual a {{rentabilidad}},0%</span> {%endif%}
-    {% if plusvalia|floatformat:"0" > "0" %}y con <span class="text-red-400 font-bold">Plusvalía mayor o igual a {{plusvalia}},0%</span>{%endif%}.
+    <span class="text-red-400  font-bold">{{Comuna}}</span>
   </h1>
 </div>
 <!-- GRid de REsultados -->
 <div class="grid gap-2 grid-cols-1 sm:grid-cols-3 my-4 max-w-4xl mx-2 sm:mx-auto">
   {% for propiedad in propiedades %}
-  {% if rentabilidades.0|accede_diccionario:propiedad.id|floatformat:"-1" >= rentabilidad|floatformat:"-1" %}
-  {% if plusvalias.0|accede_diccionario:propiedad.id|floatformat:"-1" >= plusvalia|floatformat:"-1" %}
-  {% if propiedad.propiedad_bancaria|yesno:"True,False,none" == bancaria %}
   <div class="static rounded-2xl">
       <div class="relative pb-1 overflow-hidden rounded-t-lg">
         <div id="z-10 controls-carousel" class="relative" data-carousel="static">
@@ -117,7 +64,7 @@
         </div>
       </div>
       <!--Los IF de los -->
-      <a href="propiedades/detalles/{{propiedad.id}}/{{propiedad.comuna.comuna.split|join:"-"}}-{{propiedad.direccion.split|join:"-"}}" class="c-card block bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden">  
+      <a href="../detalles/0/{{propiedad.id}}/{{propiedad.comuna.comuna.split|join:"-"}}-{{propiedad.direccion.split|join:"-"}}" class="c-card block bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden">  
         {% if propiedad.propiedad_bancaria == True %}
         <div class="">
           <div class="flex py-1 detalle-rentabilidad  rounded-md border-solid border-slate-100 min-w-sm gallery-item-detalle">
@@ -160,9 +107,6 @@
         </div>
       </a>
     </div>
-    {% endif %}
-    {% endif %}
-    {% endif %}
   {% endfor %}
 </div>
 

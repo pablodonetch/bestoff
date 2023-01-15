@@ -566,16 +566,17 @@
           </div>
           <div class="col my-2">
             <div class="grid grid-cols-1">
-              <div class="row">
+              <!--Aceptan Ofertas-->
+              <!--<div class="row">
                 <h3 class="text-gray-900 text-md font-bold">Aceptan Ofertas</h3>
               </div>
               <div class="row">
-                <h3 class="text-gray-900 sm:text-xl font-normal mb-2">{{propiedad.aceptan_ofertas}}</h3>
+                <h3 class="text-gray-900 sm:text-xl font-normal mb-2">{% if propiedad.aceptan_oferta == True %} Si{%endif%}{% if propiedad.aceptan_oferta == False %} No{%endif%}<</h3>
               </div>
             </div>
           </div>
           <div class="col my-2">
-            <div class="grid grid-cols-1">
+            <div class="grid grid-cols-1">-->
               <div class="row">
                 <h3 class="text-gray-900 text-md font-bold">Tasación Comercial</h3>
               </div>
@@ -596,7 +597,8 @@
           </div>
         </div>
       </div>
-      <div class= "col-span-5">
+      <!--Arriendos Min Max y Rentabilidad Min Max-->
+      <!--<div class= "col-span-5">
         <div class="grid grid-cols-2 mt-0 sm:my-2">
           <div class="col my-2">
             <div class="grid grid-cols-1">
@@ -640,7 +642,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </div>-->
       </div>
     </div>
     {% endif %}

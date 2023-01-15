@@ -3,7 +3,13 @@ function buscador(){
     {
         return false;
     }
-    window.location="/propiedades/buscador?buscar="+document.getElementById('Comuna').value+"-"+document.getElementById('precio').value+"-"+document.getElementById('rentabilidad').value+"-"+document.getElementById('plusvalia').value+"-"+document.getElementById('bancaria').value;
+    var contrato = document.getElementById('id_contrato_vigente');
+    var contrato_vigente= false;
+    if (contrato.checked==true){
+        contrato_vigente=true;
+    }
+    /*window.location="/propiedades/buscador?buscar="+document.getElementById('Comuna').value+"-"+document.getElementById('precio').value+"-"+document.getElementById('rentabilidad').value+"-"+document.getElementById('plusvalia').value+"-"+document.getElementById('bancaria').value;*/
+    window.location="/propiedades/buscador?buscar="+document.getElementById('Comuna').value+'&&contrato='+contrato_vigente;
 }
 
 function soloNumeros(evt) {

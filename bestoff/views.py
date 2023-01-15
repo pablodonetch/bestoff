@@ -8,7 +8,7 @@ from core.models import *
 from bestoff.forms import *
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 
-UF=34500 #CAMBIAR UF ACÁ
+UF=35200 #CAMBIAR UF ACÁ
 
 def home(request):
     propiedades = Propiedad.objects.all()
@@ -20,6 +20,7 @@ def home(request):
     formulario_vender='0'
     diccionario_imagenes=[]
     diccionario_imagenes.append({})
+    form_buscar=formulario_buscar()
     if request.method == 'POST':
         form_contacto = formulario_contacto(request.POST)
         if form_contacto.is_valid():
@@ -44,6 +45,7 @@ def home(request):
         'plusvalia': plusvalia,
         'form_contacto': form_contacto,
         'formulario_vender':formulario_vender,
+        'formulario_buscar':form_buscar,
     }
     return render(request, 'pages/index.html', context)
 

@@ -7,7 +7,7 @@ from funcionespy import *
 from bestoff.forms import *
 from math import ceil
 
-UF=34500 #CAMBIAR UF ACÁ
+UF=35200 #CAMBIAR UF ACÁ
 tasa_hip_inicial=0.045
 
 def propiedades_inicio(request):
@@ -159,7 +159,23 @@ def propiedades_detalles(request,oferta_enviada, id, slug ):
 
     return render(request, 'propiedades/detalles.html', context )
 
+
 def buscador(request):
+    comuna=request.GET.get('buscar')
+    contrato=request.GET.get('contrato')
+    propiedades= Propiedad.objects.filter(comuna__comuna__icontains=comuna_sinacentos(comuna.strip()) )
+    form_buscar=formulario_buscar()
+    images = Image.objects.all()
+    context={
+        'propiedades': propiedades, 
+        'images': images, 
+        'Comuna': comuna,
+        'formulario_buscar':form_buscar,
+    }
+    return render(request, 'propiedades/buscador.html', context)
+
+
+def buscador_BORRAR(request):
     arreglo=request.GET.get('buscar').split('-')
     propiedades= Propiedad.objects.filter(comuna__comuna__icontains=comuna_sinacentos(arreglo[0].strip()), precio__lte=arreglo[1] )
     images = Image.objects.all()

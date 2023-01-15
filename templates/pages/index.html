@@ -2,9 +2,50 @@
 {% load static %}{% load utilidades %}
 {% block title %}  {% endblock title %}
 
-{% block extra_head %}<title>BESTOFF - Oportunidades Inmobiliarias para todos.</title> {% endblock extra_head %}
+{% block extra_head %}<title>BESTOFF - Oportunidades Inmobiliarias para todos.</title> 
+<style>
+  input[type="checkbox"] + label:before {
+    content: "";
+    width: 26px;
+    height: 26px;
+    float: left;
+    margin: 0 0 0 0;
+    border: 2px solid #ccc;
+    background: #fff;
+  }
+  input[type="checkbox"]:checked + label:before {
+    border-color: #ff5726;
+  }
+  input[type="checkbox"]:checked + label:after {
+    content: "";
+    width: 20px;
+    height: 12px;
+    border: 5px solid #ff5726;
+    float: left;
+    margin-left: -1.50em;
+    border-right: 0;
+    border-top: 0;
+    margin-top: 0.40em;
+    transform: rotate(-55deg);
+  }
+  input[type="checkbox"] {
+    display: none;
+  }
+  input[type="checkbox"] + label {
+      font-weight: bold;
+      /*line-height: 3em;*/
+      color: #ccc;
+      cursor: pointer;
+  }
+  input[type="checkbox"]:checked + label {
+      /*color: #ff5726;*/
+      background: #ff592650;
+  }
+  </style>
+{% endblock extra_head %}
 
 {% block content %} 
+
 <!--Navbar de Portada-->
 <div class='show_bg' style="background-image: linear-gradient(to top, rgb(255, 255, 255, 1) 0%, rgba(255, 86, 39, 0.8) 70%,rgba(255, 86, 39, .95) 80%, rgba(255, 86, 39, 1) 100%),  url('{% static "imagenes/bg_portada.jpg" %}');">
   <div class="flex items-center justify-between">
@@ -46,66 +87,28 @@
   </div>
 </div>
 <!--Formulario d Búsqueda-->
+
 <div class='busqueda max-w-6xl mx-auto rounded-xl px-5 py-4 bg-red-800/60 mt-7'>
   <div class="text-white">
     <h3 class='text-xl sm:text-3xl'>Busca Inversiones Inmobiliarias como nunca antes lo habías hecho.</h3>
   </div>
-
-  <form class='my-4' action="" method="GET">
-    
-    <div class="grid grid-cols-12 mt-5">
-
-      <input type="text" name="Comuna" id="Comuna" class="col-span-12 lg:col-span-5 mr-1 my-2 rounded-md bg-gray-50 border border-gray-300 text-gray-900 text-sm sm:text-base focus:ring-orange-500 focus:border-orange-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-orange-500 dark:focus:border-orange-500" placeholder=" Ingresa la Comuna..."/>
-
-
-      <select name="precio" id="precio" class="col-span-12 lg:col-span-2 mx-1 my-2 rounded-md bg-gray-50 border border-gray-300 text-gray-900 text-sm sm:text-base focus:ring-orange-500 focus:border-orange-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-orange-500 dark:focus:border-orange-500">
-        <option value="10000000" selected="selected">Precio Máx $</option> 
-        <option value="2000">2.000 UF</option>
-        <option value="2500">2.500 UF</option>
-        <option value="3000">3.000 UF</option>
-        <option value="3500">3.500 UF</option>
-        <option value="4000">4.000 UF</option>
-        <option value="5000">5.000 UF</option>
-        <option value="7500">7.500 UF</option>
-        <option value="10000">10.000 UF</option>
-        <option value="15000">15.000 UF</option>
-        <option value="10000000">Sin Máximo</option>  
-      </select>
-
-      <select name="rentabilidad" id="rentabilidad" class="col-span-6 lg:col-span-2 mx-1 my-2 rounded-md bg-gray-50 border border-gray-300 text-gray-900 text-sm sm:text-base focus:ring-orange-500 focus:border-orange-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-orange-500 dark:focus:border-orange-500">
-        <option value="0" selected="selected">Rent. Anual Mín %</option> 
-        <option value="1">1 %</option>
-        <option value="2">2 %</option>
-        <option value="3">3 %</option>
-        <option value="4">4 %</option>
-        <option value="5">5 %</option>
-        <option value="6">6 %</option>
-        <option value="7">7 %</option>
-        <option value="8">8 %</option>
-        <option value="9">9 %</option>
-        <option value="10">10 %</option>
-      </select>
-      
-      <select name="plusvalia" id="plusvalia" class="col-span-6 lg:col-span-2 mx-1 my-2 rounded-md bg-gray-50 border border-gray-300 text-gray-900 text-sm sm:text-base focus:ring-orange-500 focus:border-orange-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-orange-500 dark:focus:border-orange-500">
-        <option value="0" selected="selected">Plusvalía Mín %</option> 
-        <option value="5">5 %</option>
-        <option value="10">10 %</option>
-        <option value="15">15 %</option>
-        <option value="20">20 %</option>
-        <option value="25">25 %</option>
-        <option value="30">30 %</option>
-        <option value="35">35 %</option>
-        <option value="40">40 %</option>
-        <option value="45">45 %</option>
-        <option value="50">Más de 50 %</option>
-      </select>
-
-      <button type="button" onclick="buscador();" id="boton-busqueda-portada" class=" boton-busqueda-portada col-span-12 lg:col-span-1 ml-1 my-2 flex top-0 right-0 p-2.5 text-sm sm:text-base font-medium text-white rounded-md border border-orange-700">
-        <span class="pl-1">Buscar</span>
-      </button>
-    </div>
-  </form>
+  <!--Formulario de Búsqueda Alternativo-->
+  <div>
+    <form name="form_buscar" method="post" action="{{ request.get_full_path }} ">
+      {% csrf_token %}
+      <div class="grid grid-cols-12 mt-5">
+        {{formulario_buscar.comuna}}
+        {{formulario_buscar.contrato_vigente}} <label for="id_contrato_vigente" class="col-span-12 lg:col-span-4 rounded-md my-2 p-2.5">&nbsp&nbspContrato Arriendo Vigente</label>
+        <button type="button" onclick="buscador();" id="boton-busqueda-portada" class=" boton-busqueda-portada col-span-12 lg:col-span-1 ml-1 my-2 flex top-0 right-0 p-2.5 text-sm sm:text-base font-medium text-white rounded-md border border-orange-700">
+          <span class="pl-1">Buscar</span>
+        </button>
+      </div>
+    </form>
+  </div>
 </div>
+
+
+
 
 <!--Sección: El Mejor Marketing de Chile-->
 <section class="text-gray-600 body-font">
@@ -117,10 +120,10 @@
               <svg xmlns="http://www.w3.org/2000/svg" id="Capa_1" enable-background="new 0 0 511.998 511.998" height="50" viewBox="0 0 511.998 511.998" width="50">
                 <g><path d="m420.617 57.983c-3.355-2.426-8.044-1.673-10.472 1.684-2.427 3.357-1.673 8.045 1.685 10.472 34.544 24.974 55.168 65.295 55.168 107.861 0 73.336-59.663 133-133 133s-133-59.664-133-133 59.663-133 133-133c16.79 0 33.153 3.085 48.635 9.171 3.855 1.516 8.209-.381 9.725-4.236 1.515-3.855-.382-8.208-4.236-9.724-17.239-6.775-35.448-10.211-54.124-10.211-81.607 0-148 66.393-148 148s66.393 148 148 148 148-66.393 148-148c0-47.365-22.947-92.231-61.381-120.017zm-2.666 110.24c7.185-4.488 11.475-12.225 11.475-20.697 0-9.259-5.376-17.866-13.696-21.928l-74.055-36.155c-4.878-2.38-10.475-2.381-15.354 0l-74.054 36.155c-8.32 4.062-13.696 12.669-13.696 21.928 0 8.472 4.29 16.208 11.475 20.697 4.295 2.683 9.18 3.915 14.041 3.687l10.077 81.42h-6.519c-4.143 0-7.5 3.358-7.5 7.5s3.357 7.5 7.5 7.5h132.709c4.143 0 7.5-3.358 7.5-7.5s-3.357-7.5-7.5-7.5h-6.519l10.077-81.414c4.894.234 9.735-1.004 14.039-3.693zm-71.486 85.107h-24.934v-39.933h24.934zm32.253 0h-17.254v-43.433c0-6.341-5.159-11.5-11.5-11.5h-31.934c-6.341 0-11.5 5.159-11.5 11.5v43.433h-17.254l-10.678-86.278 55.399-27.047 55.399 27.047zm-39.236-127.339c-3.486-1.702-7.483-1.702-10.968 0l-61.417 29.985c-2.978 1.454-6.296 1.281-9.106-.475-2.81-1.755-4.421-4.661-4.421-7.974 0-3.567 2.071-6.884 5.277-8.449l74.053-36.154c.699-.34 1.499-.34 2.196 0l74.054 36.155c3.205 1.565 5.276 4.881 5.276 8.449 0 3.313-1.611 6.219-4.421 7.975-2.812 1.754-6.13 1.927-9.106.474zm-5.484-125.991c-98.149 0-178 79.851-178 178 0 22.684 4.273 44.386 12.043 64.355-12.352 13.964-18.788 31.895-17.976 50.701l-123.457 95.81c-15.587 12.099-25.236 30.333-26.473 50.028-1.238 19.698 6.055 39 20.01 52.96 13.986 13.992 33.337 21.241 52.958 20.008 19.694-1.237 37.929-10.886 50.029-26.474l38.156-49.166c2.54-3.272 1.946-7.984-1.327-10.523-3.271-2.538-7.983-1.944-10.523 1.327l-38.155 49.165c-9.461 12.188-23.72 19.733-39.12 20.701-15.399.964-30.498-4.735-41.411-15.645-10.911-10.916-16.614-26.01-15.646-41.413.968-15.4 8.513-29.659 20.7-39.119l117.002-90.802c6.836 23.721 25.555 42.44 49.276 49.276l-31.214 40.221c-2.54 3.272-1.946 7.983 1.327 10.523 3.25 2.522 7.968 1.965 10.523-1.327l36.222-46.674c18.69.779 36.816-5.638 50.701-17.976 19.969 7.77 41.671 12.043 64.354 12.043 98.149 0 178-79.851 178-178s-79.85-177.999-177.999-177.999zm-112.01 347.01c-31.43 0-57-25.57-57-57 0-11.674 3.48-22.786 9.944-32.186 17.208 34.151 45.091 62.034 79.242 79.242-9.4 6.464-20.512 9.944-32.186 9.944zm112.01-6.01c-89.878 0-163-73.122-163-163s73.122-163 163-163c89.879 0 163 73.122 163 163s-73.121 163-163 163z"/></g>
               </svg>
-              <h2 class="ml-3 text-left text-lg font-bold text-gray-900">Encuentra tu Inversión Inmobiliaria</h2>
+              <h2 class="ml-3 text-left text-lg font-bold text-gray-900">Encuentra tu inversión inmobiliaria</h2>
             </div>
             <div>
-              <p class="hidden sm:block mt-1 leading-relaxed text-sm text-justify">Busca y filtra los inmuebles ubicación, precio de, venta por rentabilidad o por si tienen con arriendo vigente.</p>
+              <p class="hidden sm:block mt-1 leading-relaxed text-sm text-justify">Busca en un amplia cartera de inmuebles, filtrando por comuna    y propiedades con contrato de arriendo vigente.</p>
             </div>
           </div>
         </div>
@@ -164,19 +167,14 @@
                   <path d="m60 330h105v30h-105z"/>
                 </g>
               </svg>
-              <h2 class="ml-3 text-left text-lg font-bold text-gray-900">Paga el Pie con tu Tarjeta de Crédito</h2>
+              <h2 class="ml-3 text-left text-lg font-bold text-gray-900">Paga el pie con tu tarjeta de crédito</h2>
             </div>
             <div>
               <p class="hidden sm:block  mt-1 leading-relaxed text-sm text-justify">Aprovecha las facilidades que ponemos a tu disposición y paga el pie con tu tarjeta de crédito en tantas cuotas como lo permita tu banco.</p>
             </div>
           </div>
         </div>
-
-
-
-
       </div>
-    
   </div>
 </section>
 
@@ -245,7 +243,6 @@
       {% endfor %}
       </ul>
     </div>
-
     <div class="w-1/12 flex items-center">
       <div class="w-full">
         <button onclick="next_rentabilidad()" class="p-3 rounded-full bg-white border border-gray-100 shadow-lg">
@@ -366,18 +363,18 @@
   var elementsToShow = 4;
   if(windowWidth<800 && windowWidth>=520){
     elementsToShow = 3;
-    console.log('3');
   } else if (windowWidth<520 && windowWidth>=400) {
     elementsToShow = 2;
-    console.log('2');
   } else if (windowWidth<400){
     elementsToShow = 1;
-    console.log('1');
   }
 
   let sliderContainerWidth_rentabilidad = sliderContainer_rentabilidad.clientWidth;
   let cardWidth_rentabilidad = sliderContainerWidth_rentabilidad/elementsToShow;
-  var margen_estilo=0
+  var margen_estilo=0;
+  if (windowWidth<400){
+    margen_estilo=10;
+  }
   slider_rentabilidad.style.width = (cards_rentabilidad.length*cardWidth_rentabilidad-margen_estilo)+'px';
   slider_rentabilidad.style.transition= 'margin' ;
   slider_rentabilidad.style.transitionDuration='1s';

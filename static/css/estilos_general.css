@@ -5,6 +5,15 @@
     z-index: 99;
   }
 
+input[type="checkbox"] + label {
+    font-weight: bold;
+    line-height: 3em;
+    color: #ccc;
+    cursor: pointer;
+}
+input[type="checkbox"]:checked + label {
+    color: #0fbf12;
+}
 
 
 .show_bg {
