@@ -1,47 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}{% load utilidades %}
-{% block title %}  {% endblock title %}
-
 {% block extra_head %}<title>BESTOFF - Oportunidades Inmobiliarias para todos.</title> 
-<style>
-  input[type="checkbox"] + label:before {
-    content: "";
-    width: 26px;
-    height: 26px;
-    float: left;
-    margin: 0 0 0 0;
-    border: 2px solid #ccc;
-    background: #fff;
-  }
-  input[type="checkbox"]:checked + label:before {
-    border-color: #ff5726;
-  }
-  input[type="checkbox"]:checked + label:after {
-    content: "";
-    width: 20px;
-    height: 12px;
-    border: 5px solid #ff5726;
-    float: left;
-    margin-left: -1.50em;
-    border-right: 0;
-    border-top: 0;
-    margin-top: 0.40em;
-    transform: rotate(-55deg);
-  }
-  input[type="checkbox"] {
-    display: none;
-  }
-  input[type="checkbox"] + label {
-      font-weight: bold;
-      /*line-height: 3em;*/
-      color: #ccc;
-      cursor: pointer;
-  }
-  input[type="checkbox"]:checked + label {
-      /*color: #ff5726;*/
-      background: #ff592650;
-  }
-  </style>
 {% endblock extra_head %}
 
 {% block content %} 
