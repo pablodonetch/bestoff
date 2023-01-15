@@ -17,14 +17,13 @@
         {% csrf_token %}
         <div class="grid grid-cols-12 mt-5">
           {{formulario_buscar.comuna}}
-          {{formulario_buscar.contrato_vigente}} <label for="id_contrato_vigente" class="col-span-12 lg:col-span-4 rounded-md my-2 p-2.5">&nbsp&nbspContrato Arriendo Vigente</label>
-          <button type="button" onclick="buscador();" id="boton-busqueda-portada" class=" boton-busqueda-portada col-span-12 lg:col-span-1 ml-1 my-2 flex top-0 right-0 p-2.5 text-sm sm:text-base font-medium text-white rounded-md border border-orange-700">
+          {{formulario_buscar.contrato_vigente}} <label for="id_contrato_vigente" class="col-span-12 md:col-span-4 rounded-md my-2 p-2.5">&nbsp&nbspContrato Arriendo Vigente</label>
+          <button type="button" onclick="buscador();" id="boton-busqueda-portada" class=" boton-busqueda-portada col-span-12 md:col-span-1 ml-1 my-2 flex top-0 right-0 p-2.5 text-sm sm:text-base font-medium text-white rounded-md border border-orange-700">
             <span class="pl-1">Buscar</span>
           </button>
         </div>
       </form>
     </div>
-  
 </div>
 
 <!-- Titulo de la página   -->
@@ -43,24 +42,22 @@
             <div class="relative h-56 overflow-hidden">
               {% for image in images  %}
                 {% if image.id_propiedades.id == propiedad.id %}
-                    <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                      <img src="{{ image.image.url }}" class="absolute block w-full sm:h-full sm:w-auto  -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+                  {% if image.default == True %}
+                    <div class="relative">
+                      <img src="{{ image.image.url }}" class="" alt="...">
+                      {% if rentabilidades.0|accede_diccionario:propiedad.id > 0.1 %}
+                        <div class="flex absolute min-w-full bg-black bottom-3 left-1/2 -translate-x-1/2 bg-opacity-50">
+                          <svg class="mx-2" height="18" width="18">
+                            <circle cx="9" cy="9" r="5" stroke="green" stroke-width="0" fill="green" />
+                          </svg>  
+                          <p class="text-xs mr-2 font-bold text-white">ARRIENDO VIGENTE</p>
+                        </div>
+                     {% endif %}
                     </div>
+                  {% endif %}
                 {% endif %}
               {% endfor %}
               <!-- Slider controls -->
-            <button type="button" class="absolute top-0 left-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-prev>
-              <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
-                  <svg aria-hidden="true" class="w-6 h-6 text-white dark:text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
-                  <span class="sr-only">Previous</span>
-              </span>
-            </button>
-            <button type="button" class="absolute top-0 right-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-next>
-              <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
-                <svg aria-hidden="true" class="w-6 h-6 text-white dark:text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-                  <span class="sr-only">Next</span>
-              </span>
-            </button>
           </div>
         </div>
       </div>

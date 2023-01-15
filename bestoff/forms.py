@@ -4,7 +4,7 @@ from django.core import validators
 class formulario_buscar(forms.Form):
 	contrato_vigente = forms.BooleanField(required=True, )
 	comuna=forms.CharField(required=True,
-		widget=forms.TextInput(attrs={'class':'col-span-12 lg:col-span-7 mr-1 my-2 rounded-md bg-gray-50 border border-gray-300 text-gray-900 text-sm sm:text-base focus:ring-orange-500 focus:border-orange-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-orange-500 dark:focus:border-orange-500','id':'Comuna', 'placeholder':'Ingresa la Comuna...'}))
+		widget=forms.TextInput(attrs={'class':'col-span-12 md:col-span-7 mr-1 my-2 rounded-md bg-gray-50 border border-gray-300 text-gray-900 text-sm sm:text-base focus:ring-orange-500 focus:border-orange-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-orange-500 dark:focus:border-orange-500','id':'Comuna', 'placeholder':'Ingresa la Comuna...'}))
 
 
 class formulario_contacto(forms.Form):

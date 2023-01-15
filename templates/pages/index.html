@@ -31,7 +31,6 @@
       </div></a>
     </div>
   </div>
-  
   <!---->
   <div class='grid grid-cols-5 max-w-6xl mx-auto mt-1 sm:mt-5'>
     <div class='col-span-5 lg:col-span-3'>
@@ -46,7 +45,6 @@
   </div>
 </div>
 <!--Formulario d Búsqueda-->
-
 <div class='busqueda max-w-6xl mx-auto rounded-xl px-5 py-4 bg-red-800/60 mt-7'>
   <div class="text-white">
     <h3 class='text-xl sm:text-3xl'>Busca Inversiones Inmobiliarias como nunca antes lo habías hecho.</h3>
@@ -57,17 +55,14 @@
       {% csrf_token %}
       <div class="grid grid-cols-12 mt-5">
         {{formulario_buscar.comuna}}
-        {{formulario_buscar.contrato_vigente}} <label for="id_contrato_vigente" class="col-span-12 lg:col-span-4 rounded-md my-2 p-2.5">&nbsp&nbspContrato Arriendo Vigente</label>
-        <button type="button" onclick="buscador();" id="boton-busqueda-portada" class=" boton-busqueda-portada col-span-12 lg:col-span-1 ml-1 my-2 flex top-0 right-0 p-2.5 text-sm sm:text-base font-medium text-white rounded-md border border-orange-700">
+        {{formulario_buscar.contrato_vigente}} <label for="id_contrato_vigente" class="col-span-12 md:col-span-4 rounded-md my-2 p-2.5">&nbsp&nbspContrato Arriendo Vigente</label>
+        <button type="button" onclick="buscador();" id="boton-busqueda-portada" class=" boton-busqueda-portada col-span-12 md:col-span-1 ml-1 my-2 flex top-0 right-0 p-2.5 text-sm sm:text-base font-medium text-white rounded-md border border-orange-700">
           <span class="pl-1">Buscar</span>
         </button>
       </div>
     </form>
   </div>
 </div>
-
-
-
 
 <!--Sección: El Mejor Marketing de Chile-->
 <section class="text-gray-600 body-font">
@@ -145,10 +140,6 @@
     <h3 class="text-slate-600 text-lg sm:text-xl mt-5">Recibe rentas desde el primer día.</h2>
   </div>
 </div>
-
-<!--Grid de Propiedades con Excelente Rentabilidad-->
-
-
 <!--Carrusel de Propiedaded con Alta Rentabilidad-->
 <section class="mt-3 max-w-5xl mx-auto">
   <div class="flex">
@@ -161,7 +152,6 @@
         </button>
       </div>
     </div>
-
     <div id="sliderContainer_rentabilidad" class="w-10/12 overflow-hidden">
       <ul id="slider_rentabilidad" class="flex w-full ">
       {% for propiedad in propiedades %}
