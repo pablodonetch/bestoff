@@ -26,89 +26,110 @@
     </div>
 </div>
 
+<!--Ordenar por-->
+<div class="flex my-4 max-w-4xl mx-2 sm:mx-auto">
+  <h2 class="text-sm font-medium title-font mb-4 text-gray-900">Ordenar por:   </h2>
+  <a href='../buscador/?buscar={{Comuna}}&&contrato={{contrato}}&&rentabilidad=true&&plusvalia=false'>
+    <div id='mejor_rentabilidad' class="flex">
+      <span>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 17.25L12 21m0 0l-3.75-3.75M12 21V3" />
+        </svg>      
+      </span>
+      <span class="text-sm text-red-400 font-bold">Mejor Rentabilidad</span>
+    </div>
+  </a>
+  <a href='../buscador/?buscar={{Comuna}}&&contrato={{contrato}}&&rentabilidad=false&&plusvalia=true'>
+    <div id='mejor_plusvalia' class="flex">
+    
+        <span>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 17.25L12 21m0 0l-3.75-3.75M12 21V3" />
+        </svg>      
+      </span>
+      <span class="text-sm text-red-400 font-bold">Mejor Plusvalia</span>
+    </div>
+  </a>
+</div>
 <!-- Titulo de la página   -->
 <div class="my-4 max-w-4xl mx-2 sm:mx-auto">
   <h1 class="sm:text-lg text-lg font-medium title-font mb-4 text-gray-900">Resultado para: 
     <span class="text-red-400  font-bold">{{Comuna}}</span>
   </h1>
 </div>
-<!-- GRid de REsultados -->
+
+<!-- GRid de REsultados con Propiedades Diccionario -->
 <div class="grid gap-2 grid-cols-1 sm:grid-cols-3 my-4 max-w-4xl mx-2 sm:mx-auto">
-  {% for propiedad in propiedades %}
-  <div class="static rounded-2xl">
-      <div class="relative pb-1 overflow-hidden rounded-t-lg">
-        <div id="z-10 controls-carousel" class="relative" data-carousel="static">
-            <!-- Carousel wrapper -->
-            <div class="relative h-56 overflow-hidden">
-              {% for image in images  %}
-                {% if image.id_propiedades.id == propiedad.id %}
-                  {% if image.default == True %}
-                    <div class="relative">
-                      <img src="{{ image.image.url }}" class="" alt="...">
-                      {% if rentabilidades.0|accede_diccionario:propiedad.id > 0.1 %}
-                        <div class="flex absolute min-w-full bg-black bottom-3 left-1/2 -translate-x-1/2 bg-opacity-50">
-                          <svg class="mx-2" height="18" width="18">
-                            <circle cx="9" cy="9" r="5" stroke="green" stroke-width="0" fill="green" />
-                          </svg>  
-                          <p class="text-xs mr-2 font-bold text-white">ARRIENDO VIGENTE</p>
-                        </div>
-                     {% endif %}
-                    </div>
+  {% for key, value in propiedades_diccionario.items %}
+  <a href="../detalles/0/{{propiedad.id}}/{{propiedad.comuna.comuna.split|join:"-"}}-{{propiedad.direccion.split|join:"-"}}" class="c-card block bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden">  
+    <div class="static rounded-2xl">
+        <div class="relative pb-1 overflow-hidden rounded-t-lg">
+          <div id="z-10 controls-carousel" class="relative" data-carousel="static">
+              <!-- Carousel wrapper -->
+              <div class="relative h-50 overflow-hidden">
+                {% for image in images  %}
+                  {% if image.id_propiedades.id == key %}
+                    {% if image.default == True %}
+                      <div class="relative">
+                        <img src="{{ image.image.url }}" class="" alt="...">
+                        {% if value|accede_diccionario:'rentabilidad' > 0 %}
+                          <div class="flex absolute min-w-full bg-black bottom-3 left-1/2 -translate-x-1/2 bg-opacity-50">
+                            <svg class="mx-2" height="18" width="18">
+                              <circle cx="9" cy="9" r="5" stroke="green" stroke-width="0" fill="green" />
+                            </svg>  
+                            <p class="text-xs mr-2 font-bold text-white">ARRIENDO VIGENTE</p>
+                          </div>
+                      {% endif %}
+                      {% if value|accede_diccionario:'propiedad_bancaria' == True %}
+                      <div class="flex absolute min-w-full bg-black bottom-3 left-1/2 -translate-x-1/2 bg-opacity-50">
+                        <svg class="mx-2" height="18" width="18">
+                          <circle cx="9" cy="9" r="5" stroke="green" stroke-width="0" fill="green" />
+                        </svg>  
+                        <p class="text-xs mr-2 font-bold text-white">PROP-BANCARIA</p>
+                      </div>
+                      {% endif %}
+                      </div>
+                    {% endif %}
                   {% endif %}
-                {% endif %}
-              {% endfor %}
-              <!-- Slider controls -->
+                {% endfor %}
+            </div>
           </div>
         </div>
-      </div>
-      <!--Los IF de los -->
-      <a href="../detalles/0/{{propiedad.id}}/{{propiedad.comuna.comuna.split|join:"-"}}-{{propiedad.direccion.split|join:"-"}}" class="c-card block bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden">  
-        {% if propiedad.propiedad_bancaria == True %}
+        <!--Los IF de los -->
+        {% if value|accede_diccionario:'rentabilidad' > 0 %}
         <div class="">
           <div class="flex py-1 detalle-rentabilidad  rounded-md border-solid border-slate-100 min-w-sm gallery-item-detalle">
             <svg class="mx-4" height="18" width="18">
               <circle cx="9" cy="9" r="5" stroke="green" stroke-width="0" fill="green" />
             </svg>  
-            <p class="text-sm">Propiedad Bancaria</p>
+            <p class="text-sm">UF + {{value|accede_diccionario:'rentabilidad'}} % Rent. Anual</p>
           </div>
         </div>
         {% endif %}
-        {% if rentabilidades.0|accede_diccionario:propiedad.id > 0 %}
-        <div class="">
-          <div class="flex py-1 detalle-rentabilidad  rounded-md border-solid border-slate-100 min-w-sm gallery-item-detalle">
-            <svg class="mx-4" height="18" width="18">
-              <circle cx="9" cy="9" r="5" stroke="green" stroke-width="0" fill="green" />
-            </svg>  
-            <p class="text-sm">UF + {{rentabilidades.0|accede_diccionario:propiedad.id}} % Rent. Anual</p>
-          </div>
-        </div>
-        {% endif %}
-        {% if plusvalias.0|accede_diccionario:propiedad.id > 0 %}
+
+        {% if value|accede_diccionario:'plusvalia' > 0 %}
         <div class="">
           <div class="flex py-1 detalle-rentabilidad  rounded-md border-solid border-slate-100 min-w-sm gallery-item-detalle">
             <svg class="mx-4" height="18" width="18">
               <circle cx="9" cy="9" r="5" stroke="green" stroke-width="0" fill="green" />
             </svg> 
-            <p class="text-sm">{{plusvalias.0|accede_diccionario:propiedad.id}} % de plusvalía inmediata</p>
+            <p class="text-sm">{{value|accede_diccionario:'plusvalia'}} % de plusvalía inmediata</p>
           </div>
         </div>
         {% endif %}      
         <div class="py-1 px-4">
-          <h3 class="mt-0 mb-2 text-2xl font-bold">{{propiedad.comuna.comuna|upper}}</h2>
+          <h3 class="mt-0 mb-2 text-2xl font-bold">{{value|accede_diccionario:'comuna'}}</h2>
         </div>
         <div class="p-2 border-t border-b text-xs text-gray-700">
           <div class="flex justify-between">
-                <div> <span class="text-sm font-semibold">UF </span>&nbsp;<span class="font-bold text-3xl">{{propiedad.precio|numberFormat}}</span></div>
+                <div> <span class="text-sm font-semibold">UF </span>&nbsp;<span class="font-bold text-3xl">{{value|accede_diccionario:'precio'|numberFormat}}</span></div>
                 <button type="submit" class="text-white right-2 bottom-2 bg-orange-700 hover:bg-orange-800 focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-orange-600 dark:hover:bg-orange-700 dark:focus:ring-orange-800">Me interesa</button>
           </div>       
         </div>
-      </a>
-    </div>
+      </div>
+    </a>
   {% endfor %}
 </div>
-
-
-
 
 
 {% endblock content %}

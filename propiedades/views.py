@@ -6,6 +6,7 @@ from bestoff.views import propiedades
 from funcionespy import *
 from bestoff.forms import *
 from math import ceil
+from collections import defaultdict
 
 UF=35200 #CAMBIAR UF ACÁ
 tasa_hip_inicial=0.045
@@ -21,8 +22,6 @@ def propiedades_detalles(request,oferta_enviada, id, slug ):
     propiedades= Propiedad.objects.filter(id=id)
     ofertas=Oferta.objects.filter(propiedad__id=id, aceptada=True).order_by('-fecha')[:2]
     todas_ofertas=Oferta.objects.filter(propiedad__id=id , aceptada=True).order_by('-fecha')
-    rentabilidad_max= float(f'{((propiedades[0].arriendo_maximo*12)/(propiedades[0].precio*UF)*100):.1f}') 
-    rentabilidad_min= float(f'{((propiedades[0].arriendo_minimo*12)/(propiedades[0].precio*UF)*100):.1f}')
     rentabilidad_real= float(f'{((propiedades[0].arriendo_actual*12)/(propiedades[0].precio*UF)*100):.1f}')
     Utilidad= float(f'{((propiedades[0].tasacion_comercial*100/propiedades[0].precio)-100):.1f}')
     images = Image.objects.all()
@@ -128,15 +127,12 @@ def propiedades_detalles(request,oferta_enviada, id, slug ):
         'form_contacto_oferta': form_contacto_oferta,
         'formulario_vender':formulario_vender,
         'formulario_financiero':form_financiero,
-        'rentabilidad_max': rentabilidad_max,
-        'rentabilidad_min': rentabilidad_min,
         'rentabilidad_real': rentabilidad_real,
         'utilidad': Utilidad, 
         'ofertas':ofertas, 
         'todas_ofertas':todas_ofertas,
         'oferta_enviada':oferta_enviada,
         'direccion':f'{propiedades[0].direccion}, {propiedades[0].comuna}',
-
         'costo_compra':costo_compra,
         'costo_estudio':costo_estudio,
         'costo_escritura':costo_escritura,
@@ -163,30 +159,39 @@ def propiedades_detalles(request,oferta_enviada, id, slug ):
 def buscador(request):
     comuna=request.GET.get('buscar')
     contrato=request.GET.get('contrato')
-    propiedades= Propiedad.objects.filter(comuna__comuna__icontains=comuna_sinacentos(comuna.strip()) )
+    rentabilidad=request.GET.get('rentabilidad')
+    plusvalia=request.GET.get('plusvalia')
+    propiedades= Propiedad.objects.filter(comuna__comuna__icontains=comuna_sinacentos(comuna.strip()))
+    propiedades_diccionario=defaultdict(dict)
+    def sort_by_rentabilidad(item):
+        return item[1]['rentabilidad']
+    def sort_by_plusvalia(item):
+        return item[1]['plusvalia']
+    for i in range(0,propiedades.count()):
+        propiedades_diccionario[propiedades[i].id]['comuna']=propiedades[i].comuna.comuna
+        propiedades_diccionario[propiedades[i].id]['precio']=float(f'{propiedades[i].precio}')
+        propiedades_diccionario[propiedades[i].id]['rentabilidad']=(float(f'{((propiedades[i].arriendo_actual*12)/(propiedades[i].precio*UF)*100):.1f}'))
+        propiedades_diccionario[propiedades[i].id]['plusvalia']=(float(f'{((propiedades[i].tasacion_comercial*100/propiedades[i].precio)-100):.1f}'))
+        propiedades_diccionario[propiedades[i].id]['propiedad_bancaria']=propiedades[i].propiedad_bancaria
+    if plusvalia=='true':
+        propiedades_diccionario=dict(sorted(propiedades_diccionario.items(), key=sort_by_plusvalia, reverse=True))
+    if rentabilidad=='true':
+        propiedades_diccionario=dict(sorted(propiedades_diccionario.items(), key=sort_by_rentabilidad, reverse=True))
+    propiedades_diccionario = dict(propiedades_diccionario)
+    print(propiedades_diccionario)
     form_buscar=formulario_buscar()
     images = Image.objects.all()
     context={
         'propiedades': propiedades, 
+        'propiedades_diccionario':propiedades_diccionario,
         'images': images, 
         'Comuna': comuna,
-        'formulario_buscar':form_buscar,
+        'contrato': contrato,
+        'rentabilidad': rentabilidad,
+        'plusvalia': plusvalia,
+        'formulario_buscar': form_buscar,
     }
     return render(request, 'propiedades/buscador.html', context)
-
-
-def buscador_BORRAR(request):
-    arreglo=request.GET.get('buscar').split('-')
-    propiedades= Propiedad.objects.filter(comuna__comuna__icontains=comuna_sinacentos(arreglo[0].strip()), precio__lte=arreglo[1] )
-    images = Image.objects.all()
-    rentabilidades=[]
-    rentabilidades.append({})
-    plusvalias=[]
-    plusvalias.append({})
-    for propiedad in propiedades:
-        rentabilidades[0][propiedad.id]=float(f'{((propiedad.arriendo_actual*12)/(propiedad.precio*UF)*100):.1f}')
-        plusvalias[0][propiedad.id]= float(f'{((1-(propiedad.precio/propiedad.tasacion_comercial))*100):.1f}')
-    return render(request, 'propiedades/buscador.html', {'propiedades': propiedades, 'images': images, 'Comuna': arreglo[0], 'precio_max':arreglo[1], 'rentabilidad':arreglo[2], 'plusvalia':arreglo[3], 'rentabilidades':rentabilidades, 'plusvalias': plusvalias})
 
 def grilla_ciudades(request, ciudad):
     if ciudad=='santiago':
