@@ -16,6 +16,7 @@ urlpatterns = [
     path('propiedades/', include('propiedades.urls'), name="propiedades_individuales"),
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
     path('vender/', vender, name='vender'),
+    path('quehacemos/', quehacemos, name='quehacemos'),
 
 ]
 

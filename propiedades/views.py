@@ -178,7 +178,6 @@ def buscador(request):
     if rentabilidad=='true':
         propiedades_diccionario=dict(sorted(propiedades_diccionario.items(), key=sort_by_rentabilidad, reverse=True))
     propiedades_diccionario = dict(propiedades_diccionario)
-    print(propiedades_diccionario)
     form_buscar=formulario_buscar()
     images = Image.objects.all()
     context={

@@ -4,6 +4,7 @@
     right: 20px;
     z-index: 99;
   }
+
   input[type="checkbox"] + label:before {
     content: "";
     width: 26px;
@@ -65,6 +66,10 @@
 
 .nav-orange{
     background: linear-gradient(to top, rgba(255, 86, 39, 0.6), rgba(255, 86, 39, 1));
+}
+
+.nav-orange-paginas{
+    background:  rgba(255, 86, 39,1);
 }
 
 button.boton-busqueda-portada{

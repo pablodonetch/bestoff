@@ -70,7 +70,6 @@
                     <table class="min-w-full">
                       <tbody>
                         {% for oferta in todas_ofertas %}
-                        
                         <tr class="bg-gray-100 border-b">
                           <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap">
                             {{oferta.fecha|date:"d-m-y"}}
@@ -82,7 +81,6 @@
                             {{oferta.estado}}
                           </td>
                         </tr>
-                        
                         {%endfor%}
                       </tbody>
                     </table>
@@ -251,7 +249,6 @@
 
 <!--Banner Paga Pie con Tarjeta-->
 <div class="max-w-6xl mx-auto rounded-xl mt-5 grid grid-cols-12">
-
   <div class='col-span-12 sm:col-span-6'>
     <div class='h-32' style="background-image: linear-gradient(to right, rgb(255, 255, 255, 0) 5%, rgba(255, 86, 39, 0.4) 30%,rgba(255, 86, 39, .80) 80%, rgba(255, 86, 39, 1) 100%),  url('{% static "imagenes/banner_tarjeta.jpg" %}');">
       <div class=""><p class="sm:hidden pt-5 mr-4 text-white text-4xl text-right font-semibold"> Paga el Pie con Tarjeta de Crédito</p></div>

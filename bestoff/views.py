@@ -93,3 +93,9 @@ def vender(request):
         'contacto_enviado':contacto_enviado,
     }
     return render (request, 'pages/vender.html', context)
+
+def quehacemos(request):
+    context={
+
+    }
+    return render (request, 'pages/que_hacemos.html', context)
