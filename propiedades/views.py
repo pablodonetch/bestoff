@@ -162,17 +162,26 @@ def buscador(request):
     rentabilidad=request.GET.get('rentabilidad')
     plusvalia=request.GET.get('plusvalia')
     propiedades= Propiedad.objects.filter(comuna__comuna__icontains=comuna_sinacentos(comuna.strip()))
+    if contrato=='true':
+        propiedades= Propiedad.objects.filter(comuna__comuna__icontains=comuna_sinacentos(comuna.strip()))
     propiedades_diccionario=defaultdict(dict)
     def sort_by_rentabilidad(item):
         return item[1]['rentabilidad']
     def sort_by_plusvalia(item):
         return item[1]['plusvalia']
     for i in range(0,propiedades.count()):
-        propiedades_diccionario[propiedades[i].id]['comuna']=propiedades[i].comuna.comuna
-        propiedades_diccionario[propiedades[i].id]['precio']=float(f'{propiedades[i].precio}')
-        propiedades_diccionario[propiedades[i].id]['rentabilidad']=(float(f'{((propiedades[i].arriendo_actual*12)/(propiedades[i].precio*UF)*100):.1f}'))
-        propiedades_diccionario[propiedades[i].id]['plusvalia']=(float(f'{((propiedades[i].tasacion_comercial*100/propiedades[i].precio)-100):.1f}'))
-        propiedades_diccionario[propiedades[i].id]['propiedad_bancaria']=propiedades[i].propiedad_bancaria
+        if contrato=='true' and propiedades[i].arriendo_actual>0:
+            propiedades_diccionario[propiedades[i].id]['comuna']=propiedades[i].comuna.comuna
+            propiedades_diccionario[propiedades[i].id]['precio']=float(f'{propiedades[i].precio}')
+            propiedades_diccionario[propiedades[i].id]['rentabilidad']=(float(f'{((propiedades[i].arriendo_actual*12)/(propiedades[i].precio*UF)*100):.1f}'))
+            propiedades_diccionario[propiedades[i].id]['plusvalia']=(float(f'{((propiedades[i].tasacion_comercial*100/propiedades[i].precio)-100):.1f}'))
+            propiedades_diccionario[propiedades[i].id]['propiedad_bancaria']=propiedades[i].propiedad_bancaria
+        if contrato=='false':
+            propiedades_diccionario[propiedades[i].id]['comuna']=propiedades[i].comuna.comuna
+            propiedades_diccionario[propiedades[i].id]['precio']=float(f'{propiedades[i].precio}')
+            propiedades_diccionario[propiedades[i].id]['rentabilidad']=(float(f'{((propiedades[i].arriendo_actual*12)/(propiedades[i].precio*UF)*100):.1f}'))
+            propiedades_diccionario[propiedades[i].id]['plusvalia']=(float(f'{((propiedades[i].tasacion_comercial*100/propiedades[i].precio)-100):.1f}'))
+            propiedades_diccionario[propiedades[i].id]['propiedad_bancaria']=propiedades[i].propiedad_bancaria
     if plusvalia=='true':
         propiedades_diccionario=dict(sorted(propiedades_diccionario.items(), key=sort_by_plusvalia, reverse=True))
     if rentabilidad=='true':
