@@ -155,6 +155,19 @@ def propiedades_detalles(request,oferta_enviada, id, slug ):
 
     return render(request, 'propiedades/detalles.html', context )
 
+def mejores_retornos(request):
+    pass
+
+def mejores_plusvalia(request):
+    pass
+
+def mejores_retornos_santiago(request):
+    pass
+
+def mejores_plusvalia_santiago(request):
+    pass
+
+
 
 def buscador(request):
     comuna=request.GET.get('buscar')

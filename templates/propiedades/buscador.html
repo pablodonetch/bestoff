@@ -61,7 +61,7 @@
 <!-- GRid de REsultados con Propiedades Diccionario -->
 <div class="grid gap-2 grid-cols-1 sm:grid-cols-3 my-4 max-w-4xl mx-2 sm:mx-auto">
   {% for key, value in propiedades_diccionario.items %}
-  <a href="../detalles/0/{{propiedad.id}}/{{propiedad.comuna.comuna.split|join:"-"}}-{{propiedad.direccion.split|join:"-"}}" class="c-card block bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden">  
+  <a href="../detalles/0/{{key}}/{{value|accede_diccionario:'comuna'}}-{{propiedad.direccion.split|join:"-"}}" class="c-card block bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden">  
     <div class="static rounded-2xl">
         <div class="relative pb-1 overflow-hidden rounded-t-lg">
           <div id="z-10 controls-carousel" class="relative" data-carousel="static">
