@@ -1,8 +1,8 @@
 function buscador(){
-    if(document.getElementById('Comuna').value==0)
+    /*if(document.getElementById('Comuna').value==0)
     {
         return false;
-    }
+    }*/
     var contrato = document.getElementById('id_contrato_vigente');
     var contrato_vigente= false;
     if (contrato.checked==true){
