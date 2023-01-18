@@ -135,16 +135,24 @@
   </div>
 </section>
 
-<!--GRID DE PROPIEDADES CON ALTA RENTABILIDAD-->
-<!-- Título de Grid de Propiedades con Excelente Rentabilidad-->
-<div class='grid grid-cols-5 max-w-6xl mx-auto mt-1 sm:mt-5'>
-  <div class='col-span-5'>
-    <h2 class="text-slate-600 text-xl sm:text-3xl font-bold mt-2 sm:mt-5 text-left">Propiedades con Contrato de Arriendo Vigente:</h1>
-    <h3 class="text-slate-600 text-lg sm:text-xl mt-5">Recibe rentas desde el primer día.</h2>
+<!-- Banner de Tarjeta  -->
+<div class="max-w-6xl mx-auto rounded-xl mt-5 grid grid-cols-12">
+
+  <div class='col-span-12 sm:col-span-6'>
+    <div class='h-20' style="background-image: linear-gradient(to right, rgb(255, 255, 255, 0) 5%, rgba(255, 86, 39, 0.4) 30%,rgba(255, 86, 39, .80) 80%, rgba(255, 86, 39, 1) 100%),  url('{% static "imagenes/banner_tarjeta.jpg" %}');">
+      <div class=""><p class="sm:hidden pt-5 mr-4 text-white text-xl text-right font-semibold"> Paga el Pie con Tarjeta de Crédito</p></div>
+    </div>
+  </div>
+  <div class="hidden sm:block sm:col-span-6 h-full" style="background: rgba(255, 86, 39);">
+    <div class=""><p class="my-auto pr-20 text-white text-3xl sm:text-3xl lg:text-3xl text-right font-semibold"> Paga el Pie con Tarjeta de Crédito</p></div>
   </div>
 </div>
+
+<!--GRID DE PROPIEDADES CON ALTA RENTABILIDAD-->
+<!-- Título de Grid de Propiedades con Excelente Rentabilidad-->
+
 <!--Carrusel de Propiedaded con Alta Rentabilidad-->
-<section class="mt-3 max-w-5xl mx-auto">
+<section class="mt-10 max-w-5xl mx-auto">
   <div class="flex">
     <div class="w-1/12 flex items-center">
       <div class="w-full text-right">
@@ -158,7 +166,7 @@
     <div id="sliderContainer_rentabilidad" class="w-10/12 overflow-hidden">
       <ul id="slider_rentabilidad" class="flex w-full ">
       {% for propiedad in propiedades %}
-        {% if rentabilidades.0|accede_diccionario:propiedad.id > 2.5 %}
+      
         <li class="mx-2 static rounded-2xl">
           <div class="h-80 pb-1 rounded-t-lg">
             <a href="propiedades/detalles/0/{{propiedad.id}}/{{propiedad.comuna.comuna.split|join:"-"}}-{{propiedad.direccion.split|join:"-"}}" class="c-card block bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden">  
@@ -191,98 +199,13 @@
             </a>
           </div>
         </li>
-        {% endif %}
+        
       {% endfor %}
       </ul>
     </div>
     <div class="w-1/12 flex items-center">
       <div class="w-full">
         <button onclick="next_rentabilidad()" class="p-3 rounded-full bg-white border border-gray-100 shadow-lg">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
-          </svg>
-        </button>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- Banner de Tarjeta  -->
-<div class="max-w-6xl mx-auto rounded-xl mt-5 grid grid-cols-12">
-
-  <div class='col-span-12 sm:col-span-6'>
-    <div class='h-32' style="background-image: linear-gradient(to right, rgb(255, 255, 255, 0) 5%, rgba(255, 86, 39, 0.4) 30%,rgba(255, 86, 39, .80) 80%, rgba(255, 86, 39, 1) 100%),  url('{% static "imagenes/banner_tarjeta.jpg" %}');">
-      <div class=""><p class="sm:hidden pt-5 mr-4 text-white text-4xl text-right font-semibold"> Paga el Pie con Tarjeta de Crédito</p></div>
-    </div>
-  </div>
-  <div class="hidden sm:block sm:col-span-6 h-full" style="background: rgba(255, 86, 39);">
-    <div class="mt-2"><p class="my-auto pr-20 text-white text-3xl sm:text-4xl lg:text-5xl text-right font-semibold"> Paga el Pie con Tarjeta de Crédito</p></div>
-  </div>
-</div>
-
-<div class='grid grid-cols-5 max-w-6xl mx-auto mt-1 sm:mt-5'>
-  <div class='col-span-5'>
-    <h2 class="text-slate-600 text-xl sm:text-3xl font-bold mt-2 sm:mt-5 text-left">Analiza estas propiedades y haz tu oferta:</h1>
-    <h3 class="text-slate-600 text-lg sm:text-xl mt-5">Encuentra Oportunidades Inmobiliarias con Plusvalía Inmediata.</h2>
-  </div>
-</div>
-
-<!--Carrousel de propiedades Bancarias-->
-<section class="mt-3 max-w-5xl mx-auto">
-  <div class="flex">
-    <div class="w-1/12 flex items-center">
-      <div class="w-full text-right">
-        <button onclick="prev()" class="p-3 rounded-full bg-white border border-gray-100 shadow-lg">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 15.75L3 12m0 0l3.75-3.75M3 12h18" />
-          </svg>
-        </button>
-      </div>
-    </div>
-    <div id="sliderContainer_bancarias" class="w-10/12 overflow-hidden">
-      <ul id="slider_bancarias" class="flex w-full ">
-      {% for propiedad in propiedades %}
-        {% if propiedad.propiedad_bancaria == True %}
-        <li class="mx-2 static rounded-2xl">
-          <div class="h-80 pb-1 rounded-t-lg">
-            <a href="propiedades/detalles/0/{{propiedad.id}}/{{propiedad.comuna.comuna.split|join:"-"}}-{{propiedad.direccion.split|join:"-"}}" class="c-card block bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden">  
-            <!-- Carousel wrapper -->
-              {% for image in images  %}
-                {% if image.id_propiedades.id == propiedad.id %}
-                  {% if image.default == True %}
-                    <div class="relative">
-                      <img src="{{ image.image.url }}" class="" alt="...">
-                      {% if propiedad.propiedad_bancaria == True %}
-                        <div class="flex absolute min-w-full bg-black bottom-3 left-1/2 -translate-x-1/2 bg-opacity-50">
-                          <svg class="mx-2" height="18" width="18">
-                            <circle cx="9" cy="9" r="5" stroke="green" stroke-width="0" fill="green" />
-                          </svg>  
-                          <p class="text-xs mr-2 font-bold text-white">PROP-BANCARIA</p>
-                        </div>
-                     {% endif %}
-                    </div>
-                  {% endif %}
-                {% endif %}
-              {% endfor %}
-              <div class="py-1 px-4">
-                <h3 class="mt-0 mb-2 text-base font-bold">{{propiedad.comuna.comuna|upper}}</h2>
-              </div>
-              <div class="p-2 border-t border-b text-xs text-gray-700">
-                <div class="flex justify-between">
-                      <div> <span class="text-sm font-semibold">UF </span>&nbsp;<span class="font-bold text-3xl">{{propiedad.precio|numberFormat}}</span></div>
-                </div>       
-              </div>
-            </a>
-          </div>
-        </li>
-        {% endif %}
-      {% endfor %}
-      </ul>
-    </div>
-    <div class="w-1/12 flex items-center">
-      <div class="w-full">
-        <button onclick="next()" class="p-3 rounded-full bg-white border border-gray-100 shadow-lg">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
             <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
           </svg>
