@@ -247,15 +247,16 @@
 </div>
 {%endif%}
 
-<!--Banner Paga Pie con Tarjeta-->
+<!-- Banner de Tarjeta  -->
 <div class="max-w-6xl mx-auto rounded-xl mt-5 grid grid-cols-12">
+
   <div class='col-span-12 sm:col-span-6'>
-    <div class='h-32' style="background-image: linear-gradient(to right, rgb(255, 255, 255, 0) 5%, rgba(255, 86, 39, 0.4) 30%,rgba(255, 86, 39, .80) 80%, rgba(255, 86, 39, 1) 100%),  url('{% static "imagenes/banner_tarjeta.jpg" %}');">
-      <div class=""><p class="sm:hidden pt-5 mr-4 text-white text-4xl text-right font-semibold"> Paga el Pie con Tarjeta de Crédito</p></div>
+    <div class='h-20' style="background-image: linear-gradient(to right, rgb(255, 255, 255, 0) 5%, rgba(255, 86, 39, 0.4) 30%,rgba(255, 86, 39, .80) 80%, rgba(255, 86, 39, 1) 100%),  url('{% static "imagenes/banner_tarjeta.jpg" %}');">
+      <div class="my-auto"><p class="sm:hidden pt-5 mr-4 text-white text-xl text-right font-semibold"> Paga el Pie con Tarjeta de Crédito</p></div>
     </div>
   </div>
   <div class="hidden sm:block sm:col-span-6 h-full" style="background: rgba(255, 86, 39);">
-    <div class="mt-2"><p class="my-auto pr-20 text-white text-3xl sm:text-4xl lg:text-5xl text-right font-semibold"> Paga el Pie con Tarjeta de Crédito</p></div>
+    <div class=""><p class="my-auto pr-20 text-white text-3xl sm:text-3xl lg:text-3xl text-right font-semibold"> Paga el Pie con Tarjeta de Crédito</p></div>
   </div>
 </div>
 
@@ -436,7 +437,7 @@
                     <h3 class="text-gray-900 sm:text-md font-bold">Superficie</h3>
                   </div>
                   <div class="row">
-                    <h3 class="text-gray-900 sm:text-xl font-normal mb-2">{{propiedad.superficie_construida|numberFormat}} mt2</h3>
+                    <h3 class="text-gray-900 sm:text-xl font-normal mb-2">{{propiedad.superficie_construida|numberFormat}} m<sup>2</sup></h3>
                   </div>
                 </div>
               </div>

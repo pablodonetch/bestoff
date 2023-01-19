@@ -29,7 +29,7 @@
 <!--Ordenar por-->
 <div class="flex my-4 max-w-4xl mx-2 sm:mx-auto">
   <h2 class="text-sm font-medium title-font mb-4 text-gray-900">Ordenar por:   </h2>
-  <a href='../buscador/?buscar={{Comuna}}&&contrato={{contrato}}&&rentabilidad=true&&plusvalia=false'>
+  <a href='propiedades/buscador/?buscar={{Comuna}}&&contrato={{contrato}}&&rentabilidad=true&&plusvalia=false'>
     <div id='mejor_rentabilidad' class="flex">
       <span>
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -39,9 +39,12 @@
       <span class="text-sm text-red-400 font-bold">Mejor Rentabilidad</span>
     </div>
   </a>
-  <a href='../buscador/?buscar={{Comuna}}&&contrato={{contrato}}&&rentabilidad=false&&plusvalia=true'>
+  {% if portada %}
+  <a href='propiedades/buscador/?buscar={{Comuna}}&&contrato={{contrato}}&&rentabilidad=false&&plusvalia=true'>
+  {% else %}
+  <a href='propiedades/buscador/?buscar={{Comuna}}&&contrato={{contrato}}&&rentabilidad=false&&plusvalia=true'></a>
+  {%endif%}
     <div id='mejor_plusvalia' class="flex">
-    
         <span>
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
           <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 17.25L12 21m0 0l-3.75-3.75M12 21V3" />
@@ -51,17 +54,24 @@
     </div>
   </a>
 </div>
+
+{% if Comuna %}
 <!-- Titulo de la página   -->
 <div class="my-4 max-w-4xl mx-2 sm:mx-auto">
   <h1 class="sm:text-lg text-lg font-medium title-font mb-4 text-gray-900">Resultado para: 
     <span class="text-red-400  font-bold">{{Comuna}}</span>
   </h1>
 </div>
+{% endif %}
 
-<!-- GRid de REsultados con Propiedades Diccionario -->
+<!-- GRid de Resultados con Propiedades Diccionario -->
 <div class="grid gap-2 grid-cols-1 sm:grid-cols-3 my-4 max-w-4xl mx-2 sm:mx-auto">
   {% for key, value in propiedades_diccionario.items %}
+  {% if portada %}
+  <a href="{{portada}}/detalles/0/{{key}}/{{value|accede_diccionario:'comuna'}}-{{propiedad.direccion.split|join:"-"}}" class="c-card block bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden">  
+  {% else %}
   <a href="../detalles/0/{{key}}/{{value|accede_diccionario:'comuna'}}-{{propiedad.direccion.split|join:"-"}}" class="c-card block bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden">  
+  {% endif %}
     <div class="static rounded-2xl">
         <div class="relative pb-1 overflow-hidden rounded-t-lg">
           <div id="z-10 controls-carousel" class="relative" data-carousel="static">

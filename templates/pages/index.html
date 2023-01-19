@@ -2,296 +2,131 @@
 {% load static %}{% load utilidades %}
 {% block extra_head %}<title>BESTOFF - Oportunidades Inmobiliarias para todos.</title> 
 {% endblock extra_head %}
+{% block extra_navbar %} {% include 'componentes/navbar.html' %} {% endblock extra_navbar %}
+{% block content %}
 
-{% block content %} 
 
-<!--Navbar de Portada-->
-<div class='show_bg' style="background-image: linear-gradient(to top, rgb(255, 255, 255, 1) 0%, rgba(255, 86, 39, 0.8) 70%,rgba(255, 86, 39, .95) 80%, rgba(255, 86, 39, 1) 100%),  url('{% static "imagenes/bg_portada.jpg" %}');">
-  <div class="flex items-center justify-between">
-    <div>
-        <a  href="/">
-        <img src="{% static "imagenes/Logo_1.png" %}" class="h-12" alt="Bestoff Logo"></a>
-    </div>
-    <div class="flex">
-      <a href="/quehacemos"><div class="mx-2">
-        <!--<button id="open-modal-vende" class="flex text-white">-->
-        <button class="flex text-white">
-            <p class="mx-1 font-semibold text-xs sm:text-lg">¿Qué hacemos?</p>
-            <div class="hidden sm:block">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" fill="none">
-                    <path d="M4 9L12 17L20 9" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-            </div>
-        </button>
-      </div></a>
-      <a href="/vender"><div class="mx-2">
-        <button id="open-modal-vende" class="flex text-white">
-          <p class="mx-1 font-semibold text-lg">Vender</p>
-          <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" fill="none">
-              <path d="M4 9L12 17L20 9" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </button>
-      </div></a>
-    </div>
-  </div>
-  <!---->
-  <div class='grid grid-cols-5 max-w-6xl mx-auto mt-1 sm:mt-5'>
-    <div class='col-span-5 lg:col-span-3'>
-        <h1 class="text-slate-600 text-2xl sm:text-6xl font-bold mt-2 sm:mt-5 text-left">Inversión Inmobiliaria 100% Online</h1>
-    </div>
-  <div class='col-span-0 lg:col-span-2'>
-  </div>
-  <div class='col-span-5 lg:col-span-2'>
-    <h2 class="text-slate-600 text-xl sm:text-3xl mt-5">Encuentra las mejores oportunidades antes que el resto.</h2>
-  </div>
-  <div class='col-span-0 lg:col-span-3'>
-  </div>
-</div>
 <!--Formulario d Búsqueda-->
 <div class='busqueda max-w-6xl mx-auto rounded-xl px-5 py-4 bg-red-800/60 mt-7'>
   <div class="text-white">
     <h3 class='text-xl sm:text-3xl'>Busca Inversiones Inmobiliarias como nunca antes lo habías hecho.</h3>
   </div>
-  <!--Formulario de Búsqueda Alternativo-->
-  <div>
-    <form name="form_buscar" method="post" action="{{ request.get_full_path }} ">
-      {% csrf_token %}
-      <div class="grid grid-cols-12 mt-5">
-        {{formulario_buscar.comuna}}
-        {{formulario_buscar.contrato_vigente}} <label for="id_contrato_vigente" class="col-span-12 md:col-span-4 rounded-md my-2 p-2.5">&nbsp&nbspContrato Arriendo Vigente</label>
-        <button type="button" onclick="buscador();" id="boton-busqueda-portada" class=" boton-busqueda-portada col-span-12 md:col-span-1 ml-1 my-2 flex top-0 right-0 p-2.5 text-sm sm:text-base font-medium text-white rounded-md border border-orange-700">
-          <span class="pl-1">Buscar</span>
-        </button>
-      </div>
-    </form>
-  </div>
+    <!--Formulario de Búsqueda Alternativo-->
+    <div>
+      <form name="form_buscar" method="post" action="{{ request.get_full_path }} ">
+        {% csrf_token %}
+        <div class="grid grid-cols-12 mt-5">
+          {{formulario_buscar.comuna}}
+          {{formulario_buscar.contrato_vigente}} <label for="id_contrato_vigente" class="col-span-12 md:col-span-4 rounded-md my-2 p-2.5">&nbsp&nbspContrato Arriendo Vigente</label>
+          <button type="button" onclick="buscador();" id="boton-busqueda-portada" class=" boton-busqueda-portada col-span-12 md:col-span-1 ml-1 my-2 flex top-0 right-0 p-2.5 text-sm sm:text-base font-medium text-white rounded-md border border-orange-700">
+            <span class="pl-1">Buscar</span>
+          </button>
+        </div>
+      </form>
+    </div>
 </div>
 
-<!--Sección: El Mejor Marketing de Chile-->
-<section class="text-gray-600 body-font">
-  <div class="container px-5 py-12 mx-auto">
-      <div class="flex flex-wrap -m-4 text-center max-w-7xl mx-auto">
-        <div class="p-4 md:w-1/4 mx-auto max-w-sm">
-          <div class="border-2 border-gray-200 px-4 py-6 rounded-lg">
-            <div class=" flex ">
-              <svg xmlns="http://www.w3.org/2000/svg" id="Capa_1" enable-background="new 0 0 511.998 511.998" height="50" viewBox="0 0 511.998 511.998" width="50">
-                <g><path d="m420.617 57.983c-3.355-2.426-8.044-1.673-10.472 1.684-2.427 3.357-1.673 8.045 1.685 10.472 34.544 24.974 55.168 65.295 55.168 107.861 0 73.336-59.663 133-133 133s-133-59.664-133-133 59.663-133 133-133c16.79 0 33.153 3.085 48.635 9.171 3.855 1.516 8.209-.381 9.725-4.236 1.515-3.855-.382-8.208-4.236-9.724-17.239-6.775-35.448-10.211-54.124-10.211-81.607 0-148 66.393-148 148s66.393 148 148 148 148-66.393 148-148c0-47.365-22.947-92.231-61.381-120.017zm-2.666 110.24c7.185-4.488 11.475-12.225 11.475-20.697 0-9.259-5.376-17.866-13.696-21.928l-74.055-36.155c-4.878-2.38-10.475-2.381-15.354 0l-74.054 36.155c-8.32 4.062-13.696 12.669-13.696 21.928 0 8.472 4.29 16.208 11.475 20.697 4.295 2.683 9.18 3.915 14.041 3.687l10.077 81.42h-6.519c-4.143 0-7.5 3.358-7.5 7.5s3.357 7.5 7.5 7.5h132.709c4.143 0 7.5-3.358 7.5-7.5s-3.357-7.5-7.5-7.5h-6.519l10.077-81.414c4.894.234 9.735-1.004 14.039-3.693zm-71.486 85.107h-24.934v-39.933h24.934zm32.253 0h-17.254v-43.433c0-6.341-5.159-11.5-11.5-11.5h-31.934c-6.341 0-11.5 5.159-11.5 11.5v43.433h-17.254l-10.678-86.278 55.399-27.047 55.399 27.047zm-39.236-127.339c-3.486-1.702-7.483-1.702-10.968 0l-61.417 29.985c-2.978 1.454-6.296 1.281-9.106-.475-2.81-1.755-4.421-4.661-4.421-7.974 0-3.567 2.071-6.884 5.277-8.449l74.053-36.154c.699-.34 1.499-.34 2.196 0l74.054 36.155c3.205 1.565 5.276 4.881 5.276 8.449 0 3.313-1.611 6.219-4.421 7.975-2.812 1.754-6.13 1.927-9.106.474zm-5.484-125.991c-98.149 0-178 79.851-178 178 0 22.684 4.273 44.386 12.043 64.355-12.352 13.964-18.788 31.895-17.976 50.701l-123.457 95.81c-15.587 12.099-25.236 30.333-26.473 50.028-1.238 19.698 6.055 39 20.01 52.96 13.986 13.992 33.337 21.241 52.958 20.008 19.694-1.237 37.929-10.886 50.029-26.474l38.156-49.166c2.54-3.272 1.946-7.984-1.327-10.523-3.271-2.538-7.983-1.944-10.523 1.327l-38.155 49.165c-9.461 12.188-23.72 19.733-39.12 20.701-15.399.964-30.498-4.735-41.411-15.645-10.911-10.916-16.614-26.01-15.646-41.413.968-15.4 8.513-29.659 20.7-39.119l117.002-90.802c6.836 23.721 25.555 42.44 49.276 49.276l-31.214 40.221c-2.54 3.272-1.946 7.983 1.327 10.523 3.25 2.522 7.968 1.965 10.523-1.327l36.222-46.674c18.69.779 36.816-5.638 50.701-17.976 19.969 7.77 41.671 12.043 64.354 12.043 98.149 0 178-79.851 178-178s-79.85-177.999-177.999-177.999zm-112.01 347.01c-31.43 0-57-25.57-57-57 0-11.674 3.48-22.786 9.944-32.186 17.208 34.151 45.091 62.034 79.242 79.242-9.4 6.464-20.512 9.944-32.186 9.944zm112.01-6.01c-89.878 0-163-73.122-163-163s73.122-163 163-163c89.879 0 163 73.122 163 163s-73.121 163-163 163z"/></g>
-              </svg>
-              <h2 class="ml-3 text-left text-lg font-bold text-gray-900">Encuentra tu inversión inmobiliaria</h2>
-            </div>
-            <div>
-              <p class="hidden sm:block mt-1 leading-relaxed text-sm text-justify">Busca en un amplia cartera de inmuebles, filtrando por comuna    y propiedades con contrato de arriendo vigente.</p>
-            </div>
-          </div>
-        </div>
-        <div class="p-4 md:w-1/4 mx-auto  max-w-sm">
-          <div class="border-2 border-gray-200 px-4 py-6 rounded-lg">
-            <div class="flex">
-              <svg xmlns="http://www.w3.org/2000/svg" id="Capa_1" enable-background="new 0 0 512 512" height="50" viewBox="0 0 512 512" width="50">
-                <g><path d="m262.986 341.057h-148.63c-4.142 0-7.5 3.357-7.5 7.5s3.358 7.5 7.5 7.5h148.63c4.142 0 7.5-3.357 7.5-7.5s-3.358-7.5-7.5-7.5zm0 30h-148.63c-4.142 0-7.5 3.357-7.5 7.5s3.358 7.5 7.5 7.5h148.63c4.142 0 7.5-3.357 7.5-7.5s-3.358-7.5-7.5-7.5zm-60 30h-88.63c-4.142 0-7.5 3.357-7.5 7.5s3.358 7.5 7.5 7.5h88.63c4.142 0 7.5-3.357 7.5-7.5s-3.358-7.5-7.5-7.5zm-139.776-61.859h16.814c4.142 0 7.5-3.357 7.5-7.5s-3.358-7.5-7.5-7.5h-9.158v-7.89c0-4.143-3.358-7.5-7.5-7.5s-7.5 3.357-7.5 7.5v9.025c-9.829 3.121-16.972 12.33-16.972 23.179 0 13.407 10.908 24.315 24.315 24.315 5.136 0 9.314 4.179 9.314 9.314s-4.178 9.314-9.314 9.314h-16.814c-4.142 0-7.5 3.357-7.5 7.5s3.358 7.5 7.5 7.5h9.472v9.22c0 4.143 3.358 7.5 7.5 7.5s7.5-3.357 7.5-7.5v-10.462c9.666-3.216 16.658-12.34 16.658-23.072 0-13.407-10.907-24.314-24.314-24.314-5.136 0-9.315-4.179-9.315-9.315-.001-5.135 4.177-9.314 9.314-9.314zm199.776-28.141h-148.63c-4.142 0-7.5 3.357-7.5 7.5s3.358 7.5 7.5 7.5h148.63c4.142 0 7.5-3.357 7.5-7.5s-3.358-7.5-7.5-7.5zm58.698 7.068c0 4.143 3.358 7.5 7.5 7.5h14.652v14.652c0 4.143 3.358 7.5 7.5 7.5s7.5-3.357 7.5-7.5v-14.652h14.653c4.142 0 7.5-3.357 7.5-7.5s-3.358-7.5-7.5-7.5h-14.653v-14.652c0-4.143-3.358-7.5-7.5-7.5s-7.5 3.357-7.5 7.5v14.652h-14.652c-4.142 0-7.5 3.357-7.5 7.5zm109.609 146.75h44.305c4.142 0 7.5-3.357 7.5-7.5s-3.358-7.5-7.5-7.5h-44.305c-4.142 0-7.5 3.357-7.5 7.5s3.358 7.5 7.5 7.5zm0-30h44.305c4.142 0 7.5-3.357 7.5-7.5s-3.358-7.5-7.5-7.5h-44.305c-4.142 0-7.5 3.357-7.5 7.5s3.358 7.5 7.5 7.5zm-100.924 28.468c2.928 2.929 7.677 2.928 10.606 0l10.361-10.361 10.361 10.361c2.929 2.928 7.678 2.929 10.606 0 2.929-2.93 2.929-7.678 0-10.607l-10.361-10.36 10.361-10.36c2.929-2.93 2.929-7.678 0-10.607-2.929-2.928-7.678-2.928-10.606 0l-10.361 10.361-10.361-10.361c-2.929-2.928-7.678-2.928-10.606 0-2.929 2.93-2.929 7.678 0 10.607l10.361 10.36-10.361 10.36c-2.929 2.929-2.929 7.677 0 10.607zm-69.315-350.414-74.054-36.156c-4.879-2.381-10.476-2.382-15.354.001l-74.054 36.154c-8.32 4.062-13.696 12.669-13.696 21.928 0 8.472 4.29 16.209 11.475 20.697 4.294 2.682 9.177 3.914 14.037 3.687l10.078 81.421h-6.517c-4.142 0-7.5 3.357-7.5 7.5s3.358 7.5 7.5 7.5h132.709c4.142 0 7.5-3.357 7.5-7.5s-3.358-7.5-7.5-7.5h-6.511l10.077-81.414c4.891.231 9.732-1.008 14.033-3.694 7.186-4.488 11.475-12.226 11.475-20.697-.001-9.258-5.378-17.866-13.698-21.927zm-69.264 127.731h-24.934v-39.933h24.934zm32.261 0h-17.261v-43.433c0-6.341-5.159-11.5-11.5-11.5h-31.934c-6.341 0-11.5 5.159-11.5 11.5v43.433h-17.257l-10.679-86.276 55.403-27.048 55.407 27.051zm31.278-97.829c-2.81 1.756-6.129 1.93-9.105.476l-61.417-29.985c-3.485-1.703-7.483-1.703-10.968 0l-61.417 29.985c-2.977 1.453-6.295 1.28-9.106-.476-2.81-1.755-4.421-4.661-4.421-7.975 0-3.567 2.071-6.884 5.277-8.449l74.054-36.153c.697-.342 1.498-.341 2.194-.001l74.054 36.155c3.206 1.564 5.277 4.881 5.277 8.448 0 3.314-1.612 6.22-4.422 7.975zm219.171 105.669h-115.85v-211c0-20.678-16.822-37.5-37.5-37.5h-239.76c-1.555.099-3.396.345-5.306 2.196l-73.887 73.888c-.957 1.055-2.211 2.767-2.197 5.306v393.11c0 20.678 16.822 37.5 37.5 37.5h292.781 144.219c20.678 0 37.5-16.822 37.5-37.5v-188.5c0-20.678-16.822-37.5-37.5-37.5zm-400.612-222.891v35.779c0 6.893-5.607 12.5-12.5 12.5h-35.779zm226.414 471.391h-262.802c-12.407 0-22.5-10.094-22.5-22.5v-385.612h46.388c15.164 0 27.5-12.337 27.5-27.5v-46.388h232.262c12.407 0 22.5 10.094 22.5 22.5v211h-13.369c-20.678 0-37.5 16.822-37.5 37.5v188.5c0 8.436 2.802 16.228 7.521 22.5zm94.589 0h-64.609c-12.407 0-22.5-10.094-22.5-22.5v-86.75h87.109zm0-124.25h-87.109v-86.75c0-12.406 10.093-22.5 22.5-22.5h64.609zm102.109 101.75c0 12.406-10.093 22.5-22.5 22.5h-64.609v-109.25h87.109zm0-101.75h-87.109v-109.25h64.609c12.407 0 22.5 10.094 22.5 22.5zm-21.402-62.125h-44.305c-4.142 0-7.5 3.357-7.5 7.5s3.358 7.5 7.5 7.5h44.305c4.142 0 7.5-3.357 7.5-7.5s-3.358-7.5-7.5-7.5z"/></g>
-              </svg>
-              <h2 class="ml-3 text-left text-lg font-bold text-gray-900">Analiza y compara activos de inversión</h2>
-            </div>
-            <div>
-              <p class="hidden sm:block mt-1 leading-relaxed text-sm text-justify">Analiza flujos de caja y rentabilidad; usa nuestra calculadora financiera, descarga la documentación y compara oportunidades.</p>
-            </div>
-          </div>
-        </div>
-        <div class="p-4 md:w-1/4 mx-auto  max-w-sm">
-          <div class="border-2 border-gray-200 px-4 py-6 rounded-lg">
-            <div class="flex">
-              <svg xmlns="http://www.w3.org/2000/svg" id="Capa_1" enable-background="new 0 0 512.012 512.012" height="50" viewBox="0 0 512.012 512.012" width="50">
-                <g><path d="m94.808 282.512h202.396c4.143 0 7.5-3.358 7.5-7.5s-3.357-7.5-7.5-7.5h-202.396c-4.142 0-7.5 3.358-7.5 7.5s3.358 7.5 7.5 7.5zm0-60h322.396c4.143 0 7.5-3.358 7.5-7.5s-3.357-7.5-7.5-7.5h-322.396c-4.142 0-7.5 3.358-7.5 7.5s3.358 7.5 7.5 7.5zm0 30h322.396c4.143 0 7.5-3.358 7.5-7.5s-3.357-7.5-7.5-7.5h-322.396c-4.142 0-7.5 3.358-7.5 7.5s3.358 7.5 7.5 7.5zm349.698-207.5h-98.165c-2.258-2.944-5.175-5.398-8.603-7.071l-74.055-36.155c-4.879-2.381-10.476-2.381-15.354 0l-74.054 36.155c-3.428 1.674-6.345 4.127-8.603 7.071h-98.166c-20.678 0-37.5 16.822-37.5 37.5v31.667c0 4.142 3.358 7.5 7.5 7.5s7.5-3.358 7.5-7.5v-31.667c0-12.407 10.093-22.5 22.5-22.5h93.076c.048 8.415 4.326 16.091 11.471 20.554 4.295 2.682 9.179 3.914 14.04 3.687l10.078 81.42h-6.519c-4.142 0-7.5 3.358-7.5 7.5s3.358 7.5 7.5 7.5h132.709c4.143 0 7.5-3.358 7.5-7.5s-3.357-7.5-7.5-7.5h-6.519l10.078-81.414c4.897.233 9.736-1.005 14.04-3.693 7.144-4.462 11.422-12.138 11.47-20.554h93.077c12.406 0 22.5 10.093 22.5 22.5v226.983h-79.539c-4.143 0-7.5 3.358-7.5 7.5s3.357 7.5 7.5 7.5h79.539v26.017c0 12.407-10.094 22.5-22.5 22.5h-161.86c-.024 0-.049 0-.073 0h-53.132c-.026 0-.052 0-.078 0h-161.858c-12.407 0-22.5-10.093-22.5-22.5v-26.017h307.461c4.143 0 7.5-3.358 7.5-7.5s-3.357-7.5-7.5-7.5h-307.461v-160.316c0-4.142-3.358-7.5-7.5-7.5s-7.5 3.358-7.5 7.5v201.333c0 20.678 16.822 37.5 37.5 37.5h152.871l-9.562 49.152h-3.747c-19.391 0-37.11 11.405-45.141 29.055-2.955 6.494-4.453 13.404-4.453 20.539v10.755c0 7.995 6.505 14.5 14.5 14.5h168.062c7.995 0 14.5-6.505 14.5-14.5v-10.755c0-7.134-1.498-14.043-4.452-20.538h-.001c-8.03-17.65-25.749-29.055-45.141-29.055h-3.746l-9.562-49.152h152.87c20.678 0 37.5-16.822 37.5-37.5v-268c.002-20.678-16.82-37.501-37.498-37.501zm-176.033 120.66h-24.934v-39.932h24.934zm32.254 0h-17.254v-43.432c0-6.341-5.159-11.5-11.5-11.5h-31.934c-6.341 0-11.5 5.159-11.5 11.5v43.433h-17.254l-10.679-86.277 55.4-27.047 55.401 27.047zm31.286-97.828c-2.811 1.755-6.13 1.927-9.106.474l-61.417-29.985c-3.484-1.701-7.481-1.701-10.968 0l-61.417 29.985c-2.976 1.453-6.296 1.281-9.106-.475-2.81-1.755-4.421-4.661-4.421-7.974 0-3.567 2.071-6.884 5.277-8.449l74.054-36.155c.698-.34 1.497-.34 2.195 0l74.054 36.155c3.205 1.565 5.276 4.881 5.276 8.449 0 3.313-1.611 6.22-4.421 7.975zm-96.355 320.168h40.697l9.562 49.152h-59.821zm69.286 64.152c13.526 0 25.886 7.955 31.487 20.266 2.062 4.531 3.106 9.351 3.106 14.327v10.255h-167.062v-10.255c0-4.977 1.045-9.797 3.106-14.327 5.602-12.312 17.961-20.267 31.487-20.267h97.876z"/></g>
-              </svg>
-              <h2 class="ml-3 text-left text-lg font-bold text-gray-900">Invierte totalmente online</h2>
-            </div>
-            <div>
-              <p class="hidden sm:block  mt-1 leading-relaxed text-sm text-justify">Haz tu oferta y firma la promesa de compraventa totalmente online. Un proceso fácil, cómodo y rápido, desde cualquier lugar.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="p-4 md:w-1/4 mx-auto  max-w-sm">
-          <div class="border-2 border-gray-200 px-4 py-6 rounded-lg">
-            <div class="flex">
-              <svg xmlns="http://www.w3.org/2000/svg" id="Capa_1" enable-background="new 0 0 510 510" height="50" viewBox="0 0 510 510" width="50">
-                <g>
-                  <path d="m465 90h-420c-24.813 0-45 20.187-45 45v240c0 24.813 20.187 45 45 45h420c24.813 0 45-20.187 45-45v-240c0-24.813-20.187-45-45-45zm-420 30h420c8.271 0 15 6.729 15 15v15h-450v-15c0-8.271 6.729-15 15-15zm435 60v30h-450v-30zm-15 210h-420c-8.271 0-15-6.729-15-15v-135h450v135c0 8.271-6.729 15-15 15z"/>
-                  <path d="m360 330h30v30h-30z"/>
-                  <path d="m300 330h30v30h-30z"/>
-                  <path d="m420 330h30v30h-30z"/>
-                  <path d="m60 270h150v30h-150z"/>
-                  <path d="m60 330h105v30h-105z"/>
-                </g>
-              </svg>
-              <h2 class="ml-3 text-left text-lg font-bold text-gray-900">Paga el pie con tu tarjeta de crédito</h2>
-            </div>
-            <div>
-              <p class="hidden sm:block  mt-1 leading-relaxed text-sm text-justify">Aprovecha las facilidades que ponemos a tu disposición y paga el pie con tu tarjeta de crédito en tantas cuotas como lo permita tu banco.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-  </div>
-</section>
-
-<!-- Banner de Tarjeta  -->
-<div class="max-w-6xl mx-auto rounded-xl mt-5 grid grid-cols-12">
-
-  <div class='col-span-12 sm:col-span-6'>
-    <div class='h-20' style="background-image: linear-gradient(to right, rgb(255, 255, 255, 0) 5%, rgba(255, 86, 39, 0.4) 30%,rgba(255, 86, 39, .80) 80%, rgba(255, 86, 39, 1) 100%),  url('{% static "imagenes/banner_tarjeta.jpg" %}');">
-      <div class=""><p class="sm:hidden pt-5 mr-4 text-white text-xl text-right font-semibold"> Paga el Pie con Tarjeta de Crédito</p></div>
+<!--Ordenar por-->
+<div class="flex my-4 max-w-4xl mx-2 sm:mx-auto">
+  <h2 class="text-sm font-medium title-font mb-4 text-gray-900">Ordenar por:   </h2>
+  <a href='propiedades/buscador/?buscar=&&contrato=false&&rentabilidad=true&&plusvalia=false'>
+    <div id='mejor_rentabilidad' class="flex">
+      <span>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 17.25L12 21m0 0l-3.75-3.75M12 21V3" />
+        </svg>      
+      </span>
+      <span class="text-sm text-red-400 font-bold">Mejor Rentabilidad</span>
     </div>
-  </div>
-  <div class="hidden sm:block sm:col-span-6 h-full" style="background: rgba(255, 86, 39);">
-    <div class=""><p class="my-auto pr-20 text-white text-3xl sm:text-3xl lg:text-3xl text-right font-semibold"> Paga el Pie con Tarjeta de Crédito</p></div>
-  </div>
+  </a>
+  <a href='propiedades/buscador/?buscar=&&contrato=false&&rentabilidad=false&&plusvalia=true'>
+    <div id='mejor_plusvalia' class="flex">
+    
+        <span>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 17.25L12 21m0 0l-3.75-3.75M12 21V3" />
+        </svg>      
+      </span>
+      <span class="text-sm text-red-400 font-bold">Mejor Plusvalia</span>
+    </div>
+  </a>
 </div>
 
-<!--GRID DE PROPIEDADES CON ALTA RENTABILIDAD-->
-<!-- Título de Grid de Propiedades con Excelente Rentabilidad-->
 
-<!--Carrusel de Propiedaded con Alta Rentabilidad-->
-<section class="mt-10 max-w-5xl mx-auto">
-  <div class="flex">
-    <div class="w-1/12 flex items-center">
-      <div class="w-full text-right">
-        <button onclick="prev_rentabilidad()" class="p-3 rounded-full bg-white border border-gray-100 shadow-lg">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 15.75L3 12m0 0l3.75-3.75M3 12h18" />
-          </svg>
-        </button>
-      </div>
-    </div>
-    <div id="sliderContainer_rentabilidad" class="w-10/12 overflow-hidden">
-      <ul id="slider_rentabilidad" class="flex w-full ">
-      {% for propiedad in propiedades %}
-      
-        <li class="mx-2 static rounded-2xl">
-          <div class="h-80 pb-1 rounded-t-lg">
-            <a href="propiedades/detalles/0/{{propiedad.id}}/{{propiedad.comuna.comuna.split|join:"-"}}-{{propiedad.direccion.split|join:"-"}}" class="c-card block bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden">  
-            <!-- Carousel wrapper -->
-              {% for image in images  %}
-                {% if image.id_propiedades.id == propiedad.id %}
-                  {% if image.default == True %}
-                    <div class="relative">
-                      <img src="{{ image.image.url }}" class="" alt="...">
-                      {% if rentabilidades.0|accede_diccionario:propiedad.id > 0.1 %}
-                        <div class="flex absolute min-w-full bg-black bottom-3 left-1/2 -translate-x-1/2 bg-opacity-50">
-                          <svg class="mx-2" height="18" width="18">
-                            <circle cx="9" cy="9" r="5" stroke="green" stroke-width="0" fill="green" />
-                          </svg>  
-                          <p class="text-xs mr-2 font-bold text-white">ARRIENDO VIGENTE</p>
-                        </div>
-                     {% endif %}
-                    </div>
+<!-- GRid de REsultados con Propiedades Diccionario -->
+<div class="grid gap-2 grid-cols-1 sm:grid-cols-3 my-4 max-w-4xl mx-2 sm:mx-auto">
+  {% for key, value in propiedades_diccionario.items %}
+  <a href="../detalles/0/{{key}}/{{value|accede_diccionario:'comuna'}}-{{propiedad.direccion.split|join:"-"}}" class="c-card block bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden">  
+    <div class="static rounded-2xl">
+        <div class="relative pb-1 overflow-hidden rounded-t-lg">
+          <div id="z-10 controls-carousel" class="relative" data-carousel="static">
+              <!-- Carousel wrapper -->
+              <div class="relative h-50 overflow-hidden">
+                {% for image in images  %}
+                  {% if image.id_propiedades.id == key %}
+                    {% if image.default == True %}
+                      <div class="relative">
+                        <img src="{{ image.image.url }}" class="" alt="...">
+                        {% if value|accede_diccionario:'rentabilidad' > 0 %}
+                          <div class="flex absolute min-w-full bg-black bottom-3 left-1/2 -translate-x-1/2 bg-opacity-50">
+                            <svg class="mx-2" height="18" width="18">
+                              <circle cx="9" cy="9" r="5" stroke="green" stroke-width="0" fill="green" />
+                            </svg>  
+                            <p class="text-xs mr-2 font-bold text-white">ARRIENDO VIGENTE</p>
+                          </div>
+                      {% endif %}
+                      {% if value|accede_diccionario:'propiedad_bancaria' == True %}
+                      <div class="flex absolute min-w-full bg-black bottom-3 left-1/2 -translate-x-1/2 bg-opacity-50">
+                        <svg class="mx-2" height="18" width="18">
+                          <circle cx="9" cy="9" r="5" stroke="green" stroke-width="0" fill="green" />
+                        </svg>  
+                        <p class="text-xs mr-2 font-bold text-white">PROP-BANCARIA</p>
+                      </div>
+                      {% endif %}
+                      </div>
+                    {% endif %}
                   {% endif %}
-                {% endif %}
-              {% endfor %}
-              <div class="py-1 px-4">
-                <h3 class="mt-0 mb-2 text-base font-bold">{{propiedad.comuna.comuna|upper}}</h2>
-              </div>
-              <div class="p-2 border-t border-b text-xs text-gray-700">
-                <div class="flex justify-between">
-                      <div> <span class="text-sm font-semibold">UF </span>&nbsp;<span class="font-bold text-3xl">{{propiedad.precio|numberFormat}}</span></div>
-                </div>       
-              </div>
-            </a>
+                {% endfor %}
+            </div>
           </div>
-        </li>
-        
-      {% endfor %}
-      </ul>
-    </div>
-    <div class="w-1/12 flex items-center">
-      <div class="w-full">
-        <button onclick="next_rentabilidad()" class="p-3 rounded-full bg-white border border-gray-100 shadow-lg">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
-          </svg>
-        </button>
+        </div>
+        <!--Los IF de los -->
+        {% if value|accede_diccionario:'rentabilidad' > 0 %}
+        <div class="">
+          <div class="flex py-1 detalle-rentabilidad  rounded-md border-solid border-slate-100 min-w-sm gallery-item-detalle">
+            <svg class="mx-4" height="18" width="18">
+              <circle cx="9" cy="9" r="5" stroke="green" stroke-width="0" fill="green" />
+            </svg>  
+            <p class="text-sm">UF + {{value|accede_diccionario:'rentabilidad'}} % Rent. Anual</p>
+          </div>
+        </div>
+        {% endif %}
+
+        {% if value|accede_diccionario:'plusvalia' > 0 %}
+        <div class="">
+          <div class="flex py-1 detalle-rentabilidad  rounded-md border-solid border-slate-100 min-w-sm gallery-item-detalle">
+            <svg class="mx-4" height="18" width="18">
+              <circle cx="9" cy="9" r="5" stroke="green" stroke-width="0" fill="green" />
+            </svg> 
+            <p class="text-sm">{{value|accede_diccionario:'plusvalia'}} % de plusvalía inmediata</p>
+          </div>
+        </div>
+        {% endif %}      
+        <div class="py-1 px-4">
+          <h3 class="mt-0 mb-2 text-2xl font-bold">{{value|accede_diccionario:'comuna'}}</h2>
+        </div>
+        <div class="p-2 border-t border-b text-xs text-gray-700">
+          <div class="flex justify-between">
+                <div> <span class="text-sm font-semibold">UF </span>&nbsp;<span class="font-bold text-3xl">{{value|accede_diccionario:'precio'|numberFormat}}</span></div>
+                <button type="submit" class="text-white right-2 bottom-2 bg-orange-700 hover:bg-orange-800 focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-orange-600 dark:hover:bg-orange-700 dark:focus:ring-orange-800">Me interesa</button>
+          </div>       
+        </div>
       </div>
-    </div>
-  </div>
-</section>
+    </a>
+  {% endfor %}
+</div>
 
 
 {% endblock content %}
 {% block extra_footer %} {% endblock extra_footer %}
-{% block scripts %}<script src="https://unpkg.com/flowbite@1.4.0/dist/flowbite.js"></script>
-
-<script>
-  //NOTA: Cada Carrusel tiene que tener un código distinto porque tiene longitudes distintas
-  //la solucición a esto es hace una función que trabaje en todas.
-
-  // CARRUSEL RENTABILIDADA
-  let sliderContainer_rentabilidad = document.getElementById('sliderContainer_rentabilidad');
-  let slider_rentabilidad = document.getElementById('slider_rentabilidad');
-  let cards_rentabilidad = slider_rentabilidad.getElementsByTagName('li');
-  var windowWidth = window.innerWidth;
-  var elementsToShow = 4;
-  if(windowWidth<800 && windowWidth>=520){
-    elementsToShow = 3;
-  } else if (windowWidth<520 && windowWidth>=400) {
-    elementsToShow = 2;
-  } else if (windowWidth<400){
-    elementsToShow = 1;
-  }
-
-  let sliderContainerWidth_rentabilidad = sliderContainer_rentabilidad.clientWidth;
-  let cardWidth_rentabilidad = sliderContainerWidth_rentabilidad/elementsToShow;
-  var margen_estilo=0;
-  if (windowWidth<400){
-    margen_estilo=10;
-  }
-  slider_rentabilidad.style.width = (cards_rentabilidad.length*cardWidth_rentabilidad-margen_estilo)+'px';
-  slider_rentabilidad.style.transition= 'margin' ;
-  slider_rentabilidad.style.transitionDuration='1s';
-
-  for (let index = 0; index < cards_rentabilidad.length; index++) {
-    const element_rentabilidad= cards_rentabilidad[index];
-    element_rentabilidad.style.width= cardWidth_rentabilidad+'px';
-  }
-
-  function next_rentabilidad(){
-    if (+slider_rentabilidad.style.marginLeft.slice(0,-2)!=-cardWidth_rentabilidad*(cards_rentabilidad.length-elementsToShow))
-      slider_rentabilidad.style.marginLeft= ((+slider_rentabilidad.style.marginLeft.slice(0, -2))-cardWidth_rentabilidad)+'px';  // 100px
-  }
-
-  function prev_rentabilidad(){
-    if (+slider_rentabilidad.style.marginLeft.slice(0,-2) != 0)
-      slider_rentabilidad.style.marginLeft= ((+slider_rentabilidad.style.marginLeft.slice(0,-2))+cardWidth_rentabilidad)+'px';  // 100px
-  }
-
-
-  // CARRUSEL BANCARIO
-  let sliderContainer_bancarias = document.getElementById('sliderContainer_bancarias');
-  let slider_bancarias = document.getElementById('slider_bancarias');
-  let cards_bancarias = slider_bancarias.getElementsByTagName('li');
-  //let elementsToShow = 4; Ya está definido arriba 
-  let sliderContainerWidth_bancarias = sliderContainer_bancarias.clientWidth;
-  let cardWidth_bancarias = sliderContainerWidth_bancarias/elementsToShow;
-  
-  slider_bancarias.style.width = cards_bancarias.length*cardWidth_bancarias+'px';
-  slider_bancarias.style.transition= 'margin' ;
-  slider_bancarias.style.transitionDuration='1s';
-
-  for (let index = 0; index < cards_bancarias.length; index++) {
-    const element= cards_bancarias[index];
-    element.style.width= cardWidth_bancarias+'px';
-  }
-
-  function next(){
-    if (+slider_bancarias.style.marginLeft.slice(0,-2)!=-cardWidth_bancarias*(cards_bancarias.length-elementsToShow))
-      slider_bancarias.style.marginLeft= ((+slider_bancarias.style.marginLeft.slice(0, -2))-cardWidth_bancarias)+'px';  // 100px
-  }
-
-  function prev(){
-    if (+slider_bancarias.style.marginLeft.slice(0,-2) != 0)
-      slider_bancarias.style.marginLeft= ((+slider_bancarias.style.marginLeft.slice(0,-2))+cardWidth_bancarias)+'px';  // 100px
-  }
-
-
-
-</script>
-{% endblock scripts %}
+{% block scripts %} <script src="https://unpkg.com/flowbite@1.4.0/dist/flowbite.js"></script>{% endblock scripts %}

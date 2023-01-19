@@ -7,10 +7,38 @@ from django.contrib import messages
 from core.models import *
 from bestoff.forms import *
 from django.http import HttpResponse, Http404, HttpResponseRedirect
+from collections import defaultdict
 
 UF=35200 #CAMBIAR UF ACÁ
 
 def home(request):
+    propiedades= Propiedad.objects.all()
+    propiedades_diccionario=defaultdict(dict)
+    for i in range(0,propiedades.count()):
+        propiedades_diccionario[propiedades[i].id]['comuna']=propiedades[i].comuna.comuna
+        propiedades_diccionario[propiedades[i].id]['precio']=float(f'{propiedades[i].precio}')
+        propiedades_diccionario[propiedades[i].id]['rentabilidad']=(float(f'{((propiedades[i].arriendo_actual*12)/(propiedades[i].precio*UF)*100):.1f}'))
+        propiedades_diccionario[propiedades[i].id]['plusvalia']=(float(f'{((propiedades[i].tasacion_comercial*100/propiedades[i].precio)-100):.1f}'))
+        propiedades_diccionario[propiedades[i].id]['propiedad_bancaria']=propiedades[i].propiedad_bancaria
+    propiedades_diccionario = dict(propiedades_diccionario)
+    form_buscar=formulario_buscar()
+    images = Image.objects.all()
+    context={
+        'portada':'propiedades',
+        'propiedades': propiedades, 
+        'propiedades_diccionario':propiedades_diccionario,
+        'images': images, 
+        'formulario_buscar': form_buscar,
+    }
+    return render(request, 'propiedades/buscador.html', context)
+
+
+
+
+
+
+
+def home_borrar(request):
     propiedades = Propiedad.objects.all()
     images = Image.objects.all()
     rentabilidades=[]
