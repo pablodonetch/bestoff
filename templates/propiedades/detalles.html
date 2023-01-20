@@ -490,7 +490,7 @@
                     <h3 class="text-gray-900 text-md font-bold">Contribuciones</h3>
                   </div>
                   <div class="row">
-                    <h3 class="text-gray-900 sm:text-xl font-normal mb-2">$ {{propiedad.contribuciones|numberFormat}} / trim</h3>
+                    <h3 class="text-gray-900 sm:text-xl font-normal mb-2">$ {{propiedad.contribuciones|numberFormat}} / trim.</h3>
                   </div>
                 </div>
               </div>
@@ -667,21 +667,17 @@
                   </div>
                 </div>
               </div>
+              {% if propiedad.propiedad_bancaria == True %}
               <div class="col my-2">
                 <div class="grid grid-cols-1">
                   <div class="row">
                     <h3 class="text-gray-900 text-md font-bold">Propiedad Bancaria*</h3>
                   </div>
                   <div class="row">
-                    <h3 class="text-gray-900 sm:text-xl font-normal mb-2">
-                      {% if propiedad.propiedad_bancaria == True %}
-                        Si
-                      {% else %}
-                        No
-                      {% endif %}</h3>
+                    <p class="text-gray-900 sm:text-xl font-normal mb-2"> Si </p>
                   </div>
                 </div>
-              </div>
+              </div> {% endif %}
               {% if propiedad.propiedad_bancaria == True %}
               <div class="col col-span-2">
                 Propiedad Bancaria: significa que este bien inmueble es propiedad de un banco, lo que implica que actualmente se mantiene sin Hipoteca, gravámenes ni litigios de ningún tipo.
