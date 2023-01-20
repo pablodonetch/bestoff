@@ -11,50 +11,6 @@
 {% block extra_navbar %} {% include 'componentes/navbar.html' %} {% endblock extra_navbar %}
 {% block content %}
 
-<!-- Modal Ofertar -->
-<div id="modal-component-containet" class="hidden fixed min-h-full min-w-full bg-gray-200 bg-opacity-50">
-  <div class="modal-flex-container justify-center">
-    <div id ="modal-container" class="modal-container max-w-sm mx-auto bg-white mt-4 p-4 rounded-xl border-gray-400">
-      <div class="modal-wrapper">
-        <div class="modal-wrapper-flex">
-          <div class="modal-content">
-            <div>
-              {% for propiedad in propiedades %}
-                {% if propiedad.id == id %}                  
-                  <p class="text-gray-500 mb-2">Quiero Ofertar por esta propiedad:</p>
-                  <h3 class="text-2xl font-bold mb-2">{{propiedad.direccion.upper}}, {{propiedad.comuna.comuna.upper}}</h3>
-                {% endif %}
-              {% endfor %}
-            </div>
-            <form name="form-ofertar" method="post" action="{{ request.get_full_path }} ">
-                {% csrf_token %}
-                <div class="form-group mb-6">
-                  {{form_contacto_oferta.monto}}
-                </div>
-                <div class="form-group mb-6">
-                  {{form_contacto_oferta.forma_pago}}
-                </div>
-                <div class="form-group mb-6">
-                  {{form_contacto_oferta.nombre}}
-                </div>
-                <div class="form-group mb-6">
-                  {{form_contacto_oferta.telefono}}
-                </div>
-                <div class="form-group mb-6">
-                  {{form_contacto_oferta.email}}
-              </div>
-              <div class="flex">
-                <button href="javascript:void(0);" onclick="document.form-ofertar.submit();" class="w-1/2 mr-1 px-6 py-2.5 boton-busqueda-portada rounded-l-lg w-full h-full text-white font-medium text-lg" name="enviar" value="ofertar">contáctenme</button>
-                <button id="close-modal" class="w-1/2 ml-1 px-6 py-2.5 boton-busqueda-portada  rounded-r-lg w-full h-full text-white font-medium text-lg">cancelar</button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
 <!-- Modal Todas las Ofertas -->
 <div id="modal-component-ofertas-containet" class="hidden fixed min-h-full min-w-full bg-gray-200 bg-opacity-50">
   <div class="modal-flex-container justify-center">
@@ -202,7 +158,6 @@
                 <!--<button type="button"  id="open-modal-ofertar" class="mb-2 boton-busqueda-portada rounded-lg w-full h-10 text-white font-medium text-lg">ofertar 1</button>-->
                 <a href="../../../../propiedades/ofertar/{{id}}/{{slug}}"><button type="button"  id="" class="boton-busqueda-portada rounded-lg w-full h-10 text-white font-medium text-lg">Ofertar</button></a>
               </div>
-              
             </div>
           </div>
         </div>
@@ -280,7 +235,7 @@
             <svg class="mx-4" height="18" width="18">
               <circle cx="9" cy="9" r="5" stroke="green" stroke-width="0" fill="green" />
             </svg>  
-            <p class="text-sm">Contrato de Arriendo Vigente.</p>
+            <p class="text-sm">Contrato de Arriendo Vigente</p>
           </div>
         </div>
       {% endif %}
