@@ -93,7 +93,7 @@ def propiedades_detalles(request,oferta_enviada, id, slug ):
     costo_cbr=(ceil(costo_compra*0.006))
     total_costo=costo_estudio+costo_escritura+costo_notaria+costo_vv+costo_cbr
     tasacion_com=propiedades[0].tasacion_comercial
-    plusvalia=tasacion_com-costo_compra
+    plusvalia=tasacion_com-costo_compra-total_costo
     plusvalia_porc=int(plusvalia/costo_compra*100)
     arriendo=float(f'{propiedades[0].arriendo_actual/UF:.1f}')
     if propiedades[0].arriendo_actual == 0:
