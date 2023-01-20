@@ -729,7 +729,7 @@
               {%endfor%}
               <!--Botón de Recalcular-->
                             
-              <select name="moneda_resultados">
+              <select class="w-20" name="moneda_resultados">
               <option>Pesos</option>
               <option>UF</option>
               </select>
@@ -753,32 +753,32 @@
           <h3 class="text-gray-900 text-md font-bold">Detalle de los Costos Operacionales</h3>
           <div class="grid grid-cols-1 gap-0 mt-2">
             <div class="grid grid-cols-12 bg-gray-100">
-              <div class="col-span-6"> <p class="text-sm ml-4 my-2">1. Estudio de Títulos</p></div>
+              <div class="col-span-6"> <p class="text-sm ml-4 my-2">Estudio de Títulos</p></div>
               <div class="col-span-3"> <p class="text-sm ml-4 my-2"></p></div>
               <div class="col-span-3 mr-2"> <p class="text-sm my-2 text-right ml-2">{{costo_estudio}} UF</p></div>
             </div>
             <div class="grid grid-cols-12 bg-white">
-              <div class="col-span-6"> <p class="text-sm ml-4 my-2">2. Confección de la Escritura</p></div>
+              <div class="col-span-6"> <p class="text-sm ml-4 my-2">Confección de la Escritura</p></div>
               <div class="col-span-3"> <p class="text-sm ml-4 my-2"></p></div>
               <div class="col-span-3 mr-2"> <p class="text-sm my-2 text-right ml-2">{{costo_escritura}} UF</p></div>
             </div>
             <div class="grid grid-cols-12 bg-gray-100">
-              <div class="col-span-6"> <p class="text-sm ml-4 my-2">3. Notaría: Firma Compraventa*</p></div>
+              <div class="col-span-6"> <p class="text-sm ml-4 my-2">Notaría: Firma Compraventa*</p></div>
               <div class="col-span-3"> <p class="text-sm ml-4 my-2"></p></div>
               <div class="col-span-3 mr-2"> <p class="text-sm my-2 text-right ml-2">{{costo_notaria}} UF</p></div>
             </div>
             <div class="grid grid-cols-12 bg-white">
-              <div class="col-span-6"> <p class="text-sm ml-4 my-2">4. Obtención de Vales Vistas**</p></div>
+              <div class="col-span-6"> <p class="text-sm ml-4 my-2">Obtención de Vales Vistas**</p></div>
               <div class="col-span-3"> <p class="text-sm ml-4 my-2"></p></div>
               <div class="col-span-3 mr-2"> <p class="text-sm my-2 text-right ml-2">{{costo_vv}} UF</p></div>
             </div>
             <div class="grid grid-cols-12 bg-gray-100">
-              <div class="col-span-6"> <p class="text-sm ml-4 my-2">5. Inscrip. en Conservador de Bienes Raíces</p></div>
+              <div class="col-span-6"> <p class="text-sm ml-4 my-2">Inscrip. en Conservador de Bienes Raíces</p></div>
               <div class="col-span-3"> <p class="text-sm ml-4 my-2"></p></div>
               <div class="col-span-3 mr-2"> <p class="text-sm my-2 text-right ml-2">{{costo_cbr}} UF</p></div>
             </div>
             <div class="grid grid-cols-12 bg-white">
-              <div class="col-span-6"> <p class="font-semibold text-sm ml-4 my-2">6. Total Costos Operacionales</p></div>
+              <div class="col-span-6"> <p class="font-semibold text-sm ml-4 my-2">Total Costos Operacionales</p></div>
               <div class="col-span-3"> <p class="font-semibold text-sm ml-4 my-2"><span><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
               </svg>
@@ -796,12 +796,12 @@
           </div>
           <div class="grid grid-cols-1 gap-0 mt-2">
             <div class="grid grid-cols-12 bg-gray-100">
-              <div class="col-span-6"> <p class="text-sm ml-4 my-2">1. Precio de Compra</p></div>
+              <div class="col-span-6"> <p class="text-sm ml-4 my-2">Precio de Compra</p></div>
               <div class="col-span-3"> <p class="text-sm ml-4 my-2"></p></div>
               <div class="col-span-3 mr-2"> <p class="text-sm my-2 text-right ml-2">{{costo_compra|numberFormat}} UF</p></div>
             </div>
             <div class="grid grid-cols-12 bg-white">
-              <div class="col-span-6"> <p class="flex text-sm ml-4 my-2">2. Costos Operacionales </p></div>
+              <div class="col-span-6"> <p class="flex text-sm ml-4 my-2">Costos Operacionales </p></div>
               <div class="col-span-3"> <p class="text-sm ml-4 my-2"><span><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
               </svg>
@@ -809,12 +809,12 @@
               <div class="col-span-3 mr-2"> <p class="text-sm my-2 text-right ml-2">{{total_costo}} UF</p></div>
             </div>
             <div class="grid grid-cols-12 bg-gray-100">
-              <div class="col-span-6"> <p class="text-sm ml-4 my-2">3. Tasación Comercial</p></div>
+              <div class="col-span-6"> <p class="text-sm ml-4 my-2">Tasación Comercial</p></div>
               <div class="col-span-3"> <p class="text-sm ml-4 my-2"></p></div>
               <div class="col-span-3 mr-2"> <p class="text-sm my-2 text-right ml-2">{{tasacion_com|numberFormat}} UF</p></div>
             </div>
             <div class="grid grid-cols-12 bg-white">
-              <div class="col-span-6"> <p class="font-semibold text-sm ml-4 my-2">4. Plusvalía Inmediata</p></div>
+              <div class="col-span-6"> <p class="font-semibold text-sm ml-4 my-2">Plusvalía Inmediata</p></div>
               <div class="col-span-3"> <p class="font-semibold text-sm ml-4 my-2"><span><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
               </svg>
@@ -822,7 +822,7 @@
               <div class="col-span-3 mr-2"> <p class="font-semibold text-sm my-2 text-right">{{plusvalia|numberFormat}} UF</p></div>
             </div>
             <div class="grid grid-cols-12 bg-gray-100">
-              <div class="col-span-6"> <p class="font-semibold text-sm ml-4 my-2">5. Plusvalía Inmediata</p></div>
+              <div class="col-span-6"> <p class="font-semibold text-sm ml-4 my-2">Plusvalía Inmediata</p></div>
               <div class="col-span-3"> <p class="font-semibold text-sm ml-4 my-2"><span><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
               </svg>
@@ -840,17 +840,17 @@
     </div>
     <div class="row mt-2">
       <div class="grid grid-cols-12 bg-gray-100">
-        <div class="col-span-6"> <p class="text-sm ml-4 my-2">1. Costo de Compra</p></div>
+        <div class="col-span-6"> <p class="text-sm ml-4 my-2">Costo de Compra</p></div>
         <div class="col-span-3"> <p class="text-sm ml-4 my-2"></p></div>
         <div class="col-span-3 mr-2"> <p class="text-sm my-2 text-right ml-2">{{costo_compra|numberFormat}} UF</p></div>
       </div>
       <div class="grid grid-cols-12 bg-white">
-        <div class="col-span-6"> <p class="text-sm ml-4 my-2">2. Ingresos Mensual por Arriendo</p></div>
+        <div class="col-span-6"> <p class="text-sm ml-4 my-2">Ingresos Mensual por Arriendo</p></div>
         <div class="col-span-3"> <p class="text-sm ml-4 my-2"></p></div>
         <div class="col-span-3 mr-2"> <p class="text-sm my-2 text-right ml-2">{{arriendo}} UF</p></div>
       </div>
       <div class="grid grid-cols-12 bg-gray-100">
-        <div class="col-span-6"> <p class="text-sm ml-4 my-2">3. Ingreso Anual por Arriendo</p></div>
+        <div class="col-span-6"> <p class="text-sm ml-4 my-2">Ingreso Anual por Arriendo</p></div>
         <div class="col-span-3"> <p class="text-sm ml-4 my-2"><span><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
           <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
         </svg>
@@ -858,7 +858,7 @@
         <div class="col-span-3 mr-2"> <p class="text-sm my-2 text-right ml-2">{{arriendo_anual}} UF</p></div>
       </div>
       <div class="grid grid-cols-12 bg-white-100">
-        <div class="col-span-6"> <p class="text-sm ml-4 my-2">4. Costo Mensual Administración de Arriendo </p></div>
+        <div class="col-span-6"> <p class="text-sm ml-4 my-2">Costo Mensual Administración de Arriendo </p></div>
         <div class="col-span-3"> <p class="text-sm ml-4 my-2"><span><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
           <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
         </svg>
@@ -866,7 +866,7 @@
         <div class="col-span-3 mr-2"> <p class="text-sm my-2 text-right ml-2">{{comision_arriendo}} UF</p></div>
       </div>
       <div class="grid grid-cols-12 bg-gray-100">
-        <div class="col-span-6"> <p class="text-sm ml-4 my-2">5. Costo Anual Administración de Arriendo</p></div>
+        <div class="col-span-6"> <p class="text-sm ml-4 my-2">Costo Anual Administración de Arriendo</p></div>
         <div class="col-span-3"> <p class="text-sm ml-4 my-2"><span><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
           <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
         </svg>
@@ -874,12 +874,12 @@
         <div class="col-span-3 mr-2"> <p class="text-sm my-2 text-right ml-2">{{comision_arriendo_anual}} UF</p></div>
       </div>
       <div class="grid grid-cols-12 bg-white-100">
-        <div class="col-span-6"> <p class="text-sm ml-4 my-2">6. Costo Mensual Contribuciones</p></div>
+        <div class="col-span-6"> <p class="text-sm ml-4 my-2">Costo Mensual Contribuciones</p></div>
         <div class="col-span-3"> <p class="text-sm ml-4 my-2"></p></div>
         <div class="col-span-3 mr-2"> <p class="text-sm my-2 text-right ml-2">0 UF</p></div>
       </div>
       <div class="grid grid-cols-12 bg-gray-100">
-        <div class="col-span-6"> <p class="text-sm ml-4 my-2">7. Costo Anual Contribuciones</p></div>
+        <div class="col-span-6"> <p class="text-sm ml-4 my-2">Costo Anual Contribuciones</p></div>
         <div class="col-span-3"> <p class="text-sm ml-4 my-2"><span><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
           <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
         </svg>
@@ -887,7 +887,7 @@
         <div class="col-span-3 mr-2"> <p class="text-sm my-2 text-right ml-2">0 UF</p></div>
       </div>
       <div class="grid grid-cols-12 bg-white-100">
-        <div class="col-span-6"> <p class="font-semibold text-sm ml-4 my-2">8. Rentabilidad Anual c/ Administración </p></div>
+        <div class="col-span-6"> <p class="font-semibold text-sm ml-4 my-2">Rentabilidad Anual c/ Administración </p></div>
         <div class="col-span-3"> <p class="font-semibold text-sm ml-4 my-2"><span><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
           <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
         </svg>
@@ -895,7 +895,7 @@
         <div class="col-span-3 mr-2"> <p class="font-semibold text-sm my-2 text-right ml-2">{{rentabilidad_anual_c_adm}} %</p></div>
       </div>
       <div class="grid grid-cols-12 bg-gray-100">
-        <div class="col-span-6"> <p class="font-semibold text-sm ml-4 my-2">9. Rentabilidad Anual s/ Administración</p></div>
+        <div class="col-span-6"> <p class="font-semibold text-sm ml-4 my-2">Rentabilidad Anual s/ Administración</p></div>
         <div class="col-span-3"> <p class="font-semibold text-sm ml-4 my-2"><span><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
           <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
         </svg>
