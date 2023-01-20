@@ -677,14 +677,15 @@
                     <p class="text-gray-900 sm:text-xl font-normal mb-2"> Si </p>
                   </div>
                 </div>
-              </div> {% endif %}
+              </div> 
+              {% endif %}
               {% if propiedad.propiedad_bancaria == True %}
               <div class="col col-span-2">
                 Propiedad Bancaria: significa que este bien inmueble es propiedad de un banco, lo que implica que actualmente se mantiene sin Hipoteca, gravámenes ni litigios de ningún tipo.
               </div>
               {% endif %}
               <div class="col col-span-2 my-2">
-                <h3 class="text-gray-900 text-md font-bold">Documentos Legales</h3>
+                <h3 class="text-gray-900 text-md font-bold">Documentos Legales Descargables</h3>
                 {% for documento in documentos  %}
                 {% if documento.id_propiedades.id == propiedad.id %}
                     <div>
@@ -693,7 +694,7 @@
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
                                 </svg>
-                                <div class="pl-2">{{ documento.titulo }} (haz clic para descargar)
+                                <div class="pl-2">{{ documento.titulo }}
                                 </div>
                             </div>
                         </a>
