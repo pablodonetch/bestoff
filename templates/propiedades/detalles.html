@@ -728,6 +728,11 @@
               {%endif%}
               {%endfor%}
               <!--Botón de Recalcular-->
+                            
+              <select name="moneda_resultados">
+              <option>Pesos</option>
+              <option>UF</option>
+              </select>
               <div class="my-2 col-span-12">
                 <button href="javascript:void(0);" onclick="document.form-ofertar.submit();" class="w-1/2 mr-1 px-6 py-1.5 boton-busqueda-portada rounded-lg w-full h-full text-white font-medium text-lg" name="enviar" value="recalcular">Recalcular</button>
               </div>
@@ -774,7 +779,10 @@
             </div>
             <div class="grid grid-cols-12 bg-white">
               <div class="col-span-6"> <p class="font-semibold text-sm ml-4 my-2">6. Total Costos Operacionales</p></div>
-              <div class="col-span-3"> <p class="font-semibold text-sm ml-4 my-2">(1+2+3+4)</p></div>
+              <div class="col-span-3"> <p class="font-semibold text-sm ml-4 my-2"><span><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
+              </svg>
+              </span></p></div>
               <div class="col-span-3 mr-2"> <p class="font-semibold text-sm my-2 text-right ml-2">{{total_costo}} UF</p></div>
             </div>
           </div>
@@ -843,17 +851,26 @@
       </div>
       <div class="grid grid-cols-12 bg-gray-100">
         <div class="col-span-6"> <p class="text-sm ml-4 my-2">3. Ingreso Anual por Arriendo</p></div>
-        <div class="col-span-3"> <p class="text-sm ml-4 my-2">(2 x12)</p></div>
+        <div class="col-span-3"> <p class="text-sm ml-4 my-2"><span><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
+        </svg>
+        </span></p></div>
         <div class="col-span-3 mr-2"> <p class="text-sm my-2 text-right ml-2">{{arriendo_anual}} UF</p></div>
       </div>
       <div class="grid grid-cols-12 bg-white-100">
         <div class="col-span-6"> <p class="text-sm ml-4 my-2">4. Costo Mensual Administración de Arriendo </p></div>
-        <div class="col-span-3"> <p class="text-sm ml-4 my-2">(3 x7%) +IVA</p></div>
+        <div class="col-span-3"> <p class="text-sm ml-4 my-2"><span><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
+        </svg>
+        </span></p></div>
         <div class="col-span-3 mr-2"> <p class="text-sm my-2 text-right ml-2">{{comision_arriendo}} UF</p></div>
       </div>
       <div class="grid grid-cols-12 bg-gray-100">
         <div class="col-span-6"> <p class="text-sm ml-4 my-2">5. Costo Anual Administración de Arriendo</p></div>
-        <div class="col-span-3"> <p class="text-sm ml-4 my-2">(4 x12)</p></div>
+        <div class="col-span-3"> <p class="text-sm ml-4 my-2"><span><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
+        </svg>
+        </span></p></div>
         <div class="col-span-3 mr-2"> <p class="text-sm my-2 text-right ml-2">{{comision_arriendo_anual}} UF</p></div>
       </div>
       <div class="grid grid-cols-12 bg-white-100">
@@ -863,17 +880,26 @@
       </div>
       <div class="grid grid-cols-12 bg-gray-100">
         <div class="col-span-6"> <p class="text-sm ml-4 my-2">7. Costo Anual Contribuciones</p></div>
-        <div class="col-span-3"> <p class="text-sm ml-4 my-2">(6 x12)</p></div>
+        <div class="col-span-3"> <p class="text-sm ml-4 my-2"><span><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
+        </svg>
+        </span></p></div>
         <div class="col-span-3 mr-2"> <p class="text-sm my-2 text-right ml-2">0 UF</p></div>
       </div>
       <div class="grid grid-cols-12 bg-white-100">
         <div class="col-span-6"> <p class="font-semibold text-sm ml-4 my-2">8. Rentabilidad Anual c/ Administración </p></div>
-        <div class="col-span-3"> <p class="font-semibold text-sm ml-4 my-2">(3-5-7) / 1</p></div>
+        <div class="col-span-3"> <p class="font-semibold text-sm ml-4 my-2"><span><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
+        </svg>
+        </span></p></div>
         <div class="col-span-3 mr-2"> <p class="font-semibold text-sm my-2 text-right ml-2">{{rentabilidad_anual_c_adm}} %</p></div>
       </div>
       <div class="grid grid-cols-12 bg-gray-100">
         <div class="col-span-6"> <p class="font-semibold text-sm ml-4 my-2">9. Rentabilidad Anual s/ Administración</p></div>
-        <div class="col-span-3"> <p class="font-semibold text-sm ml-4 my-2">(3-7) / 1</p></div>
+        <div class="col-span-3"> <p class="font-semibold text-sm ml-4 my-2"><span><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
+        </svg>
+        </span></p></div>
         <div class="col-span-3 mr-2"> <p class="font-semibold text-sm my-2 text-right ml-2">{{rentabilidad_anual_s_adm}} %</p></div>
       </div>
     </div>
