@@ -39,6 +39,8 @@ def ejemploFiltro(parametro):
 def numberFormatFloat(numero):
     if numero == None:
         return 0
+    elif numero ==0:
+        return 0
     else:
         numero=float(numero)
         return "{:,}".format(numero).replace(".",",")[:-1]
