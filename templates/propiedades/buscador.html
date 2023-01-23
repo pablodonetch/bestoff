@@ -18,7 +18,7 @@
         <div class="grid grid-cols-12 mt-5">
           {{formulario_buscar.comuna}}
           {{formulario_buscar.contrato_vigente}} <label for="id_contrato_vigente" class="col-span-12 md:col-span-4 rounded-md my-2 p-2.5">&nbsp&nbspContrato Arriendo Vigente</label>
-          <button type="button" onclick="buscador();" id="boton-busqueda-portada" class=" boton-busqueda-portada col-span-12 md:col-span-1 ml-1 my-2 flex top-0 right-0 p-2.5 text-sm sm:text-base font-medium text-white rounded-md border border-orange-700">
+          <button type="button" onclick="buscador();" id="boton-busqueda-portada" class="boton-busqueda-portada col-span-12 md:col-span-1 ml-1 my-2 flex top-0 right-0 p-2.5 text-sm sm:text-base font-medium text-white rounded-md border border-orange-700">
             <span class="pl-1">Buscar</span>
           </button>
         </div>
@@ -144,4 +144,7 @@
 
 {% endblock content %}
 {% block extra_footer %} {% endblock extra_footer %}
-{% block scripts %} <script src="https://unpkg.com/flowbite@1.4.0/dist/flowbite.js"></script>{% endblock scripts %}
+{% block scripts %} <script src="https://unpkg.com/flowbite@1.4.0/dist/flowbite.js"></script>
+
+
+{% endblock scripts %}

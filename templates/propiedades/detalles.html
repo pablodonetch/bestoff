@@ -674,73 +674,74 @@
       <div class="row">
         <div class="row grid grid-cols-6 sm:grid-cols-12 sm:gap-x-2 mt-3">
           <!--Detalle de Costos Operacionales-->
-        <div class= "col-span-12">
-          <h3 class="text-gray-900 text-md font-bold">Información Básica</h3>
-        </div>
-        <div class= "col-span-6">
-          <form name="form-financiar" method="post" action="{{ request.get_full_path }} ">
-            {% csrf_token %}
-            <div class="grid grid-cols-12">
-              <!--Precio de Compra-->
-              <div class="col-span-5">
-                <p class="inline-block align-middle ml-2 mt-3">Precio de Compra</p>
+          <div class= "col-span-12">
+            <h3 class="text-gray-900 text-md font-bold">Información Básica</h3>
+          </div>
+          <div class= "col-span-6">
+            <form name="form-financiar" method="post" action="{{ request.get_full_path }} ">
+              {% csrf_token %}
+              <div class="grid grid-cols-12">
+                <!--Precio de Compra-->
+                <div class="col-span-5">
+                  <p class="inline-block align-middle ml-2 mt-3">Precio de Compra</p>
+                </div>
+                <div class="class col-span-5 form-group">
+                  {{formulario_financiero.precio_compra}} 
+                </div>
+                <div class="col-span-2">
+                  <p class="inline-block align-middle ml-2 mt-3">UF</p>
+                </div>
+                <!--% de Pie-->
+                <div class="col-span-5">
+                  <p class="inline-block align-middle ml-2 mt-3">Pie</p>
+                </div>
+                <div class="class col-span-5 form-group">
+                  {{formulario_financiero.pie}} 
+                </div>
+                <div class="col-span-2">
+                  <p class="inline-block align-middle ml-2 mt-3">%</p>
+                </div>
+                <!--Tasa Crédito-->
+                <div class="col-span-5">
+                  <p class="inline-block align-middle ml-2 mt-3">Tasa CAE</p>
+                </div>
+                <div class="class col-span-5 form-group">
+                  {{formulario_financiero.tasa}} 
+                </div>
+                <div class="col-span-2">
+                  <p class="inline-block align-middle ml-2 mt-3">%</p>
+                </div>
+                <!--Arriendo Esperado-->
+                {% for propiedad in propiedades %}
+                {% if propiedad.id == id %}
+                {% if propiedad.arriendo_actual == 0%}
+                <div class="col-span-5">
+                  <p class="inline-block align-middle ml-2 mt-3">Arriendo Esperado</p>
+                </div>
+                <div class="class col-span-5 form-group">
+                  {{formulario_financiero.arriendo_esperado}} 
+                </div>
+                <div class="col-span-2">
+                  <p class="inline-block align-middle ml-2 mt-3">UF</p>
+                </div>
+                {%endif%}
+                {%endif%}
+                {%endfor%}
+                <!--Botón de Recalcular-->
+                <div class="col-span-2"></div>
+                <div class="col-span-2"></div>
+                <!--<div class="col-span-8">
+                  <select class="w-35" name="moneda_resultados">
+                  <option>Pesos</option>
+                  <option>UF</option>
+                  </select>
+                </div>-->
+                <div class="my-2 col-span-12">
+                  <button href="javascript:void(0);" onclick="document.form-ofertar.submit();" class="w-1/2 mr-1 px-6 py-1.5 boton-busqueda-portada rounded-lg w-full h-full text-white font-medium text-lg" name="enviar" value="recalcular">Recalcular</button>
+                </div>
               </div>
-              <div class="class col-span-5 form-group">
-                {{formulario_financiero.precio_compra}} 
-              </div>
-              <div class="col-span-2">
-                <p class="inline-block align-middle ml-2 mt-3">UF</p>
-              </div>
-              <!--% de Pie-->
-              <div class="col-span-5">
-                <p class="inline-block align-middle ml-2 mt-3">Pie</p>
-              </div>
-              <div class="class col-span-5 form-group">
-                {{formulario_financiero.pie}} 
-              </div>
-              <div class="col-span-2">
-                <p class="inline-block align-middle ml-2 mt-3">%</p>
-              </div>
-              <!--Tasa Crédito-->
-              <div class="col-span-5">
-                <p class="inline-block align-middle ml-2 mt-3">Tasa CAE</p>
-              </div>
-              <div class="class col-span-5 form-group">
-                {{formulario_financiero.tasa}} 
-              </div>
-              <div class="col-span-2">
-                <p class="inline-block align-middle ml-2 mt-3">%</p>
-              </div>
-              <!--Arriendo Esperado-->
-              {% for propiedad in propiedades %}
-              {% if propiedad.id == id %}
-              {% if propiedad.arriendo_actual == 0%}
-              <div class="col-span-5">
-                <p class="inline-block align-middle ml-2 mt-3">Arriendo Esperado</p>
-              </div>
-              <div class="class col-span-5 form-group">
-                {{formulario_financiero.arriendo_esperado}} 
-              </div>
-              <div class="col-span-2">
-                <p class="inline-block align-middle ml-2 mt-3">UF</p>
-              </div>
-              {%endif%}
-              {%endif%}
-              {%endfor%}
-              <!--Botón de Recalcular-->
-              <div class="col-span-2"></div>
-              <div class="col-span-2"></div>
-              <div class="col-span-8">
-                <select class="w-35" name="moneda_resultados">
-                <option>Pesos</option>
-                <option>UF</option>
-                </select>
-              </div>
-              <div class="my-2 col-span-12">
-                <button href="javascript:void(0);" onclick="document.form-ofertar.submit();" class="w-1/2 mr-1 px-6 py-1.5 boton-busqueda-portada rounded-lg w-full h-full text-white font-medium text-lg" name="enviar" value="recalcular">Recalcular</button>
-              </div>
-            </div>
-          </form>
+            </form>
+          </div>
         </div>
       </div>
       <!--Comisión Corretaje-->
@@ -754,54 +755,112 @@
   </div>
 </div>
     
-    <!--Detalle de Costos Operacionales-->
+<!--Detalle de Costos Operacionales-->
 <div class="my-4 py-4 px-4 sm:px-2 mx-auto max-w-4xl">
   <div class= "col-span-6 hidden">
     <h3 class="text-gray-900 text-md font-bold">Detalle de los Costos Operacionales</h3>
   </div>
 
-  <div class="hidden">
-    <div class="grid grid-cols-1 gap-0 mt-2">
-      <div class="grid grid-cols-12 bg-gray-100">
-        <div class="col-span-6"> <p class="text-sm ml-4 my-2">Estudio de Títulos</p></div>
-        <div class="col-span-3"> <p class="text-sm ml-4 my-2"></p></div>
-        <div class="col-span-3 mr-2"> <p class="text-sm my-2 text-right ml-2">{{costo_estudio}} UF</p></div>
-      </div>
-      <div class="grid grid-cols-12 bg-white">
-        <div class="col-span-6"> <p class="text-sm ml-4 my-2">Confección de la Escritura</p></div>
-        <div class="col-span-3"> <p class="text-sm ml-4 my-2"></p></div>
-        <div class="col-span-3 mr-2"> <p class="text-sm my-2 text-right ml-2">{{costo_escritura}} UF</p></div>
-      </div>
-      <div class="grid grid-cols-12 bg-gray-100">
-        <div class="col-span-6"> <p class="text-sm ml-4 my-2">Notaría: Firma Compraventa*</p></div>
-        <div class="col-span-3"> <p class="text-sm ml-4 my-2"></p></div>
-        <div class="col-span-3 mr-2"> <p class="text-sm my-2 text-right ml-2">{{costo_notaria}} UF</p></div>
-      </div>
-      <div class="grid grid-cols-12 bg-white">
-        <div class="col-span-6"> <p class="text-sm ml-4 my-2">Obtención de Vales Vistas**</p></div>
-        <div class="col-span-3"> <p class="text-sm ml-4 my-2"></p></div>
-        <div class="col-span-3 mr-2"> <p class="text-sm my-2 text-right ml-2">{{costo_vv}} UF</p></div>
-      </div>
-      <div class="grid grid-cols-12 bg-gray-100">
-        <div class="col-span-6"> <p class="text-sm ml-4 my-2">Inscrip. en Conservador de Bienes Raíces</p></div>
-        <div class="col-span-3"> <p class="text-sm ml-4 my-2"></p></div>
-        <div class="col-span-3 mr-2"> <p class="text-sm my-2 text-right ml-2">{{costo_cbr}} UF</p></div>
-      </div>
-      <div class="grid grid-cols-12 bg-white">
-        <div class="col-span-6"> <p class="font-semibold text-sm ml-4 my-2">Total Costos Operacionales</p></div>
-        <div class="col-span-3"> <p class="font-semibold text-sm ml-4 my-2"><span><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
-        </svg>
-        </span></p></div>
-        <div class="col-span-3 mr-2"> <p class="font-semibold text-sm my-2 text-right ml-2">{{total_costo}} UF</p></div>
-      </div>
-    </div>
-    <p class="text-justify text-sm">* El costo notaría de la firma del contrato de compraventa lo asume el comprador.</p>
-    <p class="text-justify text-sm">** La emisión de Vale Vista tiene un costo de 0,3 UF apróx. Además es importante considerar que cada Vale Vista puede ser de máximo $49 millones de pesos.
-  </div>
-
   <!--Calculo de Plusvalia-->
   <div class= "mt-8 sm:mt-0 col-span-6">
+    <!-- Modal Costo Operacional -->
+    <div class="hidden absolute bg-white sm:left-1/2 transform sm:-translate-x-1/2" id="modal_component_container_costo_operacional" >
+      <div class="border-2">
+          <div class="m-4 p-2">
+            <div class="grid grid-cols-1 gap-0 mt-2">
+              <div class="grid grid-cols-12 bg-gray-100">
+                <div class="col-span-6"> <p class="text-xs ml-4 my-2">Estudio de Títulos</p></div>
+                <div class="col-span-3"> <p class="text-xs ml-4 my-2"></p></div>
+                <div class="col-span-3 mr-2"> <p class="text-xs my-2 text-right ml-2">{{costo_estudio}} UF</p></div>
+              </div>
+              <div class="grid grid-cols-12 bg-white">
+                <div class="col-span-6"> <p class="text-xs ml-4 my-2">Confección de la Escritura</p></div>
+                <div class="col-span-3"> <p class="text-xs ml-4 my-2"></p></div>
+                <div class="col-span-3 mr-2"> <p class="text-xs my-2 text-right ml-2">{{costo_escritura}} UF</p></div>
+              </div>
+              <div class="grid grid-cols-12 bg-gray-100">
+                <div class="col-span-6"> <p class="text-xs ml-4 my-2">Notaría: Firma Compraventa*</p></div>
+                <div class="col-span-3"> <p class="text-xs ml-4 my-2"></p></div>
+                <div class="col-span-3 mr-2"> <p class="text-xs my-2 text-right ml-2">{{costo_notaria}} UF</p></div>
+              </div>
+              <div class="grid grid-cols-12 bg-white">
+                <div class="col-span-6"> <p class="text-xs ml-4 my-2">Obtención de Vales Vistas**</p></div>
+                <div class="col-span-3"> <p class="text-xs ml-4 my-2"></p></div>
+                <div class="col-span-3 mr-2"> <p class="text-xs my-2 text-right ml-2">{{costo_vv}} UF</p></div>
+              </div>
+              <div class="grid grid-cols-12 bg-gray-100">
+                <div class="col-span-6"> <p class="text-xs ml-4 my-2">Inscrip. en Conservador de Bienes Raíces</p></div>
+                <div class="col-span-3"> <p class="text-xs ml-4 my-2"></p></div>
+                <div class="col-span-3 mr-2"> <p class="text-xs my-2 text-right ml-2">{{costo_cbr}} UF</p></div>
+              </div>
+              <div class="grid grid-cols-12 bg-white">
+                <div class="col-span-6"> <p class="font-semibold text-xs ml-4 my-2">Total Costos Operacionales</p></div>
+                <div class="col-span-3"> </div>
+                <div class="col-span-3 mr-2"> <p class="font-semibold text-xs my-2 text-right ml-2">{{total_costo}} UF</p></div>
+              </div>
+            </div>
+            <p class="text-justify text-xs">* El costo notaría de la firma del contrato de compraventa lo asume el comprador.</p>
+            <p class="text-justify text-xs">** La emisión de Vale Vista tiene un costo de 0,3 UF apróx. Además es importante considerar que cada Vale Vista puede ser de máximo $49 millones de pesos.
+          </div>
+          <button type="button" class="absolute right-1 top-1 " id="close_modal_costo_operacional">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+      </div>
+    </div>
+    <!--FIN MODAL-->
+
+    <!-- Modal Plusvalia Inmediata -->
+    <div class="hidden absolute bg-white sm:left-1/2 transform sm:-translate-x-1/2" id="modal_component_container_plusvalia" >
+      <div class="border-2">
+          <div class="m-4 p-2">
+            <div class="my-4">La Plusvalía Inmediata se calcula como: </div>
+            <div class="grid grid-cols-5 sm:grid-cols-7">
+              <div class="col-span-3 sm:col-span-1 text-xs sm:text-sm my-2 sm:my-0">Plusvalía Inmediata</div>
+              <div class="col-span-2 sm:col-span-1 text-xs sm:text-sm my-2 sm:my-0">=</div>
+              <div class="col-span-1 text-xs sm:text-sm">Tasación Comercial</div>
+              <div class="col-span-1 text-xs sm:text-sm">-</div>
+              <div class="col-span-1 text-xs sm:text-sm">Precio Compra</div>
+              <div class="col-span-1 text-xs sm:text-sm">-</div>
+              <div class="col-span-1 text-xs sm:text-sm">Costos Operacionales</div>
+            </div>
+          </div>
+          <button type="button" class="absolute right-1 top-1 " id="close_modal_plusvalia">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+      </div>
+    </div>
+    <!--FIN MODAL-->
+
+    <!-- Modal Plusvalia Inmediata -->
+    <div class="hidden absolute bg-white sm:left-1/2 transform sm:-translate-x-1/2" id="modal_component_container_plusvalia_porc" >
+      <div class="border-2">
+          <div class="m-4 p-2">
+            <div class="my-4">La Plusvalía Inmediata se calcula como: </div>
+            <div class="grid grid-cols-5 grid-row-3 sm:grid-cols-7">
+              <div class="col-span-3 row-span-3 sm:col-span-1 text-xs sm:text-sm inline-block align-middle my-2 sm:my-0">Plusvalía Inmediata Porcentual</div>
+              <div class="col-span-2 row-span-3 sm:col-span-1 text-xs sm:text-sm inline-block align-middle my-2 sm:my-0">=</div>
+              <div class="col-span-1 text-xs sm:text-sm">Tasación Comercial</div>
+              <div class="col-span-1 text-xs sm:text-sm">-</div>
+              <div class="col-span-1 text-xs sm:text-sm">Precio Compra</div>
+              <div class="col-span-1 text-xs sm:text-sm">-</div>
+              <div class="col-span-1 text-xs sm:text-sm">Costos Operacionales</div>
+              <div class="col-span-5 text-xs sm:text-sm my-2"><hr class="border-2 border-gray-500"></div>
+              <div class="col-span-5 text-center text-xs sm:text-sm my-2">Tasción Comercial</div>
+            </div>
+          </div>
+          <button type="button" class="absolute right-1 top-1 " id="close_modal_plusvalia_porc">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+      </div>
+    </div>
+    <!--FIN MODAL-->
+
     <div class="row">
       <h3 class="text-gray-900 text-md font-bold">Cálculo de la Plusvalía Inmediata</h3>
     </div>
@@ -813,36 +872,121 @@
       </div>
       <div class="grid grid-cols-12 bg-white">
         <div class="col-span-6"> <p class="flex text-sm ml-4 my-2">Costos Operacionales </p></div>
-        <div class="col-span-3"> <p class="text-sm ml-4 my-2"><span><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
-        </svg>
-        </span></p></div>
+        <div class="col-span-3"> 
+          <button type="button" class="inline-block px-6 font-medium text-xs leading-tight" id="open_modal_costo_operacional">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
+            </svg>
+          </button>
+        </div>
         <div class="col-span-3 mr-2"> <p class="text-sm my-2 text-right ml-2">{{total_costo}} UF</p></div>
       </div>
       <div class="grid grid-cols-12 bg-gray-100">
         <div class="col-span-6"> <p class="text-sm ml-4 my-2">Tasación Comercial</p></div>
-        <div class="col-span-3"> <p class="text-sm ml-4 my-2"></p></div>
+        <div class="col-span-3"> </div>
         <div class="col-span-3 mr-2"> <p class="text-sm my-2 text-right ml-2">{{tasacion_com|numberFormat}} UF</p></div>
       </div>
       <div class="grid grid-cols-12 bg-white">
         <div class="col-span-6"> <p class="font-semibold text-sm ml-4 my-2">Plusvalía Inmediata</p></div>
-        <div class="col-span-3"> <p class="font-semibold text-sm ml-4 my-2"><span><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
-        </svg>
-        </span></p></div>
+        <div class="col-span-3"> 
+          <button type="button" class="inline-block px-6 font-medium text-xs leading-tight" id="open_modal_plusvalia">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
+            </svg>
+          </button>
+        </div>
         <div class="col-span-3 mr-2"> <p class="font-semibold text-sm my-2 text-right">{{plusvalia|numberFormat}} UF</p></div>
       </div>
       <div class="grid grid-cols-12 bg-gray-100">
         <div class="col-span-6"> <p class="font-semibold text-sm ml-4 my-2">Plusvalía Inmediata</p></div>
-        <div class="col-span-3"> <p class="font-semibold text-sm ml-4 my-2"><span><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
-        </svg>
-        </span></p></div>
+        <div class="col-span-3"> 
+          <button type="button" class="inline-block px-6 font-medium text-xs leading-tight" id="open_modal_plusvalia_porc">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
+            </svg>
+          </button>
+        </div>
         <div class="col-span-3 mr-2"> <p class="font-semibold text-sm my-2 text-right ml-2">{{plusvalia_porc}} %</p></div>
       </div>
     </div>
   </div>
   
+
+  <!-- Modal Administracion Arriendo-->
+  <div class="hidden absolute bg-white sm:left-1/2 transform sm:-translate-x-1/2" id="modal_component_container_administracion" >
+    <div class="border-2">
+        <div class="m-4 p-2">
+          <div class="my-4">El costo mensual de administración de arriendo se calcula como: </div>
+          <div class="grid grid-cols-5 grid-row-3 sm:grid-cols-7">
+            <div class="col-span-3 row-span-3 sm:col-span-1 text-xs sm:text-sm inline-block align-middle my-2 sm:my-0">Costo Mensual de Administración de Arriendo</div>
+            <div class="col-span-2 row-span-3 sm:col-span-1 text-xs sm:text-sm inline-block align-middle my-2 sm:my-0">=</div>
+            <div class="col-span-1 text-xs sm:text-sm">Arriendo Mensual</div>
+            <div class="col-span-1 text-xs sm:text-sm">*</div>
+            <div class="col-span-1 text-xs sm:text-sm">7%</div>
+            <div class="col-span-1 text-xs sm:text-sm">*</div>
+            <div class="col-span-1 text-xs sm:text-sm">IVA (1,19)</div>
+          </div>
+        </div>
+        <button type="button" class="absolute right-1 top-1 " id="close_modal_administracion">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+    </div>
+  </div>
+  <!--FIN MODAL-->
+
+
+  <!-- Modal Plusvalia Inmediata -->
+  <div class="hidden absolute bg-white sm:left-1/2 transform sm:-translate-x-1/2" id="modal_component_container_rentabilidad_c_adm" >
+    <div class="border-2">
+        <div class="m-4 p-2">
+          <div class="my-4">La rentabilidad anual con administración de arriendo se calcula como: </div>
+          <div class="grid grid-cols-5 grid-row-3 sm:grid-cols-7">
+            <div class="col-span-3 row-span-3 sm:col-span-1 text-xs sm:text-sm inline-block align-middle my-2 sm:my-0">Rentabilidad Anual con Administración de Arriendo</div>
+            <div class="col-span-2 row-span-3 sm:col-span-1 text-xs sm:text-sm inline-block align-middle my-2 sm:my-0">=</div>
+            <div class="col-span-1 text-xs sm:text-sm">Ingreso Anual por Arriendo </div>
+            <div class="col-span-1 text-xs sm:text-sm">-</div>
+            <div class="col-span-1 text-xs sm:text-sm">Costo Anual por Administración</div>
+            <div class="col-span-1 text-xs sm:text-sm">-</div>
+            <div class="col-span-1 text-xs sm:text-sm">Costo Anual Contribuciones</div>
+            <div class="col-span-5 text-xs sm:text-sm my-2"><hr class="border-2 border-gray-500"></div>
+            <div class="col-span-5 text-center text-xs sm:text-sm my-2">Precio de Compra</div>
+          </div>
+        </div>
+        <button type="button" class="absolute right-1 top-1 " id="close_modal_rentabilidad_c_adm">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+    </div>
+  </div>
+  <!--FIN MODAL-->
+
+  <!-- Modal Plusvalia Inmediata -->
+  <div class="hidden absolute bg-white sm:left-1/2 transform sm:-translate-x-1/2" id="modal_component_container_rentabilidad_s_adm" >
+    <div class="border-2">
+        <div class="m-4 p-2">
+          <div class="my-4">La rentabilidad anual sin administración de arriendo se calcula como: </div>
+          <div class="grid grid-cols-3 grid-row-3 sm:grid-cols-5">
+            <div class="col-span-2 row-span-3 sm:col-span-1 text-xs sm:text-sm inline-block align-middle my-2 sm:my-0">Rentabilidad Anual sin Administración de Arriendo</div>
+            <div class="col-span-1 row-span-3 sm:col-span-1 text-xs sm:text-sm inline-block align-middle my-2 sm:my-0">=</div>
+            <div class="col-span-1 text-xs sm:text-sm">Ingreso Anual por Arriendo </div>
+            <div class="col-span-1 text-xs sm:text-sm">-</div>
+            <div class="col-span-1 text-xs sm:text-sm">Costo Anual Contribuciones</div>
+            <div class="col-span-3 text-xs sm:text-sm my-2"><hr class="border-2 border-gray-500"></div>
+            <div class="col-span-3 text-center text-xs sm:text-sm my-2">Precio de Compra</div>
+          </div>
+        </div>
+        <button type="button" class="absolute right-1 top-1 " id="close_modal_rentabilidad_s_adm">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+    </div>
+  </div>
+  <!--FIN MODAL-->
+
   
   <!--Calculo de Rentabildiad-->
   <!--Título-->
@@ -858,10 +1002,13 @@
     </div>
     <div class="grid grid-cols-12 bg-white">
       <div class="col-span-6"> <p class="text-sm ml-4 my-2">Costo Mensual Administración de Arriendo </p></div>
-      <div class="col-span-3"> <p class="text-sm ml-4 my-2"><span><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
-      </svg>
-      </span></p></div>
+      <div class="col-span-3"> 
+        <button type="button" class="inline-block px-6 font-medium text-xs leading-tight" id="open_modal_administracion">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
+          </svg>
+        </button>  
+      </div>
       <div class="col-span-3 mr-2"> <p class="text-sm my-2 text-right ml-2">{{comision_arriendo}} UF</p></div>
     </div>
     <div class="grid grid-cols-12 bg-gray-100">
@@ -871,18 +1018,24 @@
     </div>
     <div class="grid grid-cols-12 bg-white">
       <div class="col-span-6"> <p class="font-semibold text-sm ml-4 my-2">Rentabilidad Anual c/ Administración </p></div>
-      <div class="col-span-3"> <p class="font-semibold text-sm ml-4 my-2"><span><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
-      </svg>
-      </span></p></div>
+      <div class="col-span-3"> 
+        <button type="button" class="inline-block px-6 font-medium text-xs leading-tight" id="open_modal_rentabilidad_c_adm">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
+          </svg>
+        </button> 
+      </div>
       <div class="col-span-3 mr-2"> <p class="font-semibold text-sm my-2 text-right ml-2">{{rentabilidad_anual_c_adm}} %</p></div>
     </div>
     <div class="grid grid-cols-12 bg-gray-100">
       <div class="col-span-6"> <p class="font-semibold text-sm ml-4 my-2">Rentabilidad Anual s/ Administración</p></div>
-      <div class="col-span-3"> <p class="font-semibold text-sm ml-4 my-2"><span><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
-      </svg>
-      </span></p></div>
+      <div class="col-span-3"> 
+        <button type="button" class="inline-block px-6 font-medium text-xs leading-tight" id="open_modal_rentabilidad_s_adm">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
+          </svg>
+        </button> 
+      </div>
       <div class="col-span-3 mr-2"> <p class="font-semibold text-sm my-2 text-right ml-2">{{rentabilidad_anual_s_adm}} %</p></div>
     </div>
   </div>
@@ -1018,62 +1171,86 @@
 <script src="https://unpkg.com/flowbite@1.4.0/dist/flowbite.js"></script>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA06Q1XXAWcE-H1Lk6QXlXx_ik-vFOqwtE&callback=initMap" defer></script>
+
 <script>
-  const openButton = document.querySelector('#open-modal-ofertar');
-  const closeButton = document.querySelector('#close-modal');
-  const modalContainer = document.querySelector('#modal-component-containet');
-  const modal= document.querySelector('#modal-container');
-  const botonFlash= document.querySelector('#flash');
-  const mapa=document.querySelector('#map-canvas');
+  const openButton_costo_operacional = document.querySelector('#open_modal_costo_operacional');
+  const modalContainer_costo_operacional = document.querySelector('#modal_component_container_costo_operacional');
+  const closeButton_costo_operacional = document.querySelector('#close_modal_costo_operacional');
+  
+  const openButton_plusvalia = document.querySelector('#open_modal_plusvalia');
+  const modalContainer_plusvalia = document.querySelector('#modal_component_container_plusvalia');
+  const closeButton_plusvalia = document.querySelector('#close_modal_plusvalia');
 
-  openButton.addEventListener('click', () => {
-    openModalOfertar();
+  const openButton_plusvalia_porc = document.querySelector('#open_modal_plusvalia_porc');
+  const modalContainer_plusvalia_porc = document.querySelector('#modal_component_container_plusvalia_porc');
+  const closeButton_plusvalia_porc = document.querySelector('#close_modal_plusvalia_porc');
+
+  const openButton_administracion = document.querySelector('#open_modal_administracion');
+  const modalContainer_administracion = document.querySelector('#modal_component_container_administracion');
+  const closeButton_administracion = document.querySelector('#close_modal_administracion');
+  
+  const openButton_rentabilidad_c_adm = document.querySelector('#open_modal_rentabilidad_c_adm');
+  const modalContainer_rentabilidad_c_adm = document.querySelector('#modal_component_container_rentabilidad_c_adm');
+  const closeButton_rentabilidad_c_adm = document.querySelector('#close_modal_rentabilidad_c_adm');
+
+  const openButton_rentabilidad_s_adm = document.querySelector('#open_modal_rentabilidad_s_adm');
+  const modalContainer_rentabilidad_s_adm = document.querySelector('#modal_component_container_rentabilidad_s_adm');
+  const closeButton_rentabilidad_s_adm = document.querySelector('#close_modal_rentabilidad_s_adm');
+
+  openButton_costo_operacional.addEventListener('click', () => {
+    openModal(modalContainer_costo_operacional);
   });
 
-  closeButton.addEventListener('click', () => {
-    closeModal();
+  closeButton_costo_operacional.addEventListener('click', () => {
+    closeModal(modalContainer_costo_operacional );
   });
 
-  function cerrarFlash(){
-    showAndHide(modalContainer, ['hidden'], ['block']);
-  }
+  openButton_plusvalia.addEventListener('click', () => {
+    openModal(modalContainer_plusvalia);
+  });
 
-  function openModalOfertar() {
+  closeButton_plusvalia.addEventListener('click', () => {
+    closeModal(modalContainer_plusvalia);
+  });
+
+  openButton_plusvalia_porc.addEventListener('click', () => {
+    openModal(modalContainer_plusvalia_porc);
+  });
+
+  closeButton_plusvalia_porc.addEventListener('click', () => {
+    closeModal(modalContainer_plusvalia_porc);
+  });
+
+  openButton_administracion.addEventListener('click', () => {
+    openModal(modalContainer_administracion);
+  });
+
+  closeButton_administracion.addEventListener('click', () => {
+    closeModal(modalContainer_administracion);
+  });
+  
+  openButton_rentabilidad_c_adm.addEventListener('click', () => {
+    openModal(modalContainer_rentabilidad_c_adm);
+  });
+
+  closeButton_rentabilidad_c_adm.addEventListener('click', () => {
+    closeModal(modalContainer_rentabilidad_c_adm);
+  });
+
+  openButton_rentabilidad_s_adm.addEventListener('click', () => {
+    openModal(modalContainer_rentabilidad_s_adm);
+  });
+
+  closeButton_rentabilidad_s_adm.addEventListener('click', () => {
+    closeModal(modalContainer_rentabilidad_s_adm);
+  });
+
+  function openModal(modalContainer) {
     showAndHide(modalContainer, ['block'], ['hidden']);
-    showAndHide(carousel, ['hidden'], ['block']);
-    showAndHide(mapa, ['hidden'], ['block']);
-    showAndHide(modal, [], []);
   }
 
-  function closeModal() {
+  function closeModal(modalContainer) {
     showAndHide(modalContainer, ['hidden'], ['block']);
-    showAndHide(carousel, ['block'], ['hidden']);
-    showAndHide(mapa, ['block'], ['hidden']);
-    showAndHide(modal, [], []);
-  }
-
-  const openButton_ofertas = document.querySelector('#open-modal-ofertas');
-  const closeButton_ofertas = document.querySelector('#close-modal-ofertas');
-  const modalContainer_ofertas = document.querySelector('#modal-component-ofertas-containet');
-
-  openButton_ofertas.addEventListener('click', () => {
-    openModal_ofertas();
-  });
-
-  closeButton_ofertas.addEventListener('click', () => {
-    closeModal_ofertas();
-  });
-
-  function openModal_ofertas() {
-    showAndHide(modalContainer_ofertas, ['block'], ['hidden']);
-    showAndHide(mapa, ['hidden'], ['block']);
-    showAndHide(carousel, ['hidden'], ['block']);
-  }
-
-  function closeModal_ofertas() {
-    showAndHide(modalContainer_ofertas, ['hidden'], ['block']);
-    showAndHide(mapa, ['block'], ['hidden']);
-    showAndHide(carousel, ['block'], ['hidden']);
   }
 
   function showAndHide(element, classesToAdd, classesToRemove) {

@@ -99,7 +99,7 @@ def propiedades_detalles(request,oferta_enviada, id, slug ):
     if propiedades[0].arriendo_actual == 0:
         arriendo=arriendo_esperado
     arriendo_anual=float(f'{arriendo*12:.1f}')
-    comision_arriendo=float(f'{arriendo*0.07:.1f}')
+    comision_arriendo=float(f'{arriendo*0.07*1.19:.1f}')
     comision_arriendo_anual=float(f'{comision_arriendo*12:.1f}')
     rentabilidad_anual_c_adm=float(f'{(arriendo_anual-comision_arriendo_anual)/costo_compra*100:.1f}')
     rentabilidad_anual_s_adm=float(f'{arriendo_anual/costo_compra*100:.1f}')
@@ -166,8 +166,6 @@ def mejores_retornos_santiago(request):
 
 def mejores_plusvalia_santiago(request):
     pass
-
-
 
 def buscador(request):
     comuna=request.GET.get('buscar')
