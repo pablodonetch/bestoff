@@ -41,7 +41,7 @@ def numberFormatFloat(numero):
         return 0
     else:
         numero=float(numero)
-        return "{:,}".format(numero).replace(",",".")[:-1]
+        return "{:,}".format(numero).replace(".",",")[:-1]
 
 @register.filter(name='numberFormatInt')
 def numberFormatInt(numero):
