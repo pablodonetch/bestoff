@@ -558,6 +558,24 @@
 
 <!--Información Legal-->
 <div class="my-4 py-4">
+    <!-- Modal Propiedad Bancaria -->
+    <div class="hidden absolute bg-white sm:left-1/2 transform sm:-translate-x-1/2" id="modal_component_container_prop_banc" >
+      <div class="border-2">
+          <div class="m-4 p-2">
+            <div class="my-4">Propiedad Bancaria: significa que este bien inmueble es propiedad de un banco, lo que implica que actualmente se mantiene sin Hipoteca, gravámenes ni litigios de ningún tipo.
+            </div>
+          </div>
+          <button type="button" class="absolute right-1 top-1 " id="close_modal_prop_banc">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+      </div>
+    </div>
+    <!--FIN MODAL-->
+
+
+
   <div class="py-0 px-4 sm:px-2 mx-auto max-w-4xl">
     <div class="grid sm:grid-cols-5 grid-cols-3 gap-4">
       <div class= "col-span-3">
@@ -579,18 +597,19 @@
               <div class="col my-2">
                 <div class="grid grid-cols-1">
                   <div class="row">
-                    <h3 class="text-gray-900 text-md font-bold">Propiedad Bancaria*</h3>
+                    <h3 class="text-gray-900 text-md font-bold">Propiedad Bancaria  
+                      <button type="button" class="inline-block px-6 font-medium text-xs leading-tight" id="open_modal_prop_banc">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
+                        </svg>
+                      </button> 
+                    </h3>
                   </div>
                   <div class="row">
-                    <p class="text-gray-900 sm:text-xl font-normal mb-2"> Si </p>
+                    <p class="text-gray-900 sm:text-xl font-normal mb-2"> Sí </p>
                   </div>
                 </div>
               </div> 
-              {% endif %}
-              {% if propiedad.propiedad_bancaria == True %}
-              <div class="col col-span-2">
-                Propiedad Bancaria: significa que este bien inmueble es propiedad de un banco, lo que implica que actualmente se mantiene sin Hipoteca, gravámenes ni litigios de ningún tipo.
-              </div>
               {% endif %}
               <div class="col col-span-2 my-2">
                 <h3 class="text-gray-900 text-md font-bold">Documentos Legales Descargables</h3>
@@ -609,8 +628,7 @@
                     </div>
                 {% endif %}
                 {% endfor %}
-              </div>
-
+                </div>
             </div>
           {% endif %}
         {% endfor %}
@@ -1150,6 +1168,11 @@
   const modalContainer_rentabilidad_s_adm = document.querySelector('#modal_component_container_rentabilidad_s_adm');
   const closeButton_rentabilidad_s_adm = document.querySelector('#close_modal_rentabilidad_s_adm');
 
+  const openButton_prop_banc= document.querySelector('#open_modal_prop_banc');
+  const modalContainer_prop_banc = document.querySelector('#modal_component_container_prop_banc');
+  const closeButton_prop_banc = document.querySelector('#close_modal_prop_banc');
+
+
   openButton_costo_operacional.addEventListener('click', () => {
     openModal(modalContainer_costo_operacional);
   });
@@ -1196,6 +1219,14 @@
 
   closeButton_rentabilidad_s_adm.addEventListener('click', () => {
     closeModal(modalContainer_rentabilidad_s_adm);
+  });
+
+  openButton_prop_banc.addEventListener('click', () => {
+    openModal(modalContainer_prop_banc);
+  });
+
+  closeButton_prop_banc.addEventListener('click', () => {
+    closeModal(modalContainer_prop_banc);
   });
 
   function openModal(modalContainer) {
