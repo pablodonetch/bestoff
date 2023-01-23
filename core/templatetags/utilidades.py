@@ -35,8 +35,16 @@ def ejemploFiltro(parametro):
 	return f"el valor de parámetro es {parametro}"
 
 
-@register.filter(name='numberFormat')
-def numberFormat(numero):
+@register.filter(name='numberFormatFloat')
+def numberFormatFloat(numero):
+    if numero == None:
+        return 0
+    else:
+        numero=float(numero)
+        return "{:,}".format(numero).replace(",",".")[:-1]
+
+@register.filter(name='numberFormatInt')
+def numberFormatInt(numero):
     if numero == None:
         return 0
     else:

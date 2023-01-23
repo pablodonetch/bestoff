@@ -31,7 +31,7 @@
                             {{oferta.fecha|date:"d-m-y"}}
                           </td>
                           <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap">
-                            {{oferta.monto|numberFormat}} UF
+                            {{oferta.monto|numberFormatInt}} UF
                           </td>
                           <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap">
                             {{oferta.estado}}
@@ -101,7 +101,7 @@
                 <div class="px-6">
                 {% for propiedad in propiedades %}
                     {%if propiedad.id == id%}    
-                        <h3 class="text-gray-900 text-center text-6xl font-medium mb-2 min-w-full">{{propiedad.precio|numberFormat}} {{propiedad.moneda}}</h3>
+                        <h3 class="text-gray-900 text-center text-6xl font-medium mb-2 min-w-full">{{propiedad.precio|numberFormatInt}} {{propiedad.moneda}}</h3>
                     {% endif %}
                 {% endfor %}
                 </div>
@@ -125,7 +125,7 @@
                                 {{oferta.fecha|date:"d-m-y"}}
                               </td>
                               <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap">
-                                {{oferta.monto|numberFormat}} UF
+                                {{oferta.monto|numberFormatInt}} UF
                               </td>
                               <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap">
                                 {{oferta.estado}}
@@ -293,7 +293,7 @@
             <div class="col text-center">
               <div class="grid">
                   <div class="row">
-                    {{ propiedad.superficie_construida|numberFormat}}
+                    {{ propiedad.superficie_construida|numberFormatFloat}}
                   </div>
                   <div class="row text-xs">
                     mt2
@@ -392,7 +392,7 @@
                     <h3 class="text-gray-900 sm:text-md font-bold">Superficie</h3>
                   </div>
                   <div class="row">
-                    <h3 class="text-gray-900 sm:text-xl font-normal mb-2">{{propiedad.superficie_construida|numberFormat}} m<sup>2</sup></h3>
+                    <h3 class="text-gray-900 sm:text-xl font-normal mb-2">{{propiedad.superficie_construida|numberFormatFloat}} m<sup>2</sup></h3>
                   </div>
                 </div>
               </div>
@@ -403,7 +403,7 @@
                     <h3 class="text-gray-900 oculto truncate ms:text-clip text-md font-bold">Sup. Terraza</h3>
                   </div>
                   <div class="row">
-                    <h3 class="text-gray-900 sm:text-xl font-normal mb-2">{{propiedad.superficie_terraza}} m<sup>2</sup></h3>
+                    <h3 class="text-gray-900 sm:text-xl font-normal mb-2">{{propiedad.superficie_terraza|numberFormatFloat}} m<sup>2</sup></h3>
                   </div>
                 </div>
               </div>
@@ -435,7 +435,7 @@
                     <h3 class="text-gray-900 oculto text-md font-bold">GGCC</h3>
                   </div>
                   <div class="row">
-                    <h3 class="text-gray-900 sm:text-xl font-normal mb-2">$ {{propiedad.gastos_comunes|numberFormat}}</h3>
+                    <h3 class="text-gray-900 sm:text-xl font-normal mb-2">$ {{propiedad.gastos_comunes|numberFormatInt}}</h3>
                   </div>
                 </div>
               </div>
@@ -445,7 +445,7 @@
                     <h3 class="text-gray-900 text-md font-bold">Contribuciones</h3>
                   </div>
                   <div class="row">
-                    <h3 class="text-gray-900 sm:text-xl font-normal mb-2">$ {{propiedad.contribuciones|numberFormat}} / trim.</h3>
+                    <h3 class="text-gray-900 sm:text-xl font-normal mb-2">$ {{propiedad.contribuciones|numberFormatInt}} / trim.</h3>
                   </div>
                 </div>
               </div>
@@ -513,7 +513,7 @@
                 <h3 class="text-gray-900 text-md font-bold">Precio de Lista </h3>
               </div>
               <div class="row">
-                <h3 class="text-gray-900 sm:text-xl font-normal mb-2">{{propiedad.precio|numberFormat}} {{propiedad.moneda}}</h3>
+                <h3 class="text-gray-900 sm:text-xl font-normal mb-2">{{propiedad.precio|numberFormatInt}} {{propiedad.moneda}}</h3>
               </div>
             </div>
           </div>
@@ -534,7 +534,7 @@
                 <h3 class="text-gray-900 text-md font-bold">Tasación Comercial</h3>
               </div>
               <div class="row">
-                <h3 class="text-gray-900 sm:text-xl font-normal mb-2">{{propiedad.tasacion_comercial|numberFormat}} UF</h3>
+                <h3 class="text-gray-900 sm:text-xl font-normal mb-2">{{propiedad.tasacion_comercial|numberFormatInt}} UF</h3>
               </div>
             </div>
           </div>
@@ -544,58 +544,11 @@
                 <h3 class="text-gray-900 text-md font-bold">Tasación Fiscal</h3>
               </div>
               <div class="row">
-                <h3 class="text-gray-900 sm:text-xl font-normal mb-2">$ {{propiedad.tasacion_fiscal|numberFormat}}</h3>
+                <h3 class="text-gray-900 sm:text-xl font-normal mb-2">$ {{propiedad.tasacion_fiscal|numberFormatInt}}</h3>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      <!--Arriendos Min Max y Rentabilidad Min Max-->
-      <!--<div class= "col-span-5">
-        <div class="grid grid-cols-2 mt-0 sm:my-2">
-          <div class="col my-2">
-            <div class="grid grid-cols-1">
-              <div class="row">
-                <h3 class="text-gray-900 text-md font-bold">Arriendo Mínimo</h3>
-              </div>
-              <div class="row">
-                <h3 class="text-gray-900 sm:text-xl font-normal mb-2">$ {{propiedad.arriendo_minimo|numberFormat}}</h3>
-              </div>
-            </div>
-          </div>
-          <div class="col my-2">
-            <div class="grid grid-cols-1">
-              <div class="row">
-                <h3 class="text-gray-900 text-md font-bold">Arriendo Máximo</h3>
-              </div>
-              <div class="row">
-                <h3 class="text-gray-900 sm:text-xl font-normal mb-2">$ {{propiedad.arriendo_maximo|numberFormat}}</h3>
-              </div>
-            </div>
-          </div>
-          <div class="col my-2">
-            <div class="grid grid-cols-1">
-              <div class="row">
-                <h3 class="text-gray-900 oculto-reverso text-md font-bold">Rentabilidad Mínima</h3>
-                <h3 class="text-gray-900 oculto text-md font-bold">Rentabilidad Mín.</h3>
-              </div>
-              <div class="row">
-                <h3 class="text-gray-900 sm:text-xl font-normal mb-2">{{rentabilidad_min}}%</h3>
-              </div>
-            </div>
-          </div>
-          <div class="col my-2">
-            <div class="grid grid-cols-1">
-              <div class="row">
-                <h3 class="text-gray-900 oculto-reverso text-md font-bold">Rentabilidad Máxima</h3>
-                <h3 class="text-gray-900 oculto text-md font-bold">Rentabilidad Máx.</h3>
-              </div>
-              <div class="row">
-                <h3 class="text-gray-900 sm:text-xl font-normal mb-2">{{rentabilidad_max}}%</h3>
-              </div>
-            </div>
-          </div>
-        </div>-->
       </div>
     </div>
     {% endif %}
@@ -868,7 +821,7 @@
       <div class="grid grid-cols-12 bg-gray-100">
         <div class="col-span-6"> <p class="text-sm ml-4 my-2">Precio de Compra</p></div>
         <div class="col-span-3"> <p class="text-sm ml-4 my-2"></p></div>
-        <div class="col-span-3 mr-2"> <p class="text-sm my-2 text-right ml-2">{{costo_compra|numberFormat}} UF</p></div>
+        <div class="col-span-3 mr-2"> <p class="text-sm my-2 text-right ml-2">{{costo_compra|numberFormatInt}} UF</p></div>
       </div>
       <div class="grid grid-cols-12 bg-white">
         <div class="col-span-6"> <p class="flex text-sm ml-4 my-2">Costos Operacionales </p></div>
@@ -884,7 +837,7 @@
       <div class="grid grid-cols-12 bg-gray-100">
         <div class="col-span-6"> <p class="text-sm ml-4 my-2">Tasación Comercial</p></div>
         <div class="col-span-3"> </div>
-        <div class="col-span-3 mr-2"> <p class="text-sm my-2 text-right ml-2">{{tasacion_com|numberFormat}} UF</p></div>
+        <div class="col-span-3 mr-2"> <p class="text-sm my-2 text-right ml-2">{{tasacion_com|numberFormatInt}} UF</p></div>
       </div>
       <div class="grid grid-cols-12 bg-white">
         <div class="col-span-6"> <p class="font-semibold text-sm ml-4 my-2">Plusvalía Inmediata</p></div>
@@ -895,7 +848,7 @@
             </svg>
           </button>
         </div>
-        <div class="col-span-3 mr-2"> <p class="font-semibold text-sm my-2 text-right">{{plusvalia|numberFormat}} UF</p></div>
+        <div class="col-span-3 mr-2"> <p class="font-semibold text-sm my-2 text-right">{{plusvalia|numberFormatInt}} UF</p></div>
       </div>
       <div class="grid grid-cols-12 bg-gray-100">
         <div class="col-span-6"> <p class="font-semibold text-sm ml-4 my-2">Plusvalía Inmediata</p></div>
