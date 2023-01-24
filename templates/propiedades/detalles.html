@@ -827,8 +827,8 @@
     <div class="hidden absolute bg-white sm:left-1/2 transform sm:-translate-x-1/2" id="modal_component_container_plusvalia_porc" >
       <div class="border-2">
         <div class="m-4 p-2">
-          <div class="my-4">La Plusvalía Inmediata se calcula como: </div>
-          <img src="{% static "imagenes/plusvalia_In_Porc.PNG" %}" class="" alt="Plusvalia Inmediata"></a>
+          <div class="my-4">La Plusvalía Inmediata Porcentual se calcula como: </div>
+          <img src="{% static "imagenes/plusvalia_In_Porc.PNG" %}" class="" alt="Plusvalia Inmediata Porcentual"></a>
         </div>
           <button type="button" class="absolute right-1 top-1 " id="close_modal_plusvalia_porc">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -893,18 +893,10 @@
   <!-- Modal Administracion Arriendo-->
   <div class="hidden absolute bg-white sm:left-1/2 transform sm:-translate-x-1/2" id="modal_component_container_administracion" >
     <div class="border-2">
-        <div class="m-4 p-2">
-          <div class="my-4">El costo mensual de administración de arriendo se calcula como: </div>
-          <div class="grid grid-cols-5 grid-row-3 sm:grid-cols-7">
-            <div class="col-span-3 row-span-3 sm:col-span-1 text-xs sm:text-sm inline-block align-middle my-2 sm:my-0">Costo Mensual de Administración de Arriendo</div>
-            <div class="col-span-2 row-span-3 sm:col-span-1 text-xs sm:text-sm inline-block align-middle my-2 sm:my-0">=</div>
-            <div class="col-span-1 text-xs sm:text-sm">Arriendo Mensual</div>
-            <div class="col-span-1 text-xs sm:text-sm">*</div>
-            <div class="col-span-1 text-xs sm:text-sm">7%</div>
-            <div class="col-span-1 text-xs sm:text-sm">*</div>
-            <div class="col-span-1 text-xs sm:text-sm">IVA (1,19)</div>
-          </div>
-        </div>
+      <div class="m-4 p-2">
+        <div class="my-4">El costo mensual de administración de arriendo se calcula como: </div>
+        <img src="{% static "imagenes/costo_mensual_administracion.PNG" %}" class="" alt="Costo Mensual de Administracion de Arriendo"></a>
+      </div>
         <button type="button" class="absolute right-1 top-1 " id="close_modal_administracion">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -918,20 +910,10 @@
   <!-- Modal Plusvalia Inmediata -->
   <div class="hidden absolute bg-white sm:left-1/2 transform sm:-translate-x-1/2" id="modal_component_container_rentabilidad_c_adm" >
     <div class="border-2">
-        <div class="m-4 p-2">
-          <div class="my-4">La rentabilidad anual con administración de arriendo se calcula como: </div>
-          <div class="grid grid-cols-5 grid-row-3 sm:grid-cols-7">
-            <div class="col-span-3 row-span-3 sm:col-span-1 text-xs sm:text-sm inline-block align-middle my-2 sm:my-0">Rentabilidad Anual con Administración de Arriendo</div>
-            <div class="col-span-2 row-span-3 sm:col-span-1 text-xs sm:text-sm inline-block align-middle my-2 sm:my-0">=</div>
-            <div class="col-span-1 text-xs sm:text-sm">Ingreso Anual por Arriendo </div>
-            <div class="col-span-1 text-xs sm:text-sm">-</div>
-            <div class="col-span-1 text-xs sm:text-sm">Costo Anual por Administración</div>
-            <div class="col-span-1 text-xs sm:text-sm">-</div>
-            <div class="col-span-1 text-xs sm:text-sm">Costo Anual Contribuciones</div>
-            <div class="col-span-5 text-xs sm:text-sm my-2"><hr class="border-2 border-gray-500"></div>
-            <div class="col-span-5 text-center text-xs sm:text-sm my-2">Precio de Compra</div>
-          </div>
-        </div>
+      <div class="m-4 p-2">
+        <div class="my-4">La rentabilidad con administración de arriendo se calcula como: </div>
+        <img src="{% static "imagenes/rentabilidad_c_adm.PNG" %}" class="" alt="rentabilidad con administración de arriendo"></a>
+      </div>
         <button type="button" class="absolute right-1 top-1 " id="close_modal_rentabilidad_c_adm">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -941,21 +923,13 @@
   </div>
   <!--FIN MODAL-->
 
-  <!-- Modal Plusvalia Inmediata Porcentual-->
+  <!-- Modal Rentabilidad s/ administración-->
   <div class="hidden absolute bg-white sm:left-1/2 transform sm:-translate-x-1/2" id="modal_component_container_rentabilidad_s_adm" >
     <div class="border-2">
-        <div class="m-4 p-2">
-          <div class="my-4">La rentabilidad anual sin administración de arriendo se calcula como: </div>
-          <div class="grid grid-cols-3 grid-row-3 sm:grid-cols-5">
-            <div class="col-span-2 row-span-3 sm:col-span-1 text-xs sm:text-sm inline-block align-middle my-2 sm:my-0">Rentabilidad Anual sin Administración de Arriendo</div>
-            <div class="col-span-1 row-span-3 sm:col-span-1 text-xs sm:text-sm inline-block align-middle my-2 sm:my-0">=</div>
-            <div class="col-span-1 text-xs sm:text-sm">Ingreso Anual por Arriendo </div>
-            <div class="col-span-1 text-xs sm:text-sm">-</div>
-            <div class="col-span-1 text-xs sm:text-sm">Costo Anual Contribuciones</div>
-            <div class="col-span-3 text-xs sm:text-sm my-2"><hr class="border-2 border-gray-500"></div>
-            <div class="col-span-3 text-center text-xs sm:text-sm my-2">Precio de Compra</div>
-          </div>
-        </div>
+      <div class="m-4 p-2">
+        <div class="my-4">La rentabilidad sin administración de arriendo se calcula como: </div>
+        <img src="{% static "imagenes/rentabilidad_s_adm.PNG" %}" class="" alt="rentabilidad sin administración de arriendo"></a>
+      </div>
         <button type="button" class="absolute right-1 top-1 " id="close_modal_rentabilidad_s_adm">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
