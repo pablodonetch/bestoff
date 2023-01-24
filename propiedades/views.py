@@ -108,7 +108,7 @@ def propiedades_detalles(request,oferta_enviada, id, slug ):
     cuotas.append({})
     tasa_hip=tasa_hip_anual/12
     for i in range(1,7):
-        pie=0.2
+        pie=0.1
         año+=5
         meses=año*12 
         for j in range(1,5): 
