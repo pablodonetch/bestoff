@@ -4,6 +4,7 @@ from core.models import *
 class PropiedadesSitemap(Sitemap):
     changefreq = 'weekly'
     priority = 0.5
+    protocol = 'https'
 
     def items(self):
         return Propiedad.objects.all()
