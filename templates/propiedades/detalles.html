@@ -653,10 +653,10 @@
 </div>
 <!--FIN MODAL-->
 
+
+
 <!--Análisis Financiero-->
 <div class="my-4 py-4">
-
-
   <div class="py-0 px-4 sm:px-2 mx-auto max-w-4xl">
     <h3 class="text-gray-900 text-3xl font-medium mb-4">Análisis Financiero</h3>
     <div class="grid grid-cols-1 gap-y-1">
@@ -695,11 +695,12 @@
                 <!--Tasa Crédito-->
                 <div class="col-span-5">
                   <p class="inline-block align-middle ml-2 mt-3">Tasa CAE
-                  <button type="button" class="inline-block font-medium text-xs leading-tight" id="open_modal_cae">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
-                    </svg>
-                  </button></p>
+                    <button type="button" class="inline-block font-medium text-xs leading-tight" id="open_modal_cae_2">
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
+                      </svg>
+                    </button>
+                    </p>
                 </div>
                 <div class="class col-span-5 form-group">
                   {{formulario_financiero.tasa}} 
@@ -1151,16 +1152,19 @@
   const openButton_rentabilidad_s_adm = document.querySelector('#open_modal_rentabilidad_s_adm');
   const modalContainer_rentabilidad_s_adm = document.querySelector('#modal_component_container_rentabilidad_s_adm');
   const closeButton_rentabilidad_s_adm = document.querySelector('#close_modal_rentabilidad_s_adm');
-
+  
+  {% if propiedad.propiedad_bancaria == True %}
   const openButton_prop_banc= document.querySelector('#open_modal_prop_banc');
   const modalContainer_prop_banc = document.querySelector('#modal_component_container_prop_banc');
   const closeButton_prop_banc = document.querySelector('#close_modal_prop_banc');
-  
-  const openButton_cae= document.querySelector('#open_modal_cae');
+  {%endif%}
+
+  const openButton_cae= document.querySelector('#open_modal_cae_2');
   const modalContainer_cae = document.querySelector('#modal_component_container_cae');
   const closeButton_cae = document.querySelector('#close_modal_cae');
   const molesta_cae = document.querySelector('#molesta_cae');
-
+  
+  console.log(openButton_cae);
   openButton_costo_operacional.addEventListener('click', () => {
     openModal(modalContainer_costo_operacional);
   });
@@ -1209,22 +1213,26 @@
     closeModal(modalContainer_rentabilidad_s_adm);
   });
 
+  {% if propiedad.propiedad_bancaria == True %}
   openButton_prop_banc.addEventListener('click', () => {
     openModal(modalContainer_prop_banc);
   });
 
+  
   closeButton_prop_banc.addEventListener('click', () => {
     closeModal(modalContainer_prop_banc);
   });
+  {%endif%}
 
   openButton_cae.addEventListener('click', () => {
+    console.log('entra');
     openModal(modalContainer_cae);
-    closeModal(molesta_cae)
+    closeModal(molesta_cae);
   });
 
   closeButton_cae.addEventListener('click', () => {
     closeModal(modalContainer_cae);
-    openModal(molesta_cae)
+    openModal(molesta_cae);
   });
 
   function openModal(modalContainer) {
