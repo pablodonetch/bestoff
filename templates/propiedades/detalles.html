@@ -519,17 +519,6 @@
           </div>
           <div class="col my-2">
             <div class="grid grid-cols-1">
-              <!--Aceptan Ofertas-->
-              <!--<div class="row">
-                <h3 class="text-gray-900 text-md font-bold">Aceptan Ofertas</h3>
-              </div>
-              <div class="row">
-                <h3 class="text-gray-900 sm:text-xl font-normal mb-2">{% if propiedad.aceptan_oferta == True %} Si{%endif%}{% if propiedad.aceptan_oferta == False %} No{%endif%}<</h3>
-              </div>
-            </div>
-          </div>
-          <div class="col my-2">
-            <div class="grid grid-cols-1">-->
               <div class="row">
                 <h3 class="text-gray-900 text-md font-bold">Tasación Comercial</h3>
               </div>
@@ -967,7 +956,7 @@
     <div class="grid grid-cols-12 bg-gray-100">
       <div class="col-span-6"> <p class="text-sm ml-4 my-2">Costo Mensual Contribuciones</p></div>
       <div class="col-span-3"> <p class="text-sm ml-4 my-2"></p></div>
-      <div class="col-span-3 mr-2"> <p class="text-sm my-2 text-right ml-2">0 UF</p></div>
+      <div class="col-span-3 mr-2"> <p class="text-sm my-2 text-right ml-2">{{contribuciones_mensuales|truncDecimal}} UF</p></div>
     </div>
     <div class="grid grid-cols-12 bg-white">
       <div class="col-span-6"> <p class="font-semibold text-sm ml-4 my-2">Rentabilidad Anual c/ Administración </p></div>

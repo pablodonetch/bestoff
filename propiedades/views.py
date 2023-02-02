@@ -96,6 +96,7 @@ def propiedades_detalles(request,oferta_enviada, id, slug ):
     plusvalia=int(tasacion_com-costo_compra-total_costo)
     plusvalia_porc=int(plusvalia/costo_compra*100)
     arriendo=float(f'{propiedades[0].arriendo_actual/UF:.1f}')
+    contribuciones_mensuales=propiedades[0].contribuciones/4/UF
     if propiedades[0].arriendo_actual == 0:
         arriendo=arriendo_esperado
     arriendo_anual=float(f'{arriendo*12:.1f}')
@@ -151,6 +152,7 @@ def propiedades_detalles(request,oferta_enviada, id, slug ):
         'rentabilidad_anual_s_adm':rentabilidad_anual_s_adm,
         'cuotas':cuotas,
         'tasa_hip':tasa_hip_anual*100,
+        'contribuciones_mensuales':contribuciones_mensuales,
     }
 
     return render(request, 'propiedades/detalles.html', context )

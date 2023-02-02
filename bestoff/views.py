@@ -32,12 +32,7 @@ def home(request):
     }
     return render(request, 'propiedades/buscador.html', context)
 
-
-
-
-
-
-
+    
 def home_borrar(request):
     propiedades = Propiedad.objects.all()
     images = Image.objects.all()
