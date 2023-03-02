@@ -9,7 +9,7 @@ environ.Env.read_env()
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 SECRET_KEY = env('SECRET_KEY')
-DEBUG = True
+DEBUG = False
 ALLOWED_HOSTS = ['https://www.bestoff.cl', 'www.bestoff.cl', 'bestoff.cl','https://bestoff.cl', 'http://127.0.0.1', '127.0.0.1', 'https://bestoff-cl.herokuapp.com', 'bestoff-cl.herokuapp.com']
 
 CSRF_TRUSTED_ORIGINS = ['https://www.bestoff.cl','https://bestoff.cl','http://127.0.0.1', 'https://bestoff-cl.herokuapp.com' ]
