@@ -1,5 +1,6 @@
 from django import forms
 from django.core import validators
+from django.forms import PasswordInput
 
 class formulario_buscar(forms.Form):
 	contrato_vigente = forms.BooleanField(required=True, )

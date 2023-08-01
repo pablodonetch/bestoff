@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}{% load utilidades %}
+{% block extra_head %}<title>BESTOFF - Oportunidades Inmobiliarias para todos.</title> 
+{% endblock extra_head %}
+{% block extra_navbar %} {% include 'componentes/navbar.html' %} {% endblock extra_navbar %}
+{% block content %}
+
+<h2 class="text-2xl text-grey-800 text-center font-bold my-12 mx-auto">LOGIN</h2>
+<div class="mt-6 mb-24 mx-2 max-w-xl">
+    <form name="Formulario_Login" method="post" action="{% url 'acceso_login' %}">
+        <div class="grid grid-cols-3">  
+
+        {% csrf_token %}
+            <div class="col">
+                <label for="password" class="my-2 font-semibold text-right mr-8">Correo:</label>
+            </div>
+            <div class="col-span-2">
+                {{form.correo}}
+            </div>
+            <div class="col">
+                <label for="password" class="my-2 font-semibold text-right mr-8">Contraseña</label>
+            </div>
+            <div class="col-span-2">
+                {{form.password}}
+            </div>
+        </div>
+        <div class="rounded-lg my-10 px-10 py-4 bg-orange-800 mx-auto">
+            <button type="button" class="bg-orange-800" onclick="sendLogin();">Enviar</button>
+        </div> 
+    </form>
+</div>
+
+{% endblock content %}
+{% block extra_footer %} {% endblock extra_footer %}
+{% block scripts %} {% endblock scripts %}

@@ -9,7 +9,7 @@ environ.Env.read_env()
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 SECRET_KEY = env('SECRET_KEY')
-DEBUG = False
+DEBUG = True
 ALLOWED_HOSTS = ['https://www.bestoff.cl', 'www.bestoff.cl', 'bestoff.cl','https://bestoff.cl', 'http://127.0.0.1', '127.0.0.1', 'https://bestoff-cl.herokuapp.com', 'bestoff-cl.herokuapp.com']
 
 CSRF_TRUSTED_ORIGINS = ['https://www.bestoff.cl','https://bestoff.cl','http://127.0.0.1', 'https://bestoff-cl.herokuapp.com' ]
@@ -25,6 +25,7 @@ INSTALLED_APPS = [
     'django.contrib.sitemaps',
     'core',
     'propiedades',
+    'acceso',
 
     'tailwind',
     'theme',
@@ -62,6 +63,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.csrf',
             ],
         },
     },

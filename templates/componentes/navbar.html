@@ -1,7 +1,6 @@
 {% load static %}
 <nav class="shadow dark:bg-gray-800 nav-orange-paginas drop-shadow-md">
     <div class="container px-6 py-4 mx-auto">
-   
             <div class="flex items-center justify-between">
                 <div>
                     <a  href="/">
@@ -30,6 +29,38 @@
                             </div>
                         </button>
                     </div></a>
+                    {% if user.is_authenticated %}
+                    <a href="/salir"><div class="mx-2">
+                        <!--<button id="open-modal-vende" class="flex text-white">-->
+                        <button class="flex text-white">
+                            <p class="mx-1 font-semibold text-xs sm:text-lg">Salir</p>
+                            <div class="hidden sm:block">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" fill="none">
+                                    <path d="M4 9L12 17L20 9" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                        </button>
+                    </div></a>
+
+
+                    {% else %}
+
+                    <a href="acceso/login"><div class="mx-2">
+                        <!--<button id="open-modal-vende" class="flex text-white">-->
+                        <button class="flex text-white">
+                            <p class="mx-1 font-semibold text-xs sm:text-lg">Login</p>
+                            <div class="hidden sm:block">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" fill="none">
+                                    <path d="M4 9L12 17L20 9" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                        </button>
+                    </div></a>
+
+
+                    {% endif %}
+
+                
                 </div>
             </div>
 
