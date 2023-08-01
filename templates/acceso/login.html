@@ -8,8 +8,7 @@
 <h2 class="text-2xl text-grey-800 text-center font-bold my-12 mx-auto">LOGIN</h2>
 <div class="mt-6 mb-24 mx-2 max-w-xl">
     <form name="Formulario_Login" method="post" action="{% url 'acceso_login' %}">
-        <div class="grid grid-cols-3">  
-
+        <div class="grid grid-cols-3">
         {% csrf_token %}
             <div class="col">
                 <label for="password" class="my-2 font-semibold text-right mr-8">Correo:</label>
