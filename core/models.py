@@ -204,6 +204,7 @@ class Propiedad(models.Model):
     estado_uso = models.TextField(default="Buen estado. Solo necesita pintura y reparaciones menores.")
     comision_venta = models.TextField(max_length=200, default="2% + IVA del valor de venta (con Factura Excenta)")
     rol = models.CharField(max_length=50)
+    fecha_termino=models.DateField(blank=True, null=True)
     tipo_propiedad = models.ForeignKey(tipo_propiedad, on_delete=models.CASCADE)
     tipo_operacion = models.ForeignKey(tipo_operacion, on_delete=models.CASCADE)
     precio = models.IntegerField(default=0)
