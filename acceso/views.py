@@ -35,4 +35,11 @@ def acceso_login(request):
     return render(request, 'acceso/login.html', {'form': form})
 
 
-# Create your views here.
+def acceso_salir(request):
+    logout(request)
+    try:
+        del request.session['users_metadata_id']
+    except KeyError:
+        pass
+    messages.add_message(request, messages.WARNING, f'Se cerró la sesión exitosamente.')
+    return HttpResponseRedirect('/')

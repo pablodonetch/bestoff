@@ -265,11 +265,12 @@ class Metadata(models.Model):
 class UsersMetadata(models.Model):
     id = models.AutoField(primary_key=True)
     user = models.ForeignKey(User, models.DO_NOTHING)
+    rut=models.CharField(max_length=100, blank=True, null=True)
     comuna = models.ForeignKey(comuna, models.DO_NOTHING, default=1)
-    slug = models.CharField(max_length=100, null=True)
-    correo = models.CharField(max_length=100, blank=True, null=True)
     telefono = models.CharField(max_length=100, blank=True, null=True)
     direccion = models.CharField(max_length=100, blank=True, null=True)
+    garantia= models.IntegerField(default=0)
+
 
     def __str__(self):
         return f"{self.user.first_name} {self.user.last_name}"

@@ -30,7 +30,7 @@
                         </button>
                     </div></a>
                     {% if user.is_authenticated %}
-                    <a href="/salir"><div class="mx-2">
+                    <a href="acceso/salir"><div class="mx-2">
                         <!--<button id="open-modal-vende" class="flex text-white">-->
                         <button class="flex text-white">
                             <p class="mx-1 font-semibold text-xs sm:text-lg">Salir</p>
@@ -41,10 +41,7 @@
                             </div>
                         </button>
                     </div></a>
-
-
                     {% else %}
-
                     <a href="acceso/login"><div class="mx-2">
                         <!--<button id="open-modal-vende" class="flex text-white">-->
                         <button class="flex text-white">
@@ -56,13 +53,15 @@
                             </div>
                         </button>
                     </div></a>
-
-
-                    {% endif %}
-
-                
+                    {% endif %}                
                 </div>
             </div>
-
     </div>
 </nav>
+{% if user.is_authenticated %}
+<nav class="shadow bg-orange-600 drop-shadow-md">
+    <div class="max-w-3xl mx-auto">
+        <p class="text-white text-right font-semibold">Garantía Disponible: $ {{usermetadata.garantia}}</p>
+    </div>
+</nav>
+{% endif %}  

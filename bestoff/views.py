@@ -12,6 +12,9 @@ from collections import defaultdict
 UF=35200 #CAMBIAR UF ACÁ
 
 def home(request):
+    usersMetadata=''
+    if request.user.is_authenticated:
+        usersMetadata = UsersMetadata.objects.filter(user_id=request.user.id).get()
     propiedades= Propiedad.objects.all()
     propiedades_diccionario=defaultdict(dict)
     for i in range(0,propiedades.count()):
@@ -29,11 +32,13 @@ def home(request):
         'propiedades_diccionario':propiedades_diccionario,
         'images': images, 
         'formulario_buscar': form_buscar,
+        'usermetadata':usersMetadata,
     }
     return render(request, 'propiedades/buscador.html', context)
 
     
 def home_borrar(request):
+    
     propiedades = Propiedad.objects.all()
     images = Image.objects.all()
     rentabilidades=[]

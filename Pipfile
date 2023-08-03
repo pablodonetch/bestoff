@@ -43,6 +43,7 @@ botocore = "==1.29.16"
 django-storages = "==1.13.1"
 jmespath = "==1.0.1"
 s3transfer = "==0.6.0"
+channels = "*"
 
 [dev-packages]
 
