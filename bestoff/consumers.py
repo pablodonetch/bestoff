@@ -6,20 +6,6 @@ from .models import Notificaciones
 from datetime import datetime, timedelta
 
 
-
-def tiempo_restante_hasta_termino():
-    # Obtener la fecha y hora actual
-    ahora = datetime.now()
-
-    tiempo_restante = proximo_domingo_mediodia - ahora
-
-    # Extraer días, horas, minutos y segundos del tiempo restante
-    dias = tiempo_restante.days
-    horas, segundos = divmod(tiempo_restante.seconds, 3600)
-    minutos, segundos = divmod(segundos, 60)
-
-    return dias, horas, minutos, segundos
-
 class WSConsumer(WebsocketConsumer):
 	def connect(self):
 		self.accept()
@@ -28,7 +14,7 @@ class WSConsumer(WebsocketConsumer):
 		for i in range(0,propiedades.count()):
 			propiedades_diccionario_socket[propiedades[i].id]['tiempo_remanente']=propiedades[i].comuna.comuna
 			ahora = datetime.now()
-    		tiempo_restante = propiedades[i].fecha_termino - ahora
+			tiempo_restante = propiedades[i].fecha_termino - ahora
 			propiedades_diccionario_socket[propiedades[i].id]['dias']=tiempo_restante.days
 			propiedades_diccionario_socket[propiedades[i].id]['horas'],propiedades_diccionario[propiedades[i].id]['segundos']=divmod(tiempo_restante.seconds, 3600)
 			propiedades_diccionario_socket[propiedades[i].id]['minutos'],propiedades_diccionario[propiedades[i].id]['segundos']=divmod(segundos, 60)

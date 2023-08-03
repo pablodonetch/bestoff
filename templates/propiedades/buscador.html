@@ -25,7 +25,7 @@
     </div>
 </div>
 
-<!--Ordenar por-->
+<!--Ordenar por
 <div class="flex my-4 max-w-4xl mx-2 sm:mx-auto">
   <h2 class="text-sm font-medium title-font mb-4 text-gray-900">Ordenar por:   </h2>
   {% if portada %}
@@ -56,7 +56,7 @@
       <span class="text-sm text-red-400 font-bold">Mejor Plusvalia</span>
     </div>
   </a>
-</div>
+</div>-->
 
 {% if Comuna %}
 <!-- Titulo de la página   -->
@@ -133,6 +133,7 @@
         <div class="py-1 px-4">
           <h3 class="mt-0 mb-2 text-2xl font-bold">{{value|accede_diccionario:'comuna'}}</h2>
         </div>
+        <div id="app" class="py-1 px-4">{{tiempo}}</div>
         <div class="p-2 border-t border-b text-xs text-gray-700">
           <div class="flex justify-between">
                 <div> <span class="text-sm font-semibold">UF </span>&nbsp;<span class="font-bold text-3xl">{{value|accede_diccionario:'precio'|numberFormatInt}}</span>-</div>
@@ -147,7 +148,22 @@
 
 {% endblock content %}
 {% block extra_footer %} {% endblock extra_footer %}
-{% block scripts %} <script src="https://unpkg.com/flowbite@1.4.0/dist/flowbite.js"></script>
+{% block scripts %}
+<script type="text/javascript">
+	function sendSocket()
+	{
+	var socket=new WebSocket('ws://127.0.0.1:8000/ws/some_url/');
+		socket.onmessage=function(event){
+			var data=JSON.parse(event.data);
+			console.log(data);	
+			document.querySelector('#app').innerHTML=data.message;		
+		}
+		}
+		window.onload=function(){
+			setInterval(function(){ sendSocket(); }, 3000);
+
+		};
+</script>
 
 
 {% endblock scripts %}
