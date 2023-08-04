@@ -165,11 +165,11 @@
 		}
   {% endfor %}
 
-    window.onload=function(){
-      {% for key, value in propiedades_diccionario.items %}
-			setInterval(function(){ sendSocket_{{value|accede_diccionario:'id'}}(); }, 3000)
-      {% endfor %}
-		};
+  window.onload=function(){
+    {% for key, value in propiedades_diccionario.items %}
+    setInterval(function(){ sendSocket_{{value|accede_diccionario:'id'}}(); }, 3000)
+    {% endfor %}
+	};
 </script>
 
 
