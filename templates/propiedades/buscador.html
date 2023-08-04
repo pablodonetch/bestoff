@@ -154,7 +154,7 @@
   {% for key, value in propiedades_diccionario.items %}
 	function sendSocket_{{value|accede_diccionario:'id'}}()
 	{
-    let url=`ws://${window.location.host}/ws/propiedad/{{value|accede_diccionario:'id'}}/`
+    let url=`wss://${window.location.host}/ws/propiedad/{{value|accede_diccionario:'id'}}/`
   
     var socket=new WebSocket(url)
 		socket.onmessage=function(event){
