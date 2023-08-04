@@ -1,8 +1,6 @@
 from django.urls import path, re_path
-from .consumers import WSConsumer
+from .consumers import *
 
-
-
-ws_urlpatterns = [
-	re_path('/ws/some_url/', WSConsumer.as_asgi()),
+websocket_urlpatterns = [
+	re_path('ws/propiedad/<int:id>/', WSConsumer.as_asgi()),
 ]

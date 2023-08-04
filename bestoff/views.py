@@ -18,6 +18,7 @@ def home(request):
     propiedades= Propiedad.objects.all()
     propiedades_diccionario=defaultdict(dict)
     for i in range(0,propiedades.count()):
+        propiedades_diccionario[propiedades[i].id]['id']=propiedades[i].id
         propiedades_diccionario[propiedades[i].id]['comuna']=propiedades[i].comuna.comuna
         propiedades_diccionario[propiedades[i].id]['precio']=float(f'{propiedades[i].precio}')
         propiedades_diccionario[propiedades[i].id]['rentabilidad']=(float(f'{((propiedades[i].arriendo_actual*12)/(propiedades[i].precio*UF)*100):.1f}'))

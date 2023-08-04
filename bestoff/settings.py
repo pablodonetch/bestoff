@@ -70,8 +70,8 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = env('WSGI_APPLICATION')
-ASGI_APPLICATION = env('ASGI_APPLICATION')
+WSGI_APPLICATION = 'bestoff.wsgi.application'
+ASGI_APPLICATION = 'bestoff.asgi.application'
 
 
 DATABASES = {
