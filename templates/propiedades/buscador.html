@@ -108,7 +108,7 @@
             </div>
           </div>
         </div>
-        <!--Los IF de los -->
+        <!--Los IF de los --><!--
         {% if value|accede_diccionario:'rentabilidad' > 0 %}
         <div class="">
           <div class="flex py-1 detalle-rentabilidad  rounded-md border-solid border-slate-100 min-w-sm gallery-item-detalle">
@@ -129,15 +129,42 @@
             <p class="text-sm">{{value|accede_diccionario:'plusvalia'}} % de plusvalía inmediata</p>
           </div>
         </div>
-        {% endif %}      
+        {% endif %}    -->  
         <div class="py-1 px-4">
           <h3 class="mt-0 mb-2 text-2xl font-bold">{{value|accede_diccionario:'comuna'}}</h2>
         </div>
-        <div id="app_{{value|accede_diccionario:'id'}}" class="py-1 px-4">{{tiempo}}</div>
+        
+        <div class="grid grid-cols-6 ml-2">
+          <div class="col">
+            <svg class="my-2 mx-auto" width="17px" height="16px" viewBox="0 0 17 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <g id="Designs-v2" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                  <g id="Homepage---Desktop---Returning,-Not-Logged-In" transform="translate(-137.000000, -1167.000000)" fill="#F25D49">
+                      <g id="Group-4" transform="translate(66.000000, 924.000000)">
+                          <g id="property/card/app/boxed" transform="translate(56.000000, 0.000000)">
+                              <g id="Group" transform="translate(15.342466, 238.000000)">
+                                  <g id="icon/2px/clock" transform="translate(0.000000, 5.000000)">
+                                      <path d="M8,0 C12.418278,0 16,3.581722 16,8 C16,12.418278 12.418278,16 8,16 C3.581722,16 0,12.418278 0,8 C0,3.581722 3.581722,0 8,0 Z M8,1.6 C4.4653776,1.6 1.6,4.4653776 1.6,8 C1.6,11.5346224 4.4653776,14.4 8,14.4 C11.5346224,14.4 14.4,11.5346224 14.4,8 C14.4,4.4653776 11.5346224,1.6 8,1.6 Z M8.8,3.9212151 C9.21026867,3.9212151 9.54840573,4.23004725 9.59461781,4.6279182 L9.6,4.7212151 L9.6,9.6 L4.8,9.6 C4.3581722,9.6 4,9.2418278 4,8.8 C4,8.38973133 4.30883215,8.05159427 4.7067031,8.00538219 L4.8,8 L8,8 L8,4.7212151 C8,4.31094643 8.30883215,3.97280937 8.7067031,3.92659729 L8.8,3.9212151 Z" id="Combined-Shape"></path>
+                                  </g>
+                              </g>
+                          </g>
+                      </g>
+                  </g>
+              </g>
+            </svg>
+          </div>
+          <div class="col-span-5">
+            <div id="app_{{value|accede_diccionario:'id'}}" class="py-1 px-4">
+              
+              
+              
+            </div>
+          </div>
+        </div>
         <div class="p-2 border-t border-b text-xs text-gray-700">
+          <p>oferta actual más alta</p>
           <div class="flex justify-between">
                 <div> <span class="text-sm font-semibold">UF </span>&nbsp;<span class="font-bold text-3xl">{{value|accede_diccionario:'precio'|numberFormatInt}}</span>-</div>
-                <button type="submit" class="text-white right-2 bottom-2 bg-orange-700 hover:bg-orange-800 focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-orange-600 dark:hover:bg-orange-700 dark:focus:ring-orange-800">Me interesa</button>
+                <button type="submit" class="text-white right-2 bottom-2 bg-orange-700 hover:bg-orange-800 focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-orange-600 dark:hover:bg-orange-700 dark:focus:ring-orange-800">ver detalles</button>
           </div>       
         </div>
       </div>
@@ -159,7 +186,7 @@
       const socket_{{value|accede_diccionario:'id'}} = new WebSocket(url_{{value|accede_diccionario:'id'}})
       socket_{{value|accede_diccionario:'id'}}.onmessage = function(event){
           let data = JSON.parse(event.data)
-          console.log(data)
+          // console.log(data)
           document.querySelector('#app_{{value|accede_diccionario:'id'}}').innerHTML = data
       }
   }
