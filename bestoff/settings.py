@@ -24,6 +24,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.postgres',
     'django.contrib.sitemaps',
+
     'core',
     'propiedades',
     'acceso',
@@ -34,10 +35,12 @@ INSTALLED_APPS = [
     'storages',
 ]
 
+
+WSGI_APPLICATION = 'bestoff.wsgi.application'
+ASGI_APPLICATION = 'bestoff.asgi.application'
+
 TAILWIND_APP_NAME = 'theme'
-INTERNAL_IPS = [
-    '127.0.0.1',
-]
+INTERNAL_IPS = [ '127.0.0.1']
 NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"
 
 MIDDLEWARE = [
@@ -48,6 +51,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    #'django.contrib.sessions.middleware.SessionMiddleware',
+    #'channels.middleware.SessionMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
@@ -70,8 +75,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'bestoff.wsgi.application'
-ASGI_APPLICATION = 'bestoff.asgi.application'
+
 
 
 DATABASES = {

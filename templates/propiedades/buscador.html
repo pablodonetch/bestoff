@@ -151,25 +151,25 @@
 {% block scripts %}
 <script type="text/javascript">
 
-  {% for key, value in propiedades_diccionario.items %}
-	function sendSocket_{{value|accede_diccionario:'id'}}()
-	{
-    let url=`wss://${window.location.host}/ws/propiedad/{{value|accede_diccionario:'id'}}/`
+{% for key, value in propiedades_diccionario.items %}
+  function sendSocket_{{value|accede_diccionario:'id'}}()
+  {
+      let url_{{value|accede_diccionario:'id'}} = `ws://${window.location.host}/ws/propiedad/{{value|accede_diccionario:'id'}}/`
   
-    var socket=new WebSocket(url)
-		socket.onmessage=function(event){
-			var data=JSON.parse(event.data)
-			console.log(data)
-			document.querySelector('#app_{{value|accede_diccionario:'id'}}').innerHTML=data.message
-  		}
-		}
+      const socket_{{value|accede_diccionario:'id'}} = new WebSocket(url_{{value|accede_diccionario:'id'}})
+      socket_{{value|accede_diccionario:'id'}}.onmessage = function(event){
+          let data = JSON.parse(event.data)
+          console.log(data)
+          document.querySelector('#app_{{value|accede_diccionario:'id'}}').innerHTML = data
+      }
+  }
   {% endfor %}
 
   window.onload=function(){
-    {% for key, value in propiedades_diccionario.items %}
-    setInterval(function(){ sendSocket_{{value|accede_diccionario:'id'}}(); }, 3000)
-    {% endfor %}
-	};
+  {% for key, value in propiedades_diccionario.items %}
+        setInterval(function(){ sendSocket_{{value|accede_diccionario:'id'}}(); }, 1000)
+  {% endfor %}
+  };;
 </script>
 
 
