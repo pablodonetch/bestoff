@@ -18,7 +18,7 @@ urlpatterns = [
     path('vender/', vender, name='vender'),
     path('quehacemos/', quehacemos, name='quehacemos'),
     path('acceso/', include('acceso.urls'), name='acceso_urls'),
-
+    path('sse/propiedad/<int:propiedad_id>/', cuentaregresiva, name='cuentaregresiva'),
 ]
 
 

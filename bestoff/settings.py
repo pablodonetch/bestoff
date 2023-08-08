@@ -15,7 +15,7 @@ ALLOWED_HOSTS = ['https://www.bestoff.cl', 'www.bestoff.cl', 'bestoff.cl','https
 CSRF_TRUSTED_ORIGINS = ['https://www.bestoff.cl','https://bestoff.cl','http://127.0.0.1', 'https://bestoff-cl.herokuapp.com' ]
 
 INSTALLED_APPS = [
-    'channels',
+    
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
