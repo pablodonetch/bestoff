@@ -176,12 +176,11 @@ def cuentaregresiva(request, propiedad_id):
     response['Connection'] = 'keep-alive'
     response['Transfer-Encoding'] = 'chunked'
     try:
-        while True:
-            data = arreglo_html
-            if data is not None:
-                event_data = f"data: {json.dumps(data)}\n\n"
-                response.write(event_data)
-                response.flush()
+        data = arreglo_html
+        if data is not None:
+            event_data = f"data: {json.dumps(data)}\n\n"
+            response.write(event_data)
+            response.flush()
     except GeneratorExit:  # El cliente se desconecta
         pass
     return response
