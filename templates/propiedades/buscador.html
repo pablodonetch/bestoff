@@ -185,7 +185,7 @@
   
       const event_{{value|accede_diccionario:'id'}} = new EventSource(url_{{value|accede_diccionario:'id'}})
       event_{{value|accede_diccionario:'id'}}.onmessage = function(event_{{value|accede_diccionario:'id'}}){
-          let data = JSON.parse(event{{value|accede_diccionario:'id'}}.data)
+          let data = JSON.parse(event_{{value|accede_diccionario:'id'}}.data)
           console.log(data)
           document.querySelector('#app_{{value|accede_diccionario:'id'}}').innerHTML = data
       }
