@@ -181,7 +181,7 @@
 {% for key, value in propiedades_diccionario.items %}
   function sendEvent_{{value|accede_diccionario:'id'}}()
   {
-      let url_{{value|accede_diccionario:'id'}} = `http://${window.location.host}/sse/propiedad/{{value|accede_diccionario:'id'}}/`
+      let url_{{value|accede_diccionario:'id'}} = `https://${window.location.host}/sse/propiedad/{{value|accede_diccionario:'id'}}/`
   
       const event_{{value|accede_diccionario:'id'}} = new EventSource(url_{{value|accede_diccionario:'id'}})
       event_{{value|accede_diccionario:'id'}}.onmessage = function(event_{{value|accede_diccionario:'id'}}){
