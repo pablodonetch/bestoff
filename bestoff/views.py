@@ -171,7 +171,8 @@ def cuentaregresiva(request, propiedad_id):
     print('id_propiedad: dias ' + str(dias) + ' ;horas ' + str(horas)+' segundos: '+str(segundos))
     propiedad_diccionario_socket={'dias':str_dias,'horas':str_horas,'minutos':str_minutos,'segundos':str_segundos}
     
-    response = HttpResponse(content_type='text/event-stream')
+    response = HttpResponse()
+    response['Content-Type'] = 'text/event-stream'
     response['Cache-Control'] = 'no-cache'
     response['Connection'] = 'keep-alive'
     response['Transfer-Encoding'] = 'chunked'
