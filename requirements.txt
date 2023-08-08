@@ -1,5 +1,5 @@
-asgiref==3.5.2
 arrow==1.2.3
+asgiref==3.5.2
 attrs==23.1.0
 autobahn==23.6.2
 Automat==22.10.0
@@ -36,7 +36,7 @@ jinja2-time==0.2.0
 jmespath==1.0.1
 MarkupSafe==2.1.1
 Pillow==9.2.0
-pipenv==2022.11.30
+pipenv==2023.7.23
 platformdirs==3.10.0
 psycopg2==2.9.5
 pyasn1==0.5.0
