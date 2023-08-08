@@ -62,13 +62,13 @@ twisted-iocpsupport = "==1.0.3"
 txaio = "==23.1.1"
 typing-extensions = "==4.7.1"
 "zope.interface" = "==6.0"
-channels = "*"
 distlib = "==0.3.7"
 filelock = "==3.12.2"
 pipenv = "==2023.7.23"
 platformdirs = "==3.10.0"
 virtualenv = "==20.24.2"
 virtualenv-clone = "==0.5.7"
+channels = "==3.0.5"
 
 [dev-packages]
 
