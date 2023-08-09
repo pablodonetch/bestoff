@@ -1,30 +1,31 @@
-{% load static %}
-<nav class="shadow dark:bg-gray-800 nav-orange-paginas drop-shadow-md">
-    <div class="container px-6 py-4 mx-auto">
-            <div class="flex items-center justify-between">
-                <div>
-                    <a  href="/">
-                    <img src="{% static "imagenes/Logo_1.png" %}" class="h-12" alt="Bestoff Logo"></a>
-                </div>
-                <div class="flex">
+{% load static %}{% load utilidades %}
+<nav class="">
+    <div class="px-6 py-4 mx-auto">
+        <div class="flex items-center justify-between">
+            <div>
+                <a  href="/">
+                <img src="{% static "imagenes/Logo_Bestoff_orange.png" %}" class="h-12" alt="Bestoff Logo"></a>
+            </div>
+            <div class="grid grid-row-2 gap-y-2">
+                <div class="row flex">
                     <a href="/quehacemos"><div class="mx-2">
                         <!--<button id="open-modal-vende" class="flex text-white">-->
-                        <button class="flex text-white">
+                        <button class="flex text-orange-500">
                             <p class="mx-1 font-semibold text-xs sm:text-lg">¿Qué hacemos?</p>
                             <div class="hidden sm:block">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" fill="none">
-                                    <path d="M4 9L12 17L20 9" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M4 9L12 17L20 9" stroke="#f97316" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
                             </div>
                         </button>
                     </div></a>
                     <a href="/vender"><div class="mx-2">
                         <!--<button id="open-modal-vende" class="flex text-white">-->
-                        <button class="flex text-white">
+                        <button class="flex text-orange-500">
                             <p class="mx-1 font-semibold text-xs sm:text-lg">Vender</p>
                             <div class="hidden sm:block">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" fill="none">
-                                    <path d="M4 9L12 17L20 9" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M4 9L12 17L20 9" stroke="#f97316" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
                             </div>
                         </button>
@@ -32,11 +33,11 @@
                     {% if user.is_authenticated %}
                     <a href="acceso/salir"><div class="mx-2">
                         <!--<button id="open-modal-vende" class="flex text-white">-->
-                        <button class="flex text-white">
+                        <button class="flex text-orange-500">
                             <p class="mx-1 font-semibold text-xs sm:text-lg">Salir</p>
                             <div class="hidden sm:block">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" fill="none">
-                                    <path d="M4 9L12 17L20 9" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M4 9L12 17L20 9" stroke="#f97316" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
                             </div>
                         </button>
@@ -44,24 +45,40 @@
                     {% else %}
                     <a href="acceso/login"><div class="mx-2">
                         <!--<button id="open-modal-vende" class="flex text-white">-->
-                        <button class="flex text-white">
+                        <button class="flex text-orange-500">
                             <p class="mx-1 font-semibold text-xs sm:text-lg">Login</p>
                             <div class="hidden sm:block">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" fill="none">
-                                    <path d="M4 9L12 17L20 9" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M4 9L12 17L20 9" stroke="#f97316" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
                             </div>
                         </button>
                     </div></a>
-                    {% endif %}                
+                    {% endif %}       
                 </div>
+                <div>
+                    {% if user.is_authenticated %}
+                    <nav class="">
+                        <div class="flex max-w-3xl mx-auto flex-row-reverse">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="mx-4" width="48" height="48" viewBox="0 0 24 24"><g fill="none" stroke="#f97316" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10s10-4.477 10-10S17.523 2 12 2Z"/><path d="M4.271 18.346S6.5 15.5 12 15.5s7.73 2.846 7.73 2.846M12 12a3 3 0 1 0 0-6a3 3 0 0 0 0 6Z"/></g></svg>
+                            <div class="grid grid-row-2">
+                                <div class="row">
+                                    <p class="text-orange-500 text-right">Hola, [nombre]</p>
+                                </div>
+                                <div class="row">
+                                    <p class="text-orange-500 text-right">Garantía Disponible: $ {{usermetadata.garantia|numberFormatInt}}</p>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </nav>
+                    {% endif %} 
+                </div>     
             </div>
+        </div>
     </div>
 </nav>
-{% if user.is_authenticated %}
-<nav class="shadow bg-orange-600 drop-shadow-md">
-    <div class="max-w-3xl mx-auto">
-        <p class="text-white text-right font-semibold">Garantía Disponible: $ {{usermetadata.garantia}}</p>
-    </div>
-</nav>
-{% endif %}  
+
+
+
+ 

@@ -5,12 +5,12 @@
 {% block content %}
 
 
-<!--Formulario d Búsqueda-->
+<!--Formulario d Búsqueda
 <div class='busqueda max-w-6xl mx-auto rounded-xl px-5 py-4 bg-red-800/60 mt-7'>
   <div class="text-white">
     <h3 class='text-xl sm:text-3xl'>Busca Inversiones Inmobiliarias como nunca antes lo habías hecho.</h3>
-  </div>
-    <!--Formulario de Búsqueda Alternativo-->
+  </div>-->
+    <!--Formulario de Búsqueda Alternativo
     <div>
       <form name="form_buscar" method="post" action="{{ request.get_full_path }} ">
         {% csrf_token %}
@@ -23,7 +23,7 @@
         </div>
       </form>
     </div>
-</div>
+</div>-->
 
 <!--Ordenar por
 <div class="flex my-4 max-w-4xl mx-2 sm:mx-auto">
@@ -67,6 +67,17 @@
 </div>
 {% endif %}
 
+
+<!--  -->
+<div class="h-96 bg-gradient-to-b from-white via-orange-100 to-orange-200">
+  <div class="max-w-3xl mx-auto" >
+    <h2 class="mt-32 font-semibold text-center font-sans text-6xl font-bold">Compra <span class="text-orange-500">Propiedades </span> como nunca antes lo habías hecho</h2>
+    
+    <div class="max-w-xl mx-auto">
+       <h2 class="mt-16 mb-32 text-2xl text-center">Inscribe la garantía, busca la mejor propiedad y haz tu oferta online. Así de fácil puedes comprar en Bestoff.</h2>
+    </div>
+  </div>
+</div>
 <!-- GRid de Resultados con Propiedades Diccionario -->
 <div class="grid gap-2 grid-cols-1 sm:grid-cols-3 my-4 max-w-4xl mx-2 sm:mx-auto">
   {% for key, value in propiedades_diccionario.items %}
@@ -154,9 +165,6 @@
           </div>
           <div class="col-span-5">
             <div id="app_{{value|accede_diccionario:'id'}}" class="py-1 px-4">
-              
-              
-              
             </div>
           </div>
         </div>
@@ -181,7 +189,7 @@
 {% for key, value in propiedades_diccionario.items %}
   function sendEvent_{{value|accede_diccionario:'id'}}()
   {
-      let url_{{value|accede_diccionario:'id'}} = `https://${window.location.host}/sse/propiedad/{{value|accede_diccionario:'id'}}/`
+      let url_{{value|accede_diccionario:'id'}} = `http://${window.location.host}/sse/propiedad/{{value|accede_diccionario:'id'}}/`
   
       const event_{{value|accede_diccionario:'id'}} = new EventSource(url_{{value|accede_diccionario:'id'}})
       event_{{value|accede_diccionario:'id'}}.onmessage = function(event_{{value|accede_diccionario:'id'}}){
