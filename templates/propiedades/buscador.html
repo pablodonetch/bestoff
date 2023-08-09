@@ -4,89 +4,27 @@
 {% block extra_navbar %} {% include 'componentes/navbar.html' %} {% endblock extra_navbar %}
 {% block content %}
 
-
-<!--Formulario d Búsqueda
-<div class='busqueda max-w-6xl mx-auto rounded-xl px-5 py-4 bg-red-800/60 mt-7'>
-  <div class="text-white">
-    <h3 class='text-xl sm:text-3xl'>Busca Inversiones Inmobiliarias como nunca antes lo habías hecho.</h3>
-  </div>-->
-    <!--Formulario de Búsqueda Alternativo
-    <div>
-      <form name="form_buscar" method="post" action="{{ request.get_full_path }} ">
-        {% csrf_token %}
-        <div class="grid grid-cols-12 mt-5">
-          {{formulario_buscar.comuna}}
-          {{formulario_buscar.contrato_vigente}} <label for="id_contrato_vigente" class="col-span-12 md:col-span-4 rounded-md my-2 p-2.5">&nbsp&nbspContrato Arriendo Vigente</label>
-          <button type="button" onclick="buscador();" id="boton-busqueda-portada" class="boton-busqueda-portada col-span-12 md:col-span-1 ml-1 my-2 flex top-0 right-0 p-2.5 text-sm sm:text-base font-medium text-white rounded-md border border-orange-700">
-            <span class="pl-1">Buscar</span>
-          </button>
-        </div>
-      </form>
-    </div>
-</div>-->
-
-<!--Ordenar por
-<div class="flex my-4 max-w-4xl mx-2 sm:mx-auto">
-  <h2 class="text-sm font-medium title-font mb-4 text-gray-900">Ordenar por:   </h2>
-  {% if portada %}
-  <a href='propiedades/buscador/?buscar=&&contrato=false&&rentabilidad=true&&plusvalia=false'>
-  {% else %}
-  <a href='../buscador/?buscar={{Comuna}}&&contrato={{contrato}}&&rentabilidad=true&&plusvalia=false'>
-  {%endif%}
-    <div id='mejor_rentabilidad' class="flex">
-      <span>
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 17.25L12 21m0 0l-3.75-3.75M12 21V3" />
-        </svg>      
-      </span>
-      <span class="text-sm text-red-400 font-bold">Mejor Rentabilidad</span>
-    </div>
-  </a>
-  {% if portada %}
-  <a href='propiedades/buscador/?buscar=&&contrato=false&&rentabilidad=false&&plusvalia=true'>
-  {% else %}
-  <a href='../buscador/?buscar={{Comuna}}&&contrato={{contrato}}&&rentabilidad=false&&plusvalia=true'>
-  {%endif%}
-    <div id='mejor_plusvalia' class="flex">
-        <span>
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 17.25L12 21m0 0l-3.75-3.75M12 21V3" />
-        </svg>      
-      </span>
-      <span class="text-sm text-red-400 font-bold">Mejor Plusvalia</span>
-    </div>
-  </a>
-</div>-->
-
-{% if Comuna %}
-<!-- Titulo de la página   -->
-<div class="my-4 max-w-4xl mx-2 sm:mx-auto">
-  <h1 class="sm:text-lg text-lg font-medium title-font mb-4 text-gray-900">Resultado para: 
-    <span class="text-red-400  font-bold">{{Comuna}}</span>
-  </h1>
-</div>
-{% endif %}
-
-
 <!--  -->
-<div class="h-3/4 bg-gradient-to-b from-white via-orange-100 to-orange-200">
-  <div class="max-w-3xl mx-auto" >
-    <h2 class="mt-28 font-semibold text-center font-sans text-6xl font-bold">Compra <span class="text-orange-500">Propiedades </span> como nunca antes lo habías hecho</h2>
-    
-    <div class="max-w-6xl mx-auto">
-      <div class="grid grid-cols-2 gap-x-4 mt-16">
-        <div class="col">
-          <iframe width="420" height="315" src="https://www.youtube.com/watch?v=X8nEB9hWW40"> </iframe>
-        </div>
-        <div class="col">
-          <p class="mb-2 text-4xl font-semibold text-left"><span class="font-medium text-sm">1. </span>Inscribe la garantía</p> 
-          <p class="mb-2 text-4xl font-semibold text-left"><span class="font-medium text-sm">2. </span>busca la mejor propiedad</p>
-          <p class="mb-2 text-4xl font-semibold text-left"><span class="font-medium text-sm">3. </span>haz tu oferta online</p> 
-          <p class="mb-2 font-medium text-sm text-left"></p>Así de fácil puedes comprar en Bestoff.</p>
+<div class="h-3/4 py-8 bg-gradient-to-b from-white via-orange-100 to-orange-200">
+  <div class="mt-8 max-w-3xl mx-auto" >
+    <h2 class="font-semibold text-center font-sans text-6xl font-bold">Compra <span class="text-orange-500">Propiedades </span> como nunca antes lo habías hecho</h2>
+  </div>
+  <div class="max-w-6xl mx-auto mb-16">
+    <div class="grid grid-cols-2 gap-x-4 mt-16">
+      <div class="col">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/X8nEB9hWW40" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      </div>
+      <div class="col">
+        <div class="my-6">
+          <p class="mb-10 text-4xl font-semibold text-left"><span class="font-medium text-sm">1. </span>Inscribe la garantía</p> 
+          <p class="mb-10 text-4xl font-semibold text-left"><span class="font-medium text-sm">2. </span>Busca una propiedad</p>
+          <p class="mb-10 text-4xl font-semibold text-left"><span class="font-medium text-sm">3. </span>Haz tu oferta online</p> 
+          
         </div>
       </div>
     </div>
   </div>
+  <p class="mb-4 text-xl text-base text-center font-semibold text-orange-500">Así de fácil puedes comprar en Bestoff.</p>  
 </div>
 <!-- GRid de Resultados con Propiedades Diccionario -->
 <div class="grid gap-2 grid-cols-1 sm:grid-cols-3 my-4 max-w-4xl mx-2 sm:mx-auto">
