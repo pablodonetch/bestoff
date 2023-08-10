@@ -8,50 +8,62 @@
             </div>
             <div class="grid grid-row-2 gap-y-2">
                 <div class="row flex">
-                    <a href="/quehacemos"><div class="mx-2">
+                    <a href="/quehacemos"><div class="mx-4">
                         <!--<button id="open-modal-vende" class="flex text-white">-->
                         <button class="flex text-orange-500">
                             <p class="mx-1 font-semibold text-xs sm:text-lg">¿Qué hacemos?</p>
-                            <div class="hidden sm:block">
+                            <!--<div class="hidden sm:block">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" fill="none">
                                     <path d="M4 9L12 17L20 9" stroke="#f97316" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
-                            </div>
+                            </div>-->
                         </button>
                     </div></a>
-                    <a href="/vender"><div class="mx-2">
+                    <a href="/vender"><div class="mx-4">
                         <!--<button id="open-modal-vende" class="flex text-white">-->
                         <button class="flex text-orange-500">
                             <p class="mx-1 font-semibold text-xs sm:text-lg">Vender</p>
-                            <div class="hidden sm:block">
+                            <!--<div class="hidden sm:block">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" fill="none">
                                     <path d="M4 9L12 17L20 9" stroke="#f97316" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
-                            </div>
+                            </div>-->
                         </button>
                     </div></a>
                     {% if user.is_authenticated %}
-                    <a href="acceso/salir"><div class="mx-2">
+                    <a href="acceso/salir"><div class="mx-4">
                         <!--<button id="open-modal-vende" class="flex text-white">-->
                         <button class="flex text-orange-500">
                             <p class="mx-1 font-semibold text-xs sm:text-lg">Salir</p>
+                            <!--
                             <div class="hidden sm:block">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" fill="none">
                                     <path d="M4 9L12 17L20 9" stroke="#f97316" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
-                            </div>
+                            </div>-->
                         </button>
                     </div></a>
                     {% else %}
-                    <a href="acceso/login"><div class="mx-2">
+                    <a href="acceso/sign_in"><div class="mx-4">
                         <!--<button id="open-modal-vende" class="flex text-white">-->
                         <button class="flex text-orange-500">
-                            <p class="mx-1 font-semibold text-xs sm:text-lg">Login</p>
-                            <div class="hidden sm:block">
+                            <p class="mx-1 font-semibold text-xs sm:text-lg">Sign in</p>
+                            <!--<div class="hidden sm:block">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" fill="none">
                                     <path d="M4 9L12 17L20 9" stroke="#f97316" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
-                            </div>
+                            </div>-->
+                        </button>
+                    </div></a>
+                    <a href="acceso/login"><div class="mx-4">
+                        <!--<button id="open-modal-vende" class="flex text-white">-->
+                        <button class="flex text-orange-500 border-2 border-orange-500 rounded-lg">
+                            <p class="mx-4 my-1 text-xs font-semibold sm:text-lg">Login</p>
+                            <!--<div class="hidden sm:block">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" fill="none">
+                                    <path d="M4 9L12 17L20 9" stroke="#f97316" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>-->
                         </button>
                     </div></a>
                     {% endif %}       
